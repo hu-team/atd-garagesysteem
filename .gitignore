@@ -11,6 +11,8 @@ local.properties
 .settings/
 .loadpath
 
+desktop.ini
+
 # Eclipse Core
 .project
 
