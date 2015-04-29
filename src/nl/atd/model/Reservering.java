@@ -73,13 +73,19 @@ public class Reservering extends FactuurOnderdeel{
 	}
 
 	/**
-	 * Get totaal prijs
+	 * Get totaal prijs(15 * dagen)
 	 * @return double totaal prijs
 	 */
 	@Override
 	public double getTotaalPrijs() {
 		
-		return 0;
+		long milisecond1 = van.getTimeInMillis();
+		long milisecond2 = tot.getTimeInMillis();
+		
+		long diff = milisecond2 - milisecond1;
+		long diffDays = diff / (24 * 60 * 60 * 1000);
+		
+		return 15 * (int)diffDays;
 	}
 
 	/**
@@ -89,7 +95,7 @@ public class Reservering extends FactuurOnderdeel{
 	@Override
 	public String getFactuurOmschrijving() {
 		
-		return null;
+		return "Parkeerplek reservering: " + getKlant() + " " + getAuto() + "\t\t €" + getTotaalPrijs();
 	}
 	
 	
