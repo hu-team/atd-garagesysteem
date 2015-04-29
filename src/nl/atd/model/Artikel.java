@@ -10,6 +10,7 @@ public class Artikel {
     private String naam;
     private String code;
     private int aantal;
+    private double prijs;
     
     /**
      * Artikel
@@ -98,6 +99,22 @@ public class Artikel {
     public int getAantal() {
 		return aantal;
 	}
+    
+    /**
+     * Get prijs van artikel
+     * @return prijs
+     */
+    public double getPrijs() {
+    	return this.prijs;
+    }
+    
+    /**
+     * Set prijs van artikel
+     * @param ps prijs
+     */
+    public void setPrijs(double ps) {
+    	this.prijs = ps;
+    }
     
     @Override
     public boolean equals(Object other) {
