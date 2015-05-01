@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 
 /**
- * 
+ * Agenda, zorgt voor data opslag voor alle klussen
  * @author ATD Developer
  *
  */
@@ -46,7 +46,7 @@ public class Agenda {
 	}
 	
 	/**
-	 * 
+	 * Get klussen op bepaalde dag
 	 * @param dt Datum van een bepaalde dag
 	 * @return ArrayList met alle klussen van die dag
 	 */
@@ -70,7 +70,7 @@ public class Agenda {
 	 * @return ArrayList met klussen van die maand
 	 */
 	public ArrayList<Klus> getKlussenInMaand(Calendar dt){
-ArrayList<Klus> tempList = new ArrayList<Klus>();
+		ArrayList<Klus> tempList = new ArrayList<Klus>();
 		
 		for(Klus kl : klussen){
 			if(kl.getCalendar().get(Calendar.YEAR) == dt.get(Calendar.YEAR)
