@@ -3,6 +3,7 @@ package nl.atd.helper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletContext;
 
@@ -20,6 +21,8 @@ public class DatabaseHelper {
 		String dbPath = servletContext.getRealPath("/database.db");
 		
 		connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+		
+		Logger.getLogger("to4").info("Database Connected");
 	}
 	
 	public static void shutdown() throws SQLException {
