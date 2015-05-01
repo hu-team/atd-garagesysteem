@@ -20,9 +20,6 @@ public class DatabaseHelper {
 		String dbPath = servletContext.getRealPath("/database.db");
 		
 		connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
-		
-		System.out.println("JA, GESTART");
-		System.out.println(connection.toString());
 	}
 	
 	public static void shutdown() throws SQLException {
