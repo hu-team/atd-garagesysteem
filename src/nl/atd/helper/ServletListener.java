@@ -28,6 +28,9 @@ public class ServletListener implements ServletContextListener {
 		}
 		
 		
+		/*
+		 * Database startup
+		 */
 		try {
 			DatabaseHelper.startup(sce.getServletContext());
 		} catch(SQLException se) {
@@ -43,7 +46,8 @@ public class ServletListener implements ServletContextListener {
 	public void contextDestroyed(ServletContextEvent sce) {
 		try {
 			DatabaseHelper.shutdown();
-		} catch (SQLException e) {
+			Thread.sleep(1500);
+		} catch (SQLException | InterruptedException e) {
 			Logger.getLogger("to4").warning("Cannot close DB!");
 		}
 	}
