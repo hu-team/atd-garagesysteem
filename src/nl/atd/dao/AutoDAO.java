@@ -9,7 +9,6 @@ import java.util.Calendar;
 
 import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Auto;
-import nl.atd.model.Klant;
 
 public class AutoDAO {
 	

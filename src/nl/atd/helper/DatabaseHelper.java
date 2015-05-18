@@ -3,8 +3,6 @@ package nl.atd.helper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import javax.servlet.ServletContext;
-
 public class DatabaseHelper {
 	private static final String DB_URL		= "jdbc:mysql://localhost/atd";
 	private static final String DB_USER		= "root";

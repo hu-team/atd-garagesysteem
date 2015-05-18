@@ -59,7 +59,6 @@ public class Reservering {
 	 * Get klant
 	 * @return Klant klant
 	 */
-	@Override
 	public Klant getKlant(){
 		return klant;
 	}
@@ -76,7 +75,6 @@ public class Reservering {
 	 * Get totaal prijs(15 * dagen)
 	 * @return double totaal prijs
 	 */
-	@Override
 	public double getTotaalPrijs() {
 		
 		long milisecond1 = van.getTimeInMillis();
@@ -92,7 +90,6 @@ public class Reservering {
 	 * Get factuur omschrijving
 	 * @return String factooromschrijving
 	 */
-	@Override
 	public String getFactuurOmschrijving() {
 		
 		return "Parkeerplek reservering: " + getKlant() + " " + getAuto() + "\t\t €" + getTotaalPrijs();
