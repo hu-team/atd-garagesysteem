@@ -12,10 +12,11 @@ import nl.atd.model.Auto;
 
 public class AutoDAO {
 	
-	public AutoDAO() {
-		
-	}
-	
+	/**
+	 * Get alle autos
+	 * @param klantGebruikersnaam geef string om te filteren op auto's van bepaalde klant, null voor alle autos
+	 * @return array met autos
+	 */
 	public ArrayList<Auto> getAutos(String klantGebruikersnaam) {
 		ArrayList<Auto> autos = new ArrayList<Auto>();
 		

@@ -13,10 +13,11 @@ import nl.atd.model.Klant;
 
 public class KlantDAO {
 	
-	public KlantDAO() {
-		
-	}
-	
+	/**
+	 * Get alle klanten in database
+	 * @param autos boolean, moeten autos ook uit db gehaald worden?
+	 * @return array met klanten
+	 */
 	public ArrayList<Klant> getKlanten(boolean autos) {
 		ArrayList<Klant> klanten = new ArrayList<Klant>();
 		
