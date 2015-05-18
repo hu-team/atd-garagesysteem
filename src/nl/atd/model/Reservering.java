@@ -3,12 +3,12 @@ package nl.atd.model;
 import java.util.Calendar;
 
 /**
- * 
+ * Reservering van parkeerplek
  * @author ATD Developer
  *
  */
 
-public class Reservering extends FactuurOnderdeel{
+public class Reservering {
 	private Calendar van;
 	private Calendar tot;
 	

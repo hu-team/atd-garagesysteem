@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @author ATD Developers
  *
  */
-public class Klus extends FactuurOnderdeel {
+public class Klus {
 	private String type;
 	private boolean klaar;
 	private int uren;
