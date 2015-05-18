@@ -8,6 +8,9 @@ package nl.atd.model;
 public abstract class Persoon {
 	private String naam;
 	
+	private String gebruikersnaam;
+	private String wachtwoord;
+	
 	public Persoon(String nm) {
 		this.naam = nm;
 	}
@@ -27,4 +30,38 @@ public abstract class Persoon {
 	public void setNaam(String nm) {
 		this.naam = nm;
 	}
+
+	/**
+	 * Get gebruikersnaam
+	 * @return string met gebruikersnaam
+	 */
+	public String getGebruikersnaam() {
+		return gebruikersnaam;
+	}
+
+	/**
+	 * Set gebruikersnaam
+	 * @param gebruikersnaam
+	 */
+	public void setGebruikersnaam(String gebruikersnaam) {
+		this.gebruikersnaam = gebruikersnaam;
+	}
+
+	/**
+	 * Get wachtwoord
+	 * @return wachtwoord
+	 */
+	public String getWachtwoord() {
+		return wachtwoord;
+	}
+
+	/**
+	 * Set wachtwoord
+	 * @param wachtwoord
+	 */
+	public void setWachtwoord(String wachtwoord) {
+		this.wachtwoord = wachtwoord;
+	}
+	
+	
 }

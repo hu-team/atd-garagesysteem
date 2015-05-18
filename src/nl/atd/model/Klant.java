@@ -61,5 +61,15 @@ public class Klant extends Persoon {
 	public void setLaatsteBezoek(Calendar lb) {
 		this.laatsteBezoek = lb;
 	}
+
+	/**
+	 * Set email
+	 * @param email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 	
 }

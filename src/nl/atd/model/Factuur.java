@@ -12,22 +12,33 @@ public class Factuur {
 	private boolean betaald;
 	private Calendar calendar;
 	
-	private ArrayList<FactuurOnderdeel> onderdelen;
+	private ArrayList<Klus> klussen;
+	private ArrayList<Reservering> reserveringen;
 	
 	public Factuur() {
 		this.betaald = false;
 		this.calendar = Calendar.getInstance();
 		
-		this.onderdelen = new ArrayList<>();
+		this.klussen = new ArrayList<Klus>();
+		this.reserveringen = new ArrayList<Reservering>();
 	}
 	
 	/**
-	 * Voeg een onderdeel toe die FactuurOnderdeel als super class heeft.
+	 * Voeg een klus toe.
 	 * 
-	 * @param onderdeel onderdeel toe te voegen
+	 * @param klus
 	 */
-	public void addOnderdeel(FactuurOnderdeel onderdeel) {
-		this.onderdelen.add(onderdeel);
+	public void addKlus(Klus klus) {
+		this.klussen.add(klus);
+	}
+	
+	/**
+	 * Voeg een reservering toe.
+	 * 
+	 * @param reservering
+	 */
+	public void addReservering(Reservering reservering) {
+		this.reserveringen.add(reservering);
 	}
 	
 	/**
@@ -37,11 +48,31 @@ public class Factuur {
 	public double getTotaalPrijs() {
 		double totaal = 0;
 		
-		for(int i = 0; i < this.onderdelen.size(); i++) {
-			totaal += this.onderdelen.get(i).getTotaalPrijs();
+		for(int i = 0; i < this.reserveringen.size(); i++) {
+			totaal += this.reserveringen.get(i).getTotaalPrijs();
+		}
+		
+		for(int i = 0; i < this.klussen.size(); i++) {
+			totaal += this.klussen.get(i).getTotaalPrijs();
 		}
 		
 		return totaal;
+	}
+	
+	/**
+	 * Get reserveringen
+	 * @return reserveringen
+	 */
+	public ArrayList<Reservering> getReserveringen() {
+		return this.reserveringen;
+	}
+	
+	/**
+	 * Get klussen
+	 * @return klussen
+	 */
+	public ArrayList<Klus> getKlussen() {
+		return this.klussen;
 	}
 	
 	/**
