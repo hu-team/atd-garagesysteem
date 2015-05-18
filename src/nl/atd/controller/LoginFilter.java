@@ -8,24 +8,29 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 
 public class LoginFilter implements Filter {
 
 	@Override
-	public void destroy() {
-		
-	}
+	public void destroy() {}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		
+		if(AuthHelper.isLoggedIn(((HttpServletRequest)request).getSession())) {
+			// Oke
+			chain.doFilter(request, response);
+		}else{
+			// Login pagina
+			((HttpServletResponse)response).sendRedirect(((HttpServletRequest)request).getContextPath() + "/login.jsp");
+		}
 	}
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		
-	}
+	public void init(FilterConfig filterConfig) throws ServletException {}
 
 }

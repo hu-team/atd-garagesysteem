@@ -56,4 +56,33 @@ public class KlantDAO {
 		
 		return klanten;
 	}
+
+	public Klant getKlant(String gebruikersnaam) {
+		Klant klant = null;
+		
+		try{
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery("SELECT *, UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek FROM klant WHERE gebruikersnaam = " + gebruikersnaam);
+			
+			if(set.next()) {
+				klant = new Klant(set.getString("naam"));
+				klant.setEmail(set.getString("email"));
+				klant.setGebruikersnaam(set.getString("gebruikersnaam"));
+				klant.setWachtwoord(set.getString("wachtwoord"));
+				
+				Calendar laatst = Calendar.getInstance();
+				try {
+					laatst.setTimeInMillis(set.getInt("laatstebezoek") * 1000);
+					klant.setLaatsteBezoek(laatst);
+				}catch(NumberFormatException | SQLException e) {
+					klant.setLaatsteBezoek(null);
+				}
+			}
+		}catch(Exception e) {
+		}
+		
+		return klant;
+	}
 }
