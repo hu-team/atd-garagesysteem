@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Artikel;
 import nl.atd.model.Onderdeel;
+import nl.atd.service.ServiceProvider;
 
 public class OnderdeelDAO {
 	
@@ -28,10 +29,7 @@ public class OnderdeelDAO {
 			while(set.next()) {
 				
 				// Artikel
-				Artikel artikel = null;
-				// TODO: Activate serviceprovider for artikel service
-				//Artikel artikel = ServiceProvider.getArtikelService().getArtikelByCode(set.getString("code"));
-				
+				Artikel artikel = ServiceProvider.getArtikelService().getArtikelByCode(set.getString("code"));
 				
 				Onderdeel onderdeel = new Onderdeel(artikel, set.getInt("aantal"));
 				
