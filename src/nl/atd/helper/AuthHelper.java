@@ -7,13 +7,11 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 import nl.atd.dao.KlantDAO;
-import nl.atd.dao.MonteurDAO;
 import nl.atd.model.Klant;
 import nl.atd.model.Monteur;
 import nl.atd.model.Persoon;
+import nl.atd.service.ServiceProvider;
 
 /**
  * Helper class die inlogpogingen, en sessie beheerd voor authenticatie en autorisatie
@@ -49,7 +47,7 @@ public class AuthHelper {
 				user = new KlantDAO().getKlant(gebruikersnaam);
 				break;
 			case MONTEUR:
-				user = new MonteurDAO().getMonteur(gebruikersnaam);
+				user = ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(gebruikersnaam);
 				break;
 			default:
 				user = null;
