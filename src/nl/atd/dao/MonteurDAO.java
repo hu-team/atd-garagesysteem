@@ -66,6 +66,7 @@ public class MonteurDAO {
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();
 			PreparedStatement st = connection.prepareStatement("INSERT INTO monteur (gebruikersnaam, wachtwoord, naam, salarisnummer) VALUES(?, ?, ?, ?);");
+
 			st.setString(1, monteur.getGebruikersnaam());
 			st.setString(2, monteur.getWachtwoord());
 			st.setString(3, monteur.getNaam());

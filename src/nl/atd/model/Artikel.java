@@ -23,7 +23,7 @@ public class Artikel {
     /**
      * Artikel
      * @param nm Naam
-     * @param aan Aantal
+     * @param aan Aantal+
      */
     public Artikel(String nm, int aan) {
     	this.naam = nm;

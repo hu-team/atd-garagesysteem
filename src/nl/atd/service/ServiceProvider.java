@@ -5,6 +5,7 @@ public class ServiceProvider {
 	private static AutoService autoService = new AutoService();
 	private static KlantService klantService = new KlantService();
 	private static KlusService klusService = new KlusService();
+	private static ArtikelService artikelService = new ArtikelService();
 	
 	public static MonteurService getMonteurService() {
 		return monteurService;
@@ -20,5 +21,9 @@ public class ServiceProvider {
 	
 	public static KlusService getKlusService() {
 		return klusService;
+	}
+	
+	public static ArtikelService getArtikelService(){
+		return artikelService;
 	}
 }
