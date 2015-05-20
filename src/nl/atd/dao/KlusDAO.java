@@ -60,8 +60,7 @@ public class KlusDAO {
 					datum = null;
 				}
 				
-				// TODO: Onderdelen toevoegen
-				
+				klus.setOnderdelen(ServiceProvider.getOnderdeelService().getAlleOnderdelenVanKlus(set.getInt("idklus")));
 				
 				klus.setCalendar(datum);
 				klus.setKlaar(set.getBoolean("klaar"));

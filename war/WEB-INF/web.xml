@@ -15,6 +15,10 @@
 		<servlet-name>add klant servlet</servlet-name>
 		<servlet-class>nl.atd.controller.AddKlantServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ajax get klussen</servlet-name>
+		<servlet-class>nl.atd.controller.AjaxKlussenServlet</servlet-class>
+	</servlet>
 	
 	
 	<servlet-mapping>
@@ -40,6 +44,9 @@
 		<servlet-name>add klant servlet</servlet-name>
 		<url-pattern>/secure/addklant</url-pattern>
 	</servlet-mapping>
-
+	<servlet-mapping>
+		<servlet-name>ajax get klussen</servlet-name>
+		<url-pattern>/secure/ajaxgetklussen</url-pattern>
+	</servlet-mapping>
 
 </web-app>

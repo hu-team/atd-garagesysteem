@@ -7,6 +7,8 @@ public class ServiceProvider {
 	private static KlusService klusService = new KlusService();
 	private static ArtikelService artikelService = new ArtikelService();
 	
+	private static OnderdeelService onderdeelService = new OnderdeelService();
+	
 	public static MonteurService getMonteurService() {
 		return monteurService;
 	}
@@ -23,7 +25,12 @@ public class ServiceProvider {
 		return klusService;
 	}
 	
+<<<<<<< HEAD
 	public static ArtikelService getArtikelService(){
 		return artikelService;
+=======
+	public static OnderdeelService getOnderdeelService() {
+		return onderdeelService;
+>>>>>>> c966f48bfee6ea873d5f4597bf53540b885c9c3b
 	}
 }
