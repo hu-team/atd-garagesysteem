@@ -1,0 +1,11 @@
+body {
+	font-family: 'Open Sans', sans-serif !important;
+}
+
+#inlog {
+	display: none;
+}
+
+#goback {
+	cursor: pointer;
+}

@@ -18,6 +18,7 @@ public class ServletListener implements ServletContextListener {
 		ConsoleHandler ch = new ConsoleHandler();
 		logger.addHandler(ch);
 		
+		/*
 		try{
 			FileHandler fh = new FileHandler(sce.getServletContext().getRealPath("/log.txt"));
 			
@@ -25,6 +26,7 @@ public class ServletListener implements ServletContextListener {
 		}catch(IOException ioe) {
 			ioe.printStackTrace();
 		}
+		*/
 	}
 
 	@Override

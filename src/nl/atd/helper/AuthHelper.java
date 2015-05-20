@@ -72,7 +72,7 @@ public class AuthHelper {
 			}
 			
 			// Compare
-			if(!user.getWachtwoord().isEmpty() &&
+			if(user != null && !user.getWachtwoord().isEmpty() &&
 					user.getGebruikersnaam().equals(gebruikersnaam) &&
 					user.getWachtwoord().equals(wachtwoordEncrypted)) {
 				// Gelukt, hij is het.
