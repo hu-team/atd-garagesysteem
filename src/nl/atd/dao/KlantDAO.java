@@ -1,6 +1,7 @@
 package nl.atd.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -78,5 +79,24 @@ public class KlantDAO {
 			return klanten.get(0);
 		}
 		return null;
+	}
+	
+	public boolean addKlant(Klant klant){
+		
+		try{
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			PreparedStatement st = connection.prepareCall("INSERT INTO klant(gebruikersnaam, wachtwoord, email, naam) values(?, ?, ?, ?)");
+			
+			st.setString(1, klant.getGebruikersnaam());
+			st.setString(2, klant.getWachtwoord());
+			st.setString(3, klant.getEmail());
+			st.setString(4, klant.getNaam());
+			
+			return st.execute();
+			
+		}catch(Exception e){
+			return false;
+		}
+		
 	}
 }
