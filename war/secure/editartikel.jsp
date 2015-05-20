@@ -7,6 +7,8 @@ if(request.getParameter("code") == null || request.getParameter("code").trim().i
 
 Artikel artikel = ServiceProvider.getArtikelService().getArtikelByCode(request.getParameter("code"));
 
+if(artikel == null) response.sendRedirect(application.getContextPath()+"/secure/artikellijst.jsp");
+
 %>
 <!-- start: Content -->
 <div id="content" class="span10">
