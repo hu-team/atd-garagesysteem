@@ -6,6 +6,8 @@ public class ServiceProvider {
 	private static KlantService klantService = new KlantService();
 	private static KlusService klusService = new KlusService();
 	
+	private static OnderdeelService onderdeelService = new OnderdeelService();
+	
 	public static MonteurService getMonteurService() {
 		return monteurService;
 	}
@@ -20,5 +22,9 @@ public class ServiceProvider {
 	
 	public static KlusService getKlusService() {
 		return klusService;
+	}
+	
+	public static OnderdeelService getOnderdeelService() {
+		return onderdeelService;
 	}
 }
