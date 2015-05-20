@@ -11,7 +11,8 @@ import nl.atd.helper.AuthHelper;
 import nl.atd.helper.AuthType;
 
 public class LoginServlet extends HttpServlet {
-	
+	private static final long serialVersionUID = 5093250906413964686L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

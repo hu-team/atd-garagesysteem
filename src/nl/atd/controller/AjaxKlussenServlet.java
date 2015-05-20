@@ -18,7 +18,8 @@ import nl.atd.model.Klus;
 import nl.atd.service.ServiceProvider;
 
 public class AjaxKlussenServlet extends HttpServlet {
-	
+	private static final long serialVersionUID = 114389710325697925L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long start = 0l;

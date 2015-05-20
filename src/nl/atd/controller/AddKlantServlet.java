@@ -12,13 +12,13 @@ import nl.atd.helper.AuthHelper;
 import nl.atd.model.Klant;
 import nl.atd.service.ServiceProvider;
 
-@SuppressWarnings("serial")
 public class AddKlantServlet extends HttpServlet{
-	
+	private static final long serialVersionUID = 2258393709794248113L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-	
+		
 		String username = req.getParameter("gebruikersnaam");
 		String wachtwoord = req.getParameter("wachtwoord");
 		String wachtwoord2 = req.getParameter("wachtwoord2");

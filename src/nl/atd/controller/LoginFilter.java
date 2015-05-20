@@ -27,6 +27,7 @@ public class LoginFilter implements Filter {
 		}else{
 			// Login pagina
 			((HttpServletResponse)response).sendRedirect(((HttpServletRequest)request).getContextPath() + "/login.jsp");
+			return;
 		}
 	}
 
