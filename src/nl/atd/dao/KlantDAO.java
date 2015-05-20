@@ -14,17 +14,18 @@ import nl.atd.model.Klant;
 public class KlantDAO {
 	
 	/**
-	 * Get alle klanten in database
-	 * @param autos boolean, moeten autos ook uit db gehaald worden?
+	 * Get klanten
+	 * @param query
+	 * @param metAutos
 	 * @return array met klanten
 	 */
-	public ArrayList<Klant> getKlanten(boolean autos) {
+	private ArrayList<Klant> getKlanten(String query, boolean metAutos) {
 		ArrayList<Klant> klanten = new ArrayList<Klant>();
 		
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();
 			Statement statement = connection.createStatement();
-			ResultSet set = statement.executeQuery("SELECT *, UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek FROM klant");
+			ResultSet set = statement.executeQuery(query);
 			
 			while(set.next()) {
 				Klant klant = new Klant(set.getString("naam"));
@@ -42,9 +43,9 @@ public class KlantDAO {
 				
 				klant.setEmail(set.getString("email"));
 				
-				if(autos){
+				if(metAutos){
 					AutoDAO autoDAO = new AutoDAO();
-					ArrayList<Auto> klantAutos = autoDAO.getAutos(set.getString("gebruikersnaam"));
+					ArrayList<Auto> klantAutos = autoDAO.getAutosVanKlant(set.getString("gebruikersnaam"));
 					klant.getAutos().addAll(klantAutos);
 				}
 				
@@ -56,33 +57,26 @@ public class KlantDAO {
 		
 		return klanten;
 	}
+	
+	/**
+	 * Get alle klanten in database
+	 * @param autos boolean, moeten autos ook uit db gehaald worden?
+	 * @return array met klanten
+	 */
+	public ArrayList<Klant> getAlleKlanten(boolean autos) {
+		return this.getKlanten("SELECT *, UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek FROM klant", autos);
+	}
 
+	/**
+	 * Get klant
+	 * @param gebruikersnaam
+	 * @return klant of null
+	 */
 	public Klant getKlant(String gebruikersnaam) {
-		Klant klant = null;
-		
-		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			Statement statement = connection.createStatement();
-			
-			ResultSet set = statement.executeQuery("SELECT *, UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek FROM klant WHERE gebruikersnaam = " + gebruikersnaam);
-			
-			if(set.next()) {
-				klant = new Klant(set.getString("naam"));
-				klant.setEmail(set.getString("email"));
-				klant.setGebruikersnaam(set.getString("gebruikersnaam"));
-				klant.setWachtwoord(set.getString("wachtwoord"));
-				
-				Calendar laatst = Calendar.getInstance();
-				try {
-					laatst.setTimeInMillis(set.getInt("laatstebezoek") * 1000);
-					klant.setLaatsteBezoek(laatst);
-				}catch(NumberFormatException | SQLException e) {
-					klant.setLaatsteBezoek(null);
-				}
-			}
-		}catch(Exception e) {
+		ArrayList<Klant> klanten = this.getKlanten("SELECT *, UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek FROM klant WHERE gebruikersnaam = " + gebruikersnaam, true);
+		if(klanten.size() >= 1) {
+			return klanten.get(0);
 		}
-		
-		return klant;
+		return null;
 	}
 }

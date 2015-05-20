@@ -13,23 +13,18 @@ import nl.atd.model.Auto;
 public class AutoDAO {
 	
 	/**
-	 * Get alle autos
-	 * @param klantGebruikersnaam geef string om te filteren op auto's van bepaalde klant, null voor alle autos
+	 * Get autos, convert to list met autos
+	 * @param query
 	 * @return array met autos
 	 */
-	public ArrayList<Auto> getAutos(String klantGebruikersnaam) {
+	private ArrayList<Auto> getAutos(String query) {
 		ArrayList<Auto> autos = new ArrayList<Auto>();
 		
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();
 			Statement statement = connection.createStatement();
 			
-			String sql = "SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto";
-			if(klantGebruikersnaam != null) {
-				sql += " WHERE klant = " + klantGebruikersnaam;
-			}
-			
-			ResultSet set = statement.executeQuery(sql);
+			ResultSet set = statement.executeQuery(query);
 			
 			while(set.next()) {
 				Calendar laatste = Calendar.getInstance();
@@ -49,9 +44,29 @@ public class AutoDAO {
 				
 				autos.add(auto);
 			}
+			
+			connection.close();
+			
 		} catch (Exception e) {
 		}
 		
 		return autos;
+	}
+	
+	/**
+	 * Get alle autos
+	 * @return array met autos
+	 */
+	public ArrayList<Auto> getAlleAutos() {
+		return this.getAutos("SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto");
+	}
+	
+	/**
+	 * Get alle autos van klant
+	 * @param klantGebruikersnaam geef string om te filteren op auto's van bepaalde klant, null voor alle autos
+	 * @return array met autos
+	 */
+	public ArrayList<Auto> getAutosVanKlant(String klantGebruikersnaam) {
+		return this.getAutos("SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto WHERE klant LIKE " + klantGebruikersnaam);
 	}
 }
