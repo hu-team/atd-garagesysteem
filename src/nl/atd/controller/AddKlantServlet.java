@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.model.Klant;
 
 @SuppressWarnings("serial")
@@ -50,8 +51,7 @@ public class AddKlantServlet extends HttpServlet{
 		klant.setEmail(email);
 		klant.setGebruikersnaam(username);
 		
-		klant.setWachtwoord(wachtwoord1);
-//		klant.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord1)); TODO functie nog pullen
+		klant.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord1));
 		
 	}
 }
