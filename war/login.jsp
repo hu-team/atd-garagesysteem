@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="nl.atd.helper.AuthHelper"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <%
 if(AuthHelper.isLoggedIn(request.getSession())) response.sendRedirect(request.getContextPath() + "/secure/");
@@ -43,7 +44,15 @@ if(AuthHelper.isLoggedIn(request.getSession())) response.sendRedirect(request.ge
         <div class="row-fluid">
             <div class="row-fuild" id="type-user">
                 <div class="login-box">
+                
                     <h2>Wie ben jij?</h2>
+                    
+                    <c:if test="${not empty param.error }">
+                    <div class="alert alert-danger">
+                		<strong>Gebruikersnaam en/of wachtwoord onjuist!</strong>
+                	</div>
+                	</c:if>
+                    
                     <div class="input-prepend">
                         <select id="user-type">
                             <option value="klant">Klant</option>

@@ -29,10 +29,11 @@ public class LoginServlet extends HttpServlet {
 			if(type != null) {
 				if(AuthHelper.executeLogin(req.getSession(), gebruikersnaam, wachtwoord, type)) {
 					resp.sendRedirect(req.getContextPath() + "/secure/");
-				}else{
-					resp.sendRedirect(req.getContextPath() + "/login.jsp?error=1");
+					return;
 				}
 			}
 		}
+		
+		resp.sendRedirect(req.getContextPath() + "/login.jsp?error=1");
 	}
 }
