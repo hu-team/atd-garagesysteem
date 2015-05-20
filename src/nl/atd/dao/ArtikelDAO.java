@@ -53,7 +53,7 @@ public class ArtikelDAO {
 	public boolean addArtikel(Artikel artikel){
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection.prepareStatement("INSERT INTO monteur (code, naam, aantal, prijs) VALUES(?, ?, ?, ?);");
+			PreparedStatement st = connection.prepareStatement("INSERT INTO artikel (code, naam, aantal, prijs) VALUES(?, ?, ?, ?);");
 			
 			st.setString(1, artikel.getCode());
 			st.setString(2, artikel.getNaam());

@@ -22,7 +22,7 @@ public class ArtikelService {
 	
 	public boolean addArtikel(Artikel artikel){
 		if(this.artikelDAO.getArtikelByCode(artikel.getCode()) == null){
-			return this.addArtikel(artikel);
+			return this.artikelDAO.addArtikel(artikel);
 		}else{
 			return false;
 		}
