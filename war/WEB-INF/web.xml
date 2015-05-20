@@ -11,6 +11,10 @@
 		<servlet-name>add monteur servlet</servlet-name>
 		<servlet-class>nl.atd.controller.AddMonteurServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>add klant servlet</servlet-name>
+		<servlet-class>nl.atd.controller.AddKlantServlet</servlet-class>
+	</servlet>
 	
 	
 	<servlet-mapping>
@@ -31,6 +35,10 @@
 	<servlet-mapping>
 		<servlet-name>add monteur servlet</servlet-name>
 		<url-pattern>/secure/addmonteur</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>add klant servlet</servlet-name>
+		<url-pattern>/secure/addklant</url-pattern>
 	</servlet-mapping>
 
 

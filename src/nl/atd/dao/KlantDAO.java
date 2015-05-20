@@ -74,7 +74,7 @@ public class KlantDAO {
 	 * @return klant of null
 	 */
 	public Klant getKlant(String gebruikersnaam) {
-		ArrayList<Klant> klanten = this.getKlanten("SELECT *, UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek FROM klant WHERE gebruikersnaam = " + gebruikersnaam, true);
+		ArrayList<Klant> klanten = this.getKlanten("SELECT *, UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek FROM klant WHERE gebruikersnaam LIKE '" + gebruikersnaam + "'", true);
 		if(klanten.size() >= 1) {
 			return klanten.get(0);
 		}

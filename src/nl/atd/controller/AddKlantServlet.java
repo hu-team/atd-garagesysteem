@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import nl.atd.helper.AuthHelper;
 import nl.atd.model.Klant;
+import nl.atd.service.ServiceProvider;
 
 @SuppressWarnings("serial")
 public class AddKlantServlet extends HttpServlet{
@@ -18,20 +19,21 @@ public class AddKlantServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	
-		String username = req.getParameter("username");
-		String wachtwoord1 = req.getParameter("wachtwoord1");
+		String username = req.getParameter("gebruikersnaam");
+		String wachtwoord = req.getParameter("wachtwoord");
 		String wachtwoord2 = req.getParameter("wachtwoord2");
-		String naam = req.getParameter("naam");
+		String voornaam = req.getParameter("voornaam");
+		String achternaam = req.getParameter("achternaam");
 		String email = req.getParameter("email");
 		
 		String errorString = "";
 		boolean error = false;
 		
-		if(username.trim().isEmpty() || wachtwoord1.trim().isEmpty() || wachtwoord2.trim().isEmpty() ||
-				naam.trim().isEmpty() || email.trim().isEmpty()){
+		if(username.trim().isEmpty() || wachtwoord.trim().isEmpty() || wachtwoord2.trim().isEmpty() ||
+				voornaam.trim().isEmpty() || achternaam.trim().isEmpty() || email.trim().isEmpty()){
 			error = true;
 			errorString += "Vul alle velden in <br />";
-		}else if(!wachtwoord1.equals(wachtwoord2)){
+		}else if(!wachtwoord.equals(wachtwoord2)){
 			error = true;
 			errorString += "Wachtwoorden komen niet overeen. <br />";
 		}
@@ -47,11 +49,14 @@ public class AddKlantServlet extends HttpServlet{
 			return;
 		}
 		
-		Klant klant = new Klant(naam);
+		Klant klant = new Klant(voornaam + " " + achternaam);
 		klant.setEmail(email);
 		klant.setGebruikersnaam(username);
 		
-		klant.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord1));
+		klant.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord));
 		
+		ServiceProvider.getKlantService().addKlant(klant);
+		
+		resp.sendRedirect(req.getContextPath() + "/secure/");
 	}
 }
