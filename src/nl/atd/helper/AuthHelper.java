@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 import nl.atd.dao.KlantDAO;
 import nl.atd.dao.MonteurDAO;
 import nl.atd.model.Klant;
@@ -55,21 +57,7 @@ public class AuthHelper {
 			}
 			
 			// Encrypt wachtwoord
-			try{
-				MessageDigest sha512 = MessageDigest.getInstance("SHA-512");
-				byte[] data = sha512.digest(wachtwoord.getBytes());
-				
-				// Naar HEX string
-				StringBuffer hexData = new StringBuffer();
-		        for (int i = 0; i < data.length; i++) {
-		        	hexData.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
-		        }
-		        
-		        wachtwoordEncrypted = hexData.toString();
-			}catch(NoSuchAlgorithmException nsae) {
-				Logger.getLogger("to4").warning("SHA-512 not found!");
-				System.exit(1);
-			}
+			wachtwoordEncrypted = AuthHelper.encryptWachtwoord(wachtwoord);
 			
 			// Compare
 			if(user != null && !user.getWachtwoord().isEmpty() &&
@@ -85,6 +73,27 @@ public class AuthHelper {
 		}
 		
 		return success;
+	}
+	
+	public static String encryptWachtwoord(String wachtwoord) {
+		String wachtwoordEncrypted = null;
+		
+		try{
+			MessageDigest sha512 = MessageDigest.getInstance("SHA-512");
+			byte[] data = sha512.digest(wachtwoord.getBytes());
+			
+			// Naar HEX string
+			StringBuffer hexData = new StringBuffer();
+	        for (int i = 0; i < data.length; i++) {
+	        	hexData.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+	        
+	        wachtwoordEncrypted = hexData.toString();
+		}catch(NoSuchAlgorithmException nsae) {
+			Logger.getLogger("to4").warning("SHA-512 not found!");
+			System.exit(1);
+		}
+		return wachtwoordEncrypted;
 	}
 	
 	

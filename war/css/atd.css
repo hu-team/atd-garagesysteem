@@ -2,6 +2,10 @@ body {
 	font-family: 'Open Sans', sans-serif !important;
 }
 
+#content {
+	background: #F7F7F7;
+}
+
 #inlog {
 	display: none;
 }
