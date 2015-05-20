@@ -705,7 +705,6 @@ ul.messages li .message {
 =================================================================== */
 
 #content {
-	background: #ffffff;
 	filter: none;
 	min-height: 100%;
 	padding: 20px 20px;
@@ -825,7 +824,6 @@ ul.messages li .message {
 
 .box {
 	border: 2px solid #578EBE;
-	background: #fff !important;
 	margin-bottom: 28px;	
 }
 
@@ -898,7 +896,7 @@ ul.messages li .message {
 	z-index: 50;
   	margin-top: -1px;
 	padding: 10px;
-	background: #fff !important;
+	background: #FEFEFE;
 }
 
 /* Vertical Bar Chart

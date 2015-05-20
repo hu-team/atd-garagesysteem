@@ -1,8 +1,10 @@
 package nl.atd.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import java.util.ArrayList;
 
 import nl.atd.helper.DatabaseHelper;
@@ -58,5 +60,20 @@ public class MonteurDAO {
 			return monteuren.get(0);
 		}
 		return null;
+	}
+	
+	public boolean addMonteur(Monteur monteur) {
+		try{
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			PreparedStatement st = connection.prepareStatement("INSERT INTO monteur (gebruikersnaam, wachtwoord, naam, salarisnummer) VALUES(?, ?, ?, ?);");
+			st.setString(1, monteur.getGebruikersnaam());
+			st.setString(2, monteur.getWachtwoord());
+			st.setString(3, monteur.getNaam());
+			st.setInt(4, monteur.getSalarisnummer());
+			
+			return st.execute();
+		}catch(Exception e) {
+			return false;
+		}
 	}
 }
