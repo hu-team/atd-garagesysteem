@@ -55,7 +55,7 @@ public class MonteurDAO {
 	 * @return monteur object of null
 	 */
 	public Monteur getMonteur(String gebruikersnaam) {
-		ArrayList<Monteur> monteuren = this.getMonteuren("SELECT * FROM monteur WHERE gebruikersnaam = " + gebruikersnaam);
+		ArrayList<Monteur> monteuren = this.getMonteuren("SELECT * FROM monteur WHERE gebruikersnaam LIKE '" + gebruikersnaam + "'");
 		if(monteuren.size() >= 1) {
 			return monteuren.get(0);
 		}

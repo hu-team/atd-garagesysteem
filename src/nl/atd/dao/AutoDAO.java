@@ -67,6 +67,17 @@ public class AutoDAO {
 	 * @return array met autos
 	 */
 	public ArrayList<Auto> getAutosVanKlant(String klantGebruikersnaam) {
-		return this.getAutos("SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto WHERE klant LIKE " + klantGebruikersnaam);
+		return this.getAutos("SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto WHERE klant LIKE '" + klantGebruikersnaam + "'");
+	}
+	
+	/**
+	 * Get auto op id
+	 * @param id
+	 * @return auto
+	 */
+	public Auto getAutoOpId(int id) {
+		ArrayList<Auto> autos = this.getAutos("SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto WHERE autoid = " + id);
+		if(autos.size() >= 1) return autos.get(0);
+		return null;
 	}
 }

@@ -16,6 +16,13 @@
 				</div>
 			</div>
 			<div class="box-content">
+			
+				<c:if test="${error == true}">
+				<div class="alert alert-danger">
+					<c:out value="${errorString }" escapeXml="false"></c:out>
+				</div>
+				</c:if>
+			
 				<form class="form-horizontal" method="post" action="addmonteur">
 					<fieldset>
 						<div class="control-group">
