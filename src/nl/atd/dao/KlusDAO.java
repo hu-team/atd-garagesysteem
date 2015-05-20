@@ -32,15 +32,12 @@ public class KlusDAO {
 			
 			while(set.next()) {
 				
-				// TODO: KOPPEL AAN SERVICE!!
 				Klant klant = null; 
-				
 				Auto auto = null;
 				Monteur monteur = null;
 				
 				if(set.getString("klant") != null) {
-					// TODO: service
-					klant = null;
+					klant = ServiceProvider.getKlantService().getKlantByGebruikersnaam(set.getString("klant"));
 				}
 				
 				if(set.getInt("auto") > 0) {
