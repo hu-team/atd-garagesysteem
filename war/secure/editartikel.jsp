@@ -31,7 +31,7 @@ if(artikel == null) { response.sendRedirect(application.getContextPath()+"/secur
 				</div>
 				</c:if>
 			
-				<form class="form-horizontal" method="post" action="addartikel">
+				<form class="form-horizontal" method="post" action="editartikel">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label" for="naam">Naam: </label>
