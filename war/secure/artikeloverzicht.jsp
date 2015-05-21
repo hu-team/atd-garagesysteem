@@ -21,9 +21,7 @@
                                 </thead>
                                 <tbody>
                                 
-                                	<%request.setAttribute("artikelLijst", ServiceProvider.getArtikelService().getAlleArtikelen()); %>
-                                	
-                                	<c:forEach var="artikel" items="${artikelLijst}"> 
+                                	<c:forEach var="artikel" items="${ServiceProvider.getArtikelService().getAlleArtikelen()}"> 
                                 		<tr>
                                 			<td>${artikel.naam}</td>
                                 			<td>${artikel.code}</td>
@@ -39,6 +37,7 @@
 	                                        </td>
                                 		</tr>
                                 	</c:forEach>
+                                
                                 </tbody>
                             </table>
                         </div>
