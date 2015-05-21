@@ -54,7 +54,7 @@ public class EditArtikelServlet extends HttpServlet {
 			req.setAttribute("error", error);
 			req.setAttribute("errorString", errorString);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("addartikel.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("editartikel.jsp");
 			
 			rd.forward(req, resp);
 			
