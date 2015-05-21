@@ -27,4 +27,12 @@ public class ArtikelService {
 			return false;
 		}
 	}
+	
+	public boolean editArtikel(Artikel artikel){
+		if(this.artikelDAO.getArtikelByCode(artikel.getCode()) != null){
+			return this.artikelDAO.editArtikel(artikel);
+		}else{
+			return false;
+		}
+	}
 }

@@ -23,6 +23,10 @@
 		<servlet-name>add artikel servlet</servlet-name>
 		<servlet-class>nl.atd.controller.AddArtikelServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>edit artikel servlet</servlet-name>
+		<servlet-class>nl.atd.controller.EditArtikelServlet</servlet-class>
+	</servlet>
 	
 	
 	<servlet-mapping>
@@ -55,6 +59,10 @@
 	<servlet-mapping>
 		<servlet-name>add artikel servlet</servlet-name>
 		<url-pattern>/secure/addartikel</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>edit artikel servlet</servlet-name>
+		<url-pattern>/secure/editartikel</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

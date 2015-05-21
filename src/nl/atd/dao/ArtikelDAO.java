@@ -50,6 +50,24 @@ public class ArtikelDAO {
 		return artikelen;
 	}
 	
+	public boolean editArtikel(Artikel artikel){
+		try{
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			PreparedStatement st = connection.prepareStatement("UPDATE artikel SET naam=? , aantal=? , prijs=? WHERE code=?");
+			
+			st.setString(1, artikel.getNaam());
+			st.setInt(2, artikel.getAantal());
+			st.setDouble(3, artikel.getPrijs());
+			st.setString(4, artikel.getCode());
+			
+			return st.execute();
+			
+		}catch(Exception e){
+			return false;
+		}
+		
+	}
+	
 	public boolean addArtikel(Artikel artikel){
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();
