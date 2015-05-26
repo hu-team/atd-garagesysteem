@@ -28,7 +28,7 @@
                                 			<td>${artikel.aantal}</td>
                                 			<td>${artikel.prijs}</td>
                                 			<td>
-	                                            <a class="btn btn-success" href="#">
+	                                            <a class="btn btn-success" href="editartikel.jsp?code=${artikel.code }">
 	                                                <i class="halflings-icon white zoom-in"></i>
 	                                            </a>
 	                                            <a class="btn btn-danger" href="#">
