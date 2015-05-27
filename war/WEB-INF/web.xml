@@ -28,8 +28,14 @@
 		<servlet-class>nl.atd.controller.EditArtikelServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>add klus servlet</servlet-name>
+
+	<servlet-name>add klus servlet</servlet-name>
 		<servlet-class>nl.atd.controller.AddKlusServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>add auto servlet</servlet-name>
+		<servlet-class>nl.atd.controller.AddAutoServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -70,6 +76,10 @@
 	<servlet-mapping>
 		<servlet-name>add klus servlet</servlet-name>
 		<url-pattern>/secure/addklus</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>add auto servlet</servlet-name>
+		<url-pattern>/secure/addauto</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
