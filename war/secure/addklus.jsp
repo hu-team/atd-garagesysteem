@@ -39,7 +39,6 @@
                                     	<label class="control-label">Auto: </label>
                                     	<div class="controls">
                                     		<select name="auto" id="autolijst">
-                                    			<!-- TODO voor Thierry, JSON maken -->
                                     		</select>
                                     	</div>
                                     </div>
