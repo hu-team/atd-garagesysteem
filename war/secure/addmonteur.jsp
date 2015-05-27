@@ -45,7 +45,7 @@
 						<div class="control-group">
 							<label class="control-label" for="salarisnummer">Salarisnummer: </label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="salarisnummer" name="salarisnummer">
+								<input type="text" class="input-xlarge" id="salarisnummer" name="salarisnummer" value='<c:out value="${monteur.salarisnummer }" />'>
 							</div>
 						</div>
 
@@ -54,7 +54,7 @@
 						<div class="control-group">
 							<label class="control-label" for="gebruikersnaam">Gebruikersnaam: </label>
 							<div class="controls">
-								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam">
+								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam" value='<c:out value="${monteur.gebruikersnaam }" />'>
 							</div>
 						</div>
 						

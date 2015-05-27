@@ -62,6 +62,11 @@ public class MonteurDAO {
 		return null;
 	}
 	
+	/**
+	 * Add Monteur
+	 * @param monteur
+	 * @return gelukt?
+	 */
 	public boolean addMonteur(Monteur monteur) {
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();
@@ -72,7 +77,11 @@ public class MonteurDAO {
 			st.setString(3, monteur.getNaam());
 			st.setInt(4, monteur.getSalarisnummer());
 			
-			return st.execute();
+			st.execute();
+			
+			connection.close();
+			
+			return true;
 		}catch(Exception e) {
 			return false;
 		}
