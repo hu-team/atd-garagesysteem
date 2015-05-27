@@ -26,6 +26,15 @@ public class AutoService {
 	}
 	
 	/**
+	 * Get auto op kenteken
+	 * @param kenteken
+	 * @return auto of null
+	 */
+	public Auto getAutoOpKenteken(String kenteken) {
+		return this.autoDAO.getAutoOpKenteken(kenteken);
+	}
+	
+	/**
 	 * Get auto op database ID
 	 * @param id
 	 * @return auto of null

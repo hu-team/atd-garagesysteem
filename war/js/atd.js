@@ -12,10 +12,22 @@ var app = function() {
       $("#type-user").fadeIn(900);
     });
   }
+  
+  function autolijst() {
+	  $.ajax({
+		  method: "GET",
+		  url: "ajaxgetklantautos",
+		  data: { klant: $("#klantlijst option:selected").val() }
+		})
+		  .done(function( msg ) {
+		    alert( "Data Saved: " + msg );
+		});
+  }
 
  return {
   inlog: inlog,
-  gaterug: gaterug
+  gaterug: gaterug,
+  autolijst: autolijst
  }
 
 }();
@@ -28,4 +40,10 @@ $(function() {
   $("#goback").click(function(){
     app.gaterug();
   });
+  
+  if($("#autolijst").length > 0) {
+	  $("#klantlijst").change(function() {
+		 app.autolijst();
+	  });
+  }
 });

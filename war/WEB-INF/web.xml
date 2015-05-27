@@ -20,6 +20,10 @@
 		<servlet-class>nl.atd.controller.AjaxKlussenServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>ajax get klant autos</servlet-name>
+		<servlet-class>nl.atd.controller.AjaxKlantAutoServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>add artikel servlet</servlet-name>
 		<servlet-class>nl.atd.controller.AddArtikelServlet</servlet-class>
 	</servlet>
@@ -64,6 +68,10 @@
 	<servlet-mapping>
 		<servlet-name>ajax get klussen</servlet-name>
 		<url-pattern>/secure/ajaxgetklussen</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ajax get klant autos</servlet-name>
+		<url-pattern>/secure/ajaxgetklantautos</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>add artikel servlet</servlet-name>
