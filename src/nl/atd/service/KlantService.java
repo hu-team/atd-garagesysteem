@@ -24,8 +24,8 @@ public class KlantService {
 	public boolean addKlant(Klant klant){
 		if(this.klantDAO.getKlant(klant.getGebruikersnaam()) == null){
 			return this.klantDAO.addKlant(klant);
-		}else
-			return false;
+		}
+		return false;
 	}
 	
 }
