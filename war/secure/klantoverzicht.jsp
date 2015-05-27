@@ -3,6 +3,7 @@
 <%@page import="nl.atd.model.Klant"%>
 <%@page import="nl.atd.service.ServiceProvider" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% if(!AuthHelper.isAdmin(session) && !AuthHelper.isMonteur(session)) response.sendRedirect(application.getContextPath() + "/secure/"); %>
 
 <%@ include file="_header.jsp" %>
 
@@ -10,7 +11,7 @@
                 <div class="row-fluid sortable ui-sortable">
                     <div class="box span12">
                         <div class="box-header" data-original-title="">
-                            <h2><i class="halflings-icon white tags"></i><span class="break"></span>Artikel overzicht</h2>
+                            <h2><i class="halflings-icon white tags"></i><span class="break"></span>Klant overzicht</h2>
                         </div>
                         
                         <div class="box-content">

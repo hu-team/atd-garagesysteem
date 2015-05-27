@@ -4,6 +4,8 @@
 <%@page import="nl.atd.helper.AuthHelper" %>
 <%@ include file="_header.jsp" %>
 
+<% if(!AuthHelper.isAdmin(session) && !AuthHelper.isMonteur(session)) response.sendRedirect(application.getContextPath() + "/secure/"); %>
+
             <div id="content" class="span10">
                 <div class="row-fluid sortable ui-sortable">
                     <div class="box span12">
@@ -21,7 +23,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
                                 	<c:forEach var="artikel" items="${ServiceProvider.getArtikelService().getAlleArtikelen()}"> 
                                 		<tr>
                                 			<td>${artikel.naam}</td>
