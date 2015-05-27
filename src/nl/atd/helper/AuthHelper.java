@@ -131,4 +131,26 @@ public class AuthHelper {
 	public static boolean isAdmin(HttpSession session) {
 		return isLoggedIn(session) && (!isMonteur(session) && !isKlant(session));
 	}
+	
+	/**
+	 * Get naam van huidige gebruiker
+	 * @param session
+	 * @return naam
+	 */
+	public static String getNaam(HttpSession session) {
+		if(isAdmin(session)) return "Henk";
+		if(isLoggedIn(session)) {
+			return ((Persoon)session.getAttribute("user")).getNaam();
+		}
+		return "";
+	}
+
+	/**
+	 * Uitloggen
+	 * @param session
+	 */
+	public static void logOut(HttpSession session) {
+		session.setAttribute("user", null);
+		session.setAttribute("logintime", null);
+	}
 }
