@@ -1,6 +1,11 @@
 <%@page import="nl.atd.helper.AuthHelper"%>
 <%@page import="nl.atd.service.KlantService" %>
+<%@page import="nl.atd.service.AutoService" %>
+<%@page import="nl.atd.service.MonteurService" %>
+<%@page import="nl.atd.service.ServiceProvider" %>
 <%@page import="nl.atd.model.Klant" %>
+<%@page import="nl.atd.model.Auto" %>
+<%@page import="nl.atd.model.Monteur" %>
 <%@ include file="_header.jsp" %>
 <% if(!AuthHelper.isAdmin(session) ) response.sendRedirect(application.getContextPath() + "/secure/"); %>
 
@@ -20,8 +25,29 @@
                                     	<label class="control-label">Klant: </label>
                                     	<div class="controls">
                                     		<select name="klant">
-                                    			<c:forEach items="${ServiceProvider.getKlantService.getKlantAlleKlanten() }" var="klant">
+                                    			<c:forEach var="klant" items="${ServiceProvider.getKlantService().getAlleKlanten() }" >
                                     				<option value="${klant.gebruikersnaam}">${klant.naam}</option>
+                                    			</c:forEach>
+                                    		</select>
+                                    		
+                                    	</div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                    	<label class="control-label">Auto: </label>
+                                    	<div class="controls">
+                                    		<select name="auto" id="autlijst">
+                                    			<!-- TODO voor Thierry, JSON maken -->
+                                    		</select>
+                                    	</div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                    	<label class="control-label">Monteur: </label>
+                                    	<div class="controls">
+                                    		<select name="monteur">
+                                    			<c:forEach var="monteur" items="${ServiceProvider.getMonteurService.getAlleMonteuren() }">
+                                    				<option value="${monteur.gebruikersnaam }">${monteur.naam }</option>
                                     			</c:forEach>
                                     		</select>
                                     	</div>
