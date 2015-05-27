@@ -1,49 +1,159 @@
+/*
+ * Framework
+ */
 var app = function() {
-  function inlog() {
-    var usertype = $("#user-type").val();
-    $("#user-type2").val(usertype);
-    $("#type-user").fadeOut(900,function(){
-      $("#inlog").fadeIn(900);
-    });
-  }
-
-  function gaterug() {
-    $("#inlog").fadeOut(900,function(){
-      $("#type-user").fadeIn(900);
-    });
-  }
-  
-  function autolijst() {
-	  $.ajax({
-		  method: "GET",
-		  url: "ajaxgetklantautos",
-		  data: { klant: $("#klantlijst option:selected").val() }
-		})
-		  .done(function( msg ) {
-		    alert( "Data Saved: " + msg );
+	function inlog() {
+		var usertype = $("#user-type").val();
+		$("#user-type2").val(usertype);
+		$("#type-user").fadeOut(900, function() {
+			$("#inlog").fadeIn(900);
 		});
-  }
+	}
 
- return {
-  inlog: inlog,
-  gaterug: gaterug,
-  autolijst: autolijst
- }
+	function gaterug() {
+		$("#inlog").fadeOut(900, function() {
+			$("#type-user").fadeIn(900);
+		});
+	}
+
+	function artikelSelectGroupLeft() {
+		var selectedItem = $("#rightValues option:selected");
+		$("#artikelbox").find("input").removeClass("currSelect");
+		$("#leftValues").append(selectedItem);
+		_removeAantalInput(selectedItem.val());
+	}
+
+	function artikelSelectGroupRight() {
+		var selectedItem = $("#leftValues option:selected");
+		var artikelen = $("#artikelbox");
+
+		if (_artikelAantal(selectedItem.val())) {
+			var selected = $("#artikelbox").find("input")
+					.hasClass("currSelect");
+
+			if (selected) {
+				$("#artikelbox").find("input").removeClass("currSelect");
+			}
+			$("#artikelbox").append(
+					'<input type="text" class="currSelect" data-name="'
+							+ selectedItem.val() + '" name="data['
+							+ selectedItem.val() + '][aantal]">');
+		}
+
+		$("#rightValues").append(selectedItem);
+	}
+
+	function showAantal() {
+		var selected = $("#rightValues option:selected");
+		_hideAantal(selected.val());
+	}
+
+	function _artikelAantal(name) {
+		var find = $("#artikelbox").find("input");
+		var ok = true;
+
+		if (find.length === 0) {
+			return true;
+		}
+
+		find.each(function(i, val) {
+			var inputName = find.eq(i).data("name");
+			if (name === inputName) {
+				ok = false;
+				return false;
+			}
+		});
+
+		if (ok) {
+			return true;
+		}
+	}
+
+	function _removeAantalInput(name) {
+		var find = $("#artikelbox").find("input");
+		find.each(function(i, val) {
+			var inputName = find.eq(i).data("name");
+			if (name === inputName) {
+				find.eq(i).remove();
+			}
+		});
+	}
+
+	function _hideAantal(name) {
+		var find = $("#artikelbox").find("input");
+
+		$("#artikelbox").find("input").removeClass("currSelect");
+		find.each(function(i, val) {
+			var inputName = find.eq(i).data("name");
+			if (name === inputName) {
+				find.eq(i).addClass('currSelect');
+			}
+		});
+	}
+
+	function autolijst() {
+		$.ajax({
+			method : "GET",
+			url : "ajaxgetklantautos",
+			data : {
+				klant : $("#klantlijst option:selected").val()
+			}
+		}).done(
+				function(data) {
+					$("#autolijst").html("");
+					var html = "";
+
+					$.each(data, function(i, auto) {
+						html += "<option value='" + auto.kenteken + "'>";
+						html += auto.merk + " - " + auto.model + " ("
+								+ auto.kenteken + ")";
+						html += "</option>";
+					});
+
+					$("#autolijst").html(html);
+				});
+	}
+
+	return {
+		inlog : inlog,
+		gaterug : gaterug,
+		artikelSelectGroupLeft : artikelSelectGroupLeft,
+		artikelSelectGroupRight : artikelSelectGroupRight,
+		showAantal : showAantal,
+		autolijst : autolijst
+	}
 
 }();
 
+/*
+ * EventListener
+ */
 $(function() {
-  $(".next-step").click(function() {
-    app.inlog();
-  });
+	$(".next-step").click(function() {
+		app.inlog();
+	});
 
-  $("#goback").click(function(){
-    app.gaterug();
-  });
-  
-  if($("#autolijst").length > 0) {
-	  $("#klantlijst").change(function() {
-		 app.autolijst();
-	  });
-  }
+	$("#goback").click(function() {
+		app.gaterug();
+	});
+
+	$("#btnLeft").click(function() {
+		app.artikelSelectGroupLeft();
+	});
+
+	$("#btnRight").click(function() {
+		app.artikelSelectGroupRight();
+	});
+
+	$("#rightValues").change(function() {
+		app.showAantal();
+	});
+
+	if ($("#autolijst").length > 0) {
+		app.autolijst();
+		$("#klantlijst").change(function() {
+			app.autolijst();
+		});
+	}
+
 });
