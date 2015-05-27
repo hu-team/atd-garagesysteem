@@ -1,6 +1,7 @@
 package nl.atd.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -73,11 +74,51 @@ public class AutoDAO {
 	/**
 	 * Get auto op id
 	 * @param id
-	 * @return auto
+	 * @return auto of null
 	 */
 	public Auto getAutoOpId(int id) {
 		ArrayList<Auto> autos = this.getAutos("SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto WHERE autoid = " + id);
 		if(autos.size() >= 1) return autos.get(0);
 		return null;
+	}
+	
+	/**
+	 * Get auto op kenteken
+	 * @param kenteken
+	 * @return auto of null
+	 */
+	public Auto getAutoOpKenteken(String kenteken) {
+		ArrayList<Auto> autos = this.getAutos("SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto WHERE kenteken LIKE '"+kenteken+"'");
+		if(autos.size() >= 1) return autos.get(0);
+		return null;
+	}
+	
+	/**
+	 * Add Auto
+	 * @param klant
+	 * @param auto
+	 * @return gelukt
+	 */
+	public boolean addAuto(String klant, Auto auto) {
+		try {
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			
+			String sql = "INSERT INTO auto (merk, model, bouwjaar, laatste_beurt, kenteken, klant) VALUES(?, ?, ?, null, ?, ?);";
+			
+			PreparedStatement statement = connection.prepareStatement(sql);
+			
+			statement.setString(1, auto.getMerk());
+			statement.setString(2, auto.getModel());
+			statement.setInt(3, auto.getBouwjaar());
+			statement.setString(4, auto.getKenteken());
+			statement.setString(5, klant);
+			
+			statement.execute();
+			connection.close();
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

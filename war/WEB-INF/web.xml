@@ -27,6 +27,10 @@
 		<servlet-name>edit artikel servlet</servlet-name>
 		<servlet-class>nl.atd.controller.EditArtikelServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>add auto servlet</servlet-name>
+		<servlet-class>nl.atd.controller.AddAutoServlet</servlet-class>
+	</servlet>
 	
 	
 	<servlet-mapping>
@@ -63,6 +67,10 @@
 	<servlet-mapping>
 		<servlet-name>edit artikel servlet</servlet-name>
 		<url-pattern>/secure/editartikel</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>add auto servlet</servlet-name>
+		<url-pattern>/secure/addauto</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

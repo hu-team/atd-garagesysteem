@@ -33,4 +33,17 @@ public class AutoService {
 	public Auto getAuto(int id) {
 		return this.autoDAO.getAutoOpId(id);
 	}
+
+	/**
+	 * Toevoegen van auto
+	 * @param klant klant gebruikersnaam
+	 * @param auto de auto
+	 * @return is het gelukt?
+	 */
+	public boolean addAuto(String klant, Auto auto) {
+		if(this.autoDAO.getAutoOpKenteken(auto.getKenteken()) == null) {
+			return this.autoDAO.addAuto(klant, auto);
+		}
+		return false;
+	}
 }
