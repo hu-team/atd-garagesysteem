@@ -2,10 +2,12 @@
 <%@page import="nl.atd.service.KlantService" %>
 <%@page import="nl.atd.service.AutoService" %>
 <%@page import="nl.atd.service.MonteurService" %>
+<%@page import="nl.atd.service.ArtikelService" %>
 <%@page import="nl.atd.service.ServiceProvider" %>
 <%@page import="nl.atd.model.Klant" %>
 <%@page import="nl.atd.model.Auto" %>
 <%@page import="nl.atd.model.Monteur" %>
+<%@page import="nl.atd.model.Artikel" %>
 <%@ include file="_header.jsp" %>
 <% if(!AuthHelper.isAdmin(session) ) response.sendRedirect(application.getContextPath() + "/secure/"); %>
 
@@ -24,7 +26,7 @@
                                     <div class="control-group">
                                     	<label class="control-label">Klant: </label>
                                     	<div class="controls">
-                                    		<select name="klant">
+                                    		<select name="klant" id="klantlijst">
                                     			<c:forEach var="klant" items="${ServiceProvider.getKlantService().getAlleKlanten() }" >
                                     				<option value="${klant.gebruikersnaam}">${klant.naam}</option>
                                     			</c:forEach>
@@ -36,7 +38,7 @@
                                     <div class="control-group">
                                     	<label class="control-label">Auto: </label>
                                     	<div class="controls">
-                                    		<select name="auto" id="autlijst">
+                                    		<select name="auto" id="autolijst">
                                     			<!-- TODO voor Thierry, JSON maken -->
                                     		</select>
                                     	</div>
@@ -46,7 +48,7 @@
                                     	<label class="control-label">Monteur: </label>
                                     	<div class="controls">
                                     		<select name="monteur">
-                                    			<c:forEach var="monteur" items="${ServiceProvider.getMonteurService.getAlleMonteuren() }">
+                                    			<c:forEach var="monteur" items="${ServiceProvider.getMonteurService().getAlleMonteuren() }">
                                     				<option value="${monteur.gebruikersnaam }">${monteur.naam }</option>
                                     			</c:forEach>
                                     		</select>
@@ -94,10 +96,10 @@
                                 <div class="control-group">
                                     <div class="select-box">
                                         <label>Artikelen</label>
-                                        <select id="leftValues" size="5">
-                                            <option value="Rubber">Rubber</option>
-                                            <option value="Plastic">Plastic</option>
-                                            <option value="Metaal">Metaal</option>
+                                        <select id="leftValues" size="5" name="artikel">
+                                            <c:forEach var="artikel" items="${ServiceProvider.getArtikelService().getAlleArtikelen() }">
+                                            	<option value="${artike.code }">${artikel.naam } </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                     <div class="buttongrp">
