@@ -27,7 +27,10 @@
 		<servlet-name>edit artikel servlet</servlet-name>
 		<servlet-class>nl.atd.controller.EditArtikelServlet</servlet-class>
 	</servlet>
-	
+	<servlet>
+		<servlet-name>add klus servlet</servlet-name>
+		<servlet-class>nl.atd.controller.AddKlusServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>login servlet</servlet-name>
@@ -63,6 +66,10 @@
 	<servlet-mapping>
 		<servlet-name>edit artikel servlet</servlet-name>
 		<url-pattern>/secure/editartikel</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>add klus servlet</servlet-name>
+		<url-pattern>/secure/addklus</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
