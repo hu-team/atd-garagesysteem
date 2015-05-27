@@ -92,8 +92,11 @@ public class KlantDAO {
 			st.setString(3, klant.getEmail());
 			st.setString(4, klant.getNaam());
 			
-			return st.execute();
+			st.execute();
 			
+			connection.close();
+			
+			return true;
 		}catch(Exception e){
 			return false;
 		}

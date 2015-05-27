@@ -1,3 +1,4 @@
+<%@page import="nl.atd.helper.AuthHelper"%>
 <%@page import="nl.atd.service.KlantService"%>
 <%@page import="nl.atd.model.Klant"%>
 <%@page import="nl.atd.service.ServiceProvider" %>
@@ -11,7 +12,15 @@
                         <div class="box-header" data-original-title="">
                             <h2><i class="halflings-icon white tags"></i><span class="break"></span>Artikel overzicht</h2>
                         </div>
+                        
                         <div class="box-content">
+                        
+        	                <c:if test="${not empty param.done}">
+								<div class="alert alert-success">
+									Opslaan gelukt!
+								</div>
+							</c:if>
+                        
                             <table class="table table-striped table-bordered bootstrap-datatable datatable dataTable">
                                 <thead>
                                     <tr role="row">
@@ -39,6 +48,11 @@
                                 	
                                 </tbody>
                             </table>
+                            
+                            <% if(AuthHelper.isAdmin(session) || AuthHelper.isMonteur(session)) { %>
+                            	<a href="addklant.jsp" class="btn btn-primary">Klant toevoegen</a>
+                            <% } %>
+                            
                         </div>
                     </div>
                     <div class="clearfix"></div>

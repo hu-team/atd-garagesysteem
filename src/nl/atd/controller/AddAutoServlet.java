@@ -78,8 +78,6 @@ public class AddAutoServlet extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("autooverzicht.jsp?klant=" + klant);
 			
 			rd.forward(req, resp);
-			
-			return;
 		}
 	}
 	

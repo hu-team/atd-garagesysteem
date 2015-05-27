@@ -22,38 +22,43 @@
 					<c:out value="${errorString }" escapeXml="false"></c:out>
 				</div>
 				</c:if>
+				<c:if test="${not empty param.done}">
+					<div class="alert alert-success">
+						Opslaan gelukt!
+					</div>
+				</c:if>
 			
 				<form class="form-horizontal" method="post" action="addartikel">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label" for="naam">Naam: </label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="naam" name="naam">
+								<input type="text" class="input-xlarge" id="naam" name="naam" value='<c:out value="${artikel.naam }" />'>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="code">Artikelcode: </label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="code" name="code">
+								<input type="text" class="input-xlarge" id="code" name="code" value='<c:out value="${artikel.code }" />'>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="aantal">Aantal: </label>
 							<div class="controls">
-								<input class="input-xlarge" id="aantal" type="number" name="aantal">
+								<input class="input-xlarge" id="aantal" type="number" name="aantal" value='<c:out value="${artikel.aantal }" />'>
 							</div>
 						</div>
 						
 						<div class="control-group">
 							<label class="control-label" for="prijs">Prijs: </label>
 							<div class="controls">
-								<input class="input-xlarge" id="prijs" type="text" name="prijs">
+								<input class="input-xlarge" id="prijs" type="text" name="prijs" value='<c:out value="${artikel.prijs }" />'>
 							</div>
 						</div>
 						
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">Artikel toevoegen</button>
-							<button type="reset" class="btn">Annuleren</button>
+							<a href="artikeloverzicht.jsp" class="btn btn-default">Annuleren</a>
 						</div>
 					</fieldset>
 				</form>

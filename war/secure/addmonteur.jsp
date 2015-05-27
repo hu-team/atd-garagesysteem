@@ -22,6 +22,11 @@
 					<c:out value="${errorString }" escapeXml="false"></c:out>
 				</div>
 				</c:if>
+				<c:if test="${not empty param.done}">
+					<div class="alert alert-success">
+						Opslaan gelukt!
+					</div>
+				</c:if>
 			
 				<form class="form-horizontal" method="post" action="addmonteur">
 					<fieldset>
@@ -40,7 +45,7 @@
 						<div class="control-group">
 							<label class="control-label" for="salarisnummer">Salarisnummer: </label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="salarisnummer" name="salarisnummer">
+								<input type="text" class="input-xlarge" id="salarisnummer" name="salarisnummer" value='<c:out value="${monteur.salarisnummer }" />'>
 							</div>
 						</div>
 
@@ -49,7 +54,7 @@
 						<div class="control-group">
 							<label class="control-label" for="gebruikersnaam">Gebruikersnaam: </label>
 							<div class="controls">
-								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam">
+								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam" value='<c:out value="${monteur.gebruikersnaam }" />'>
 							</div>
 						</div>
 						

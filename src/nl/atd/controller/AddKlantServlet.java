@@ -38,6 +38,12 @@ public class AddKlantServlet extends HttpServlet{
 			errorString += "Wachtwoorden komen niet overeen. <br />";
 		}
 		
+		if(!email.contains("@") && !email.contains(".")) {
+			error = true;
+			errorString += "E-mail is onjuist! <br />";
+		}
+		
+		
 		if(error){
 			req.setAttribute("error", error);
 			req.setAttribute("errorString", errorString);
@@ -55,8 +61,17 @@ public class AddKlantServlet extends HttpServlet{
 		
 		klant.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord));
 		
-		ServiceProvider.getKlantService().addKlant(klant);
-		
-		resp.sendRedirect(req.getContextPath() + "/secure/");
+		if(ServiceProvider.getKlantService().addKlant(klant)) {
+			resp.sendRedirect(req.getContextPath() + "/secure/klantoverzicht.jsp?done=1");
+		}else{
+			req.setAttribute("error", true);
+			req.setAttribute("errorString", "Opslaan is mislukt, mogelijk bestaat klant al.");
+			
+			req.setAttribute("klant", klant);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("addklant.jsp");
+			
+			rd.forward(req, resp);
+		}
 	}
 }

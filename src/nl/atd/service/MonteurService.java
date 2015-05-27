@@ -19,8 +19,7 @@ public class MonteurService {
 	public boolean addMonteur(Monteur monteur) {
 		if(this.monteurDAO.getMonteur(monteur.getGebruikersnaam()) == null) {
 			return this.monteurDAO.addMonteur(monteur);
-		}else{
-			return false;
 		}
+		return false;
 	}
 }

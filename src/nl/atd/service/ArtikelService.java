@@ -23,16 +23,14 @@ public class ArtikelService {
 	public boolean addArtikel(Artikel artikel){
 		if(this.artikelDAO.getArtikelByCode(artikel.getCode()) == null){
 			return this.artikelDAO.addArtikel(artikel);
-		}else{
-			return false;
 		}
+		return false;
 	}
 	
 	public boolean editArtikel(Artikel artikel){
 		if(this.artikelDAO.getArtikelByCode(artikel.getCode()) != null){
 			return this.artikelDAO.editArtikel(artikel);
-		}else{
-			return false;
 		}
+		return false;
 	}
 }

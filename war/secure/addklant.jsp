@@ -22,6 +22,11 @@
 					<c:out value="${errorString }" escapeXml="false"></c:out>
 				</div>
 				</c:if>
+				<c:if test="${not empty param.done}">
+					<div class="alert alert-success">
+						Opslaan gelukt!
+					</div>
+				</c:if>
 			
 				<form class="form-horizontal" method="post" action="addklant">
 					<fieldset>
@@ -40,7 +45,7 @@
 						<div class="control-group">
 							<label class="control-label" for="email">E-mail: </label>
 							<div class="controls">
-								<input class="input-xlarge" id="email" type="email" name="email">
+								<input class="input-xlarge" id="email" type="email" name="email" value='<c:out value="${klant.email }" />'>
 							</div>
 						</div>
 						
@@ -49,7 +54,7 @@
 						<div class="control-group">
 							<label class="control-label" for="gebruikersnaam">Gebruikersnaam: </label>
 							<div class="controls">
-								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam">
+								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam"  value='<c:out value="${klant.gebruikersnaam }" />'>
 							</div>
 						</div>
 						
@@ -69,7 +74,7 @@
 						
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">Klant toevoegen</button>
-							<button type="reset" class="btn">Annuleren</button>
+							<a href="klantoverzicht.jsp" class="btn btn-default">Annuleren</a>
 						</div>
 					</fieldset>
 				</form>

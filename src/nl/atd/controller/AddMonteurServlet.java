@@ -59,13 +59,23 @@ public class AddMonteurServlet extends HttpServlet {
 		}
 		
 		
-		Monteur monteur = new Monteur(voornaam + "" + achternaam, salarisnummerNumeriek);
+		Monteur monteur = new Monteur(voornaam + " " + achternaam, salarisnummerNumeriek);
 		
 		monteur.setGebruikersnaam(gebruikersnaam);
 		monteur.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord));
 		
-		ServiceProvider.getMonteurService().addMonteur(monteur);
+		if(ServiceProvider.getMonteurService().addMonteur(monteur)) {
+			resp.sendRedirect(req.getContextPath() + "/secure/addmonteur.jsp?done=1");
+		}else{
+			req.setAttribute("error", true);
+			req.setAttribute("errorString", "Opslaan is mislukt, mogelijk bestaat monteur al.");
+			
+			req.setAttribute("monteur", monteur);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("addmonteur.jsp");
+			
+			rd.forward(req, resp);
+		}
 		
-		resp.sendRedirect(req.getContextPath() + "/secure/");
 	}
 }

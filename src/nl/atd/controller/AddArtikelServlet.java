@@ -52,6 +52,7 @@ public class AddArtikelServlet extends HttpServlet{
 			req.setAttribute("error", error);
 			req.setAttribute("errorString", errorString);
 			
+			
 			RequestDispatcher rd = req.getRequestDispatcher("addartikel.jsp");
 			
 			rd.forward(req, resp);
@@ -64,8 +65,17 @@ public class AddArtikelServlet extends HttpServlet{
 		artikel.setCode(code);
 		artikel.setPrijs(prijsNumeriek);
 		
-		ServiceProvider.getArtikelService().addArtikel(artikel);
-		
-		resp.sendRedirect(req.getContextPath() + "/secure/");
+		if(ServiceProvider.getArtikelService().addArtikel(artikel)) {
+			resp.sendRedirect(req.getContextPath() + "/secure/addartikel.jsp?done=1");
+		}else{
+			req.setAttribute("error", true);
+			req.setAttribute("errorString", "Fout met opslaan, mogelijk bestaat artikel al met zelfde artikelcode!");
+			
+			req.setAttribute("artikel", artikel);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("addartikel.jsp");
+			
+			rd.forward(req, resp);
+		}
 	}
 }
