@@ -1,6 +1,7 @@
 <%@page import="nl.atd.service.ArtikelService"%>
 <%@page import="nl.atd.model.Artikel"%>
 <%@page import="nl.atd.service.ServiceProvider" %>
+<%@page import="nl.atd.helper.AuthHelper" %>
 <%@ include file="_header.jsp" %>
 
             <div id="content" class="span10">
@@ -40,6 +41,11 @@
                                 
                                 </tbody>
                             </table>
+                            
+                            <% if(AuthHelper.isAdmin(session)) { %>
+                            	<a href="addartikel.jsp" class="btn btn-primary">Artikel toevoegen</a>
+                            <% } %>
+                            
                         </div>
                     </div>
                     <div class="clearfix"></div>

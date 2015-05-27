@@ -22,6 +22,11 @@
 					<c:out value="${errorString }" escapeXml="false"></c:out>
 				</div>
 				</c:if>
+				<c:if test="${not empty param.done}">
+					<div class="alert alert-success">
+						Opslaan gelukt!
+					</div>
+				</c:if>
 			
 				<form class="form-horizontal" method="post" action="addmonteur">
 					<fieldset>

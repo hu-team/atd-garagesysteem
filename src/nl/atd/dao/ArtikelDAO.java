@@ -60,8 +60,10 @@ public class ArtikelDAO {
 			st.setDouble(3, artikel.getPrijs());
 			st.setString(4, artikel.getCode());
 			
-			return st.execute();
+			st.execute();
+			connection.close();
 			
+			return true;
 		}catch(Exception e){
 			return false;
 		}
@@ -78,7 +80,10 @@ public class ArtikelDAO {
 			st.setInt(3, artikel.getAantal());
 			st.setDouble(4, artikel.getPrijs());
 			
-			return st.execute();
+			st.execute();
+			connection.close();
+			
+			return true;
 		}catch(Exception e){
 			return false;
 		}
