@@ -47,6 +47,7 @@
                                     	<label class="control-label">Monteur: </label>
                                     	<div class="controls">
                                     		<select name="monteur">
+                                    			<option value="">Leeg</option>
                                     			<c:forEach var="monteur" items="${ServiceProvider.getMonteurService().getAlleMonteuren() }">
                                     				<option value="${monteur.gebruikersnaam }">${monteur.naam }</option>
                                     			</c:forEach>
