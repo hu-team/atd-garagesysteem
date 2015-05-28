@@ -1,3 +1,4 @@
+<%@page import="nl.atd.helper.AuthHelper"%>
 <ul class="nav nav-tabs nav-stacked main-menu">
 <% if(AuthHelper.isAdmin(session) || AuthHelper.isMonteur(session)) { %>
 	<li>
