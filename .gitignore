@@ -10,7 +10,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
-
+.DS_Store
 desktop.ini
 
 # Eclipse Core
@@ -61,7 +61,7 @@ desktop.ini
 # .idea/dictionaries
 
 # Sensitive or high-churn files:
-# .idea/dataSources.ids
+# .idea/dataSources.i
 # .idea/dataSources.xml
 # .idea/sqlDataSources.xml
 # .idea/dynamic.xml
