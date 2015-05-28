@@ -1,15 +1,15 @@
 <%@ include file="_header.jsp" %>
 <div id="content" class="span10">
-	<h1>
 <%
 if(AuthHelper.isAdmin(session)) {
-	out.println("WELKOM BEDRIJFSLEIDER");
+	out.println("<h1>WELKOM BEDRIJFSLEIDER</h1>"); %>
+	<%@ include file="_dashboard-bedrijfsleider.jsp" %>
+<%	
 }else if(AuthHelper.isMonteur(session)) {
-	out.println("WELKOM MONTEUR");
+	out.println("<h1>WELKOM MONTEUR</h1>");
 }else if(AuthHelper.isKlant(session)) {
-	out.println("WELKOM KLANT");
+	out.println("<h1>WELKOM KLANT</h1>");
 }
 %>
-	</h1>
 </div>
 <%@ include file="_footer.jsp" %>

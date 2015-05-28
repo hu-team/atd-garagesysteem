@@ -380,11 +380,30 @@ function template_functions(){
 	});
 
 	/* ---------- Datable ---------- */
+	/* settings
+	 * https://datatables.net/reference/option/language
+	 */
 	$('.datatable').dataTable({
 			"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
 			"sPaginationType": "bootstrap",
 			"oLanguage": {
-			"sLengthMenu": "_MENU_ records per page"
+			    "sProcessing": "Bezig...",
+			    "sLengthMenu": "_MENU_ resultaten weergeven",
+			    "sZeroRecords": "Geen resultaten gevonden",
+			    "sInfo": "_START_ tot _END_ van _TOTAL_ resultaten",
+			    "sInfoEmpty": "Geen resultaten om weer te geven",
+			    "sInfoFiltered": " (gefilterd uit _MAX_ resultaten)",
+			    "sInfoPostFix": "",
+			    "sSearch": "Zoeken:",
+			    "sEmptyTable": "Geen resultaten aanwezig in de tabel",
+			    "sInfoThousands": ".",
+			    "sLoadingRecords": "Een moment geduld aub - bezig met laden...",
+			    "oPaginate": {
+			        "sFirst": "Eerste",
+			        "sLast": "Laatste",
+			        "sNext": "Volgende",
+			        "sPrevious": "Vorige"
+			    }
 			}
 		} );
 	$('.btn-close').click(function(e){
@@ -911,6 +930,9 @@ function calendars(){
 			left: 'title',
 			right: 'prev,next today,month,agendaWeek,agendaDay'
 		},
+		minTime: "07:00:00",
+		maxTime: "21:00:00",
+		defaultView: 'agendaWeek',
 		editable: true,
 		droppable: true, // this allows things to be dropped onto the calendar !!!
 		drop: function(date, allDay) { // this function is called when something is dropped

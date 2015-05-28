@@ -16,7 +16,7 @@
 </footer>
 
 <!-- start: JavaScript-->
-
+<script src="<%=application.getContextPath() %>/js/moment.js"></script>
 <script src="<%=application.getContextPath() %>/js/jquery-1.9.1.min.js"></script>
 <script
 	src="<%=application.getContextPath() %>/js/jquery-migrate-1.0.0.min.js"></script>
@@ -52,6 +52,7 @@
 <script src="<%=application.getContextPath() %>/js/retina.js"></script>
 <script src="<%=application.getContextPath() %>/js/custom.js"></script>
 <script src="<%=application.getContextPath() %>/js/atd.js"></script>
+<script src="<%=application.getContextPath() %>/js/moment_nl_lang.js"></script>
 <!-- end: JavaScript-->
 </body>
 </html>

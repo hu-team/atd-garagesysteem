@@ -65,7 +65,7 @@ public class AddKlantServlet extends HttpServlet{
 			resp.sendRedirect(req.getContextPath() + "/secure/klantoverzicht.jsp?done=1");
 		}else{
 			req.setAttribute("error", true);
-			req.setAttribute("errorString", "Opslaan is mislukt, mogelijk bestaat klant al.");
+			req.setAttribute("errorString", "Opslaan is mislukt, mogelijk bestaat de klant al.");
 			
 			req.setAttribute("klant", klant);
 			

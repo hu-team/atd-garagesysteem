@@ -81,49 +81,15 @@
                                         </div>
                                     </div>
                                 </fieldset>
+                               <div class="form-actions">
+                    			<button type="submit" class="btn btn-primary">Klus inplannen</button>
+                				</div>
+                				</form>
                         </div>
                     </div>
-                    <!--/span-->
+                    <!--/span-->                    
                 </div>
                 <!--/row-->
-                <div class="row-fluid sortable">
-                    <div class="box span12">
-                        <div class="box-header" data-original-title>
-                            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Onderdelen toevoegen</h2>
-                        </div>
-                        <div class="box-content">
-                            <fieldset>
-                                <div class="control-group">
-                                    <div class="select-box">
-                                        <label>Artikelen</label>
-                                        <select id="leftValues" size="5" name="artikel">
-                                            <c:forEach var="artikel" items="${ServiceProvider.getArtikelService().getAlleArtikelen() }">
-                                            	<option value="${artike.code }">${artikel.naam } </option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="buttongrp">
-                                        <input type="button" id="btnLeft" value="&lt;&lt;" />
-                                        <input type="button" id="btnRight" value="&gt;&gt;" />
-                                    </div>
-                                    <div class="select-box">
-                                        <label>Geselecteerd</label>
-                                        <select id="rightValues" size="4"></select>
-                                    </div>
-                                    <div class="select-box" id="artikelbox">
-                                        <label>Aantal</label>
-<!--                                         <input type="text" data-name="metaal" value="0"/>
-                                        <input type="text" data-name="plastic" value="0"/> -->
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Klus inplannen</button>
-                </div>
-                </form>
             </div>
             <!--/.fluid-container-->
             <!-- end: Content -->

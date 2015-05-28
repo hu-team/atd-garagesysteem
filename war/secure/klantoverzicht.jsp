@@ -11,14 +11,14 @@
                 <div class="row-fluid sortable ui-sortable">
                     <div class="box span12">
                         <div class="box-header" data-original-title="">
-                            <h2><i class="halflings-icon white tags"></i><span class="break"></span>Klant overzicht</h2>
+                            <h2><i class="halflings-icon white th-list"></i><span class="break"></span>Klanten overzicht</h2>
                         </div>
                         
                         <div class="box-content">
                         
         	                <c:if test="${not empty param.done}">
 								<div class="alert alert-success">
-									Opslaan gelukt!
+									De nieuwe klant is succesvol toegevoegd!
 								</div>
 							</c:if>
                         
