@@ -48,6 +48,7 @@
 <script src="<%=application.getContextPath() %>/js/jquery.masonry.min.js"></script>
 <script src="<%=application.getContextPath() %>/js/jquery.knob.modified.js"></script>
 <script src="<%=application.getContextPath() %>/js/jquery.sparkline.min.js"></script>
+<script src="<%=application.getContextPath() %>/js/sweetalert.min.js"></script>
 <script src="<%=application.getContextPath() %>/js/counter.js"></script>
 <script src="<%=application.getContextPath() %>/js/retina.js"></script>
 <script src="<%=application.getContextPath() %>/js/custom.js"></script>

@@ -1,6 +1,6 @@
                 <div class="row-fluid">
                 	<div class="col-md-12">
-                	<a href="#" class="btn btn-default">Klus inplannen</a>
+                	<a href="<%=application.getContextPath()%>/secure/addklus.jsp" class="btn btn-default">Klus inplannen</a>
                 	</div>
                 </div>
                 <br/>

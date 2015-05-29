@@ -15,6 +15,9 @@
 <link
 	href="<%=application.getContextPath()%>/css/bootstrap-responsive.min.css"
 	rel="stylesheet">
+<link
+	href="<%=application.getContextPath()%>/css/sweetalert.css"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link id="base-style"

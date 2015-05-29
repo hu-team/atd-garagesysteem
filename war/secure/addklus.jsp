@@ -83,6 +83,7 @@
                                 </fieldset>
                                <div class="form-actions">
                     			<button type="submit" class="btn btn-primary">Klus inplannen</button>
+                    			<a href="<%=application.getContextPath()%>/secure/index.jsp" class="btn btn-danger promise-me">Annuleren</a>
                 				</div>
                 				</form>
                         </div>

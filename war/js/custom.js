@@ -301,7 +301,7 @@ function template_functions(){
 	});
 	
 	/* ---------- Text editor ---------- */
-	$('.cleditor').cleditor();
+	$('.cleditor').cleditor({ controls: "bold italic | bullets | undo redo | print" });
 	
 	/* ---------- Datapicker ---------- */
 	$('.datepicker').datepicker();

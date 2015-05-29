@@ -74,7 +74,7 @@
 						
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">Klant toevoegen</button>
-							<a href="klantoverzicht.jsp" class="btn btn-default">Annuleren</a>
+							<a href="<%=application.getContextPath()%>/secure/klantoverzicht.jsp" class="btn btn-danger promise-me">Annuleren</a>
 						</div>
 					</fieldset>
 				</form>

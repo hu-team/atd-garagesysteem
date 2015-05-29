@@ -113,6 +113,13 @@ var app = function() {
 					$("#autolijst").html(html);
 				});
 	}
+	
+	function alertFirst(link) {
+		var obj = {title: "Let op!", text: "Weet u zeker dat u het proces wilt afbreken?", type: "warning", confirmButtonText: "Ja", showCancelButton: true, cancelButtonText: "Annuleren", inputType: "hidden" };
+		swal(obj, function() {
+			window.location.replace(link);
+		});	
+	};
 
 	return {
 		inlog : inlog,
@@ -120,7 +127,8 @@ var app = function() {
 		artikelSelectGroupLeft : artikelSelectGroupLeft,
 		artikelSelectGroupRight : artikelSelectGroupRight,
 		showAantal : showAantal,
-		autolijst : autolijst
+		autolijst : autolijst,
+		alertFirst: alertFirst
 	}
 
 }();
@@ -147,6 +155,11 @@ $(function() {
 
 	$("#rightValues").change(function() {
 		app.showAantal();
+	});
+	
+	$(".promise-me").click(function(e){
+		e.preventDefault();
+		app.alertFirst($(this).attr("href"));
 	});
 
 	if ($("#autolijst").length > 0) {
