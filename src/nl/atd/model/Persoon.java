@@ -72,11 +72,10 @@ public abstract class Persoon {
 	}
 
 	/**
-	 * Override equals methodee
+	 * Override equals methode
 	 * 
-	 * @param email
+	 * @param ander
 	 */
-	@Override
 	public boolean equals(Object ander) {
 		boolean b;
 

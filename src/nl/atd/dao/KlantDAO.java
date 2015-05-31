@@ -65,9 +65,10 @@ public class KlantDAO {
 	 * @return array met klanten
 	 */
 	public ArrayList<Klant> getAlleKlanten(boolean autos) {
-		return this.getKlanten("SELECT *, UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek FROM klant", autos);
+		return this.getKlanten("SELECT * FROM klant", autos);
 	}
-
+	// , UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek 
+	
 	/**
 	 * Get klant
 	 * @param gebruikersnaam

@@ -47,24 +47,17 @@ public class KlantServiceTest {
 	public void testGetAlleKlanten() {
 		// Klant k1 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan Klant k3 ( Uit Database gehaald ) 
 		// Klant k2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan Klant k4 ( Uit Database gehaald )
-		
-		//assertEquals("Check of naam klopt", k3.getNaam(), k1.getNaam());
-		//assertEquals("Check of naam klopt", k3.getEmail(), k1.getEmail());
-		//assertEquals("Check of naam klopt", k3.getLaatsteBezoek(), k1.getLaatsteBezoek());
-		
-		assertTrue(k1.equals(k3));
-		
-		//assertEquals(k1, k3);
-		
-		//assertEquals(k3.getGebruikersnaam(), k1.getGebruikersnaam());
 
-		// assertEquals("Check of naam klopt", "Max van Kuik", k1.getNaam());
-		// assertEquals("Check of email klopt", "kuikvanmax@hotmail.com",
-		// k1.getEmail());
+		assertEquals(k1, k3);
+		assertEquals(k2.getWachtwoord(), k4.getWachtwoord());
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		k1 = null;
+		k2 = null;
+		k3 = null;
+		k4 = null;
 	}
 
 

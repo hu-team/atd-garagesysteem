@@ -84,7 +84,6 @@ public class Klant extends Persoon {
 	 * 
 	 * @param ander 
 	 */
-	@Override
 	public boolean equals(Object ander) {
 		boolean b;
 
