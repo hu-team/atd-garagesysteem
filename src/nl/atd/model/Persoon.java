@@ -86,9 +86,9 @@ public abstract class Persoon {
 			b = false;
 		}
 
-		b = b && (this.naam.equals(((Persoon) ander).naam));
-		b = b && (this.gebruikersnaam == ((Persoon) ander).gebruikersnaam);
-		b = b && (this.wachtwoord == ((Persoon) ander).wachtwoord);
+		b = b && (this.naam.equals(((Persoon) ander).getNaam()));
+		b = b && (this.gebruikersnaam.equals(((Persoon) ander).getGebruikersnaam()));
+		b = b && (this.wachtwoord.equals(((Persoon) ander).getWachtwoord()));
 
 		return b;
 	}

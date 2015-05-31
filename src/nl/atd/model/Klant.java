@@ -94,7 +94,7 @@ public class Klant extends Persoon {
 			b = false;
 		}
 
-		b = b && super.equals(ander) && (this.email.equals(((Klant)ander).email));
+		b = b && super.equals(ander) && (this.email.equals(((Klant)ander).getEmail()));
 		//b = b && (this.laatsteBezoek.equals(((Klant)ander).laatsteBezoek));
 		
 		return b;
