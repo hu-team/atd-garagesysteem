@@ -2,30 +2,34 @@ package nl.atd.model;
 
 /**
  * Generiek persoon klasse
+ * 
  * @author ATD Developers
  *
  */
 public abstract class Persoon {
 	private String naam;
-	
+
 	private String gebruikersnaam;
 	private String wachtwoord;
-	
+
 	public Persoon(String nm) {
 		this.naam = nm;
 	}
-	
+
 	/**
 	 * Get Naam
+	 * 
 	 * @return naam van persoon
 	 */
 	public String getNaam() {
 		return this.naam;
 	}
-	
+
 	/**
 	 * Set Naam
-	 * @param nm naam van persoon
+	 * 
+	 * @param nm
+	 *            naam van persoon
 	 */
 	public void setNaam(String nm) {
 		this.naam = nm;
@@ -33,6 +37,7 @@ public abstract class Persoon {
 
 	/**
 	 * Get gebruikersnaam
+	 * 
 	 * @return string met gebruikersnaam
 	 */
 	public String getGebruikersnaam() {
@@ -41,6 +46,7 @@ public abstract class Persoon {
 
 	/**
 	 * Set gebruikersnaam
+	 * 
 	 * @param gebruikersnaam
 	 */
 	public void setGebruikersnaam(String gebruikersnaam) {
@@ -49,6 +55,7 @@ public abstract class Persoon {
 
 	/**
 	 * Get wachtwoord
+	 * 
 	 * @return wachtwoord
 	 */
 	public String getWachtwoord() {
@@ -57,11 +64,33 @@ public abstract class Persoon {
 
 	/**
 	 * Set wachtwoord
+	 * 
 	 * @param wachtwoord
 	 */
 	public void setWachtwoord(String wachtwoord) {
 		this.wachtwoord = wachtwoord;
 	}
-	
-	
+
+	/**
+	 * Override equals methodee
+	 * 
+	 * @param email
+	 */
+	@Override
+	public boolean equals(Object ander) {
+		boolean b;
+
+		if (ander instanceof Persoon) {
+			b = true;
+		} else {
+			b = false;
+		}
+
+		b = b && (this.naam.equals(((Persoon) ander).naam));
+		b = b && (this.gebruikersnaam == ((Persoon) ander).gebruikersnaam);
+		b = b && (this.wachtwoord == ((Persoon) ander).wachtwoord);
+
+		return b;
+	}
+
 }
