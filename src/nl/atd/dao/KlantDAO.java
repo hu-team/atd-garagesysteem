@@ -53,7 +53,7 @@ public class KlantDAO {
 				klanten.add(klant);
 			}
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		
 		return klanten;
