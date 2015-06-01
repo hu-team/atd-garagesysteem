@@ -94,6 +94,7 @@ public class Klant extends Persoon {
 		}
 
 		b = b && super.equals(ander) && (this.email.equals(((Klant)ander).getEmail()));
+		// omdat nog gefixt moet worden met datum in de sql query
 		//b = b && (this.laatsteBezoek.equals(((Klant)ander).laatsteBezoek));
 		
 		return b;
