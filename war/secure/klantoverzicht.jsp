@@ -48,10 +48,10 @@
 								<td>${klant.email}</td>
 								<td><fmt:formatDate pattern="dd-MM-yyyy"
 										value="${klant.laatsteBezoek.time}" /></td>
-								<td><a class="btn btn-success"
+								<td><!-- <a class="btn btn-success"
 									href="editklant.jsp?code=${artikel.code }"> <i
 										class="halflings-icon white edit"></i>
-									</a>
+									</a>-->
 								<a class="btn btn-success"
 									href="autooverzicht.jsp?klant=${klant.gebruikersnaam}"> <i
 										class="fa fa-car"></i>

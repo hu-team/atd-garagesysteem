@@ -25,7 +25,8 @@
 					</div>
 				</c:if>
 				<c:if test="${not empty param.done}">
-					<div class="alert alert-success">Opslaan gelukt!</div>
+					<div class="alert alert-success">Het nieuwe is succesvol
+						toegevoegd!</div>
 				</c:if>
 				<table
 					class="table table-striped table-bordered bootstrap-datatable datatable dataTable">
