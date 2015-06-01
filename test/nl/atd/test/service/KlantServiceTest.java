@@ -63,6 +63,7 @@ public class KlantServiceTest {
 		k4 = kservice.getKlantByGebruikersnaam("tomvalk")
 
 		assertEquals("k1 zou gelijk moeten zijn aan k3", k1, k3);
+		assertEquals("k2 zou gelijk moeten zijn aan k3", k1, k3);
 	}
 	
 	
