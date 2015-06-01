@@ -27,7 +27,7 @@ public class AddKlusServlet extends HttpServlet{
 		
 		String klant = req.getParameter("klant");
 		String auto = req.getParameter("auto");
-		String monteur = req.getParameter("");
+		String monteur = req.getParameter("monteur");
 		
 		boolean error = false;
 		String errorString = "";
@@ -51,7 +51,7 @@ public class AddKlusServlet extends HttpServlet{
 		}
 		
 		if(monteur == null){
-			resp.sendRedirect(req.getContextPath() + "monteuroverzicht.jsp");
+			
 		}else if(!monteur.trim().isEmpty() && ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur) == null){
 			error = true;
 			errorString += "De selecteerde monteur is niet geldig <br />";
@@ -76,7 +76,7 @@ public class AddKlusServlet extends HttpServlet{
 		}
 		Klant kl = ServiceProvider.getKlantService().getKlantByGebruikersnaam(klant);
 		Auto aut = ServiceProvider.getAutoService().getAutoOpKenteken(auto);
-		Monteur mont = (monteur.trim().isEmpty() ? null : ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur));
+		Monteur mont = (monteur == null ? null : ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur));
 		
 		Klus klus = new Klus(kl, aut);
 		
