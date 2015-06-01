@@ -29,6 +29,7 @@ public class KlantServiceTest {
 		k1.setGebruikersnaam("maxiiemaxx");
 		k1.setWachtwoord(AuthHelper.encryptWachtwoord("123"));
 		k1.setLaatsteBezoek(null);
+		kservice.addKlant(k1);
 		klanten.add(k1);
 
 		k2 = new Klant("Tom Valk");
@@ -36,6 +37,7 @@ public class KlantServiceTest {
 		k2.setGebruikersnaam("tomvalk");
 		k2.setWachtwoord(AuthHelper.encryptWachtwoord("456"));
 		k2.setLaatsteBezoek(null);
+		kservice.addKlant(k2);
 		klanten.add(k2);
 		
 		actualKlanten = kservice.getAlleKlanten();

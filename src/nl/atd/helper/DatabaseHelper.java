@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DatabaseHelper {
 	private static final String DB_URL		= "jdbc:mysql://localhost/atd";
 	private static final String DB_USER		= "root";
-	private static final String DB_PASS		= "";
+	private static final String DB_PASS		= "root";
 	private static final String DB_DRIVER	= "com.mysql.jdbc.Driver";
 	
 	// Productie server
