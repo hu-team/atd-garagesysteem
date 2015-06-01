@@ -74,7 +74,7 @@
 						
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">Monteur toevoegen</button>
-							<button type="reset" class="btn">Annuleren</button>
+							<a href="<%=application.getContextPath()%>/secure/monteuroverzicht.jsp" class="btn btn-danger promise-me">Annuleren</a>
 						</div>
 					</fieldset>
 				</form>
