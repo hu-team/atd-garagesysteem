@@ -23,7 +23,7 @@ request.setAttribute("klant", klant);
 		<div class="box span12">
 			<div class="box-header" data-original-title="">
 				<h2>
-					<i class="halflings-icon white tags"></i><span class="break"></span>Auto
+					<i class="halflings-icon white th-list"></i><span class="break"></span>Auto
 					lijst voor '<c:out value="${klant.naam }" />'
 				</h2>
 			</div>
@@ -61,7 +61,7 @@ request.setAttribute("klant", klant);
 			<div class="box span12">
 				<div class="box-header" data-original-title="">
 					<h2>
-						<i class="halflings-icon white tags"></i><span class="break"></span>Auto
+						<i class="halflings-icon white th-list"></i><span class="break"></span>Auto
 						toevoegen
 					</h2>
 				</div>
