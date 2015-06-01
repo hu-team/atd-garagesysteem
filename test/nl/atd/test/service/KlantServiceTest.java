@@ -49,7 +49,7 @@ public class KlantServiceTest {
 		// Klant k2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan Klant k4 ( Uit Database gehaald )
 
 		assertEquals(k1, k3);
-		assertEquals(k2.getWachtwoord(), k4.getWachtwoord());
+		assertEquals(k2, k4);
 	}
 
 	@After
@@ -58,6 +58,9 @@ public class KlantServiceTest {
 		k2 = null;
 		k3 = null;
 		k4 = null;
+		
+		klanten = null;
+		actualKlanten = null;
 	}
 
 
