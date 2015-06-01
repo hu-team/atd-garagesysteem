@@ -9,6 +9,9 @@ if(AuthHelper.isAdmin(session)) {
 	out.println("<h1>WELKOM MONTEUR</h1>");
 }else if(AuthHelper.isKlant(session)) {
 	out.println("<h1>WELKOM KLANT</h1>");
+	%>
+	<%@ include file="_dashboard-klant.jsp" %>
+<% 
 }
 %>
 </div>

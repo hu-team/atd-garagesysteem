@@ -28,4 +28,18 @@
 		</a>
 	</li>
 <% } %>
+<% if(AuthHelper.isKlant(session)) { %>
+<li>
+		<a href="<%=application.getContextPath()%>/secure/index.jsp">
+			<i class="icon-dashboard"></i>
+			<span class="hidden-tablet"> Dashboard</span>
+		</a>
+</li>
+<li>
+	<a href="<%=application.getContextPath()%>/secure/addklus.jsp">
+		<i class="fa fa-tasks"></i>
+		<span class="hidden-tablet">Klus inplannen</span>
+	</a>
+</li>
+<% } %>
 </ul>
