@@ -95,6 +95,7 @@ crashlytics.properties
 crashlytics-build.properties
 *.class
 
+/war/WEB-INF/classes/.gitignore
 
 # Settings
 /src/nl/atd/helper/DatabaseHelper.java

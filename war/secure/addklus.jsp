@@ -89,7 +89,7 @@
                                     <div class="control-group">
                                         <label class="control-label">Omschrijving: </label>
                                         <div class="controls">
-                                            <textarea name="" id="" class="cleditor" name="omschrijving">
+                                            <textarea id="" class="cleditor" name="omschrijving">
                                             </textarea>
                                         </div>
                                     </div>
