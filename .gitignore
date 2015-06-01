@@ -95,3 +95,6 @@ crashlytics.properties
 crashlytics-build.properties
 *.class
 
+
+# Settings
+/src/nl/atd/helper/DatabaseHelper.java
