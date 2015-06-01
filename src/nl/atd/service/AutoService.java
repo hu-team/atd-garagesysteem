@@ -55,4 +55,13 @@ public class AutoService {
 		}
 		return false;
 	}
+	
+	/**
+	 * Get auto id van kenteken
+	 * @param kenteken
+	 * @return autoid
+	 */
+	public int getAutoIdOpKenteken(String kenteken) {
+		return this.autoDAO.getAutoIdOpKenteken(kenteken);
+	}
 }
