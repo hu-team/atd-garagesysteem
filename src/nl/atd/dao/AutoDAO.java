@@ -55,6 +55,31 @@ public class AutoDAO {
 	}
 	
 	/**
+	 * Get autoid met query
+	 * @param query
+	 * @return int autoid
+	 */
+	private int getAutoId(String query) {
+		int nr = 0;
+		try {
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery(query);
+			
+			while(set.next()) {
+				nr = set.getInt("autoid");
+			}
+			
+			connection.close();
+			
+		} catch (Exception e) {
+		}
+		
+		return nr;
+	}
+	
+	/**
 	 * Get alle autos
 	 * @return array met autos
 	 */
@@ -91,6 +116,15 @@ public class AutoDAO {
 		ArrayList<Auto> autos = this.getAutos("SELECT *, UNIX_TIMESTAMP(auto.laatste_beurt) as laatstebeurt FROM auto WHERE kenteken LIKE '"+kenteken+"'");
 		if(autos.size() >= 1) return autos.get(0);
 		return null;
+	}
+	
+	/**
+	 * Get AutoId op kenteken
+	 * @param kenteken
+	 * @return autoid
+	 */
+	public int getAutoIdOpKenteken(String kenteken) {
+		return this.getAutoId("SELECT autoid FROM auto WHERE kenteken LIKE '"+kenteken+"'");
 	}
 	
 	/**
