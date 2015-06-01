@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 import nl.atd.model.Klus;
+import nl.atd.model.Monteur;
 import nl.atd.service.ServiceProvider;
 
 public class AddKlusServlet extends HttpServlet{
@@ -75,14 +76,25 @@ public class AddKlusServlet extends HttpServlet{
 		}
 		Klant kl = ServiceProvider.getKlantService().getKlantByGebruikersnaam(klant);
 		Auto aut = ServiceProvider.getAutoService().getAutoOpKenteken(auto);
+		Monteur mont = (monteur.trim().isEmpty() ? null : ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur));
 		
 		Klus klus = new Klus(kl, aut);
 		
-		klus.setMonteur(monteur.trim().isEmpty() ? null : ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur));
+		klus.setMonteur(mont);
 		klus.setOmschrijving(omschrijving);
 		klus.setType(type);
 		klus.setUren(urenNumeriek);
 		
-		//TODO KlusService addKlus() toevoegen en bij KlusDAO ook.
+		if(ServiceProvider.getKlusService().addKlus(klus, aut, mont, kl)) {
+			resp.sendRedirect(req.getContextPath() + "/secure/");
+		}else{
+			req.setAttribute("error", true);
+			req.setAttribute("errorString", "Opslaan is mislukt.");
+			
+			RequestDispatcher rd = req.getRequestDispatcher("addklus.jsp");
+			
+			rd.forward(req, resp);
+		}
+		
 	}
 }

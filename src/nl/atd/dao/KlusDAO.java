@@ -1,6 +1,7 @@
 package nl.atd.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -85,6 +86,33 @@ public class KlusDAO {
 	 */
 	public ArrayList<Klus> getAlleKlussen() {
 		return this.getKlussen("SELECT *, UNIX_TIMESTAMP(klus.datum) as datumtimestamp FROM klus");
+	}
+	
+	public Klus getKlusOpId(int id){
+		ArrayList<Klus> klussen = this.getKlussen("SELECT *, UNIX_TIMESTAMP(klus.datum) as datumtimestamp FROM klus WHERE idklus = " + id);
+		return klussen.size() >= 1 ? klussen.get(0) : null;
+	}
+	
+	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant){
+		try{
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			PreparedStatement st = connection.prepareCall("INSERT INTO klus (type, klaar, datum, omschrijving, monteur, klant, auto, uren) VALUES(?, null, null, ?, ?, ?, ?, ?);");
+			
+			st.setString(1, klus.getType());
+			st.setString(2, klus.getOmschrijving());
+			st.setString(3, monteur.getGebruikersnaam());
+			st.setString(4, klant.getGebruikersnaam());
+			st.setInt(5, ServiceProvider.getAutoService().getAutoIdOpKenteken(auto.getKenteken()));
+			st.setInt(6, klus.getUren());
+			
+			st.execute();
+			
+			connection.close();
+			
+			return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 	
 }

@@ -66,7 +66,7 @@ public class AddArtikelServlet extends HttpServlet{
 		artikel.setPrijs(prijsNumeriek);
 		
 		if(ServiceProvider.getArtikelService().addArtikel(artikel)) {
-			resp.sendRedirect(req.getContextPath() + "/secure/addartikel.jsp?done=1");
+			resp.sendRedirect(req.getContextPath() + "/secure/artikeloverzicht.jsp?done=1");
 		}else{
 			req.setAttribute("error", true);
 			req.setAttribute("errorString", "Fout met opslaan, mogelijk bestaat artikel al met zelfde artikelcode!");
