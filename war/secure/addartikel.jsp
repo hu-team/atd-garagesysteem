@@ -16,18 +16,6 @@
 				</div>
 			</div>
 			<div class="box-content">
-			
-				<c:if test="${error == true}">
-				<div class="alert alert-danger">
-					<c:out value="${errorString }" escapeXml="false"></c:out>
-				</div>
-				</c:if>
-				<c:if test="${not empty param.done}">
-					<div class="alert alert-success">
-						Opslaan gelukt!
-					</div>
-				</c:if>
-			
 				<form class="form-horizontal" method="post" action="addartikel">
 					<fieldset>
 						<div class="control-group">

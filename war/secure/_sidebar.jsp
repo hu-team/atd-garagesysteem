@@ -2,19 +2,27 @@
 <ul class="nav nav-tabs nav-stacked main-menu">
 <% if(AuthHelper.isAdmin(session) || AuthHelper.isMonteur(session)) { %>
 	<li>
-		<a href="index.jsp">
+		<a href="<%=application.getContextPath()%>/secure/index.jsp">
 			<i class="icon-dashboard"></i>
 			<span class="hidden-tablet"> Dashboard</span>
 		</a>
 	</li>
+	<% if(AuthHelper.isAdmin(session)) { %>
 	<li>
-		<a href="klantoverzicht.jsp">
+		<a href="<%=application.getContextPath()%>/secure/monteuroverzicht.jsp">
+			<i class="fa fa-users"></i>
+			<span class="hidden-tablet"> Monteurs overzicht</span>
+		</a>
+	</li>
+	<% } %>
+	<li>
+		<a href="<%=application.getContextPath()%>/secure/klantoverzicht.jsp">
 			<i class="fa fa-users"></i>
 			<span class="hidden-tablet">Klanten overzicht</span>
 		</a>
 	</li>
 	<li>
-		<a href="artikeloverzicht.jsp">
+		<a href="<%=application.getContextPath()%>/secure/artikeloverzicht.jsp">
 			<i class="fa fa-shopping-cart"></i>
 			<span class="hidden-tablet">Artikelen overzicht</span>
 		</a>

@@ -66,7 +66,7 @@ if(artikel == null) { response.sendRedirect(application.getContextPath()+"/secur
 						
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">Artikel wijzigen</button>
-							<a href="artikeloverzicht.jsp" class="btn btn-default">Annuleren</a>
+							<a href="<%=application.getContextPath()%>/secure/artikeloverzicht.jsp" class="btn btn-danger promise-me">Annuleren</a>
 						</div>
 					</fieldset>
 				</form>
