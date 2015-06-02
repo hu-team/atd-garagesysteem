@@ -33,13 +33,13 @@
 						<div class="control-group">
 							<label class="control-label" for="voornaam">Voornaam: </label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="voornaam" name="voornaam">
+								<input type="text" class="input-xlarge" id="voornaam" name="voornaam" value="${param.voornaam}">
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="achternaam">Achternaam: </label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="achternaam" name="achternaam">
+								<input type="text" class="input-xlarge" id="achternaam" name="achternaam" value="${param.achternaam}">
 							</div>
 						</div>
 						<div class="control-group">
