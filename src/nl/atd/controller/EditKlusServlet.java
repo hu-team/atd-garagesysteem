@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import nl.atd.service.ServiceProvider;
 
 public class EditKlusServlet extends HttpServlet{
-	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -20,7 +21,9 @@ public class EditKlusServlet extends HttpServlet{
 		String omschrijving = req.getParameter("omschrijving");
 		String monteur = req.getParameter("monteur");
 		String uren = req.getParameter("uren");
-	
+		String klant = req.getParameter("klant");
+		String auto = req.getParameter("auto");
+		
 		boolean error = false;
 		String errorString = "";
 		
@@ -55,6 +58,7 @@ public class EditKlusServlet extends HttpServlet{
 			return;
 		}
 		
+		//TODO Klus ophalen en aanpassing methodes maken in KlusDAO
 		
 	}
 	
