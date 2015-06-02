@@ -23,6 +23,9 @@
 <link id="base-style"
 	href="<%=application.getContextPath()%>/css/style.css"
 	rel="stylesheet">
+<link id="base-style"
+	href="<%=application.getContextPath()%>/css/atd.css"
+	rel="stylesheet">
 <link id="base-style-responsive"
 	href="<%=application.getContextPath()%>/css/style-responsive.css"
 	rel="stylesheet">

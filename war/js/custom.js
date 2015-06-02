@@ -926,6 +926,12 @@ function calendars(){
 	
 			
 	$('#calendar').fullCalendar({
+		eventSources : [ {
+			url : 'ajaxgetklussen',
+			color : 'yellow',
+			textColor : 'black',
+			borderColor : '#cccccc'
+		} ],
 		header: {
 			left: 'title',
 			right: 'prev,next today,month,agendaWeek,agendaDay'
@@ -933,6 +939,10 @@ function calendars(){
 		minTime: "07:00:00",
 		maxTime: "21:00:00",
 		defaultView: 'agendaWeek',
+		eventAfterRender: function (event, element) {
+		    element.find('.fc-title').html(event.title);
+		}
+		/*
 		editable: true,
 		droppable: true, // this allows things to be dropped onto the calendar !!!
 		drop: function(date, allDay) { // this function is called when something is dropped
@@ -957,7 +967,7 @@ function calendars(){
 				$(this).remove();
 			}
 			
-		}
+		}*/
 	});
 	
 }

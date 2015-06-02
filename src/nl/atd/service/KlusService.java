@@ -1,6 +1,7 @@
 package nl.atd.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import nl.atd.dao.KlusDAO;
 import nl.atd.model.Auto;
@@ -21,6 +22,10 @@ public class KlusService {
 	
 	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant){
 		return this.klusDAO.addKlus(klus, auto, monteur, klant);
+	}
+
+	public ArrayList<Klus> getKlussenTussen(Calendar start, Calendar end) {
+		return this.klusDAO.getAlleKlussenTussen(start, end);
 	}
 	
 }

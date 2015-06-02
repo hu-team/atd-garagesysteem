@@ -13,3 +13,15 @@ body {
 #goback {
 	cursor: pointer;
 }
+
+.kenteken {
+	background: url('../img/kentekenplaat.gif');
+	background-size: contain;
+	background-repeat: no-repeat;
+	font-size: 10px;
+	width: 50px;
+	padding: 3px 15px;
+	margin-top:0px;
+	
+	display:block;
+}

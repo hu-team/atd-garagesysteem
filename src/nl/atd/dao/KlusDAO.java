@@ -120,5 +120,10 @@ public class KlusDAO {
 			return false;
 		}
 	}
+
+	public ArrayList<Klus> getAlleKlussenTussen(Calendar start, Calendar end) {
+		return this.getKlussen("SELECT *, UNIX_TIMESTAMP(klus.datum) as datumtimestamp FROM klus "
+				+ "WHERE datum BETWEEN FROM_UNIXTIME(" + (start.getTimeInMillis() / 1000) + ") AND FROM_UNIXTIME(" + (end.getTimeInMillis() / 1000) + ");");
+	}
 	
 }
