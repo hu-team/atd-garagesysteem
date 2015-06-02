@@ -14,6 +14,10 @@ body {
 	cursor: pointer;
 }
 
+#calendar {
+	float:none;
+}
+
 .kenteken {
 	background: url('../img/kentekenplaat.gif');
 	background-size: contain;
