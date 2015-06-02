@@ -144,6 +144,18 @@ public class AuthHelper {
 		}
 		return "";
 	}
+	
+	/**
+	 * Get gebruikersnaam van klant of monteur. Of null bij geen.
+	 * @param session
+	 * @return gebruikersnaam
+	 */
+	public static String getGebruikersnaam(HttpSession session) {
+		if(isKlant(session) || isMonteur(session) && session.getAttribute("user") instanceof Persoon) {
+			return ((Persoon)session.getAttribute("user")).getGebruikersnaam();
+		}
+		return null;
+	}
 
 	/**
 	 * Uitloggen
