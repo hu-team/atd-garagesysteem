@@ -1,6 +1,7 @@
 package nl.atd.controller;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -83,6 +84,7 @@ public class AddKlusServlet extends HttpServlet{
 		Klant kl = ServiceProvider.getKlantService().getKlantByGebruikersnaam(klant);
 		Auto aut = ServiceProvider.getAutoService().getAutoOpKenteken(auto);
 		Monteur mont = (monteur == null ? null : ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur));
+		Calendar datum = Calendar.getInstance();
 		
 		Klus klus = new Klus(kl, aut);
 		
@@ -90,6 +92,7 @@ public class AddKlusServlet extends HttpServlet{
 		klus.setOmschrijving(omschrijving);
 		klus.setType(type);
 		klus.setUren(urenNumeriek);
+		klus.setCalendar(datum);
 		
 		if(ServiceProvider.getKlusService().addKlus(klus, aut, mont, kl)) {
 			resp.sendRedirect(req.getContextPath() + "/secure/");
