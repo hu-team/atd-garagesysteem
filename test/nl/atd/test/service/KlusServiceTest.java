@@ -1,6 +1,11 @@
 package nl.atd.test.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
+
+import java.util.Calendar;
+
 import nl.atd.helper.AuthHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
@@ -58,40 +63,58 @@ public class KlusServiceTest {
 		// Aanmaken van autos
 		a1 = new Auto("Mercedes", "A180", 2015, null);
 		a1.setKenteken("GB1231");
-		// aservice.addAuto(k1.getGebruikersnaam(), a1);
+		// autoService.addAuto(k1.getGebruikersnaam(), a1);
 
 		a2 = new Auto("Ford", "Mondeo", 2012, null);
 		a2.setKenteken("12XVK1");
-		// aservice.addAuto(k2.getGebruikersnaam(), a2);
+		// autoService.addAuto(k2.getGebruikersnaam(), a2);
 
 		a3 = new Auto("Volvo", "V60", 2014, null);
 		a3.setKenteken("1ZDF53");
-		// aservice.addAuto(k1.getGebruikersnaam(), a3);
+		// autoService.addAuto(k1.getGebruikersnaam(), a3);
 
 		a4 = new Auto("Volkswagen", "Golf", 2015, null);
 		a4.setKenteken("GH4112");
-		// aservice.addAuto(k2.getGebruikersnaam(), a4);
+		//autoService.addAuto(k2.getGebruikersnaam(), a4);
 		
 		// Aanmaken van klussen
-		Klus klus1 = new Klus(k1, a1);	
+		klus1 = new Klus(k1, a1);	
 		klus1.setMonteur(m1);
 		klus1.setOmschrijving("Winterbanden vervangen door zomerbanden");
 		klus1.setType("Onderhoud");
 		klus1.setUren(4);
-		klus1.setCalendar(null);
+		klus1.setCalendar(Calendar.getInstance());
+		klusService.addKlus(klus1, a1, m1, k1);
 		
-		Klus klus2 = new Klus(k1, a3);	
-		klus1.setMonteur(m1);
-		klus1.setOmschrijving("APK");
-		klus1.setType("APK");
-		klus1.setUren(2);
-		klus1.setCalendar(null);
+		klus2 = new Klus(k1, a3);	
+		klus2.setMonteur(m1);
+		klus2.setOmschrijving("APK");
+		klus2.setType("APK");
+		klus2.setUren(2);
+		klus2.setCalendar(Calendar.getInstance());
+		klusService.addKlus(klus2, a3, m1, k1);
 	
 	}
 
 	@Test
 	public void testGetKlussen() {
-		klusService.getKlussen();
+		klus3 = klusService.getKlussen().get(0);
+		klus4 = klusService.getKlussen().get(1);
+
+		// Klus klus1 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
+		// Klus klus3 ( Uit Database gehaald )
+
+		// Klus klus2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
+		// Klus klus4 ( Uit Database gehaald )
+
+		assertEquals(klus1, klus3);
+		
+		// dit klopt nog niet, calendar uit de database moet gefixt worden
+		//assertEquals(klus1.getCalendar(), klus3.getCalendar());
+
+		// Check of als het niet klopt, het ook word gezien
+
+		//assertFalse(a1.equals(a6));
 	}
 
 	@After

@@ -76,6 +76,7 @@ public class KlusDAO {
 			connection.close();
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return klussen;
@@ -86,13 +87,15 @@ public class KlusDAO {
 	 * @return array met klussen
 	 */
 	public ArrayList<Klus> getAlleKlussen() {
-		return this.getKlussen("SELECT *, UNIX_TIMESTAMP(klus.datum) as datumtimestamp FROM klus");
+		return this.getKlussen("SELECT * FROM klus");
 	}
+	// , UNIX_TIMESTAMP(klus.datum) as datumtimestamp
 	
 	public Klus getKlusOpId(int id){
-		ArrayList<Klus> klussen = this.getKlussen("SELECT *, UNIX_TIMESTAMP(klus.datum) as datumtimestamp FROM klus WHERE idklus = " + id);
+		ArrayList<Klus> klussen = this.getKlussen("SELECT * FROM klus WHERE idklus = " + id);
 		return klussen.size() >= 1 ? klussen.get(0) : null;
 	}
+	//, UNIX_TIMESTAMP(klus.datum) as datumtimestamp
 	
 	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant){
 		try{
@@ -117,6 +120,7 @@ public class KlusDAO {
 			
 			return true;
 		}catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}
 	}
