@@ -44,7 +44,10 @@ if(AuthHelper.isLoggedIn(request.getSession())) response.sendRedirect(request.ge
         <div class="row-fluid">
             <div class="row-fuild" id="type-user">
                 <div class="login-box">
-                
+                	<div class="logo-box">
+                		<img src="img/atd.png" alt="logo atd" class="logo" />
+                	</div>
+                	
                     <h2>Wie ben jij?</h2>
                     
                     <c:if test="${not empty param.error }">

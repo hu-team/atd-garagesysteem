@@ -18,6 +18,14 @@ body {
 	float:none;
 }
 
+.login-box div.logo-box {
+	text-align: center;
+}
+
+.login-box div.logo-box img.logo {
+	width:50%;
+}
+
 .kenteken {
 	background: url('../img/kentekenplaat.gif');
 	background-size: contain;
