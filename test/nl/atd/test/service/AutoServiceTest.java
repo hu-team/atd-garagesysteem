@@ -137,8 +137,24 @@ public class AutoServiceTest {
 
 	// @Test
 	// public void testGetAutoIdOpKenteken() {
-	// aservice.getAutoIdOpKenteken("GB1231"); // get autoid met van Mercedes A180
+	// aservice.getAutoIdOpKenteken("GB1231");
 	// }
+
+	@Test
+	public void testGetAlleKlantenAuto() {
+		k3 = kservice.getAlleKlantenAuto().get(0);
+		k4 = kservice.getAlleKlantenAuto().get(1);
+
+		// Klant k1 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
+		// Klant k3 ( Uit Database gehaald met de autos!!!! )
+
+		// Klant k2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
+		// Klant k4 ( Uit Database gehaald met de autos!!!! )
+		
+		// eigenlijk pas goed als equals methode van klasse Klant klaar is, omdat nu autos niet worden vergeleken
+		assertEquals(k1, k3);
+		assertEquals(k2, k4);
+	}
 
 	@After
 	public void tearDown() throws Exception {
