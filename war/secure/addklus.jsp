@@ -37,7 +37,7 @@
                             <form class="form-horizontal" method="post" action="addklus">
                                 <fieldset>
                                     <div class="control-group">
-                                    	<label class="control-label">Klant: </label>
+                                    	<label class="control-label">*Klant: </label>
                                     	<div class="controls">
                                     		<select name="klant" id="klantlijst">
                                     			<c:forEach var="klant" items="${ServiceProvider.getKlantService().getAlleKlanten() }" >
@@ -49,7 +49,7 @@
                                     </div>
                                     
                                     <div class="control-group">
-                                    	<label class="control-label">Auto: </label>
+                                    	<label class="control-label">*Auto: </label>
                                     	<div class="controls">
                                     		<select name="auto" id="autolijst">
                                     		</select>
@@ -69,7 +69,7 @@
                                     </div>
                                     
                                     <div class="control-group">
-                                        <label class="control-label">Type: </label>
+                                        <label class="control-label">*Type: </label>
                                         <div class="controls">
                                             <input type="text" class="span6 " name="type">
                                         </div>
@@ -80,14 +80,16 @@
                                             <input type="text" class="span6 " name="uren">
                                         </div>
                                     </div>
+
                                     <div class="control-group">
                                         <label class="control-label">Datum: </label>
                                         <div class="controls">
                                             <input type="text" class="span6 datepicker" name="datum">
                                         </div>
-                                    </div>
+                                    </div> 
+                                    
                                     <div class="control-group">
-                                        <label class="control-label">Omschrijving: </label>
+                                        <label class="control-label">*Omschrijving: </label>
                                         <div class="controls">
                                             <textarea id="" class="cleditor" name="omschrijving">
                                             </textarea>

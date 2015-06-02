@@ -29,13 +29,15 @@ public class AddKlusServlet extends HttpServlet{
 		String auto = req.getParameter("auto");
 		String monteur = req.getParameter("monteur");
 		
+		
+		
 		boolean error = false;
 		String errorString = "";
 		
 		int urenNumeriek = 0;
 		
-		if(type == null || uren == null || omschrijving == null || 
-				type.trim().isEmpty() || uren.trim().isEmpty() || omschrijving.trim().isEmpty() ){
+		if(type == null || omschrijving == null || 
+				type.trim().isEmpty() || omschrijving.trim().isEmpty() ){
 			error = true;
 			errorString += "Vul alle velden in! <br />";
 		}
@@ -55,6 +57,10 @@ public class AddKlusServlet extends HttpServlet{
 		}else if(!monteur.trim().isEmpty() && ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur) == null){
 			error = true;
 			errorString += "De selecteerde monteur is niet geldig <br />";
+		}
+		
+		if(uren == null || uren.trim().isEmpty()){
+			uren = "0";
 		}
 		
 		try{
