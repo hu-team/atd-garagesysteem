@@ -82,11 +82,18 @@
                                     </div>
 
                                     <div class="control-group">
-                                        <label class="control-label">Datum: </label>
+                                        <label class="control-label">*Datum: </label>
                                         <div class="controls">
                                             <input type="text" class="span6 datepicker" name="datum">
                                         </div>
-                                    </div> 
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label class="control-label">*Tijdstip: </label>
+                                        <div class="controls">
+                                            <input type="time" class="span2" name="tijdstip"> <span class="text-muted">24-uurs notatie</span>
+                                        </div>
+                                    </div>
                                     
                                     <div class="control-group">
                                         <label class="control-label">*Omschrijving: </label>

@@ -102,7 +102,11 @@ public class KlusDAO {
 			st.setString(1, klus.getType());
 			st.setTimestamp(2, new Timestamp(klus.getCalendar().getTimeInMillis()));
 			st.setString(3, klus.getOmschrijving());
-			st.setString(4, monteur.getGebruikersnaam());
+			if(monteur == null) {
+				st.setObject(4, null);
+			}else{
+				st.setString(4, monteur.getGebruikersnaam());				
+			}
 			st.setString(5, klant.getGebruikersnaam());
 			st.setInt(6, ServiceProvider.getAutoService().getAutoIdOpKenteken(auto.getKenteken()));
 			st.setInt(7, klus.getUren());

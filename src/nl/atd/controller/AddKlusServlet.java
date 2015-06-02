@@ -1,7 +1,11 @@
 package nl.atd.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,6 +30,9 @@ public class AddKlusServlet extends HttpServlet{
 		String uren = req.getParameter("uren");
 		String omschrijving = req.getParameter("omschrijving");
 		
+		String datum = req.getParameter("datum");
+		String tijdstip = req.getParameter("tijdstip");
+		
 		String klant = req.getParameter("klant");
 		String auto = req.getParameter("auto");
 		String monteur = req.getParameter("monteur");
@@ -37,8 +44,9 @@ public class AddKlusServlet extends HttpServlet{
 		
 		int urenNumeriek = 0;
 		
-		if(type == null || omschrijving == null || 
-				type.trim().isEmpty() || omschrijving.trim().isEmpty() ){
+		
+		if(type == null || omschrijving == null || datum == null || tijdstip == null || 
+				type.trim().isEmpty() || omschrijving.trim().isEmpty() || datum.trim().isEmpty() || tijdstip.trim().isEmpty() ){
 			error = true;
 			errorString += "Vul alle velden in! <br />";
 		}
@@ -53,8 +61,21 @@ public class AddKlusServlet extends HttpServlet{
 			errorString += "Selecteer een geldig auto. <br />";
 		}
 		
-		if(monteur == null){
-			
+		Calendar datumCalendar = Calendar.getInstance();
+		
+		// Formatting datum en tijd
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+		df.setTimeZone(TimeZone.getDefault());
+		try{
+			datumCalendar.setTime(df.parse(datum + " " + tijdstip));
+		}catch(ParseException pe) {
+			error = true;
+			errorString += "Datum is niet in een geldige notatie, gebruik DD-MM-YYYY. Of tijdstip is niet in 24-uurs HH:MM notatie <br />";
+		}
+		
+		if(monteur == null || monteur.trim().isEmpty()){
+			// Monteur kan nu nog leeg zijn, geen probleem
+			monteur = null;
 		}else if(!monteur.trim().isEmpty() && ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur) == null){
 			error = true;
 			errorString += "De selecteerde monteur is niet geldig <br />";
@@ -84,7 +105,6 @@ public class AddKlusServlet extends HttpServlet{
 		Klant kl = ServiceProvider.getKlantService().getKlantByGebruikersnaam(klant);
 		Auto aut = ServiceProvider.getAutoService().getAutoOpKenteken(auto);
 		Monteur mont = (monteur == null ? null : ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur));
-		Calendar datum = Calendar.getInstance();
 		
 		Klus klus = new Klus(kl, aut);
 		
@@ -92,7 +112,7 @@ public class AddKlusServlet extends HttpServlet{
 		klus.setOmschrijving(omschrijving);
 		klus.setType(type);
 		klus.setUren(urenNumeriek);
-		klus.setCalendar(datum);
+		klus.setCalendar(datumCalendar);
 		
 		if(ServiceProvider.getKlusService().addKlus(klus, aut, mont, kl)) {
 			resp.sendRedirect(req.getContextPath() + "/secure/");
