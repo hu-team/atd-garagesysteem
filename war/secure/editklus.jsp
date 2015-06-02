@@ -7,6 +7,7 @@
 <%@page import="nl.atd.model.Klant" %>
 <%@page import="nl.atd.model.Auto" %>
 <%@page import="nl.atd.model.Monteur" %>
+<%@page import="nl.atd.model.Klus" %>
 <%@page import="nl.atd.model.Artikel" %>
 <%@ include file="_header.jsp" %>
 <% if(!AuthHelper.isAdmin(session) ) response.sendRedirect(application.getContextPath() + "/secure/"); %>
@@ -18,7 +19,7 @@
                 <div class="row-fluid sortable">
                     <div class="box span12">
                         <div class="box-header" data-original-title>
-                            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Nieuwe klus toevoegen</h2>
+                            <h2><i class="halflings-icon white edit"></i><span class="break"></span>Klus aanpassen</h2>
                         </div>
                         <div class="box-content">
                         
