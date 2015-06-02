@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -56,7 +57,7 @@ public class KlusDAO {
 				// Calendar
 				Calendar datum = Calendar.getInstance();
 				try{
-					datum.setTimeInMillis(set.getInt("datumtimestamp") * 1000);
+					datum.setTimeInMillis(set.getTimestamp("datum").getTime());
 				}catch(SQLException se) {
 					datum = null;
 				}
@@ -96,14 +97,15 @@ public class KlusDAO {
 	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant){
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection.prepareCall("INSERT INTO klus (type, klaar, datum, omschrijving, monteur, klant, auto, uren) VALUES(?, null, null, ?, ?, ?, ?, ?);");
+			PreparedStatement st = connection.prepareCall("INSERT INTO klus (type, klaar, datum, omschrijving, monteur, klant, auto, uren) VALUES(?, 0, ?, ?, ?, ?, ?, ?);");
 			
 			st.setString(1, klus.getType());
-			st.setString(2, klus.getOmschrijving());
-			st.setString(3, monteur.getGebruikersnaam());
-			st.setString(4, klant.getGebruikersnaam());
-			st.setInt(5, ServiceProvider.getAutoService().getAutoIdOpKenteken(auto.getKenteken()));
-			st.setInt(6, klus.getUren());
+			st.setTimestamp(2, new Timestamp(klus.getCalendar().getTimeInMillis()));
+			st.setString(3, klus.getOmschrijving());
+			st.setString(4, monteur.getGebruikersnaam());
+			st.setString(5, klant.getGebruikersnaam());
+			st.setInt(6, ServiceProvider.getAutoService().getAutoIdOpKenteken(auto.getKenteken()));
+			st.setInt(7, klus.getUren());
 			
 			st.execute();
 			
