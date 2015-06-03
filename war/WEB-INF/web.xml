@@ -40,6 +40,10 @@
     <servlet-class>nl.atd.controller.AddKlusServlet</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>add klus klant servlet</servlet-name>
+  	<servlet-class>nl.atd.controller.AddKlusKlantServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>add auto servlet</servlet-name>
     <servlet-class>nl.atd.controller.AddAutoServlet</servlet-class>
   </servlet>
@@ -88,6 +92,10 @@
   <servlet-mapping>
     <servlet-name>add klus servlet</servlet-name>
     <url-pattern>/secure/addklus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>add klus klant servlet</servlet-name>
+  	<url-pattern>/secure/addklusklant</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>add auto servlet</servlet-name>
