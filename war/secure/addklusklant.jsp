@@ -1,12 +1,9 @@
 <%@page import="nl.atd.helper.AuthHelper"%>
 <%@page import="nl.atd.service.KlantService" %>
 <%@page import="nl.atd.service.AutoService" %>
-<%@page import="nl.atd.service.MonteurService" %>
-<%@page import="nl.atd.service.ArtikelService" %>
 <%@page import="nl.atd.service.ServiceProvider" %>
 <%@page import="nl.atd.model.Klant" %>
 <%@page import="nl.atd.model.Auto" %>
-<%@page import="nl.atd.model.Monteur" %>
 <%@ include file="_header.jsp" %>
 <% if(!AuthHelper.isKlant(session) ) response.sendRedirect(application.getContextPath() + "/secure/"); %>
 
@@ -39,7 +36,9 @@
                                     	<label class="control-label">*Auto: </label>
                                     	<div class="controls">
                                     		<select name="auto">
-                                    			<c:forEach var="auto" items="${ServiceProvider.getAutoService().getAutosVanKlant(session.getSession()) }" >
+                                    			<c:forEach 
+									items="${ServiceProvider.getAutoService().getAutosVanKlant(AuthHelper.getGebruikersnaam(session)) }" 
+                                    			var="auto">
                                     				<option value="${auto.kenteken }">${auto.merk } - ${auto.model }</option>
                                     			</c:forEach>
                                     		</select>

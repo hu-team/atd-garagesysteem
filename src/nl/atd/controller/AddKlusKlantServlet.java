@@ -68,7 +68,7 @@ public class AddKlusKlantServlet extends HttpServlet{
 			
 			return;
 		}
-
+		
 		Klant klant = ServiceProvider.getKlantService().getKlantByGebruikersnaam(AuthHelper.getGebruikersnaam(req.getSession()));
 		Auto aut = ServiceProvider.getAutoService().getAutoOpKenteken(auto);
 		
