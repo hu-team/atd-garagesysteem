@@ -1,4 +1,4 @@
-<%@page import="nl.atd.helper.AuthHelper"%>
+<%@page import="nl.atd.helper.AuthHelper" %>
 <%@page import="nl.atd.service.KlantService" %>
 <%@page import="nl.atd.service.AutoService" %>
 <%@page import="nl.atd.service.ServiceProvider" %>
@@ -36,8 +36,10 @@
                                     	<label class="control-label">*Auto: </label>
                                     	<div class="controls">
                                     		<select name="auto">
+                                    		
+                                    			<% %>
                                     			<c:forEach 
-									items="${ServiceProvider.getAutoService().getAutosVanKlant(AuthHelper.getGebruikersnaam(session)) }" 
+									items="<%=ServiceProvider.getAutoService().getAutosVanKlant(AuthHelper.getGebruikersnaam(session)) %>" 
                                     			var="auto">
                                     				<option value="${auto.kenteken }">${auto.merk } - ${auto.model }</option>
                                     			</c:forEach>
