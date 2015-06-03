@@ -125,6 +125,34 @@ public class KlusDAO {
 		}
 	}
 
+	private int getKlusIdOpQuery(String query){
+		int nr = 0;
+		
+		try {
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Statement statement = connection.createStatement();
+			
+			ResultSet set = statement.executeQuery(query);
+			
+			while(set.next()) {
+				nr = set.getInt("idklus");
+			}
+			
+			connection.close();
+			
+		} catch (Exception e) {
+		}
+		
+		return nr;
+	}
+	
+	public int getKlusId(Calendar datum, Klant klant, Auto auto){
+		return this.getKlusIdOpQuery("SELECT idklus FROM klus WHERE datum = FROM_UNIXTIME(" + (datum.getTimeInMillis() / 1000) + ")"
+				+ " AND klant LIKE '" + klant.getGebruikersnaam() + "'"
+						+ " AND auto = " + ServiceProvider.getAutoService().getAutoIdOpKenteken(auto.getKenteken()));
+		
+	}
+	
 	public ArrayList<Klus> getAlleKlussenTussen(Calendar start, Calendar end) {
 		return this.getKlussen("SELECT *, UNIX_TIMESTAMP(klus.datum) as datumtimestamp FROM klus "
 				+ "WHERE datum BETWEEN FROM_UNIXTIME(" + (start.getTimeInMillis() / 1000) + ") AND FROM_UNIXTIME(" + (end.getTimeInMillis() / 1000) + ");");

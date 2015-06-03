@@ -28,4 +28,7 @@ public class KlusService {
 		return this.klusDAO.getAlleKlussenTussen(start, end);
 	}
 	
+	public int getKlusIdOpKlus(Klus klus){
+		return this.klusDAO.getKlusId(klus.getCalendar(), klus.getKlant(), klus.getAuto());
+	}
 }
