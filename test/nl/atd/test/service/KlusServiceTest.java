@@ -1,8 +1,7 @@
 package nl.atd.test.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 
@@ -75,25 +74,23 @@ public class KlusServiceTest {
 
 		a4 = new Auto("Volkswagen", "Golf", 2015, null);
 		a4.setKenteken("GH4112");
-		//autoService.addAuto(k2.getGebruikersnaam(), a4);
-		
+		// autoService.addAuto(k2.getGebruikersnaam(), a4);
+
 		// Aanmaken van klussen
-		klus1 = new Klus(k1, a1);	
+		klus1 = new Klus(k1, a1);
 		klus1.setMonteur(m1);
 		klus1.setOmschrijving("Winterbanden vervangen door zomerbanden");
 		klus1.setType("Onderhoud");
 		klus1.setUren(4);
-		klus1.setCalendar(Calendar.getInstance());
-		klusService.addKlus(klus1, a1, m1, k1);
-		
-		klus2 = new Klus(k1, a3);	
+		// klusService.addKlus(klus1, a1, m1, k1);
+
+		klus2 = new Klus(k1, a3);
 		klus2.setMonteur(m1);
 		klus2.setOmschrijving("APK");
 		klus2.setType("APK");
 		klus2.setUren(2);
-		klus2.setCalendar(Calendar.getInstance());
-		klusService.addKlus(klus2, a3, m1, k1);
-	
+		// klusService.addKlus(klus2, a3, m1, k1);
+
 	}
 
 	@Test
@@ -108,13 +105,15 @@ public class KlusServiceTest {
 		// Klus klus4 ( Uit Database gehaald )
 
 		assertEquals(klus1, klus3);
-		
+
 		// dit klopt nog niet, calendar uit de database moet gefixt worden
-		//assertEquals(klus1.getCalendar(), klus3.getCalendar());
+
+		System.out.println(klus3.getCalendar().get(Calendar.YEAR));
+		System.out.println("2015-06-03 01:26:15");
 
 		// Check of als het niet klopt, het ook word gezien
 
-		//assertFalse(a1.equals(a6));
+		// assertFalse(a1.equals(a6));
 	}
 
 	@After
