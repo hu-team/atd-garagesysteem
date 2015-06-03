@@ -262,9 +262,15 @@ public class Klus {
 
 		// Omdat in de tests de database moet worden geleegd bij tearDown()
 		// b = b && (this.onderdelen.equals(((Klant)ander).getOnderdelen()));
-		// Omdat nog gefixt moet worden met datum in de sql query
-		// b = b && (this.calendar.equals(((Klant)ander).getCalendar));
 
+		// Calendar vergelijken, DAY.OF.YEAR - YEAR - HOURS : MINUTES
+	
+		b = b && ((this.calendar).get(Calendar.DAY_OF_YEAR) == ((Klus)ander).getCalendar().get(Calendar.DAY_OF_YEAR));
+		b = b && ((this.calendar).get(Calendar.YEAR) == ((Klus)ander).getCalendar().get(Calendar.YEAR));
+	//	b = b && ((this.calendar).get(Calendar.HOUR_OF_DAY) == ((Klus)ander).getCalendar().get(Calendar.HOUR_OF_DAY));
+	//	b = b && ((this.calendar).get(Calendar.MINUTE) == ((Klus)ander).getCalendar().get(Calendar.MINUTE));
+
+	
 		return b;
 	}
 
