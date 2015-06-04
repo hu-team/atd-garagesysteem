@@ -66,14 +66,14 @@ public class KlusDAO {
 					datum = null;
 				}
 
-				klus.setOnderdelen(ServiceProvider.getOnderdeelService()
-						.getAlleOnderdelenVanKlus(set.getInt("idklus")));
-
 				klus.setCalendar(datum);
 				klus.setKlaar(set.getBoolean("klaar"));
 				klus.setOmschrijving(set.getString("omschrijving"));
 				klus.setType(set.getString("type"));
 				klus.setUren(set.getInt("uren"));
+				
+				klus.setOnderdelen(ServiceProvider.getOnderdeelService()
+						.getAlleOnderdelenVanKlus(klus));
 
 				klussen.add(klus);
 			}
@@ -96,12 +96,21 @@ public class KlusDAO {
 		return this.getKlussen("SELECT * FROM klus");
 	}
 
-	
+	/**
+	 * Get klus op id
+	 * @param id
+	 * @return klus of null
+	 */
 	public Klus getKlusOpId(int id){
 		ArrayList<Klus> klussen = this.getKlussen("SELECT * FROM klus WHERE idklus = " + id);
 		return klussen.size() >= 1 ? klussen.get(0) : null;
 	}
 
+	/**
+	 * Klus toevoegen
+	 * @param klus
+	 * @return gelukt?
+	 */
 	public boolean addKlus(Klus klus) {
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();
@@ -135,6 +144,11 @@ public class KlusDAO {
 		}
 	}
 
+	/**
+	 * KlusID opzoeken met query
+	 * @param query
+	 * @return id of 0
+	 */
 	private int getKlusIdOpQuery(String query) {
 		int nr = 0;
 
@@ -156,6 +170,11 @@ public class KlusDAO {
 		return nr;
 	}
 	
+	/**
+	 * Klus aanpassen in database
+	 * @param klus
+	 * @return gelukt?
+	 */
 	public boolean editKlus(Klus klus){
 		try{
 			
@@ -189,6 +208,13 @@ public class KlusDAO {
 		}
 	}
 	
+	/**
+	 * Get klusid, zoeken van klusid op unieke parameters.
+	 * @param datum
+	 * @param klant
+	 * @param auto
+	 * @return KlusID of 0
+	 */
 	public int getKlusId(Calendar datum, Klant klant, Auto auto) {
 		return this
 				.getKlusIdOpQuery("SELECT idklus FROM klus WHERE datum = FROM_UNIXTIME("
@@ -203,6 +229,12 @@ public class KlusDAO {
 
 	}
 
+	/**
+	 * Get alle klussen tussen bepaalde tijd/datum
+	 * @param start
+	 * @param end
+	 * @return klussen of null
+	 */
 	public ArrayList<Klus> getAlleKlussenTussen(Calendar start, Calendar end) {
 		return this
 				.getKlussen("SELECT *, UNIX_TIMESTAMP(klus.datum) as datumtimestamp FROM klus "
@@ -212,6 +244,11 @@ public class KlusDAO {
 						+ (end.getTimeInMillis() / 1000) + ");");
 	}
 
+	/**
+	 * Verwijder klus
+	 * @param klus
+	 * @return gelukt?
+	 */
 	public boolean delete(Klus klus) {
 		boolean b = false;
 		int klusID = getKlusId(klus.getCalendar(), klus.getKlant(),
@@ -235,6 +272,9 @@ public class KlusDAO {
 		return b;
 	}
 
+	/**
+	 * Verwijder alle klussen
+	 */
 	public void deleteAlles() {
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();

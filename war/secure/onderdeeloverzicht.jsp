@@ -21,9 +21,9 @@ try{
 }
 
 Klus klus = ServiceProvider.getKlusService().getKlusOpId(id);
-ArrayList<Onderdeel> onderdelen = ServiceProvider.getOnderdeelService().getAlleOnderdelenVanKlus(id);
-
 if(klus == null) {response.sendRedirect(request.getContextPath() + "/secure/index.jsp"); return;}
+
+ArrayList<Onderdeel> onderdelen = ServiceProvider.getOnderdeelService().getAlleOnderdelenVanKlus(klus);
 
 pageContext.setAttribute("klus", klus);
 pageContext.setAttribute("onderdelen", onderdelen);
