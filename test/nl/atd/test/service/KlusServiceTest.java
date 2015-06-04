@@ -81,14 +81,14 @@ public class KlusServiceTest {
 		klus1.setOmschrijving("Winterbanden vervangen door zomerbanden");
 		klus1.setType("Onderhoud");
 		klus1.setUren(4);
-		//klusService.addKlus(klus1);
+		klusService.addKlus(klus1);
 
 		klus2 = new Klus(k1, a3);
 		klus2.setMonteur(m1);
 		klus2.setOmschrijving("APK");
 		klus2.setType("APK");
 		klus2.setUren(2);
-		//klusService.addKlus(klus2);
+		klusService.addKlus(klus2);
 
 	}
 
@@ -109,6 +109,13 @@ public class KlusServiceTest {
 		System.out.println(klus3.getCalendar().get(Calendar.YEAR));
 		System.out.println(klus3.getCalendar().get(Calendar.DAY_OF_YEAR));
 		System.out.println(klus3.getCalendar().get(Calendar.MINUTE));
+		
+		System.out.println("--------");
+		System.out.println(((klus1.getKlant()).getLaatsteBezoek()).get(Calendar.DAY_OF_YEAR));
+	//	System.out.println((klus1.getKlant()).getLaatsteBezoek().get(Calendar.MINUTE));
+		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.YEAR));
+		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.DAY_OF_YEAR));
+		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.MINUTE));
 		
 		assertEquals(klus1, klus3);
 		//assertEquals(klus2, klus4);

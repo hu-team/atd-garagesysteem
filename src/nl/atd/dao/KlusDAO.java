@@ -278,7 +278,7 @@ public class KlusDAO {
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE klus; SET FOREIGN_KEY_CHECKS=1;");
+			statement.executeUpdate("DELETE FROM klus");
 
 			connection.close();
 		} catch (Exception e) {

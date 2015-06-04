@@ -100,7 +100,7 @@ public class Klant extends Persoon {
 		
 		// Calendar vergelijken, DAY.OF.YEAR - YEAR - HOURS : MINUTES
 		
-		b = b && ((this.laatsteBezoek).get(Calendar.DAY_OF_YEAR) == ((Klant)ander).getLaatsteBezoek().get(Calendar.DAY_OF_YEAR));
+	//	b = b && ((this.laatsteBezoek).get(Calendar.DAY_OF_YEAR) == ((Klant)ander).getLaatsteBezoek().get(Calendar.DAY_OF_YEAR));
 		b = b && ((this.laatsteBezoek).get(Calendar.YEAR) == ((Klant)ander).getLaatsteBezoek().get(Calendar.YEAR));
 		b = b && ((this.laatsteBezoek).get(Calendar.HOUR_OF_DAY) == ((Klant)ander).getLaatsteBezoek().get(Calendar.HOUR_OF_DAY));
 		b = b && ((this.laatsteBezoek).get(Calendar.MINUTE) == ((Klant)ander).getLaatsteBezoek().get(Calendar.MINUTE));
