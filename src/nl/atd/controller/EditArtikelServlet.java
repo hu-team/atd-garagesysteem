@@ -42,6 +42,11 @@ public class EditArtikelServlet extends HttpServlet {
 				errorString += "Het aantal moet numeriek zijn!<br />";
 			}
 			
+			if(aantalNumeriek < 0) {
+				error = true;
+				errorString += "Het aantal moet positief zijn!<br />";
+			}
+			
 			try{
 				prijsNumeriek = Double.parseDouble(prijs);
 			}catch(NumberFormatException nfe) {

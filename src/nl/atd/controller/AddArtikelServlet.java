@@ -32,20 +32,25 @@ public class AddArtikelServlet extends HttpServlet{
 				code.trim().isEmpty() || naam.trim().isEmpty() || aantal.trim().isEmpty() || prijs.trim().isEmpty()){
 			error = true;
 			errorString += "Vul alle velden in! <br />";
-		}
-		
-		try{
-			aantalNumeriek = Integer.parseInt(aantal);
-		}catch(NumberFormatException nfe) {
-			error = true;
-			errorString += "Het aantal moet numeriek zijn!<br />";
-		}
-		
-		try{
-			prijsNumeriek = Double.parseDouble(prijs);
-		}catch(NumberFormatException nfe) {
-			error = true;
-			errorString += "Het prijs moet numeriek zijn! <br />";
+		}else{
+			try{
+				aantalNumeriek = Integer.parseInt(aantal);
+			}catch(NumberFormatException nfe) {
+				error = true;
+				errorString += "Het aantal moet numeriek zijn!<br />";
+			}
+			
+			if(aantalNumeriek < 0) {
+				error = true;
+				errorString += "Het aantal moet positief zijn!<br />";
+			}
+			
+			try{
+				prijsNumeriek = Double.parseDouble(prijs);
+			}catch(NumberFormatException nfe) {
+				error = true;
+				errorString += "Het prijs moet numeriek zijn! <br />";
+			}
 		}
 		
 		if(error){
