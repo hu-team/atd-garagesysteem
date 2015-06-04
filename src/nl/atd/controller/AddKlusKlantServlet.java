@@ -78,7 +78,7 @@ public class AddKlusKlantServlet extends HttpServlet{
 		klus.setType(type);
 		klus.setCalendar(datumCalendar);
 		
-		if(ServiceProvider.getKlusService().addKlus(klus, aut, null, klant)) {
+		if(ServiceProvider.getKlusService().addKlus(klus)) {
 			resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 		}else{
 			req.setAttribute("error", true);

@@ -114,7 +114,7 @@ public class AddKlusServlet extends HttpServlet{
 		klus.setUren(urenNumeriek);
 		klus.setCalendar(datumCalendar);
 		
-		if(ServiceProvider.getKlusService().addKlus(klus, aut, mont, kl)) {
+		if(ServiceProvider.getKlusService().addKlus(klus)) {
 			resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 		}else{
 			req.setAttribute("error", true);

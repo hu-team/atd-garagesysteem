@@ -102,7 +102,7 @@ public class KlusDAO {
 		return klussen.size() >= 1 ? klussen.get(0) : null;
 	}
 
-	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant) {
+	public boolean addKlus(Klus klus) {
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();
 			PreparedStatement st = connection
@@ -112,16 +112,16 @@ public class KlusDAO {
 			st.setTimestamp(2, new Timestamp(klus.getCalendar()
 					.getTimeInMillis()));
 			st.setString(3, klus.getOmschrijving());
-			if (monteur == null) {
+			if (klus.getMonteur() == null) {
 				st.setObject(4, null);
 			} else {
-				st.setString(4, monteur.getGebruikersnaam());
+				st.setString(4, klus.getMonteur().getGebruikersnaam());
 			}
-			st.setString(5, klant.getGebruikersnaam());
+			st.setString(5, klus.getKlant().getGebruikersnaam());
 			st.setInt(
 					6,
 					ServiceProvider.getAutoService().getAutoIdOpKenteken(
-							auto.getKenteken()));
+							klus.getAuto().getKenteken()));
 			st.setInt(7, klus.getUren());
 
 			st.execute();

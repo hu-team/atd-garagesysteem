@@ -82,14 +82,14 @@ public class KlusServiceTest {
 		klus1.setOmschrijving("Winterbanden vervangen door zomerbanden");
 		klus1.setType("Onderhoud");
 		klus1.setUren(4);
-		//klusService.addKlus(klus1, a1, m1, k1);
+		//klusService.addKlus(klus1);
 
 		klus2 = new Klus(k1, a3);
 		klus2.setMonteur(m1);
 		klus2.setOmschrijving("APK");
 		klus2.setType("APK");
 		klus2.setUren(2);
-		//klusService.addKlus(klus2, a3, m1, k1);
+		//klusService.addKlus(klus2);
 
 	}
 

@@ -20,8 +20,13 @@ public class KlusService {
 		return this.klusDAO.getAlleKlussen();
 	}
 	
-	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant){
-		return this.klusDAO.addKlus(klus, auto, monteur, klant);
+	/**
+	 * Klus toevoegen
+	 * @param klus klus om toe te voegen
+	 * @return gelukt?
+	 */
+	public boolean addKlus(Klus klus){
+		return this.klusDAO.addKlus(klus);
 	}
 
 	public boolean editKlus(Klus klus){
