@@ -9,8 +9,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
-
 import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
@@ -97,31 +95,15 @@ public class KlusDAO {
 	public ArrayList<Klus> getAlleKlussen() {
 		return this.getKlussen("SELECT * FROM klus");
 	}
-<<<<<<< HEAD
-	
+
 	
 	public Klus getKlusOpId(int id){
 		ArrayList<Klus> klussen = this.getKlussen("SELECT * FROM klus WHERE idklus = " + id);
 		return klussen.size() >= 1 ? klussen.get(0) : null;
 	}
-	
-	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant){
-		try{
-=======
-
-	// , UNIX_TIMESTAMP(klus.datum) as datumtimestamp
-
-	public Klus getKlusOpId(int id) {
-		ArrayList<Klus> klussen = this
-				.getKlussen("SELECT * FROM klus WHERE idklus = " + id);
-		return klussen.size() >= 1 ? klussen.get(0) : null;
-	}
-
-	// , UNIX_TIMESTAMP(klus.datum) as datumtimestamp
 
 	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant) {
 		try {
->>>>>>> c26ac1f064415584239e836415f7205d15f81eca
 			Connection connection = DatabaseHelper.getDatabaseConnection();
 			PreparedStatement st = connection
 					.prepareCall("INSERT INTO klus (type, klaar, datum, omschrijving, monteur, klant, auto, uren) VALUES(?, 0, ?, ?, ?, ?, ?, ?);");
@@ -173,7 +155,6 @@ public class KlusDAO {
 
 		return nr;
 	}
-<<<<<<< HEAD
 	
 	public boolean editKlus(Klus klus){
 		try{
@@ -208,13 +189,6 @@ public class KlusDAO {
 		}
 	}
 	
-	public int getKlusId(Calendar datum, Klant klant, Auto auto){
-		return this.getKlusIdOpQuery("SELECT idklus FROM klus WHERE datum = FROM_UNIXTIME(" + (datum.getTimeInMillis() / 1000) + ")"
-				+ " AND klant LIKE '" + klant.getGebruikersnaam() + "'"
-						+ " AND auto = " + ServiceProvider.getAutoService().getAutoIdOpKenteken(auto.getKenteken()));
-		
-=======
-
 	public int getKlusId(Calendar datum, Klant klant, Auto auto) {
 		return this
 				.getKlusIdOpQuery("SELECT idklus FROM klus WHERE datum = FROM_UNIXTIME("
@@ -227,7 +201,6 @@ public class KlusDAO {
 						+ ServiceProvider.getAutoService().getAutoIdOpKenteken(
 								auto.getKenteken()));
 
->>>>>>> c26ac1f064415584239e836415f7205d15f81eca
 	}
 
 	public ArrayList<Klus> getAlleKlussenTussen(Calendar start, Calendar end) {

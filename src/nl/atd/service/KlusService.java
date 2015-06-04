@@ -39,9 +39,6 @@ public class KlusService {
 	public int getKlusIdOpKlus(Klus klus){
 		return this.klusDAO.getKlusId(klus.getCalendar(), klus.getKlant(), klus.getAuto());
 	}
-<<<<<<< HEAD
-	
-=======
 
 	public void deleteKlus(int id) throws Exception {
 		Klus k = klusDAO.getKlusOpId(id);
@@ -50,5 +47,5 @@ public class KlusService {
 			klusDAO.delete(k);
 		} else throw new Exception("Klus met dit id, bestaat niet");
 	}
->>>>>>> c26ac1f064415584239e836415f7205d15f81eca
+
 }
