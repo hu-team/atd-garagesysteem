@@ -14,7 +14,7 @@
 <%@page import="java.io.IOException" %>
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@ include file="_header.jsp" %>
-<% if(!AuthHelper.isAdmin(session) ) response.sendRedirect(application.getContextPath() + "/secure/"); 
+<% if(!AuthHelper.isAdmin(session) && !AuthHelper.isMonteur(session)) response.sendRedirect(application.getContextPath() + "/secure/"); 
 if(request.getParameter("id") == null || request.getParameter("id").trim().isEmpty()) {
 	response.sendRedirect(application.getContextPath()+"/secure/index.jsp"); 
 	return;
