@@ -84,7 +84,7 @@ public class AjaxKlussenServlet extends HttpServlet {
 					
 					// Kleuren bepalen
 					klusObject.put("textColor", "#ffffff");
-					String backgroundColor = "#C2B52D";
+					String backgroundColor = "#A39712";
 					
 					if(klus.getCalendar().before(Calendar.getInstance())) {
 						if(!klus.isKlaar()) {

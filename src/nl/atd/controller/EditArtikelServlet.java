@@ -68,7 +68,7 @@ public class EditArtikelServlet extends HttpServlet {
 		
 		ServiceProvider.getArtikelService().editArtikel(artikel);
 		
-		resp.sendRedirect(req.getContextPath() + "/secure/");
+		resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 		
 	}
 }

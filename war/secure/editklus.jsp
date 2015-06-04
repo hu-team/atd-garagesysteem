@@ -87,7 +87,7 @@ pageContext.setAttribute("klaar", klus.isKlaar());
                                     	<div class="controls">
                                     		<p class="form-control-static"><c:out value="<%=klus.getAuto().getModel() + \" - \" 
                                     	+ klus.getAuto().getMerk() %>"></c:out>
-                                    		<span class="kenteken kenteken-xl"><c:out value="<%=klus.getAuto().getKenteken() %>"></c:out></span>
+                                    		<span class="kenteken kenteken-xl"><c:out value="<%=klus.getAuto().getKenteken().toUpperCase() %>"></c:out></span>
                                     		</p>
                                     	</div>
                                     </div>

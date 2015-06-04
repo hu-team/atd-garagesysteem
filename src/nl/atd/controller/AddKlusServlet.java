@@ -115,7 +115,7 @@ public class AddKlusServlet extends HttpServlet{
 		klus.setCalendar(datumCalendar);
 		
 		if(ServiceProvider.getKlusService().addKlus(klus, aut, mont, kl)) {
-			resp.sendRedirect(req.getContextPath() + "/secure/");
+			resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 		}else{
 			req.setAttribute("error", true);
 			req.setAttribute("errorString", "Opslaan is mislukt.");

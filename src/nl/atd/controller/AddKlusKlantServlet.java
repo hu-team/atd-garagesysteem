@@ -79,7 +79,7 @@ public class AddKlusKlantServlet extends HttpServlet{
 		klus.setCalendar(datumCalendar);
 		
 		if(ServiceProvider.getKlusService().addKlus(klus, aut, null, klant)) {
-			resp.sendRedirect(req.getContextPath() + "/secure/");
+			resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 		}else{
 			req.setAttribute("error", true);
 			req.setAttribute("errorString", "Opslaan is mislukt.");
@@ -91,6 +91,3 @@ public class AddKlusKlantServlet extends HttpServlet{
 	}
 	
 }
-
-//TODO klantservice daar moet ik geKlantBijGebruikersnaam(AuthHelper.getGebruikersnaam(req.getSession())) 
-//Daar moet ik checken of het niet null is of empty en dan ophalen voor autos

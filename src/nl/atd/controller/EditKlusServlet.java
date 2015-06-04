@@ -83,7 +83,7 @@ public class EditKlusServlet extends HttpServlet{
 		
 		req.getSession().removeAttribute("klusid");
 		
-		resp.sendRedirect(req.getContextPath() + "/secure/");
+		resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 	}
 	
 }
