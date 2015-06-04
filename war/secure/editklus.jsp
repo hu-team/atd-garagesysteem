@@ -120,7 +120,14 @@ request.getSession().setAttribute("klusid", id);
                                             <p class="form-control-static"><c:out value=""></c:out></p>
                                         </div>
                                     </div>
-                                    
+        							
+        							<div class="control-group">
+                                        <label class="control-label">Klaar: </label>
+                                        <div class="controls">
+                                            <input type="checkbox" class="span6 " name="klaar" value="true">
+                                        </div>
+                                    </div>
+        							                            
                                     <div class="control-group">
                                         <label class="control-label">Omschrijving: </label>
                                         <div class="controls">
@@ -129,7 +136,7 @@ request.getSession().setAttribute("klusid", id);
                                     </div>
                                 </fieldset>
                                <div class="form-actions">
-                    			<button type="submit" class="btn btn-primary">Klus inplannen</button>
+                    			<button type="submit" class="btn btn-primary">Klus aanpassen</button>
                     			<a href="<%=application.getContextPath()%>/secure/index.jsp" class="btn btn-danger promise-me">Annuleren</a>
                 				</div>
                 				</form>

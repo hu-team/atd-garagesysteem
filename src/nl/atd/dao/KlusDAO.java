@@ -164,7 +164,7 @@ public class KlusDAO {
 					+ ", monteur=? , klant=? , auto=? , uren=? WHERE idklus=?");
 			
 			st.setString(1, klus.getType());
-			st.setInt(2, 0);
+			st.setInt(2, (klus.isKlaar() == true ? 1 : 0));
 			st.setTimestamp(3, new Timestamp(klus.getCalendar().getTimeInMillis()));
 			st.setString(4, klus.getOmschrijving());
 			

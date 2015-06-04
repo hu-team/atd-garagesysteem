@@ -22,6 +22,8 @@ public class EditKlusServlet extends HttpServlet{
 		String type = req.getParameter("type");
 		String uren = req.getParameter("uren");
 		String omschrijving = req.getParameter("omschrijving");
+		String klaar = req.getParameter("klaar");
+		
 		
 		String monteur = req.getParameter("monteur");
 		
@@ -75,6 +77,7 @@ public class EditKlusServlet extends HttpServlet{
 		klus.setOmschrijving(omschrijving);
 		klus.setType(type);
 		klus.setUren(urenNumeriek);
+		klus.setKlaar(klaar == null ? false : true);
 		
 		ServiceProvider.getKlusService().editKlus(klus);
 		
