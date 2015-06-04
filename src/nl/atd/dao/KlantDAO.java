@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -36,9 +37,14 @@ public class KlantDAO {
 				Calendar laatst = Calendar.getInstance();
 				
 				try {
-					laatst.setTimeInMillis(set.getTimestamp("laatste_bezoek").getTime());
-					klant.setLaatsteBezoek(laatst);
-				}catch(NumberFormatException | SQLException e) {
+					Timestamp ts = set.getTimestamp("laatste_bezoek");
+					if(ts != null) {
+						laatst.setTimeInMillis(ts.getTime());
+						klant.setLaatsteBezoek(laatst);
+					}else{
+						klant.setLaatsteBezoek(null);
+					}
+				}catch(NumberFormatException | SQLException | NullPointerException e) {
 					klant.setLaatsteBezoek(null);
 				}
 				

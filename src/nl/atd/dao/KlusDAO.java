@@ -216,16 +216,15 @@ public class KlusDAO {
 	 * @return KlusID of 0
 	 */
 	public int getKlusId(Calendar datum, Klant klant, Auto auto) {
-		return this
-				.getKlusIdOpQuery("SELECT idklus FROM klus WHERE datum = FROM_UNIXTIME("
+		return this.getKlusIdOpQuery("SELECT idklus FROM klus WHERE datum = FROM_UNIXTIME("
 						+ (datum.getTimeInMillis() / 1000)
 						+ ")"
 						+ " AND klant LIKE '"
 						+ klant.getGebruikersnaam()
 						+ "'"
-						+ " AND auto = "
+						+ " AND auto LIKE '"
 						+ ServiceProvider.getAutoService().getAutoIdOpKenteken(
-								auto.getKenteken()));
+								auto.getKenteken()) + "';");
 
 	}
 

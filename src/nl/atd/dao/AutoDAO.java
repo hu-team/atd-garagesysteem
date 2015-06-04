@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -30,7 +31,12 @@ public class AutoDAO {
 			while(set.next()) {
 				Calendar laatste = Calendar.getInstance();
 				try{
-					laatste.setTimeInMillis(set.getTimestamp("laatste_beurt").getTime());
+					Timestamp ts = set.getTimestamp("laatste_beurt");
+					if(ts != null) {
+						laatste.setTimeInMillis(ts.getTime());
+					}else{
+						laatste = null;
+					}
 				}catch(SQLException se) {
 					laatste = null;
 				}
