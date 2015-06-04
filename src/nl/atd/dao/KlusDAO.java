@@ -278,7 +278,8 @@ public class KlusDAO {
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM klus");
+			statement.executeUpdate("DELETE FROM klus;");
+			statement.executeUpdate("ALTER TABLE klus AUTO_INCREMENT = 1;");
 
 			connection.close();
 		} catch (Exception e) {

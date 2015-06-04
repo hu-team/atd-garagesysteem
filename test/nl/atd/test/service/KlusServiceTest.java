@@ -1,6 +1,6 @@
 package nl.atd.test.service;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Calendar;
 
@@ -103,30 +103,15 @@ public class KlusServiceTest {
 		// Klus klus2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
 		// Klus klus4 ( Uit Database gehaald )
 
-		System.out.println(klus1.getCalendar().get(Calendar.YEAR));
-		System.out.println(klus1.getCalendar().get(Calendar.DAY_OF_YEAR));
-		System.out.println(klus1.getCalendar().get(Calendar.MINUTE));
-		System.out.println(klus3.getCalendar().get(Calendar.YEAR));
-		System.out.println(klus3.getCalendar().get(Calendar.DAY_OF_YEAR));
-		System.out.println(klus3.getCalendar().get(Calendar.MINUTE));
-		
-		System.out.println("--------");
-		System.out.println(((klus1.getKlant()).getLaatsteBezoek()).get(Calendar.MINUTE));
-		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.YEAR));
-		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.DAY_OF_YEAR));
-		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.MINUTE));
-		
 		assertEquals(klus1, klus3);
 		assertEquals(klus2, klus4);
 
-		// dit klopt nog niet, calendar uit de database moet gefixt worden
-
 		// Check of als het niet klopt, het ook word gezien
 
-		// assertFalse(a1.equals(a6));
+		assertFalse(klus1.equals(klus4));
 	}
 	
-/**	@Test
+	@Test
 	public void testGetKlusIdOpKlus() {
 		klus3 = klusService.getKlussen().get(0);
 		klus4 = klusService.getKlussen().get(1);
@@ -137,7 +122,7 @@ public class KlusServiceTest {
 		System.out
 				.println("UitDB ID ->>" + idUitDb + "TEST id ->" + testID + "");
 		assertEquals(idUitDb, testID);
-	} **/
+	} 
 
 	@After
 	public void tearDown() throws Exception {
