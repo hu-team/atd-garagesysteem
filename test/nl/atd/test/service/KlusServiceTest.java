@@ -1,7 +1,6 @@
 package nl.atd.test.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 
@@ -26,7 +25,7 @@ public class KlusServiceTest {
 	AutoService autoService = ServiceProvider.getAutoService();
 	MonteurService monteurService = ServiceProvider.getMonteurService();
 
-	private Klant k1, k2, k3, k4;
+	private Klant k1, k2;
 	private Auto a1, a2, a3, a4;
 	private Monteur m1, m2;
 	private Klus klus1, klus2, klus3, klus4;

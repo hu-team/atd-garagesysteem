@@ -2,8 +2,6 @@ package nl.atd.test.service;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import nl.atd.helper.AuthHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;

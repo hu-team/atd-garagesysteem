@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import nl.atd.dao.KlusDAO;
-import nl.atd.model.Auto;
-import nl.atd.model.Klant;
 import nl.atd.model.Klus;
-import nl.atd.model.Monteur;
 
 public class KlusService {
 	private KlusDAO klusDAO = new KlusDAO();
