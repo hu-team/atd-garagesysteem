@@ -45,6 +45,11 @@ public class AddOnderdeelServlet extends HttpServlet{
 			errorString += "Aantal moet numeriek zijn!<br />";
 		}
 		
+		if(aantalNumeriek < 1) {
+			error = true;
+			errorString += "Aantal meer dan 0 zijn! En mag niet negatief zijn!<br />";
+		}
+		
 		
 		int id = (int)req.getSession().getAttribute("klusid");
 		
@@ -52,7 +57,7 @@ public class AddOnderdeelServlet extends HttpServlet{
 			req.setAttribute("error", error);
 			req.setAttribute("errorString", errorString);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("editklus.jsp?id=" + id);
+			RequestDispatcher rd = req.getRequestDispatcher("onderdeeloverzicht.jsp?id=" + id);
 			
 			rd.forward(req, resp);
 			
@@ -61,9 +66,20 @@ public class AddOnderdeelServlet extends HttpServlet{
 		
 		Artikel art = ServiceProvider.getArtikelService().getArtikelByCode(artikel);
 		
-		if(art.kanAantalGebruiken(aantalNumeriek) == false){
+		if(!art.kanAantalGebruiken(aantalNumeriek)){
 			error = true;
 			errorString += "U heeft niet genoeg " + art.getNaam() + " in voorraad.";
+		}
+		
+		if(error){
+			req.setAttribute("error", error);
+			req.setAttribute("errorString", errorString);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("onderdeeloverzicht.jsp?id=" + id);
+			
+			rd.forward(req, resp);
+			
+			return;
 		}
 		
 		Klus klus = ServiceProvider.getKlusService().getKlusOpId(id);
@@ -73,12 +89,12 @@ public class AddOnderdeelServlet extends HttpServlet{
 		
 		if(ServiceProvider.getOnderdeelService().addOnderdeel(onderdeel, klus)) {
 			ServiceProvider.getArtikelService().editArtikel(art);
-			resp.sendRedirect(req.getContextPath() + "/secure/editklus.jsp?id=" + id);
+			resp.sendRedirect(req.getContextPath() + "/secure/onderdeeloverzicht.jsp?id=" + id);
 		}else{
 			req.setAttribute("error", true);
 			req.setAttribute("errorString", "Opslaan is mislukt.");
 			
-			RequestDispatcher rd = req.getRequestDispatcher("editklus.jsp?id=" + id);
+			RequestDispatcher rd = req.getRequestDispatcher("onderdeeloverzicht.jsp?id=" + id);
 			
 			rd.forward(req, resp);
 		}

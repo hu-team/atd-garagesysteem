@@ -76,7 +76,7 @@ public class Artikel {
      * @return boolean Kan het gebruikt worden?
      */
     public boolean kanAantalGebruiken(int aantal) {
-    	return this.aantal >= aantal;
+    	return this.aantal >= aantal && this.aantal > 0;
     }
     
     /**
