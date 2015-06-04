@@ -32,10 +32,10 @@ public class AddAutoServlet extends HttpServlet {
 				merk.trim().isEmpty() || model.trim().isEmpty() || bouwjaar.trim().isEmpty() || kenteken.trim().isEmpty()){
 			error = true;
 			errorString += "Vul alle velden in! <br />";
+		}else{
+			// Eerst - vervangen, spaties vewijderen, en uppercase
+			kenteken = kenteken.trim().replaceAll(Pattern.quote("-"), "").toUpperCase();			
 		}
-		
-		// Eerst - vervangen, spaties vewijderen, en uppercase
-		kenteken = kenteken.trim().replaceAll(Pattern.quote("-"), "").toUpperCase();
 		
 		// Kenteken controleren
 		if(kenteken.length() != 6) {
