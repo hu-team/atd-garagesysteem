@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <%
-if(AuthHelper.isLoggedIn(request.getSession())) response.sendRedirect(request.getContextPath() + "/secure/");
+if(AuthHelper.isLoggedIn(request.getSession())) response.sendRedirect(request.getContextPath() + "/secure/index.jsp");
 %>
 <head>
     <!-- start: Meta -->
