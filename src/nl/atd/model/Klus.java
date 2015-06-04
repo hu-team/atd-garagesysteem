@@ -267,8 +267,8 @@ public class Klus {
 	
 		b = b && ((this.calendar).get(Calendar.DAY_OF_YEAR) == ((Klus)ander).getCalendar().get(Calendar.DAY_OF_YEAR));
 		b = b && ((this.calendar).get(Calendar.YEAR) == ((Klus)ander).getCalendar().get(Calendar.YEAR));
-	//	b = b && ((this.calendar).get(Calendar.HOUR_OF_DAY) == ((Klus)ander).getCalendar().get(Calendar.HOUR_OF_DAY));
-	//	b = b && ((this.calendar).get(Calendar.MINUTE) == ((Klus)ander).getCalendar().get(Calendar.MINUTE));
+		b = b && ((this.calendar).get(Calendar.HOUR_OF_DAY) == ((Klus)ander).getCalendar().get(Calendar.HOUR_OF_DAY));
+		b = b && ((this.calendar).get(Calendar.MINUTE) == ((Klus)ander).getCalendar().get(Calendar.MINUTE));
 
 	
 		return b;

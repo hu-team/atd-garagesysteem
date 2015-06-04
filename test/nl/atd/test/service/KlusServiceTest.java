@@ -104,12 +104,18 @@ public class KlusServiceTest {
 		// Klus klus2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
 		// Klus klus4 ( Uit Database gehaald )
 
+		System.out.println(klus1.getCalendar().get(Calendar.YEAR));
+		System.out.println(klus1.getCalendar().get(Calendar.DAY_OF_YEAR));
+		System.out.println(klus1.getCalendar().get(Calendar.MINUTE));
+		System.out.println(klus3.getCalendar().get(Calendar.YEAR));
+		System.out.println(klus3.getCalendar().get(Calendar.DAY_OF_YEAR));
+		System.out.println(klus3.getCalendar().get(Calendar.MINUTE));
+		
 		assertEquals(klus1, klus3);
 
 		// dit klopt nog niet, calendar uit de database moet gefixt worden
 
-		System.out.println(klus3.getCalendar().get(Calendar.YEAR));
-		System.out.println("2015-06-03 01:26:15");
+
 
 		// Check of als het niet klopt, het ook word gezien
 
@@ -118,6 +124,8 @@ public class KlusServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
+		klusService.deleteKlus(18);
+		klusService.deleteKlus(19);
 	}
 
 }
