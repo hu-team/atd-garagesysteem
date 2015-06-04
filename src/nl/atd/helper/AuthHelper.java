@@ -73,6 +73,11 @@ public class AuthHelper {
 		return success;
 	}
 	
+	/**
+	 * Encrypt het plaintext wachtwoord
+	 * @param wachtwoord
+	 * @return encrypted wachtwoord
+	 */
 	public static String encryptWachtwoord(String wachtwoord) {
 		String wachtwoordEncrypted = null;
 		
