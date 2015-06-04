@@ -19,6 +19,8 @@ public class Parkeerplek {
 	public Parkeerplek(char rij, int plek){
 		this.rij = rij;
 		this.plek = plek;
+		
+		this.reserveringen = new ArrayList<Reservering>();
 	}
 	
 	/**
