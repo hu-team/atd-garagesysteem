@@ -39,4 +39,8 @@ public class KlusService {
 			klusDAO.delete(k);
 		} else throw new Exception("Klus met dit id, bestaat niet");
 	}
+	
+	public void deleteAlleKlussen() {
+		klusDAO.deleteAlles();
+	}
 }

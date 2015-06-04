@@ -82,14 +82,14 @@ public class KlusServiceTest {
 		klus1.setOmschrijving("Winterbanden vervangen door zomerbanden");
 		klus1.setType("Onderhoud");
 		klus1.setUren(4);
-		klusService.addKlus(klus1, a1, m1, k1);
+		//klusService.addKlus(klus1, a1, m1, k1);
 
 		klus2 = new Klus(k1, a3);
 		klus2.setMonteur(m1);
 		klus2.setOmschrijving("APK");
 		klus2.setType("APK");
 		klus2.setUren(2);
-		klusService.addKlus(klus2, a3, m1, k1);
+		//klusService.addKlus(klus2, a3, m1, k1);
 
 	}
 
@@ -112,20 +112,32 @@ public class KlusServiceTest {
 		System.out.println(klus3.getCalendar().get(Calendar.MINUTE));
 		
 		assertEquals(klus1, klus3);
+		assertEquals(klus2, klus4);
 
 		// dit klopt nog niet, calendar uit de database moet gefixt worden
-
-
 
 		// Check of als het niet klopt, het ook word gezien
 
 		// assertFalse(a1.equals(a6));
 	}
+	
+	@Test
+	public void testGetKlusIdOpKlus() {
+		klus3 = klusService.getKlussen().get(0);
+		klus4 = klusService.getKlussen().get(1);
+		
+		int idUitDb = klusService.getKlusIdOpKlus(klus3);
+		int testID = klusService.getKlusIdOpKlus(klus1);
+		
+		System.out
+				.println("UitDB ID ->>" + idUitDb + "TEST id ->" + testID + "");
+		assertEquals(idUitDb, testID);
+	}
 
 	@After
 	public void tearDown() throws Exception {
-		klusService.deleteKlus(18);
-		klusService.deleteKlus(19);
+		// query werkt nog niet 
+		//klusService.deleteAlleKlussen();
 	}
 
 }
