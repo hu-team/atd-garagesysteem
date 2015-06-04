@@ -20,8 +20,9 @@ if(request.getParameter("id") == null || request.getParameter("id").trim().isEmp
 	return;
 	}
 
-int id = 0;
 
+// Integer maken van Strnig id
+int id = 0;
 try{
 	id = Integer.parseInt(request.getParameter("id"));
 }catch(NumberFormatException nfe){
@@ -29,6 +30,7 @@ try{
 	return;
 }
 
+// Klus ophalen
 Klus klus = ServiceProvider.getKlusService().getKlusOpId(id);
 
 if(klus == null){
@@ -37,6 +39,14 @@ if(klus == null){
 }
 
 request.getSession().setAttribute("klusid", id);
+
+if(klus.getMonteur() == null) {
+	pageContext.setAttribute("huidigeMonteur", null);
+}else{
+	pageContext.setAttribute("huidigeMonteur", klus.getMonteur().getGebruikersnaam());
+}
+
+pageContext.setAttribute("klaar", klus.isKlaar());
 
 %>
 
@@ -77,7 +87,7 @@ request.getSession().setAttribute("klusid", id);
                                     	<div class="controls">
                                     		<p class="form-control-static"><c:out value="<%=klus.getAuto().getModel() + \" - \" 
                                     	+ klus.getAuto().getMerk() %>"></c:out>
-                                    		<span class="kenteken"><c:out value="<%=klus.getAuto().getKenteken() %>"></c:out></span>
+                                    		<span class="kenteken kenteken-xl"><c:out value="<%=klus.getAuto().getKenteken() %>"></c:out></span>
                                     		</p>
                                     	</div>
                                     </div>
@@ -86,9 +96,24 @@ request.getSession().setAttribute("klusid", id);
                                     	<label class="control-label">Monteur: </label>
                                     	<div class="controls">
                                     		<select name="monteur">
-                                    			<option value=""></option>
+                                    			<c:choose>
+                                    				<c:when test="${empty huidigeMonteur }">
+                                    					<option value="" selected>Geen</option>
+                                    				</c:when>
+                                    				<c:otherwise>
+                                    					<option value="">Geen</option>	                                    				
+                                    				</c:otherwise>
+                                    			</c:choose>
+                                    			
                                     			<c:forEach var="monteur" items="${ServiceProvider.getMonteurService().getAlleMonteuren() }">
-                                    				<option value="${monteur.gebruikersnaam }">${monteur.naam }</option>
+                                    				<c:choose>
+                                    					<c:when test="${huidigeMonteur eq monteur.gebruikersnaam }">
+                                    						<option value="${monteur.gebruikersnaam }" selected>${monteur.naam }</option>
+                                    					</c:when>
+                                    					<c:otherwise>
+                                    						<option value="${monteur.gebruikersnaam }">${monteur.naam }</option>
+                                    					</c:otherwise>
+                                    				</c:choose>
                                     			</c:forEach>
                                     		</select>
                                     	</div>
@@ -110,28 +135,35 @@ request.getSession().setAttribute("klusid", id);
                                     <div class="control-group">
                                         <label class="control-label">Datum: </label>
                                         <div class="controls">
-                                            <p class="form-control-static"><c:out value=""></c:out></p>
+                                            <p class="form-control-static"><fmt:formatDate type="DATE" value="<%=klus.getCalendar().getTime() %>"/></p>
                                         </div>
                                     </div>
                                     
                                     <div class="control-group">
                                         <label class="control-label">Tijdstip: </label>
                                         <div class="controls">
-                                            <p class="form-control-static"><c:out value=""></c:out></p>
+                                            <p class="form-control-static"><fmt:formatDate type="TIME" value="<%=klus.getCalendar().getTime() %>"/></p>
                                         </div>
                                     </div>
         							
         							<div class="control-group">
                                         <label class="control-label">Klaar: </label>
                                         <div class="controls">
-                                            <input type="checkbox" class="span6 " name="klaar" value="true">
+                                        	<c:choose>
+                                        		<c:when test="${klaar }">
+	                                        		<input type="checkbox" class="span6 " name="klaar" value="true" checked>
+                                        		</c:when>
+                                        		<c:otherwise>
+                                        			<input type="checkbox" class="span6 " name="klaar" value="true">
+                                        		</c:otherwise>
+                                        	</c:choose>
                                         </div>
                                     </div>
         							                            
                                     <div class="control-group">
                                         <label class="control-label">Omschrijving: </label>
                                         <div class="controls">
-                                            <textarea id="" class="cleditor" name="omschrijving"><%=klus.getOmschrijving() %></textarea>
+                                            <textarea class="cleditor" name="omschrijving"><%=klus.getOmschrijving() %></textarea>
                                         </div>
                                     </div>
                                 </fieldset>
