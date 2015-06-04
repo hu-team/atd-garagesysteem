@@ -58,7 +58,7 @@ public class AjaxKlussenServlet extends HttpServlet {
 				
 				try {
 					String titel = klus.getKlant().getNaam() + "<br />";
-					titel += "<span class='kenteken'>" + klus.getAuto().getKenteken().toUpperCase() + "</span><br />";
+					titel += "<span class='kenteken kentekenagenda'>" + klus.getAuto().getKenteken().toUpperCase() + "</span><br />";
 					
 					if(klus.getUren() == 0) {
 						titel += "<i>Uren nog onbekend</i>";
@@ -80,6 +80,7 @@ public class AjaxKlussenServlet extends HttpServlet {
 					
 					klusObject.put("start", klusStartString);
 					klusObject.put("end", klusEndString);
+					klusObject.put("url", req.getContextPath() + "/secure/editklus.jsp?id=" + ServiceProvider.getKlusService().getKlusIdOpKlus(klus));
 					
 					// Kleuren bepalen
 					klusObject.put("textColor", "#ffffff");
