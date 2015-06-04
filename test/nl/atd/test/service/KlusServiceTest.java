@@ -82,14 +82,14 @@ public class KlusServiceTest {
 		klus1.setOmschrijving("Winterbanden vervangen door zomerbanden");
 		klus1.setType("Onderhoud");
 		klus1.setUren(4);
-		// klusService.addKlus(klus1, a1, m1, k1);
+		klusService.addKlus(klus1, a1, m1, k1);
 
 		klus2 = new Klus(k1, a3);
 		klus2.setMonteur(m1);
 		klus2.setOmschrijving("APK");
 		klus2.setType("APK");
 		klus2.setUren(2);
-		// klusService.addKlus(klus2, a3, m1, k1);
+		klusService.addKlus(klus2, a3, m1, k1);
 
 	}
 
@@ -104,12 +104,18 @@ public class KlusServiceTest {
 		// Klus klus2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
 		// Klus klus4 ( Uit Database gehaald )
 
+		System.out.println(klus1.getCalendar().get(Calendar.YEAR));
+		System.out.println(klus1.getCalendar().get(Calendar.DAY_OF_YEAR));
+		System.out.println(klus1.getCalendar().get(Calendar.MINUTE));
+		System.out.println(klus3.getCalendar().get(Calendar.YEAR));
+		System.out.println(klus3.getCalendar().get(Calendar.DAY_OF_YEAR));
+		System.out.println(klus3.getCalendar().get(Calendar.MINUTE));
+		
 		assertEquals(klus1, klus3);
 
 		// dit klopt nog niet, calendar uit de database moet gefixt worden
 
-		System.out.println(klus3.getCalendar().get(Calendar.YEAR));
-		System.out.println("2015-06-03 01:26:15");
+
 
 		// Check of als het niet klopt, het ook word gezien
 
@@ -118,6 +124,8 @@ public class KlusServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
+		klusService.deleteKlus(18);
+		klusService.deleteKlus(19);
 	}
 
 }
