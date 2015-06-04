@@ -11,7 +11,11 @@ import nl.atd.model.Artikel;
 
 public class ArtikelDAO {
 	
-	
+	/**
+	 * Get Artikelen
+	 * @param query
+	 * @return artikelen
+	 */
 	private ArrayList<Artikel> getArtikelen(String query){
 		ArrayList<Artikel> artikelen = new ArrayList<Artikel>();
 		
@@ -36,20 +40,39 @@ public class ArtikelDAO {
 		return artikelen;
 	}
 	
+	/**
+	 * Get alle artikelen
+	 * @return artikelen
+	 */
 	public ArrayList<Artikel> getAlleArtikelen(){
 		return this.getArtikelen("SELECT * FROM artikel");
 	}
 	
+	/**
+	 * Get Artikel met code
+	 * @param code
+	 * @return artikel of null
+	 */
 	public Artikel getArtikelByCode(String code){
 		ArrayList<Artikel> artikelen = this.getArtikelen("SELECT * FROM artikel WHERE code LIKE '" + code + "'");
 		return artikelen.size() >=1 ? artikelen.get(0) : null;
 	}
 	
+	/**
+	 * Zoek artikel(en) op naam
+	 * @param naam
+	 * @return artikelen of null
+	 */
 	public ArrayList<Artikel> getArtikelByName(String naam){
 		ArrayList<Artikel> artikelen = this.getArtikelen("SELECT * FROM artikel WHERE naam LIKE '" + naam + "'");
 		return artikelen;
 	}
 	
+	/**
+	 * Wijzig artikel
+	 * @param artikel artikel, laat code ongewijzigd!
+	 * @return gelukt?
+	 */
 	public boolean editArtikel(Artikel artikel){
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();
@@ -70,6 +93,11 @@ public class ArtikelDAO {
 		
 	}
 	
+	/**
+	 * Voeg artikel toe
+	 * @param artikel
+	 * @return gelukt?
+	 */
 	public boolean addArtikel(Artikel artikel){
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();

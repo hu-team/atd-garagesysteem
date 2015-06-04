@@ -45,6 +45,12 @@ public class OnderdeelDAO {
 		return onderdelen;
 	}
 	
+	/**
+	 * Onderdeel toevoegen
+	 * @param onderdeel
+	 * @param klus
+	 * @return gelukt?
+	 */
 	public boolean addOnderdeel(Onderdeel onderdeel, Klus klus){
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();

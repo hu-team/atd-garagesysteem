@@ -81,6 +81,11 @@ public class KlantDAO {
 		return null;
 	}
 	
+	/**
+	 * Add Klant
+	 * @param klant
+	 * @return gelukt?
+	 */
 	public boolean addKlant(Klant klant){
 		
 		try{
