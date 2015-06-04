@@ -36,7 +36,7 @@
 		</a>
 </li>
 <li>
-	<a href="<%=application.getContextPath()%>/secure/addklus.jsp">
+	<a href="<%=application.getContextPath()%>/secure/addklusklant.jsp">
 		<i class="fa fa-tasks"></i>
 		<span class="hidden-tablet">Klus inplannen</span>
 	</a>

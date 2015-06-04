@@ -31,6 +31,8 @@ pageContext.setAttribute("artikelen", ServiceProvider.getArtikelService().getAll
 %>
 
 <div id="content" class="span10">
+<a href="<%=application.getContextPath()%>/secure/editklus.jsp?id=<%= id %>" class="btn btn-primary">Terug</a>
+	<div class="margin-abit"></div>
 	<div class="row-fluid sortable ui-sortable">
 		<div class="box span12">
 			<div class="box-header" data-original-title="">
@@ -114,7 +116,6 @@ pageContext.setAttribute("artikelen", ServiceProvider.getArtikelService().getAll
 							
 							<div class="form-actions">
 								<button type="submit" class="btn btn-primary">Onderdeel aan klus toevoegen</button>
-								<button type="reset" class="btn">Annuleren</button>
 							</div>
 						</fieldset>
 					</form>
