@@ -7,9 +7,7 @@
 <footer>
 
 	<p>
-		<span style="text-align: left; float: left">&copy; 2015 <a
-			href="http://themifycloud.com/downloads/janux-free-responsive-admin-dashboard-template/"
-			alt="Bootstrap_Metro_Dashboard">ATD</a></span>
+		<span style="text-align: left; float: left">&copy; 2015 ATD</span>
 
 	</p>
 
