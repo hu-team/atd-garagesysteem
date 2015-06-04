@@ -36,7 +36,7 @@ public class KlantDAO {
 				Calendar laatst = Calendar.getInstance();
 				
 				try {
-					laatst.setTimeInMillis(set.getInt("laatstebezoek") * 1000);
+					laatst.setTimeInMillis(set.getTimestamp("laatste_bezoek").getTime());
 					klant.setLaatsteBezoek(laatst);
 				}catch(NumberFormatException | SQLException e) {
 					klant.setLaatsteBezoek(null);
@@ -66,8 +66,7 @@ public class KlantDAO {
 	 */
 	public ArrayList<Klant> getAlleKlanten(boolean autos) {
 		return this.getKlanten("SELECT * FROM klant", autos);
-	}
-	// , UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek 
+	} 
 	
 	/**
 	 * Get klant
@@ -81,7 +80,6 @@ public class KlantDAO {
 		}
 		return null;
 	}
-	// , UNIX_TIMESTAMP(klant.laatste_bezoek) as laatstebezoek
 	
 	public boolean addKlant(Klant klant){
 		
