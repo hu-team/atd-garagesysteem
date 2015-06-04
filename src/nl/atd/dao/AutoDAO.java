@@ -30,7 +30,7 @@ public class AutoDAO {
 			while(set.next()) {
 				Calendar laatste = Calendar.getInstance();
 				try{
-					laatste.setTimeInMillis(set.getInt("laatstebeurt") * 1000);
+					laatste.setTimeInMillis(set.getTimestamp("laatste_beurt").getTime());
 				}catch(SQLException se) {
 					laatste = null;
 				}
