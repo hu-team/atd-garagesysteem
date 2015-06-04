@@ -62,7 +62,7 @@ public class EditKlusServlet extends HttpServlet{
 			req.setAttribute("error", error);
 			req.setAttribute("errorString", errorString);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("editklus.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("editklus.jsp?id=" + id);
 			
 			rd.forward(req, resp);
 			
@@ -80,6 +80,8 @@ public class EditKlusServlet extends HttpServlet{
 		klus.setKlaar(klaar == null ? false : true);
 		
 		ServiceProvider.getKlusService().editKlus(klus);
+		
+		req.getSession().removeAttribute("klusid");
 		
 		resp.sendRedirect(req.getContextPath() + "/secure/");
 	}
