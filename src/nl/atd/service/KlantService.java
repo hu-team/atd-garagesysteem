@@ -9,18 +9,37 @@ public class KlantService {
 
 	private KlantDAO klantDAO = new KlantDAO();
 	
+	/**
+	 * Get Alle klanten, inclusief auto's.
+	 * @return klanten met autos
+	 */
 	public ArrayList<Klant> getAlleKlantenAuto(){
 		return this.klantDAO.getAlleKlanten(true);
 	}
 	
+	/**
+	 * Get alle klanten, zonder gekoppelde autos.
+	 * Door 2 methodes te maken scheelt het tijd in verwerking
+	 * @return klanten
+	 */
 	public ArrayList<Klant> getAlleKlanten(){
 		return this.klantDAO.getAlleKlanten(false);
 	}
 	
+	/**
+	 * Klant zoeken op gebruikersnaam
+	 * @param gebruikersnaam gebruikersnaam om op te zoeken
+	 * @return klant of null
+	 */
 	public Klant getKlantByGebruikersnaam(String gebruikersnaam){
 		return this.klantDAO.getKlant(gebruikersnaam);
 	}
 	
+	/**
+	 * Klant toevoegen
+	 * @param klant toe te voegen klant
+	 * @return gelukt?
+	 */
 	public boolean addKlant(Klant klant){
 		if(this.klantDAO.getKlant(klant.getGebruikersnaam()) == null){
 			return this.klantDAO.addKlant(klant);
