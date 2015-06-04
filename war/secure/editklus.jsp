@@ -2,6 +2,7 @@
 <%@page import="nl.atd.service.KlantService" %>
 <%@page import="nl.atd.service.AutoService" %>
 <%@page import="nl.atd.service.MonteurService" %>
+<%@page import="nl.atd.service.KlusService" %>
 <%@page import="nl.atd.service.ArtikelService" %>
 <%@page import="nl.atd.service.ServiceProvider" %>
 <%@page import="nl.atd.model.Klant" %>
@@ -9,8 +10,35 @@
 <%@page import="nl.atd.model.Monteur" %>
 <%@page import="nl.atd.model.Klus" %>
 <%@page import="nl.atd.model.Artikel" %>
+<%@page import="java.util.Calendar" %>
+<%@page import="java.io.IOException" %>
+<%@page import="javax.servlet.http.HttpSession" %>
 <%@ include file="_header.jsp" %>
-<% if(!AuthHelper.isAdmin(session) ) response.sendRedirect(application.getContextPath() + "/secure/"); %>
+<% if(!AuthHelper.isAdmin(session) ) response.sendRedirect(application.getContextPath() + "/secure/"); 
+if(request.getParameter("id") == null || request.getParameter("id").trim().isEmpty()) {
+	response.sendRedirect(application.getContextPath()+"/secure/index.jsp"); 
+	return;
+	}
+
+int id = 0;
+
+try{
+	id = Integer.parseInt(request.getParameter("id"));
+}catch(NumberFormatException nfe){
+	response.sendRedirect(application.getContextPath()+"/secure/index.jsp"); 
+	return;
+}
+
+Klus klus = ServiceProvider.getKlusService().getKlusOpId(id);
+
+if(klus == null){
+	response.sendRedirect(application.getContextPath()+"/secure/index.jsp"); 
+	return;
+}
+
+request.getSession().setAttribute("klusid", id);
+
+%>
 
             <!-- start: Content -->
             <div id="content" class="span10">
@@ -35,25 +63,22 @@
 							</c:if>
 		
                         
-                            <form class="form-horizontal" method="post" action="addklus">
+                            <form class="form-horizontal" method="post" action="editklus">
                                 <fieldset>
                                     <div class="control-group">
-                                    	<label class="control-label">*Klant: </label>
+                                    	<label class="control-label">Klant: </label>
                                     	<div class="controls">
-                                    		<select name="klant" id="klantlijst">
-                                    			<c:forEach var="klant" items="${ServiceProvider.getKlantService().getAlleKlanten() }" >
-                                    				<option value="${klant.gebruikersnaam}">${klant.naam}</option>
-                                    			</c:forEach>
-                                    		</select>
-                                    		
+                                    		<p class="form-control-static"><c:out value="<%=klus.getKlant().getNaam() %>"></c:out></p>
                                     	</div>
                                     </div>
                                     
                                     <div class="control-group">
-                                    	<label class="control-label">*Auto: </label>
+                                    	<label class="control-label">Auto: </label>
                                     	<div class="controls">
-                                    		<select name="auto" id="autolijst">
-                                    		</select>
+                                    		<p class="form-control-static"><c:out value="<%=klus.getAuto().getModel() + \" - \" 
+                                    	+ klus.getAuto().getMerk() %>"></c:out>
+                                    		<span class="kenteken"><c:out value="<%=klus.getAuto().getKenteken() %>"></c:out></span>
+                                    		</p>
                                     	</div>
                                     </div>
                                     
@@ -61,7 +86,7 @@
                                     	<label class="control-label">Monteur: </label>
                                     	<div class="controls">
                                     		<select name="monteur">
-                                    			<option value="">Leeg</option>
+                                    			<option value=""></option>
                                     			<c:forEach var="monteur" items="${ServiceProvider.getMonteurService().getAlleMonteuren() }">
                                     				<option value="${monteur.gebruikersnaam }">${monteur.naam }</option>
                                     			</c:forEach>
@@ -70,37 +95,36 @@
                                     </div>
                                     
                                     <div class="control-group">
-                                        <label class="control-label">*Type: </label>
+                                        <label class="control-label">Type: </label>
                                         <div class="controls">
-                                            <input type="text" class="span6 " name="type" value="${param.type}">
+                                            <input type="text" class="span6 " name="type" value="<%=klus.getType() %>">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label">Uren: </label>
                                         <div class="controls">
-                                            <input type="text" class="span6 " name="uren" value="${param.uren}">
+                                            <input type="text" class="span6 " name="uren" value="<%=klus.getUren() %>">
                                         </div>
                                     </div>
 
                                     <div class="control-group">
-                                        <label class="control-label">*Datum: </label>
+                                        <label class="control-label">Datum: </label>
                                         <div class="controls">
-                                            <input type="text" class="span6 datepicker" name="datum" value="${param.datum}">
+                                            <p class="form-control-static"><c:out value=""></c:out></p>
                                         </div>
                                     </div>
                                     
                                     <div class="control-group">
-                                        <label class="control-label">*Tijdstip: </label>
+                                        <label class="control-label">Tijdstip: </label>
                                         <div class="controls">
-                                            <input type="time" class="span2" name="tijdstip" value="${param.tijdstip}"> <span class="text-muted">24-uurs notatie</span>
+                                            <p class="form-control-static"><c:out value=""></c:out></p>
                                         </div>
                                     </div>
                                     
                                     <div class="control-group">
-                                        <label class="control-label">*Omschrijving: </label>
+                                        <label class="control-label">Omschrijving: </label>
                                         <div class="controls">
-                                            <textarea id="" class="cleditor" name="omschrijving">
-                                            </textarea>
+                                            <textarea id="" class="cleditor" name="omschrijving"><%=klus.getOmschrijving() %></textarea>
                                         </div>
                                     </div>
                                 </fieldset>

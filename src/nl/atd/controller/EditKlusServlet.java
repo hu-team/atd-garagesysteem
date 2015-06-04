@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.model.Klus;
+import nl.atd.model.Monteur;
 import nl.atd.service.ServiceProvider;
 
 public class EditKlusServlet extends HttpServlet{
@@ -17,20 +19,27 @@ public class EditKlusServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	
-		String klaar = req.getParameter("klaar");
-		String omschrijving = req.getParameter("omschrijving");
-		String monteur = req.getParameter("monteur");
+		String type = req.getParameter("type");
 		String uren = req.getParameter("uren");
-		String klant = req.getParameter("klant");
-		String auto = req.getParameter("auto");
+		String omschrijving = req.getParameter("omschrijving");
+		
+		String monteur = req.getParameter("monteur");
+		
+		int id = (int) req.getSession().getAttribute("klusid");
 		
 		boolean error = false;
 		String errorString = "";
 		
 		int urenNumeriek = 0;
 		
-		if(monteur == null){
-			
+		if(type == null || omschrijving == null || type.trim().isEmpty() || omschrijving.trim().isEmpty()){
+			error = true;
+			errorString += "Vul alle velden in! <br />";
+		}
+		
+		if(monteur == null || monteur.trim().isEmpty()){
+			// Monteur kan nu nog leeg zijn, geen probleem
+			monteur = null;
 		}else if(!monteur.trim().isEmpty() && ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur) == null){
 			error = true;
 			errorString += "De selecteerde monteur is niet geldig <br />";
@@ -58,8 +67,18 @@ public class EditKlusServlet extends HttpServlet{
 			return;
 		}
 		
-		//TODO Klus ophalen en aanpassing methodes maken in KlusDAO
+		Monteur mont = (monteur == null ? null : ServiceProvider.getMonteurService().getMonteurByGebruikersnaam(monteur));
 		
+		Klus klus = ServiceProvider.getKlusService().getKlusOpId(id);
+		
+		klus.setMonteur(mont);
+		klus.setOmschrijving(omschrijving);
+		klus.setType(type);
+		klus.setUren(urenNumeriek);
+		
+		ServiceProvider.getKlusService().editKlus(klus);
+		
+		resp.sendRedirect(req.getContextPath() + "/secure/");
 	}
 	
 }

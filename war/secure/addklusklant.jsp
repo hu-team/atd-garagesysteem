@@ -71,9 +71,7 @@
                                     <div class="control-group">
                                         <label class="control-label">*Omschrijving: </label>
                                         <div class="controls">
-                                            <textarea id="" class="cleditor" name="omschrijving">
-                                            	Beschrijf hier het probleem met uw auto.
-                                            </textarea>
+                                            <textarea id="" class="cleditor" name="omschrijving">Beschrijf hier het probleem met uw auto.</textarea>
                                         </div>
                                     </div>
                                 </fieldset>

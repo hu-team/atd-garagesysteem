@@ -24,11 +24,20 @@ public class KlusService {
 		return this.klusDAO.addKlus(klus, auto, monteur, klant);
 	}
 
+	public boolean editKlus(Klus klus){
+		return this.klusDAO.editKlus(klus);
+	}
+	
 	public ArrayList<Klus> getKlussenTussen(Calendar start, Calendar end) {
 		return this.klusDAO.getAlleKlussenTussen(start, end);
+	}
+	
+	public Klus getKlusOpId(int id){
+		return this.klusDAO.getKlusOpId(id);
 	}
 	
 	public int getKlusIdOpKlus(Klus klus){
 		return this.klusDAO.getKlusId(klus.getCalendar(), klus.getKlant(), klus.getAuto());
 	}
+	
 }
