@@ -159,6 +159,15 @@ pageContext.setAttribute("klaar", klus.isKlaar());
                                         	</c:choose>
                                         </div>
                                     </div>
+                                    
+                                    <div class="control-group">
+                                    	<label class="control-label">Onderdelen: </label>
+                                    	<div class="controls">
+                                    		<a href="onderdeeloverzicht.jsp?id=<%= (int)session.getAttribute("klusid") %>" class="btn btn-primary btn-lg">
+                                    		Onderdelen bewerken
+                                    		</a>
+                                    	</div>
+                                    </div>
         							                            
                                     <div class="control-group">
                                         <label class="control-label">Omschrijving: </label>
