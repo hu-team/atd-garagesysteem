@@ -111,14 +111,13 @@ public class KlusServiceTest {
 		System.out.println(klus3.getCalendar().get(Calendar.MINUTE));
 		
 		System.out.println("--------");
-		System.out.println(((klus1.getKlant()).getLaatsteBezoek()).get(Calendar.DAY_OF_YEAR));
-	//	System.out.println((klus1.getKlant()).getLaatsteBezoek().get(Calendar.MINUTE));
+		System.out.println(((klus1.getKlant()).getLaatsteBezoek()).get(Calendar.MINUTE));
 		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.YEAR));
 		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.DAY_OF_YEAR));
 		//System.out.println((klus3.getKlant()).getLaatsteBezoek().get(Calendar.MINUTE));
 		
 		assertEquals(klus1, klus3);
-		//assertEquals(klus2, klus4);
+		assertEquals(klus2, klus4);
 
 		// dit klopt nog niet, calendar uit de database moet gefixt worden
 
