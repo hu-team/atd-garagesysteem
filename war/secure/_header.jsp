@@ -1,5 +1,6 @@
 <%@page import="nl.atd.helper.AuthHelper"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
@@ -20,17 +21,17 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link id="base-style"
+<link 
 	href="<%=application.getContextPath()%>/css/style.css"
 	rel="stylesheet">
-<link id="base-style"
+<link 
 	href="<%=application.getContextPath()%>/css/atd.css"
 	rel="stylesheet">
 <link id="base-style-responsive"
 	href="<%=application.getContextPath()%>/css/style-responsive.css"
 	rel="stylesheet">
 <link
-	href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext,latin-ext"
 	rel='stylesheet' type='text/css'>
 <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
