@@ -63,7 +63,7 @@ public class AddOnderdeelServlet extends HttpServlet{
 		
 		if(art.kanAantalGebruiken(aantalNumeriek) == false){
 			error = true;
-			errorString += "U heeft niet genoeg artikel in voorraad.";
+			errorString += "U heeft niet genoeg " + art.getNaam() + " in voorraad.";
 		}
 		
 		Klus klus = ServiceProvider.getKlusService().getKlusOpId(id);
