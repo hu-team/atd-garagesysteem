@@ -208,6 +208,7 @@ public class KlusDAO {
 		}
 	}
 	
+	
 	/**
 	 * Get klusid, zoeken van klusid op unieke parameters.
 	 * @param datum
@@ -278,8 +279,9 @@ public class KlusDAO {
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();
 			Statement statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM klus;");
-			statement.executeUpdate("ALTER TABLE klus AUTO_INCREMENT = 1;");
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
+			statement.executeUpdate("TRUNCATE klus;");
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
 			connection.close();
 		} catch (Exception e) {

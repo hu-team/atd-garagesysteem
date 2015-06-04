@@ -36,4 +36,12 @@ public class MonteurService {
 		}
 		return false;
 	}
+	
+	/**
+	 * Verwijder alle monteurs uit database
+	 * LET OP: gebruik alleen binnen tests
+	 */
+	public void deleteAlleMonteurs() {
+		monteurDAO.deleteAlles();
+	}
 }

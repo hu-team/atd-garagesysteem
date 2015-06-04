@@ -47,4 +47,11 @@ public class KlantService {
 		return false;
 	}
 	
+	/**
+	 * Verwijder alle klanten uit database
+	 * LET OP: gebruik alleen binnen tests
+	 */
+	public void deleteAlleKlanten() {
+		klantDAO.deleteAlles();
+	}
 }

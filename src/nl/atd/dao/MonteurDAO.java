@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 import java.util.ArrayList;
 
 import nl.atd.helper.DatabaseHelper;
@@ -85,5 +84,19 @@ public class MonteurDAO {
 		}catch(Exception e) {
 			return false;
 		}
+	}
+
+	public void deleteAlles() {
+		try {
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
+			statement.executeUpdate("TRUNCATE monteur;");
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
+
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 	}
 }

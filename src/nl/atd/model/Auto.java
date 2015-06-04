@@ -113,9 +113,14 @@ public class Auto {
 		b = b && (this.merk.equals(((Auto) ander).getMerk()));
 		b = b && (this.model.equals(((Auto) ander).getModel()));
 		b = b && (this.bouwjaar == ((Auto) ander).getBouwjaar());
-		// omdat nog gefixt moet worden met datum in de sql query
-		//b = b && (this.laatsteBeurt.equals(((Auto) ander).getLaatsteBeurt()));
 		b = b && (this.kenteken.equals(((Auto) ander).getKenteken()));
+				
+		// Calendar vergelijken, DAY.OF.YEAR - YEAR - HOURS : MINUTES
+		b = b && ((this.laatsteBeurt == null && ((Auto)ander).getLaatsteBeurt() == null) || 
+				((this.laatsteBeurt).get(Calendar.YEAR) == ((Auto)ander).getLaatsteBeurt().get(Calendar.YEAR) &&
+				(this.laatsteBeurt).get(Calendar.HOUR_OF_DAY) == ((Auto)ander).getLaatsteBeurt().get(Calendar.HOUR_OF_DAY) &&
+				(this.laatsteBeurt).get(Calendar.MINUTE) == ((Auto)ander).getLaatsteBeurt().get(Calendar.MINUTE)));
+		
 
 		return b;
 	}

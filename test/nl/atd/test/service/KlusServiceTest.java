@@ -38,42 +38,42 @@ public class KlusServiceTest {
 		k1.setGebruikersnaam("maxiiemaxx");
 		k1.setWachtwoord(AuthHelper.encryptWachtwoord("123"));
 		k1.setLaatsteBezoek(null);
-		// kservice.addKlant(k1);
+		klantService.addKlant(k1);
 
 		k2 = new Klant("Tom Valk");
 		k2.setEmail("tomvalk@hotmail.com");
 		k2.setGebruikersnaam("tomvalk");
 		k2.setWachtwoord(AuthHelper.encryptWachtwoord("456"));
 		k2.setLaatsteBezoek(null);
-		// kservice.addKlant(k2);
+		klantService.addKlant(k2);
 
 		// Aanmaken van monteurs
 		m1 = new Monteur("Benco van Dam", 100001);
 		m1.setGebruikersnaam("bencovandam");
 		m1.setWachtwoord(AuthHelper.encryptWachtwoord("monteur1"));
-		// monteurService.addMonteur(m1);
+		monteurService.addMonteur(m1);
 
 		m2 = new Monteur("Gerrit Dijkstra", 100002);
 		m2.setGebruikersnaam("gerritdijkstra");
 		m2.setWachtwoord(AuthHelper.encryptWachtwoord("monteur2"));
-		// monteurService.addMonteur(m2);
+		monteurService.addMonteur(m2);
 
 		// Aanmaken van autos
 		a1 = new Auto("Mercedes", "A180", 2015, null);
 		a1.setKenteken("GB1231");
-		// autoService.addAuto(k1.getGebruikersnaam(), a1);
+		autoService.addAuto(k1.getGebruikersnaam(), a1);
 
 		a2 = new Auto("Ford", "Mondeo", 2012, null);
 		a2.setKenteken("12XVK1");
-		// autoService.addAuto(k2.getGebruikersnaam(), a2);
+		autoService.addAuto(k2.getGebruikersnaam(), a2);
 
 		a3 = new Auto("Volvo", "V60", 2014, null);
 		a3.setKenteken("1ZDF53");
-		// autoService.addAuto(k1.getGebruikersnaam(), a3);
+		autoService.addAuto(k1.getGebruikersnaam(), a3);
 
 		a4 = new Auto("Volkswagen", "Golf", 2015, null);
 		a4.setKenteken("GH4112");
-		// autoService.addAuto(k2.getGebruikersnaam(), a4);
+		autoService.addAuto(k2.getGebruikersnaam(), a4);
 
 		// Aanmaken van klussen
 		klus1 = new Klus(k1, a1);
@@ -110,24 +110,25 @@ public class KlusServiceTest {
 
 		assertFalse(klus1.equals(klus4));
 	}
-	
+
 	@Test
-	public void testGetKlusIdOpKlus() {
+	public void testEditKlus() {
+		klus1.setMonteur(m2);
+		klus1.setUren(5);
+		klus1.setOmschrijving("Winterbanden vervangen door zomerbanden & auto uitgezogen");
+		klusService.editKlus(klus1);
+
 		klus3 = klusService.getKlussen().get(0);
-		klus4 = klusService.getKlussen().get(1);
-		
-		int idUitDb = klusService.getKlusIdOpKlus(klus3);
-		int testID = klusService.getKlusIdOpKlus(klus1);
-		
-		System.out
-				.println("UitDB ID ->>" + idUitDb + "TEST id ->" + testID + "");
-		assertEquals(idUitDb, testID);
-	} 
+
+		assertEquals(klus1, klus3);
+	}
 
 	@After
 	public void tearDown() throws Exception {
-		// query werkt nog niet 
 		klusService.deleteAlleKlussen();
+		klantService.deleteAlleKlanten();
+		monteurService.deleteAlleMonteurs();
+		autoService.deleteAlleAutos();
 	}
 
 }

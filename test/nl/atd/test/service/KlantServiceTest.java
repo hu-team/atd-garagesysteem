@@ -22,14 +22,14 @@ public class KlantServiceTest {
 		k1.setGebruikersnaam("maxiiemaxx");
 		k1.setWachtwoord(AuthHelper.encryptWachtwoord("123"));
 		k1.setLaatsteBezoek(null);
-		//kservice.addKlant(k1);
+		kservice.addKlant(k1);
 
 		k2 = new Klant("Tom Valk");
 		k2.setEmail("tomvalk@hotmail.com");
 		k2.setGebruikersnaam("tomvalk");
 		k2.setWachtwoord(AuthHelper.encryptWachtwoord("456"));
 		k2.setLaatsteBezoek(null);
-		//kservice.addKlant(k2);
+		kservice.addKlant(k2);
 	}
 
 	@Test
@@ -66,13 +66,7 @@ public class KlantServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
-		k1 = null;
-		k2 = null;
-		k3 = null;
-		k4 = null;
-
-		// k1 & k2, verwijderen uit database ( of database legen)
-		// TODO: verwijderen in de setup, truncate op tabel, ignore fk's
+		kservice.deleteAlleKlanten();
 	}
 
 }

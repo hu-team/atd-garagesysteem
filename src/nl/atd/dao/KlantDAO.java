@@ -113,4 +113,18 @@ public class KlantDAO {
 		}
 		
 	}
+
+	public void deleteAlles() {
+		try {
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Statement statement = connection.createStatement();
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
+			statement.executeUpdate("TRUNCATE klant;");
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
+
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

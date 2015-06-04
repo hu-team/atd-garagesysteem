@@ -64,4 +64,12 @@ public class AutoService {
 	public int getAutoIdOpKenteken(String kenteken) {
 		return this.autoDAO.getAutoIdOpKenteken(kenteken);
 	}
+	
+	/**
+	 * Verwijder alle autos uit database
+	 * LET OP: gebruik alleen binnen tests
+	 */
+	public void deleteAlleAutos() {
+		autoDAO.deleteAlles();
+	}
 }
