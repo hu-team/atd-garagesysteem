@@ -9,8 +9,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
-
 import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
@@ -98,15 +96,11 @@ public class KlusDAO {
 		return this.getKlussen("SELECT * FROM klus");
 	}
 
-	// , UNIX_TIMESTAMP(klus.datum) as datumtimestamp
-
-	public Klus getKlusOpId(int id) {
-		ArrayList<Klus> klussen = this
-				.getKlussen("SELECT * FROM klus WHERE idklus = " + id);
+	
+	public Klus getKlusOpId(int id){
+		ArrayList<Klus> klussen = this.getKlussen("SELECT * FROM klus WHERE idklus = " + id);
 		return klussen.size() >= 1 ? klussen.get(0) : null;
 	}
-
-	// , UNIX_TIMESTAMP(klus.datum) as datumtimestamp
 
 	public boolean addKlus(Klus klus, Auto auto, Monteur monteur, Klant klant) {
 		try {
@@ -161,7 +155,40 @@ public class KlusDAO {
 
 		return nr;
 	}
-
+	
+	public boolean editKlus(Klus klus){
+		try{
+			
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			PreparedStatement st = connection.prepareStatement("UPDATE klus SET type=? , klaar=? , datum=? , omschrijving=? "
+					+ ", monteur=? , klant=? , auto=? , uren=? WHERE idklus=?");
+			
+			st.setString(1, klus.getType());
+			st.setInt(2, (klus.isKlaar() == true ? 1 : 0));
+			st.setTimestamp(3, new Timestamp(klus.getCalendar().getTimeInMillis()));
+			st.setString(4, klus.getOmschrijving());
+			
+			if(klus.getMonteur() == null) {
+				st.setObject(5, null);
+			}else{
+				st.setString(5, klus.getMonteur().getGebruikersnaam());
+				
+			}
+			st.setString(6, klus.getKlant().getGebruikersnaam());
+			st.setInt(7, ServiceProvider.getAutoService().getAutoIdOpKenteken(klus.getAuto().getKenteken()));
+			st.setInt(8, klus.getUren());
+			st.setInt(9, this.getKlusId(klus.getCalendar(), klus.getKlant(), klus.getAuto()));
+			
+			st.execute();
+			connection.close();
+			
+			return true;
+			
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
 	public int getKlusId(Calendar datum, Klant klant, Auto auto) {
 		return this
 				.getKlusIdOpQuery("SELECT idklus FROM klus WHERE datum = FROM_UNIXTIME("

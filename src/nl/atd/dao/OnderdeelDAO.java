@@ -1,12 +1,14 @@
 package nl.atd.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Artikel;
+import nl.atd.model.Klus;
 import nl.atd.model.Onderdeel;
 import nl.atd.service.ServiceProvider;
 
@@ -41,6 +43,24 @@ public class OnderdeelDAO {
 		}
 		
 		return onderdelen;
+	}
+	
+	public boolean addOnderdeel(Onderdeel onderdeel, Klus klus){
+		try{
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			PreparedStatement st = connection.prepareStatement("INSERT INTO onderdeel (idklus, code, aantal) VALUES(?, ?, ?);");
+			
+			st.setInt(1, ServiceProvider.getKlusService().getKlusIdOpKlus(klus));
+			st.setString(2, onderdeel.getArtikel().getCode());
+			st.setInt(3, onderdeel.getAantal());
+			
+			st.execute();
+			connection.close();
+			
+			return true;
+		}catch(Exception e){
+			return false;
+		}
 	}
 	
 	/**
