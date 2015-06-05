@@ -35,4 +35,12 @@ public class OnderdeelService {
 	public ArrayList<Onderdeel> getAlleOnderdelenVanKlus(Klus klus) {
 		return this.onderdeelDAO.getAlleOnderdelenVanKlus(ServiceProvider.getKlusService().getKlusIdOpKlus(klus));
 	}
+	
+	/**
+	 * Verwijder alle onderdelen uit database
+	 * LET OP: gebruik alleen binnen tests
+	 */
+	public void deleteAlleOnderdelen() {
+		onderdeelDAO.deleteAlles();
+	}
 }
