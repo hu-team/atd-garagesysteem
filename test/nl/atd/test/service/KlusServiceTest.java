@@ -113,8 +113,6 @@ public class KlusServiceTest {
 
 	@Test
 	public void testEditKlus() {
-		klus1.setMonteur(m2);
-		klus1.setUren(5);
 		klus1.setOmschrijving("Winterbanden vervangen door zomerbanden & auto uitgezogen");
 		klusService.editKlus(klus1);
 
