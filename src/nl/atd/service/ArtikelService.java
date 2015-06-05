@@ -57,4 +57,12 @@ public class ArtikelService {
 		}
 		return false;
 	}
+
+	/**
+	 * Verwijder alle artikelen uit database
+	 * LET OP: gebruik alleen binnen tests
+	 */
+	public void deleteAlleKlanten() {
+		artikelDAO.deleteAlles();
+	}	
 }
