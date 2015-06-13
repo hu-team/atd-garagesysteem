@@ -1,6 +1,9 @@
 /*
  * Framework
  */
+
+// Kenteken: https://api.datamarket.azure.com/opendata.rdw/VRTG.Open.Data/v1/KENT_VRTG_O_DAT('xnrr85')?$format=json
+
 var app = function() {
 	function inlog() {
 		var usertype = $("#user-type").val();
