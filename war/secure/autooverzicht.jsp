@@ -47,7 +47,14 @@ request.setAttribute("klant", klant);
 								<td>${auto.model}</td>
 								<td>${auto.bouwjaar}</td>
 								<td>${auto.kenteken}</td>
-								<td>${auto.laatsteBeurt}</td>
+								<c:choose>
+								<c:when test="${empty auto.getLaatsteBeurt() }">
+								<td>Onbekend</td>
+								</c:when>
+								<c:otherwise>
+								<td>${auto.getLaatsteBeurt()}</td>
+								</c:otherwise>
+								</c:choose>
 							</tr>
 						</c:forEach>
 

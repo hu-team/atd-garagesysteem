@@ -35,6 +35,8 @@ public class Auto {
 		Calendar vandaag = Calendar.getInstance();
 
 		overtijd = laatsteBeurt;
+		if(overtijd == null) return false;
+		
 		overtijd.add(Calendar.MONTH, +6);
 
 		return vandaag.after(overtijd);
