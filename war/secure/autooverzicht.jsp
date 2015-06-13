@@ -90,6 +90,24 @@ request.setAttribute("klant", klant);
 							<input type="hidden" name="klant" value='<c:out value="${klant.gebruikersnaam }" />' />
 							
 							<div class="control-group">
+								<label class="control-label" for="kenteken">Kenteken:
+								</label>
+								<div class="controls">
+									<input class="input-xlarge" id="kenteken" type="text"
+										name="kenteken">
+										
+										<button id="kentekenopzoeken" 
+											class="btn btn-default" type="button">
+											Opzoeken
+										</button>
+										
+									<p class="help-block" id="kentekendata">.</p>
+								</div>
+							</div>
+							
+							<hr>
+							
+							<div class="control-group">
 								<label class="control-label" for="merk">Merk: </label>
 								<div class="controls">
 									<input type="text" class="input-xlarge" id="merk"
@@ -110,15 +128,6 @@ request.setAttribute("klant", klant);
 								<div class="controls">
 									<input type="text" class="input-xlarge" id="bouwjaar"
 										name="bouwjaar">
-								</div>
-							</div>
-	
-							<div class="control-group">
-								<label class="control-label" for="kenteken">Kenteken:
-								</label>
-								<div class="controls">
-									<input class="input-xlarge" id="kenteken" type="text"
-										name="kenteken">
 								</div>
 							</div>
 	

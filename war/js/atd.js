@@ -50,6 +50,52 @@ var app = function() {
 		var selected = $("#rightValues option:selected");
 		_hideAantal(selected.val());
 	}
+	
+	function kentekenParsen() {
+		var kenteken = $("#kenteken").val();
+		kenteken = kenteken.replace(/\W+/g, "");
+		kenteken = kenteken.toUpperCase();
+		$("#kenteken").val(kenteken);
+		
+		if(kenteken.length !== 6) {
+			$("#kenteken").parent().parent().addClass("has-error");
+		}else{
+			$("#kenteken").parent().parent().removeClass("has-error");
+		}
+	}
+	
+	function kentekenOpzoeken() {
+		kentekenParsen();
+		var kenteken = $("#kenteken").val(); 
+		
+		$.ajax({
+			method : "GET",
+			url : "https://api.datamarket.azure.com/opendata.rdw/VRTG.Open.Data/v1/KENT_VRTG_O_DAT('" + kenteken + "')?$format=json"
+		}).done(
+				function(data) {
+					var merk = "";
+					var handelsnaam = "";
+					
+					if('d' in data && 'Merk' in data.d) {
+						merk = data.d.Merk;
+					}
+					if('d' in data && 'Handelsbenaming' in data.d) {
+						handelsnaam = data.d.Handelsbenaming;
+					}
+					
+					if((merk.length + handelsnaam.length) > 0) {
+						$("#kentekendata").text("Merk: " + merk + ", Model: " + handelsnaam);
+						
+						// Velden vervangen indien leeg
+						if($("#merk").val().length == 0) $("#merk").val(merk);
+						if($("#model").val().length == 0) $("#model").val(handelsnaam);
+					}else{
+						$("#kentekendata").text("Onbekend...");
+					}
+					
+					console.log(data);
+				});
+	}
 
 	function _artikelAantal(name) {
 		var find = $("#artikelbox").find("input");
@@ -140,7 +186,9 @@ var app = function() {
 		artikelSelectGroupRight : artikelSelectGroupRight,
 		showAantal : showAantal,
 		autolijst : autolijst,
-		alertFirst : alertFirst
+		alertFirst : alertFirst,
+		kentekenParsen : kentekenParsen,
+		kentekenOpzoeken : kentekenOpzoeken
 	}
 
 }();
@@ -173,6 +221,15 @@ $(function() {
 		e.preventDefault();
 		app.alertFirst($(this).attr("href"));
 	});
+	
+	if($("#kenteken").length > 0) {
+		$("#kenteken").change(function() {
+			app.kentekenParsen();
+		})
+		$("#kentekenopzoeken").click(function() {
+			app.kentekenOpzoeken();
+		})
+	}
 
 	if ($("#autolijst").length > 0) {
 		app.autolijst();
