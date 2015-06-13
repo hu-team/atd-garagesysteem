@@ -86,14 +86,12 @@ var app = function() {
 					if((merk.length + handelsnaam.length) > 0) {
 						$("#kentekendata").text("Merk: " + merk + ", Model: " + handelsnaam);
 						
-						// Velden vervangen indien leeg
-						if($("#merk").val().length == 0) $("#merk").val(merk);
-						if($("#model").val().length == 0) $("#model").val(handelsnaam);
+						// Velden vervangen met kentekendata
+						$("#merk").val(merk);
+						$("#model").val(handelsnaam);
 					}else{
 						$("#kentekendata").text("Onbekend...");
 					}
-					
-					console.log(data);
 				});
 	}
 
