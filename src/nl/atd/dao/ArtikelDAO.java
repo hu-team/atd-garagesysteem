@@ -34,7 +34,7 @@ public class ArtikelDAO {
 			}
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 
 		return artikelen;

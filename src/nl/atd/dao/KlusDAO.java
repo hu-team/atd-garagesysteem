@@ -165,6 +165,7 @@ public class KlusDAO {
 			connection.close();
 
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return nr;
@@ -204,6 +205,7 @@ public class KlusDAO {
 			return true;
 			
 		}catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -267,6 +269,7 @@ public class KlusDAO {
 				}
 				connection.close();
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return b;

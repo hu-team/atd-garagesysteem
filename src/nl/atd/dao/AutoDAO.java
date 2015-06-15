@@ -55,6 +55,7 @@ public class AutoDAO {
 			connection.close();
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return autos;
@@ -80,6 +81,7 @@ public class AutoDAO {
 			connection.close();
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return nr;

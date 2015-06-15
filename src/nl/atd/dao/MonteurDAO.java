@@ -34,7 +34,7 @@ public class MonteurDAO {
 			}
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		
 		return monteuren;
@@ -82,6 +82,7 @@ public class MonteurDAO {
 			
 			return true;
 		}catch(Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

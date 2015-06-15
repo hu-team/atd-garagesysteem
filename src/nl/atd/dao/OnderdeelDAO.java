@@ -39,7 +39,7 @@ public class OnderdeelDAO {
 			}
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		
 		return onderdelen;
@@ -65,6 +65,7 @@ public class OnderdeelDAO {
 			
 			return true;
 		}catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}
 	}
