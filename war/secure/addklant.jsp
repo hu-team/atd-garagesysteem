@@ -57,7 +57,7 @@
 						<div class="control-group">
 							<label class="control-label" for="adres">Adres: </label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="adres" name="Adres" value="${param.adres}">
+								<input type="text" class="input-xlarge" id="adres" name="adres" value="${param.adres}">
 							</div>
 						</div>
 						<div class="control-group">
@@ -67,9 +67,9 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="woonplaats">Woonplatts: </label>
+							<label class="control-label" for="woonplaats">Woonplaats: </label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="woonplaats" name="achternaam" value="${param.woonplaats}">
+								<input type="text" class="input-xlarge" id="woonplaats" name="woonplaats" value="${param.woonplaats}">
 							</div>
 						</div>												
 						<div class="control-group">

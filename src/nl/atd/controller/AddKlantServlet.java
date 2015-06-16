@@ -24,13 +24,17 @@ public class AddKlantServlet extends HttpServlet{
 		String wachtwoord2 = req.getParameter("wachtwoord2");
 		String voornaam = req.getParameter("voornaam");
 		String achternaam = req.getParameter("achternaam");
+		String adres = req.getParameter("adres");
+		String postcode = req.getParameter("postcode");
+		String woonplaats = req.getParameter("woonplaats");
+		String telefoonnummer = req.getParameter("telefoonnummer");
 		String email = req.getParameter("email");
 		
 		String errorString = "";
 		boolean error = false;
-		
 		if(username.trim().isEmpty() || wachtwoord.trim().isEmpty() || wachtwoord2.trim().isEmpty() ||
-				voornaam.trim().isEmpty() || achternaam.trim().isEmpty() || email.trim().isEmpty()){
+				voornaam.trim().isEmpty() || achternaam.trim().isEmpty() || email.trim().isEmpty() || adres.trim().isEmpty() ||
+				postcode.trim().isEmpty() || woonplaats.trim().isEmpty() || telefoonnummer.trim().isEmpty()){
 			error = true;
 			errorString += "Vul alle velden in <br />";
 		}else if(!wachtwoord.equals(wachtwoord2)){
@@ -55,8 +59,7 @@ public class AddKlantServlet extends HttpServlet{
 			return;
 		}
 		
-		Klant klant = new Klant(voornaam + " " + achternaam);
-		klant.setEmail(email);
+		Klant klant = new Klant(voornaam, achternaam, email, adres, postcode, woonplaats, telefoonnummer);
 		klant.setGebruikersnaam(username);
 		
 		klant.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord));
