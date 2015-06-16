@@ -1,6 +1,6 @@
 <%@page import="nl.atd.helper.AuthHelper"%>
 <%@ include file="_header.jsp" %>
-<% if(!AuthHelper.isAdmin(session) && !AuthHelper.isMonteur(session)) response.sendRedirect(application.getContextPath() + "/secure/"); %>
+<% //if(!AuthHelper.isAdmin(session) && !AuthHelper.isMonteur(session)) response.sendRedirect(application.getContextPath() + "/secure/"); %>
 <!-- start: Content -->
 <div id="content" class="span10">
 	<ul class="breadcrumb">
@@ -72,28 +72,9 @@
 								<input type="text" class="input-xlarge" id="woonplaats" name="achternaam" value="${param.woonplaats}">
 							</div>
 						</div>												
-						<div class="control-group">
-							<label class="control-label" for="gebruikersnaam">Gebruikersnaam: </label>
-							<div class="controls">
-								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam"  value='<c:out value="${klant.gebruikersnaam }" />'>
-							</div>
-						</div>					
-						<div class="control-group">
-							<label class="control-label" for="wachtwoord">Wachtwoord: </label>
-							<div class="controls">
-								<input class="input-xlarge" id="wachtwoord" type="password" name="wachtwoord">
-							</div>
-						</div>
-						
-						<div class="control-group">
-							<label class="control-label" for="wachtwoord2">Wachtwoord: <br />(herhaling)</label>
-							<div class="controls">
-								<input class="input-xlarge" id="wachtwoord2" type="password" name="wachtwoord2">
-							</div>
-						</div>
 						
 						<div class="form-actions">
-							<button type="submit" class="btn btn-primary">Klant toevoegen</button>
+							<button type="submit" class="btn btn-primary">Gegevens aanpassen</button>
 							<a href="<%=application.getContextPath()%>/secure/klantoverzicht.jsp" class="btn btn-danger promise-me">Annuleren</a>
 						</div>
 					</fieldset>
