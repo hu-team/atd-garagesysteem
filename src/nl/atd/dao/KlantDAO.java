@@ -50,6 +50,14 @@ public class KlantDAO {
 				
 				klant.setEmail(set.getString("email"));
 				
+				/**
+				 * @since 16-06-2015, sprint 3
+				 */
+				klant.setAdres(set.getString("adres"));
+				klant.setPostcode(set.getString("postcode"));
+				klant.setWoonplaats(set.getString("woonplaats"));
+				klant.setTelefoonnummer(set.getString("telefoonnummer"));
+				
 				if(metAutos){
 					AutoDAO autoDAO = new AutoDAO();
 					ArrayList<Auto> klantAutos = autoDAO.getAutosVanKlant(set.getString("gebruikersnaam"));
@@ -96,12 +104,16 @@ public class KlantDAO {
 		
 		try{
 			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection.prepareCall("INSERT INTO klant(gebruikersnaam, wachtwoord, email, naam) values(?, ?, ?, ?)");
+			PreparedStatement st = connection.prepareCall("INSERT INTO klant(gebruikersnaam, wachtwoord, email, naam, adres, postcode, woonplaats, telefoonnummer) values(?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			st.setString(1, klant.getGebruikersnaam());
 			st.setString(2, klant.getWachtwoord());
 			st.setString(3, klant.getEmail());
 			st.setString(4, klant.getNaam());
+			st.setString(5, klant.getAdres());
+			st.setString(6, klant.getPostcode());
+			st.setString(7, klant.getWoonplaats());
+			st.setString(8, klant.getTelefoonnummer());
 			
 			st.execute();
 			
@@ -115,6 +127,9 @@ public class KlantDAO {
 		
 	}
 
+	/**
+	 * Verwijder alle data in tabel, let op!! Alleen voor testen!
+	 */
 	public void deleteAlles() {
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();
