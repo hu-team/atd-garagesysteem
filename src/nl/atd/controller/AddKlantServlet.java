@@ -25,7 +25,7 @@ public class AddKlantServlet extends HttpServlet{
 		String voornaam = req.getParameter("voornaam");
 		String achternaam = req.getParameter("achternaam");
 		String adres = req.getParameter("adres");
-		String postcode = req.getParameter("postcode");
+		String postcode = req.getParameter("postcode").replace(" ", "");
 		String woonplaats = req.getParameter("woonplaats");
 		String telefoonnummer = req.getParameter("telefoonnummer");
 		String email = req.getParameter("email");
