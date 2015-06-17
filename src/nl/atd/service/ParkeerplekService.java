@@ -25,4 +25,25 @@ public class ParkeerplekService {
 	public ArrayList<Parkeerplek> getAlleVrijePlekken(Calendar datum) {
 		return this.parkeerplekDAO.getAlleVrijePlekken(datum);
 	}
+	
+	/**
+	 * Add parkeerplek
+	 * @param plek
+	 * @return gelukt?
+	 */
+	public boolean addParkeerplek(Parkeerplek plek) {
+		if(this.parkeerplekDAO.getParkeerplekkenOpPlekEnRij(plek.getRij(), plek.getPlek()).size() == 0) {
+			return this.parkeerplekDAO.addParkeerplek(plek);
+		}
+		return false;
+	}
+	
+	/**
+	 * Get parkeerplek ID
+	 * @param plek
+	 * @return ID of 0
+	 */
+	public int getParkeerplekIdOpPlek(Parkeerplek plek) {
+		return this.parkeerplekDAO.getParkeerplekIdOpPlek(plek);
+	}
 }

@@ -20,7 +20,8 @@ public class ParkeerplekDAO extends BaseDAO {
 			ResultSet set = ps.executeQuery();
 			
 			while(set.next()) {
-				
+				Parkeerplek parkeerplek = new Parkeerplek(set.getString("rij").charAt(0), set.getInt("plek"));
+				plekken.add(parkeerplek);
 			}
 			
 			ps.closeOnCompletion();
@@ -76,6 +77,66 @@ public class ParkeerplekDAO extends BaseDAO {
 			return this.getPlekken(ps);
 		}catch(Exception e) {
 			return new ArrayList<Parkeerplek>();
+		}
+	}
+	
+	/**
+	 * Get plekken met rij en plek
+	 * @param rij
+	 * @param plek
+	 * @return plekken
+	 */
+	public ArrayList<Parkeerplek> getParkeerplekkenOpPlekEnRij(char rij, int plek) {
+		ArrayList<Parkeerplek> plekken = new ArrayList<Parkeerplek>();
+		
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM parkeerplek WHERE rij LIKE ? AND plek = ?");
+			ps.setString(1, Character.toString(rij));
+			ps.setInt(2, plek);
+			
+			plekken = this.getPlekken(ps);
+		}catch(Exception e) {}
+		
+		return plekken;
+	}
+	
+	/**
+	 * Get plek id van plek zelf
+	 * @param plek
+	 * @return int of 0
+	 */
+	public int getParkeerplekIdOpPlek(Parkeerplek plek) {
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT parkeerplek.parkeerplekid as id FROM parkeerplek WHERE rij LIKE ? AND plek = ?");
+			ps.setString(1, Character.toString(plek.getRij()));
+			ps.setInt(2, plek.getPlek());
+			
+			ResultSet set = ps.executeQuery();
+			
+			return set.getInt("id");
+		}catch(Exception e) {}
+		
+		return 0;
+	}
+	
+	/**
+	 * Add parkeerplek
+	 * @param plek
+	 * @return gelukt?
+	 */
+	public boolean addParkeerplek(Parkeerplek plek) {
+		try{
+			PreparedStatement ps = this.getPreparedStatement("INSERT INTO parkeerplek (rij, plek) VALUES(?, ?);");
+			ps.setString(1, Character.toString(plek.getRij()));
+			ps.setInt(2, plek.getPlek());
+			
+			boolean gelukt = ps.execute();
+			
+			ps.closeOnCompletion();
+			
+			return gelukt;
+		}catch(Exception e){
+			return false;
 		}
 	}
 	
