@@ -46,9 +46,9 @@ public class Parkeergarage {
 	 */
 	public Parkeerplek zoekVrijePlek(Calendar van, Calendar tot){
 		for(int i = 0; i < this.plekken.size(); i++) {
-			if(this.plekken.get(i).isVrijTussen(van, tot)) {
-				return this.plekken.get(i);
-			}
+			//if(this.plekken.get(i).isVrijTussen(van, tot)) {
+				//return this.plekken.get(i);
+			//}
 		}
 		
 		return null;
