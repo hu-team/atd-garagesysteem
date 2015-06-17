@@ -22,11 +22,10 @@ public class ReserveringDAO extends BaseDAO {
 				
 			}
 			
+			ps.closeOnCompletion();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		this.closeConnection();
 		
 		return reserveringen;
 	}
@@ -42,6 +41,8 @@ public class ReserveringDAO extends BaseDAO {
 		try{
 			PreparedStatement st = this.getPreparedStatement(query);
 			reserveringen = this.getReserveringen(st);
+			
+			st.closeOnCompletion();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Monteur;
 
 public class MonteurDAO extends BaseDAO {
@@ -33,7 +32,7 @@ public class MonteurDAO extends BaseDAO {
 				monteuren.add(monteur);
 			}
 			
-			this.closeConnection();
+			st.closeOnCompletion();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -77,7 +76,7 @@ public class MonteurDAO extends BaseDAO {
 			st.setInt(4, monteur.getSalarisnummer());
 			
 			st.execute();
-			this.closeConnection();
+			st.closeOnCompletion();
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -93,7 +92,7 @@ public class MonteurDAO extends BaseDAO {
 			statement.executeUpdate("TRUNCATE monteur;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			this.closeConnection();
+			statement.closeOnCompletion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		

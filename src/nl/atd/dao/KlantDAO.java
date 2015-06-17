@@ -66,7 +66,8 @@ public class KlantDAO extends BaseDAO {
 				klanten.add(klant);
 			}
 			
-			this.closeConnection();
+			statement.closeOnCompletion();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -117,7 +118,7 @@ public class KlantDAO extends BaseDAO {
 			
 			st.execute();
 			
-			this.closeConnection();
+			st.closeOnCompletion();
 			
 			return true;
 		}catch(Exception e){
@@ -154,7 +155,7 @@ public class KlantDAO extends BaseDAO {
 			
 			statement.executeUpdate();
 			
-			this.closeConnection();
+			statement.closeOnCompletion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -171,7 +172,7 @@ public class KlantDAO extends BaseDAO {
 			statement.executeUpdate("TRUNCATE klant;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			this.closeConnection();
+			statement.closeOnCompletion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

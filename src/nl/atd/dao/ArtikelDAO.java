@@ -32,7 +32,7 @@ public class ArtikelDAO extends BaseDAO {
 				artikelen.add(artikel);
 			}
 			
-			this.closeConnection();
+			st.closeOnCompletion();
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class ArtikelDAO extends BaseDAO {
 			st.setString(4, artikel.getCode());
 			
 			st.execute();
-			this.closeConnection();
+			st.closeOnCompletion();
 			
 			return true;
 		}catch(Exception e){
@@ -108,7 +108,7 @@ public class ArtikelDAO extends BaseDAO {
 			st.setDouble(4, artikel.getPrijs());
 			
 			st.execute();
-			this.closeConnection();
+			st.closeOnCompletion();
 			
 			return true;
 		}catch(Exception e){
@@ -124,7 +124,7 @@ public class ArtikelDAO extends BaseDAO {
 			statement.executeUpdate("TRUNCATE artikel;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			this.closeConnection();
+			statement.closeOnCompletion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

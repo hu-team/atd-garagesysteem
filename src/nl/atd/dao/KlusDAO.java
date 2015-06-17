@@ -77,7 +77,7 @@ public class KlusDAO extends BaseDAO {
 				klussen.add(klus);
 			}
 
-			this.closeConnection();
+			statement.closeOnCompletion();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class KlusDAO extends BaseDAO {
 
 			st.execute();
 
-			this.closeConnection();
+			st.closeOnCompletion();
 
 			return true;
 		} catch (Exception e) {
@@ -159,7 +159,7 @@ public class KlusDAO extends BaseDAO {
 				nr = set.getInt("idklus");
 			}
 
-			this.closeConnection();
+			statement.closeOnCompletion();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -204,7 +204,7 @@ public class KlusDAO extends BaseDAO {
 			st.setInt(9, this.getKlusId(klus.getCalendar(), klus.getKlant(), klus.getAuto()));
 			
 			st.execute();
-			this.closeConnection();
+			st.closeOnCompletion();
 			
 			return true;
 			
@@ -271,7 +271,7 @@ public class KlusDAO extends BaseDAO {
 				if (statement.executeUpdate(query) == 1) {
 					b = true;
 				}
-				this.closeConnection();
+				statement.closeOnCompletion();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -290,7 +290,7 @@ public class KlusDAO extends BaseDAO {
 			statement.executeUpdate("TRUNCATE klus;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			this.closeConnection();
+			statement.closeOnCompletion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

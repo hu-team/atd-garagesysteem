@@ -22,11 +22,11 @@ public class ParkeerplekDAO extends BaseDAO {
 				
 			}
 			
+			ps.closeOnCompletion();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		this.closeConnection();
 		
 		return plekken;
 	}
@@ -42,6 +42,8 @@ public class ParkeerplekDAO extends BaseDAO {
 		try{
 			PreparedStatement st = this.getPreparedStatement(query);
 			plekken = this.getPlekken(st);
+			
+			st.closeOnCompletion();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
