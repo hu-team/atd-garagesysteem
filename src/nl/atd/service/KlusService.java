@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import nl.atd.dao.KlusDAO;
+import nl.atd.model.Klant;
 import nl.atd.model.Klus;
 
 public class KlusService {
@@ -15,6 +16,15 @@ public class KlusService {
 	 */
 	public ArrayList<Klus> getKlussen() {
 		return this.klusDAO.getAlleKlussen();
+	}
+	
+	/**
+	 * Get klussen van bepaalde klant
+	 * @param klant klant voor klussen
+	 * @return arraylist klussen
+	 */
+	public ArrayList<Klus> getKlussenVanKlant(Klant klant) {
+		return this.klusDAO.getKlussenVanKlant(klant.getGebruikersnaam());
 	}
 	
 	/**

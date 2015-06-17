@@ -1,4 +1,5 @@
 <%@ include file="_header.jsp" %>
+
 <div id="content" class="span10">
 <%
 if(AuthHelper.isAdmin(session)) {

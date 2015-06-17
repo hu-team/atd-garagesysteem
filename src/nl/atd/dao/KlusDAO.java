@@ -172,6 +172,15 @@ public class KlusDAO {
 	}
 	
 	/**
+	 * Get klussen van klant gebruikersnaam
+	 * @param gebruikersnaam
+	 * @return arraylist klussen
+	 */
+	public ArrayList<Klus> getKlussenVanKlant(String gebruikersnaam) {
+		return this.getKlussen("SELECT * FROM klus WHERE klant LIKE '"+gebruikersnaam+"'");
+	}
+	
+	/**
 	 * Klus aanpassen in database
 	 * @param klus
 	 * @return gelukt?

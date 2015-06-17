@@ -49,6 +49,14 @@ input#kenteken {
 	display:block;
 }
 
+span.kenteken {
+	padding: 2px 30px;
+}
+
+td > span.yellow, td > span.red, td > span.green, td > span.blue {
+	padding: 4px 6px;
+}
+
 .kenteken-xl {
 	width:150px;
 	height:auto;

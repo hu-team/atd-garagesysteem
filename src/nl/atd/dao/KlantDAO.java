@@ -126,6 +126,40 @@ public class KlantDAO {
 		}
 		
 	}
+	
+	/**
+	 * Edit klant, zorg dat gebruikersnaam niet aangepast wordt!!
+	 * @param klant klant, originele gebruikersnaam, de rest aangepast.
+	 */
+	public void editKlant(Klant klant) {
+		try {
+			Connection connection = DatabaseHelper.getDatabaseConnection();
+			PreparedStatement statement = connection.prepareStatement("UPDATE klant "
+					+ "SET email = ?, "
+					+ "naam = ?, "
+					+ "adres = ?, "
+					+ "postcode = ?,"
+					+ "woonplaats = ?, "
+					+ "telefoonnummer = ?, "
+					+ "wachtwoord = ? "
+					+ "WHERE gebruikersnaam = ? LIMIT 1;");
+			
+			statement.setString(1, klant.getEmail());
+			statement.setString(2, klant.getNaam());
+			statement.setString(3, klant.getAdres());
+			statement.setString(4, klant.getPostcode());
+			statement.setString(5, klant.getWoonplaats());
+			statement.setString(6, klant.getTelefoonnummer());
+			statement.setString(7, klant.getWachtwoord());
+			statement.setString(8, klant.getGebruikersnaam());
+			
+			statement.executeUpdate();
+			
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Verwijder alle data in tabel, let op!! Alleen voor testen!
