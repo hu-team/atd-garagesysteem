@@ -27,7 +27,7 @@ public class KlantTest {
 		k2.setGebruikersnaam("bencouser");
 		
 		a1 = new Auto("Mercedes", "A180", 2015, null);
-		auto.setKenteken(kenteken);
+		//auto.setKenteken(kenteken);
 	}
 
 	@Test
