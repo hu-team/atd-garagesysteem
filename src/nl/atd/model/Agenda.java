@@ -7,6 +7,8 @@ import java.util.Calendar;
 /**
  * Agenda, zorgt voor data opslag voor alle klussen
  * @author ATD Developer
+ * 
+ * @deprecated NIET MEER GEBRUIKEN, GEBRUIK SERVICE VOOR PARKEERPLEKKEN
  *
  */
 public class Agenda {

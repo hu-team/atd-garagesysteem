@@ -7,7 +7,6 @@ import java.util.Calendar;
  * @author ATD Developer
  *
  */
-
 public class Reservering {
 	private Calendar van;
 	private Calendar tot;

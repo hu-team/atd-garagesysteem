@@ -5,7 +5,8 @@ import java.util.ArrayList;
 /**
  * KlantenBestand, zorgt voor centrale lijst met klanten
  * @author ATD Developers
- *
+ * 
+ * @deprecated NIET MEER GEBRUIKEN, GEBRUIK SERVICE VOOR PARKEERPLEKKEN
  */
 public class KlantenBestand {
 	private static KlantenBestand instance;
