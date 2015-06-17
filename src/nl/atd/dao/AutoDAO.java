@@ -9,10 +9,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Auto;
 
-public class AutoDAO {
+public class AutoDAO extends BaseDAO {
 	
 	/**
 	 * Get autos, convert to list met autos
@@ -23,7 +22,7 @@ public class AutoDAO {
 		ArrayList<Auto> autos = new ArrayList<Auto>();
 		
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 			
 			ResultSet set = statement.executeQuery(query);
@@ -52,7 +51,7 @@ public class AutoDAO {
 				autos.add(auto);
 			}
 			
-			connection.close();
+			statement.closeOnCompletion();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,7 +68,7 @@ public class AutoDAO {
 	private int getAutoId(String query) {
 		int nr = 0;
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 			
 			ResultSet set = statement.executeQuery(query);
@@ -78,7 +77,7 @@ public class AutoDAO {
 				nr = set.getInt("autoid");
 			}
 			
-			connection.close();
+			statement.closeOnCompletion();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -143,11 +142,9 @@ public class AutoDAO {
 	 */
 	public boolean addAuto(String klant, Auto auto) {
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			
 			String sql = "INSERT INTO auto (merk, model, bouwjaar, laatste_beurt, kenteken, klant) VALUES(?, ?, ?, null, ?, ?);";
 			
-			PreparedStatement statement = connection.prepareStatement(sql);
+			PreparedStatement statement = this.getPreparedStatement(sql);
 			
 			statement.setString(1, auto.getMerk());
 			statement.setString(2, auto.getModel());
@@ -156,8 +153,7 @@ public class AutoDAO {
 			statement.setString(5, klant);
 			
 			statement.execute();
-			connection.close();
-			
+			statement.closeOnCompletion();			
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,12 +163,12 @@ public class AutoDAO {
 
 	public void deleteAlles() {
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
 			statement.executeUpdate("TRUNCATE auto;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
-			connection.close();
+			statement.closeOnCompletion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

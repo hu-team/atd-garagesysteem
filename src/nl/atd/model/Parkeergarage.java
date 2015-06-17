@@ -7,6 +7,7 @@ import java.util.Calendar;
  * Parkeergarage zorgt voor een dataopslag voor de plekken die in de garage zitten.
  * @author ATD Developers
  *
+ * @deprecated NIET MEER GEBRUIKEN, GEBRUIK SERVICE VOOR PARKEERPLEKKEN
  */
 public class Parkeergarage {
 
@@ -45,9 +46,9 @@ public class Parkeergarage {
 	 */
 	public Parkeerplek zoekVrijePlek(Calendar van, Calendar tot){
 		for(int i = 0; i < this.plekken.size(); i++) {
-			if(this.plekken.get(i).isVrijTussen(van, tot)) {
-				return this.plekken.get(i);
-			}
+			//if(this.plekken.get(i).isVrijTussen(van, tot)) {
+				//return this.plekken.get(i);
+			//}
 		}
 		
 		return null;

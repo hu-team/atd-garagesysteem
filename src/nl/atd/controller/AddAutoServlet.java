@@ -38,7 +38,7 @@ public class AddAutoServlet extends HttpServlet {
 		}
 		
 		// Kenteken controleren
-		if(kenteken.length() != 6) {
+		if(kenteken == null || kenteken.length() != 6) {
 			error = true;
 			errorString += "Kenteken moet bestaan uit 6 karakters! <br />";
 		}

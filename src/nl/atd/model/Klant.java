@@ -12,6 +12,14 @@ import java.util.Calendar;
 public class Klant extends Persoon {
 	private String email;
 	private Calendar laatsteBezoek;
+	
+	/**
+	 * @since 16-06-2015, sprint 3
+	 */
+	private String adres;
+	private String postcode;
+	private String woonplaats;
+	private String telefoonnummer;
 
 	private ArrayList<Auto> autos;
 
@@ -78,6 +86,71 @@ public class Klant extends Persoon {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	/**
+	 * Get Adres van klant
+	 * @return the adres
+	 */
+	public String getAdres() {
+		return adres;
+	}
+
+	/**
+	 * Set Adres van klant
+	 * @param adres the adres to set
+	 */
+	public void setAdres(String adres) {
+		this.adres = adres;
+	}
+
+	/**
+	 * Get postcode van klant, 0000AA
+	 * @return the postcode
+	 */
+	public String getPostcode() {
+		return postcode;
+	}
+
+	/**
+	 * Set Postcode.
+	 * Let Op: Zorg dat het zonder spaties wordt ingevoerd, dus geen 0000 AA maar 0000AA!
+	 * @param postcode the postcode to set
+	 */
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	/**
+	 * Get Woonplaats
+	 * @return the woonplaats
+	 */
+	public String getWoonplaats() {
+		return woonplaats;
+	}
+
+	/**
+	 * Set woonplaats
+	 * @param woonplaats the woonplaats to set
+	 */
+	public void setWoonplaats(String woonplaats) {
+		this.woonplaats = woonplaats;
+	}
+
+	/**
+	 * Get telefoonnummer
+	 * @return the telefoonnummer
+	 */
+	public String getTelefoonnummer() {
+		return telefoonnummer;
+	}
+
+	/**
+	 * Set telefoonnummer
+	 * @param telefoonnummer the telefoonnummer to set
+	 */
+	public void setTelefoonnummer(String telefoonnummer) {
+		this.telefoonnummer = telefoonnummer;
+	}
 
 	/**
 	 * Override van equals 
@@ -94,8 +167,10 @@ public class Klant extends Persoon {
 		}
 
 		b = b && super.equals(ander) && (this.email.equals(((Klant)ander).getEmail()));
-		// Omdat in de tests de database moet worden geleegd bij tearDown()
-		//b = b && (this.autos.equals(((Klant)ander).getAutos()));
+		b = b && (this.adres.equals(((Klant)ander).getAdres()));
+		b = b && (this.postcode.equals(((Klant)ander).getPostcode()));
+		b = b && (this.woonplaats.equals(((Klant)ander).getWoonplaats()));
+		b = b && (this.telefoonnummer.equals(((Klant)ander).getTelefoonnummer()));
 		
 		// Calendar vergelijken, DAY.OF.YEAR - YEAR - HOURS : MINUTES
 		b = b && ((this.laatsteBezoek == null && ((Klant)ander).getLaatsteBezoek() == null) || 

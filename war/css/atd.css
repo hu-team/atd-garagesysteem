@@ -6,6 +6,10 @@ body {
 	background: #F7F7F7;
 }
 
+div.mm {
+	margin-left:0px;
+}
+
 #inlog {
 	display: none;
 }
@@ -47,6 +51,14 @@ input#kenteken {
 	background-size: contain;
 	background-repeat: no-repeat;
 	display:block;
+}
+
+span.kenteken {
+	padding: 2px 30px;
+}
+
+td > span.yellow, td > span.red, td > span.green, td > span.blue {
+	padding: 4px 6px;
 }
 
 .kenteken-xl {

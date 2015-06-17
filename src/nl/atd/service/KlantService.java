@@ -48,6 +48,14 @@ public class KlantService {
 	}
 	
 	/**
+	 * Aanpassen van klant, verander gebruikersnaam niet!
+	 * @param klant klant om aan te passen
+	 */
+	public void editKlant(Klant klant) {
+		this.klantDAO.editKlant(klant);
+	}
+	
+	/**
 	 * Verwijder alle klanten uit database
 	 * LET OP: gebruik alleen binnen tests
 	 */

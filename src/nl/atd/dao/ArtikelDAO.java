@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Artikel;
 
-public class ArtikelDAO {
+public class ArtikelDAO extends BaseDAO {
 	
 	/**
 	 * Get Artikelen
@@ -20,7 +19,7 @@ public class ArtikelDAO {
 		ArrayList<Artikel> artikelen = new ArrayList<Artikel>();
 		
 		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement st = connection.createStatement();
 			
 			ResultSet set = st.executeQuery(query);
@@ -32,6 +31,8 @@ public class ArtikelDAO {
 				
 				artikelen.add(artikel);
 			}
+			
+			st.closeOnCompletion();
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -75,8 +76,7 @@ public class ArtikelDAO {
 	 */
 	public boolean editArtikel(Artikel artikel){
 		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection.prepareStatement("UPDATE artikel SET naam=? , aantal=? , prijs=? WHERE code=?");
+			PreparedStatement st = this.getPreparedStatement("UPDATE artikel SET naam=? , aantal=? , prijs=? WHERE code=?");
 			
 			st.setString(1, artikel.getNaam());
 			st.setInt(2, artikel.getAantal());
@@ -84,7 +84,7 @@ public class ArtikelDAO {
 			st.setString(4, artikel.getCode());
 			
 			st.execute();
-			connection.close();
+			st.closeOnCompletion();
 			
 			return true;
 		}catch(Exception e){
@@ -100,8 +100,7 @@ public class ArtikelDAO {
 	 */
 	public boolean addArtikel(Artikel artikel){
 		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection.prepareStatement("INSERT INTO artikel (code, naam, aantal, prijs) VALUES(?, ?, ?, ?);");
+			PreparedStatement st = this.getPreparedStatement("INSERT INTO artikel (code, naam, aantal, prijs) VALUES(?, ?, ?, ?);");
 			
 			st.setString(1, artikel.getCode());
 			st.setString(2, artikel.getNaam());
@@ -109,7 +108,7 @@ public class ArtikelDAO {
 			st.setDouble(4, artikel.getPrijs());
 			
 			st.execute();
-			connection.close();
+			st.closeOnCompletion();
 			
 			return true;
 		}catch(Exception e){
@@ -119,13 +118,13 @@ public class ArtikelDAO {
 
 	public void deleteAlles() {
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
 			statement.executeUpdate("TRUNCATE artikel;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			connection.close();
+			statement.closeOnCompletion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -41,5 +41,11 @@
 		<span class="hidden-tablet">Klus inplannen</span>
 	</a>
 </li>
+<li>
+	<a href="<%=application.getContextPath()%>/secure/editklantklant.jsp">
+		<i class="fa fa-user"></i>
+		<span class="hidden-tablet">Mijn gegevens wijzigen</span>
+	</a>
+</li>
 <% } %>
 </ul>

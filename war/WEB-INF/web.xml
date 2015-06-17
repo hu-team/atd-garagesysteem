@@ -55,6 +55,10 @@
     <servlet-name>add onderdeel servlet</servlet-name>
     <servlet-class>nl.atd.controller.AddOnderdeelServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>edit klant klant</servlet-name>
+  	<servlet-class>nl.atd.controller.EditKlantKlant</servlet-class>
+  </servlet>
   
   
   <servlet-mapping>
@@ -122,5 +126,9 @@
   <servlet-mapping>
     <servlet-name>add onderdeel servlet</servlet-name>
     <url-pattern>/secure/addonderdeel</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>edit klant klant</servlet-name>
+    <url-pattern>/secure/editklantklant</url-pattern>
   </servlet-mapping>
 </web-app>

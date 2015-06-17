@@ -12,7 +12,7 @@ import nl.atd.model.Klus;
 import nl.atd.model.Onderdeel;
 import nl.atd.service.ServiceProvider;
 
-public class OnderdeelDAO {
+public class OnderdeelDAO extends BaseDAO {
 	
 	/**
 	 * Get onderdelen
@@ -23,7 +23,7 @@ public class OnderdeelDAO {
 		ArrayList<Onderdeel> onderdelen = new ArrayList<Onderdeel>();
 		
 		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement st = connection.createStatement();
 			
 			ResultSet set = st.executeQuery(query);

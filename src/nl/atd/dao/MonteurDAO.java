@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Monteur;
 
-public class MonteurDAO {
+public class MonteurDAO extends BaseDAO {
 	
 	/**
 	 * Get monteuren
@@ -20,7 +19,7 @@ public class MonteurDAO {
 		ArrayList<Monteur> monteuren = new ArrayList<Monteur>();
 		
 		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement st = connection.createStatement();
 			
 			ResultSet set = st.executeQuery(query);
@@ -33,6 +32,7 @@ public class MonteurDAO {
 				monteuren.add(monteur);
 			}
 			
+			st.closeOnCompletion();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -68,8 +68,7 @@ public class MonteurDAO {
 	 */
 	public boolean addMonteur(Monteur monteur) {
 		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection.prepareStatement("INSERT INTO monteur (gebruikersnaam, wachtwoord, naam, salarisnummer) VALUES(?, ?, ?, ?);");
+			PreparedStatement st = this.getPreparedStatement("INSERT INTO monteur (gebruikersnaam, wachtwoord, naam, salarisnummer) VALUES(?, ?, ?, ?);");
 
 			st.setString(1, monteur.getGebruikersnaam());
 			st.setString(2, monteur.getWachtwoord());
@@ -77,9 +76,7 @@ public class MonteurDAO {
 			st.setInt(4, monteur.getSalarisnummer());
 			
 			st.execute();
-			
-			connection.close();
-			
+			st.closeOnCompletion();
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -89,13 +86,13 @@ public class MonteurDAO {
 
 	public void deleteAlles() {
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
 			statement.executeUpdate("TRUNCATE monteur;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			connection.close();
+			statement.closeOnCompletion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
