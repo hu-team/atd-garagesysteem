@@ -37,7 +37,6 @@ public class KlantTest {
 		
 		a4 = new Auto("Porsche", "Panamera", 2014, null);
 		a4.setKenteken("2ZZD51");
-		
 	}
 
 	@Test
