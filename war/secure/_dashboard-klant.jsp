@@ -19,7 +19,7 @@ pageContext.setAttribute("klant", klant);
 pageContext.setAttribute("klussen", klussen);
 
 %>
-
+<div class="row mm">
 <div class="box span6" ontablet="span6" ondesktop="span6">
 	<div class="box-header">
 		<h2>
@@ -73,15 +73,10 @@ pageContext.setAttribute("klussen", klussen);
 <div class="box span6" ontablet="span6" ondesktop="span6">
 	<div class="box-header">
 		<h2>
-			<i class="halflings-icon white user"></i><span class="break"></span>Mijn gegevens
+			<i class="halflings-icon white user"></i><span class="break"></span>Mijn Gegevens
 		</h2>
 	</div>
 	<div class="box-content">
-		<c:if test="${not empty param.done}">
-			<div class="alert alert-success">
-				Actie gelukt!
-			</div>
-		</c:if>
 		<c:choose>
 		<c:when test="${empty klant }">
 		<h1>Er is iets mis gegaan, neem aub contact met ons op.</h1>
@@ -116,4 +111,32 @@ pageContext.setAttribute("klussen", klussen);
 		</c:otherwise>
 		</c:choose>
 	</div>
+</div>
+</div>
+
+<div class="row mm">
+<div class="box span6" ontablet="span6" ondesktop="span6">
+	<div class="box-header">
+		<h2>
+			<i class="halflings-icon white user"></i><span class="break"></span>Facturen
+		</h2>
+	</div>
+	<div class="box-content">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Factuurdatum</th>
+					<th>Nummer</th>
+					<th>Bedrag</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
 </div>

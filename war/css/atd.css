@@ -6,6 +6,10 @@ body {
 	background: #F7F7F7;
 }
 
+div.mm {
+	margin-left:0px;
+}
+
 #inlog {
 	display: none;
 }
