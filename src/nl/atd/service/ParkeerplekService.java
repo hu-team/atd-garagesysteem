@@ -2,17 +2,17 @@ package nl.atd.service;
 
 import java.util.ArrayList;
 
-import nl.atd.dao.ParkeerDAO;
+import nl.atd.dao.ParkeerplekDAO;
 import nl.atd.model.Parkeerplek;
 
-public class ParkeerService {
-	private ParkeerDAO parkeerDAO = new ParkeerDAO();
+public class ParkeerplekService {
+	private ParkeerplekDAO parkeerplekDAO = new ParkeerplekDAO();
 	
 	/**
 	 * Get alle parkeerplekken
 	 * @return list parkeerplekken
 	 */
 	public ArrayList<Parkeerplek> getAllePlekken() {
-		return this.parkeerDAO.getAllePlekken();
+		return this.parkeerplekDAO.getAllePlekken();
 	}
 }

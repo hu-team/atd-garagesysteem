@@ -15,7 +15,7 @@ public class ServiceProvider {
 	private static KlusService klusService = new KlusService();
 	private static ArtikelService artikelService = new ArtikelService();
 	private static OnderdeelService onderdeelService = new OnderdeelService();
-	private static ParkeerService parkeerService = new ParkeerService();
+	private static ParkeerplekService parkeerplekService = new ParkeerplekService();
 	
 	/**
 	 * Krijg Monteur Service Provider
@@ -69,7 +69,7 @@ public class ServiceProvider {
 	 * Krijg parkeer service provider
 	 * @return parkeer service
 	 */
-	public static ParkeerService getParkeerService() {
-		return parkeerService;
+	public static ParkeerplekService getParkeerplekService() {
+		return parkeerplekService;
 	}
 }

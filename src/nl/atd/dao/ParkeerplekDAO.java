@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import nl.atd.model.Parkeerplek;
 
-public class ParkeerDAO extends BaseDAO {
+public class ParkeerplekDAO extends BaseDAO {
 	
 	/**
 	 * Get plekken, prepared statement
