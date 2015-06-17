@@ -27,7 +27,17 @@ public class KlantTest {
 		k2.setGebruikersnaam("bencouser");
 		
 		a1 = new Auto("Mercedes", "A180", 2015, null);
-		auto.setKenteken(kenteken);
+		a1.setKenteken("GG101B");
+		
+		a2 = new Auto("Ford", "Focus", 2015, null);
+		a2.setKenteken("GT421D");
+		
+		a3 = new Auto("Peugeot", "508", 2013, null);
+		a3.setKenteken("1XVK22");
+		
+		a4 = new Auto("Porsche", "Panamera", 2014, null);
+		a4.setKenteken("2ZZD51");
+		
 	}
 
 	@Test
