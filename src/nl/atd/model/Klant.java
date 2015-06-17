@@ -30,15 +30,6 @@ public class Klant extends Persoon {
 		this.laatsteBezoek = Calendar.getInstance();
 		this.autos = new ArrayList<Auto>();
 	}
-	
-	public Klant(String voornaam, String achternaam, String email, String adres, String postcode, String woonplaats, String telefoonnummer) {
-		super(voornaam + " " + achternaam);
-		this.email = email;
-		this.adres = adres;
-		this.postcode = postcode;
-		this.woonplaats = woonplaats;
-		this.telefoonnummer = telefoonnummer;
-	}
 
 	/**
 	 * Get alle auto's in arraylist

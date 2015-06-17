@@ -45,7 +45,7 @@
 						<div class="control-group">
 							<label class="control-label" for="email">E-mail: </label>
 							<div class="controls">
-								<input class="input-xlarge" id="email" type="email" name="email" value='<c:out value="${klant.email }" />'>
+								<input class="input-xlarge" id="email" type="email" name="email" value='<c:out value="${param.email }" />'>
 							</div>
 						</div>
 						<div class="control-group">
@@ -75,7 +75,7 @@
 						<div class="control-group">
 							<label class="control-label" for="gebruikersnaam">Gebruikersnaam: </label>
 							<div class="controls">
-								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam"  value='<c:out value="${klant.gebruikersnaam }" />'>
+								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam"  value='<c:out value="${param.gebruikersnaam }" />'>
 							</div>
 						</div>					
 						<div class="control-group">

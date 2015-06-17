@@ -25,14 +25,18 @@ public class AddKlantServlet extends HttpServlet{
 		String voornaam = req.getParameter("voornaam");
 		String achternaam = req.getParameter("achternaam");
 		String adres = req.getParameter("adres");
-		String postcode = req.getParameter("postcode").replace(" ", "");
+		String postcode = req.getParameter("postcode");
 		String woonplaats = req.getParameter("woonplaats");
 		String telefoonnummer = req.getParameter("telefoonnummer");
 		String email = req.getParameter("email");
 		
 		String errorString = "";
 		boolean error = false;
-		if(username.trim().isEmpty() || wachtwoord.trim().isEmpty() || wachtwoord2.trim().isEmpty() ||
+		if(		username == null || wachtwoord == null || wachtwoord2 == null ||
+				voornaam == null || achternaam == null || email == null ||
+				adres == null || postcode == null || woonplaats == null ||
+				telefoonnummer == null ||
+				username.trim().isEmpty() || wachtwoord.trim().isEmpty() || wachtwoord2.trim().isEmpty() ||
 				voornaam.trim().isEmpty() || achternaam.trim().isEmpty() || email.trim().isEmpty() || adres.trim().isEmpty() ||
 				postcode.trim().isEmpty() || woonplaats.trim().isEmpty() || telefoonnummer.trim().isEmpty()){
 			error = true;
@@ -42,7 +46,7 @@ public class AddKlantServlet extends HttpServlet{
 			errorString += "Wachtwoorden komen niet overeen. <br />";
 		}
 		
-		if(!email.contains("@") && !email.contains(".")) {
+		if(email != null &&(!email.contains("@") && !email.contains("."))) {
 			error = true;
 			errorString += "E-mail is onjuist! <br />";
 		}
@@ -59,9 +63,16 @@ public class AddKlantServlet extends HttpServlet{
 			return;
 		}
 		
-		Klant klant = new Klant(voornaam, achternaam, email, adres, postcode, woonplaats, telefoonnummer);
-		klant.setGebruikersnaam(username);
 		
+		Klant klant = new Klant(voornaam + " " + achternaam);
+		
+		klant.setEmail(email);
+		klant.setAdres(adres);
+		klant.setPostcode(postcode.replace(" ", ""));
+		klant.setWoonplaats(woonplaats);
+		klant.setTelefoonnummer(telefoonnummer);
+		
+		klant.setGebruikersnaam(username);
 		klant.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord));
 		
 		if(ServiceProvider.getKlantService().addKlant(klant)) {
