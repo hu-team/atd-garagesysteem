@@ -9,11 +9,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 
-public class KlantDAO {
+public class KlantDAO extends BaseDAO {
 	
 	/**
 	 * Get klanten
@@ -25,7 +24,7 @@ public class KlantDAO {
 		ArrayList<Klant> klanten = new ArrayList<Klant>();
 		
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 			ResultSet set = statement.executeQuery(query);
 			
@@ -66,6 +65,8 @@ public class KlantDAO {
 				
 				klanten.add(klant);
 			}
+			
+			this.closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -103,8 +104,7 @@ public class KlantDAO {
 	public boolean addKlant(Klant klant){
 		
 		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection.prepareCall("INSERT INTO klant(gebruikersnaam, wachtwoord, email, naam, adres, postcode, woonplaats, telefoonnummer) values(?, ?, ?, ?, ?, ?, ?, ?)");
+			PreparedStatement st = this.getPreparedStatement("INSERT INTO klant(gebruikersnaam, wachtwoord, email, naam, adres, postcode, woonplaats, telefoonnummer) values(?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			st.setString(1, klant.getGebruikersnaam());
 			st.setString(2, klant.getWachtwoord());
@@ -117,7 +117,7 @@ public class KlantDAO {
 			
 			st.execute();
 			
-			connection.close();
+			this.closeConnection();
 			
 			return true;
 		}catch(Exception e){
@@ -133,8 +133,7 @@ public class KlantDAO {
 	 */
 	public void editKlant(Klant klant) {
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement statement = connection.prepareStatement("UPDATE klant "
+			PreparedStatement statement = this.getPreparedStatement("UPDATE klant "
 					+ "SET email = ?, "
 					+ "naam = ?, "
 					+ "adres = ?, "
@@ -155,7 +154,7 @@ public class KlantDAO {
 			
 			statement.executeUpdate();
 			
-			connection.close();
+			this.closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -166,13 +165,13 @@ public class KlantDAO {
 	 */
 	public void deleteAlles() {
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
 			statement.executeUpdate("TRUNCATE klant;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			connection.close();
+			this.closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

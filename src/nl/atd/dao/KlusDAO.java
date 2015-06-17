@@ -9,14 +9,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import nl.atd.helper.DatabaseHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 import nl.atd.model.Klus;
 import nl.atd.model.Monteur;
 import nl.atd.service.ServiceProvider;
 
-public class KlusDAO {
+public class KlusDAO extends BaseDAO {
 
 	/**
 	 * Get autos, convert to list met klussen
@@ -28,7 +27,7 @@ public class KlusDAO {
 		ArrayList<Klus> klussen = new ArrayList<Klus>();
 
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 
 			ResultSet set = statement.executeQuery(query);
@@ -78,7 +77,7 @@ public class KlusDAO {
 				klussen.add(klus);
 			}
 
-			connection.close();
+			this.closeConnection();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,9 +112,7 @@ public class KlusDAO {
 	 */
 	public boolean addKlus(Klus klus) {
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection
-					.prepareCall("INSERT INTO klus (type, klaar, datum, omschrijving, monteur, klant, auto, uren) VALUES(?, 0, ?, ?, ?, ?, ?, ?);");
+			PreparedStatement st = this.getPreparedStatement("INSERT INTO klus (type, klaar, datum, omschrijving, monteur, klant, auto, uren) VALUES(?, 0, ?, ?, ?, ?, ?, ?);");
 
 			st.setString(1, klus.getType());
 			st.setTimestamp(2, new Timestamp(klus.getCalendar()
@@ -135,7 +132,7 @@ public class KlusDAO {
 
 			st.execute();
 
-			connection.close();
+			this.closeConnection();
 
 			return true;
 		} catch (Exception e) {
@@ -153,7 +150,7 @@ public class KlusDAO {
 		int nr = 0;
 
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 
 			ResultSet set = statement.executeQuery(query);
@@ -162,7 +159,7 @@ public class KlusDAO {
 				nr = set.getInt("idklus");
 			}
 
-			connection.close();
+			this.closeConnection();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -187,9 +184,7 @@ public class KlusDAO {
 	 */
 	public boolean editKlus(Klus klus){
 		try{
-			
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			PreparedStatement st = connection.prepareStatement("UPDATE klus SET type=? , klaar=? , datum=? , omschrijving=? "
+			PreparedStatement st = this.getPreparedStatement("UPDATE klus SET type=? , klaar=? , datum=? , omschrijving=? "
 					+ ", monteur=? , klant=? , auto=? , uren=? WHERE idklus=?");
 			
 			st.setString(1, klus.getType());
@@ -209,7 +204,7 @@ public class KlusDAO {
 			st.setInt(9, this.getKlusId(klus.getCalendar(), klus.getKlant(), klus.getAuto()));
 			
 			st.execute();
-			connection.close();
+			this.closeConnection();
 			
 			return true;
 			
@@ -270,13 +265,13 @@ public class KlusDAO {
 					+ klusID;
 
 			try {
-				Connection connection = DatabaseHelper.getDatabaseConnection();
+				Connection connection = this.getConnection();
 				Statement statement = connection.createStatement();
 
 				if (statement.executeUpdate(query) == 1) {
 					b = true;
 				}
-				connection.close();
+				this.closeConnection();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -289,13 +284,13 @@ public class KlusDAO {
 	 */
 	public void deleteAlles() {
 		try {
-			Connection connection = DatabaseHelper.getDatabaseConnection();
+			Connection connection = this.getConnection();
 			Statement statement = connection.createStatement();
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
 			statement.executeUpdate("TRUNCATE klus;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			connection.close();
+			this.closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
