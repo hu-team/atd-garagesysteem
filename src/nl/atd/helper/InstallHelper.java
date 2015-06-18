@@ -1,13 +1,10 @@
 package nl.atd.helper;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 import javax.servlet.ServletContext;
 

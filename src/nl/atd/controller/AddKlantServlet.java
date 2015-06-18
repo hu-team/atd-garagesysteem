@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nl.atd.helper.AuthHelper;
+import nl.atd.helper.MailHelper;
 import nl.atd.model.Klant;
 import nl.atd.service.ServiceProvider;
 
@@ -29,6 +30,8 @@ public class AddKlantServlet extends HttpServlet{
 		String woonplaats = req.getParameter("woonplaats");
 		String telefoonnummer = req.getParameter("telefoonnummer");
 		String email = req.getParameter("email");
+		
+		String welkomsmail = req.getParameter("welkomsmail");
 		
 		String errorString = "";
 		boolean error = false;
@@ -76,6 +79,10 @@ public class AddKlantServlet extends HttpServlet{
 		klant.setWachtwoord(AuthHelper.encryptWachtwoord(wachtwoord));
 		
 		if(ServiceProvider.getKlantService().addKlant(klant)) {
+			if(welkomsmail != null && welkomsmail.equals("ja")) {
+				MailHelper.sendWelkomMailNaarKlant(klant);
+			}
+			
 			resp.sendRedirect(req.getContextPath() + "/secure/klantoverzicht.jsp?done=1");
 		}else{
 			req.setAttribute("error", true);

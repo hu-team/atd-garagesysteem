@@ -92,6 +92,18 @@
 							</div>
 						</div>
 						
+						<hr>
+						
+						<div class="control-group">
+							<label class="control-label" for="welkomsmail">Wachtwoord: <br />(herhaling)</label>
+							<div class="controls">
+								<label>
+								<input class="input-xlarge" id="welkomsmail" type="checkbox" name="welkomsmail" value="ja" checked="checked">
+								 Stuur de klant een welkomsmail
+								</label>
+							</div>
+						</div>
+						
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">Klant toevoegen</button>
 							<a href="<%=application.getContextPath()%>/secure/klantoverzicht.jsp" class="btn btn-danger promise-me">Annuleren</a>
