@@ -1,5 +1,6 @@
 package nl.atd.helper;
 
+import java.io.File;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
@@ -16,6 +17,16 @@ public class ServletListener implements ServletContextListener {
 		
 		ConsoleHandler ch = new ConsoleHandler();
 		logger.addHandler(ch);
+		
+		// Config loader
+		if(!ConfigHelper.isValidConfig()) {
+			try{
+				File configFile = new File(sce.getServletContext().getResource("/WEB-INF/config.xml").toURI());
+				ConfigHelper.loadConfigFile(configFile);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		// FileHandler toevoegen
 		/*

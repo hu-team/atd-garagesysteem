@@ -99,5 +99,6 @@ crashlytics-build.properties
 /war/WEB-INF/classes/.gitignore
 
 # Settings
-/src/nl/atd/helper/DatabaseHelper.java
+# /src/nl/atd/helper/DatabaseHelper.java
+/war/WEB-INF/config.xml
 Thumbs.db

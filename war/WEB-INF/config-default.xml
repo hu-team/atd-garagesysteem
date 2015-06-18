@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>Installatie</comment>
+	<!-- Installatie begint als er niks aanwezig is in dit bestand -->
+	
+	<!-- MET DE HAND BEWERKEN: -->
+	<!--
+	<entry key="installed">true</entry>
+	
+	<entry key="mysql.host">localhost</entry> 
+	<entry key="mysql.database">atd2</entry>
+	<entry key="mysql.username">root</entry>
+	<entry key="mysql.password"></entry>
+	 -->
+</properties>

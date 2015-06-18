@@ -1,4 +1,13 @@
+<%
+//Installatie nodig?
+if(!ConfigHelper.isValidConfig()) {
+	// Ja, installatie is nodig
+	response.sendRedirect(application.getContextPath() + "/installer/index.jsp");
+	return;
+} 
+%>
 <!DOCTYPE html>
+<%@page import="nl.atd.helper.ConfigHelper"%>
 <%@page import="nl.atd.helper.AuthHelper"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
