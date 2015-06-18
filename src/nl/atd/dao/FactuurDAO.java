@@ -18,6 +18,7 @@ public class FactuurDAO extends BaseDAO {
 			while(set.next()) {
 				Factuur factuur = new Factuur();
 				factuur.setBetaald(set.getBoolean("betaald"));
+				factuur.setFactuurnummer(set.getInt("factuurid"));
 				
 				Calendar datum = Calendar.getInstance();
 				datum.setTimeInMillis(set.getTimestamp("datum").getTime());
