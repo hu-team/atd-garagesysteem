@@ -110,6 +110,15 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 		reservering.setVan(vanCalendar);
 		reservering.setTot(totCalendar);
 		
-		
+		if(ServiceProvider.getReserveringService().addReservering(reservering, parkeerplek)){
+			resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
+		}else{
+			req.setAttribute("error", true);
+			req.setAttribute("errorString", "Opslaan is mislukt.");
+			
+			RequestDispatcher rd = req.getRequestDispatcher("reserveerparkeerplek.jsp");
+			
+			rd.forward(req, resp);
+		}
 	}
 }
