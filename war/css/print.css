@@ -1,0 +1,56 @@
+@media print {
+	h1 {
+		color: green;
+	}
+	ul {
+		list-style: none;
+	}
+	.klant-gegevens {
+		margin-left: 10%;
+	}
+	.row {
+		width: 100%;
+		margin-bottom: 2%
+	}
+	.col-md-5 {
+		width: 33.3%;
+		float: left;
+	}
+	.col-md-3 {
+		width: 60%;
+		float: left;
+		display: block;
+	}
+	.box {
+		border: initial !important;
+		margin: initial !important;
+	}
+	#content {
+		width:100%;
+		position: initial;
+		margin: 0px 0px;
+		padding: 0px 0px;
+	}
+	.col-md-4 {
+		width: 25%;
+		float: right;
+	}
+	.sidebar-left {
+		display: none;
+	}
+	.factuur-actie {
+		display: none;
+	}
+	.box-header {
+		display: none;
+	}
+	.navbar {
+		display: none;
+	}
+	.factuur-model {
+		width:100%;
+	}
+	footer {
+	display: none;
+	}
+}

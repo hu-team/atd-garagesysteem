@@ -202,6 +202,10 @@ $(function() {
 	$("#goback").click(function() {
 		app.gaterug();
 	});
+	
+	$("#factuur-voorbeeld").click(function(){
+		window.print();
+	});
 
 	$("#btnLeft").click(function() {
 		app.artikelSelectGroupLeft();

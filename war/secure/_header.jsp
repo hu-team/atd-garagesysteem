@@ -27,6 +27,9 @@
 <link 
 	href="<%=application.getContextPath()%>/css/atd.css"
 	rel="stylesheet">
+<link 
+	href="<%=application.getContextPath()%>/css/print.css"
+	rel="stylesheet" media="print">
 <link id="base-style-responsive"
 	href="<%=application.getContextPath()%>/css/style-responsive.css"
 	rel="stylesheet">
