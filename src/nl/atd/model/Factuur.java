@@ -9,6 +9,7 @@ import java.util.Calendar;
  *
  */
 public class Factuur {
+	private int factuurnummer;
 	private boolean betaald;
 	private Calendar calendar;
 	
@@ -25,6 +26,26 @@ public class Factuur {
 	}
 	
 	
+	/**
+	 * @return the factuurnummer
+	 */
+	public int getFactuurnummer() {
+		return factuurnummer;
+	}
+
+
+
+
+	/**
+	 * @param factuurnummer the factuurnummer to set
+	 */
+	public void setFactuurnummer(int factuurnummer) {
+		this.factuurnummer = factuurnummer;
+	}
+
+
+
+
 	/**
 	 * Get totaalprijs van alle onderdelen inclusief btw
 	 * @return totaalprijs inclusief btw
