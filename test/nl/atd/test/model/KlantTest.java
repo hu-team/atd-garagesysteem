@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import nl.atd.model.Auto;
@@ -11,11 +12,30 @@ import nl.atd.model.Klant;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class KlantTest {
 	private Klant k1, k2, k3;
-	private Auto a1, a2, a3, a4;
+	private static Auto a1, a2, a3, a4, a5;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		a1 = new Auto("Mercedes", "A180", 2015, null);
+		a1.setKenteken("GG101B");
+
+		a2 = new Auto("Ford", "Focus", 2015, null);
+		a2.setKenteken("GT421D");
+
+		a3 = new Auto("Peugeot", "508", 2013, null);
+		a3.setKenteken("1XVK22");
+
+		a4 = new Auto("Porsche", "Panamera", 2014, null);
+		a4.setKenteken("2ZZD51");
+		
+		a5 = new Auto("Koenigsegg", "Regera", 2015, null);
+		a5.setKenteken("KNO5EGG");
+	}
 	
 	@Before
 	public void setUp() throws Exception {
@@ -37,29 +57,46 @@ public class KlantTest {
 		k2.setWoonplaats("Oss");
 		k2.setTelefoonnummer("0318456456");
 
-		a1 = new Auto("Mercedes", "A180", 2015, null);
-		a1.setKenteken("GG101B");
-
-		a2 = new Auto("Ford", "Focus", 2015, null);
-		a2.setKenteken("GT421D");
-
-		a3 = new Auto("Peugeot", "508", 2013, null);
-		a3.setKenteken("1XVK22");
-
-		a4 = new Auto("Porsche", "Panamera", 2014, null);
-		a4.setKenteken("2ZZD51");
+		k1.voegAutoToe(a1);
+		k1.voegAutoToe(a2);
+		k2.voegAutoToe(a3);
+		k2.voegAutoToe(a4);
 	}
 	
 	@Test
-	public void testVoegAutoToe() {
-
+	public void testGetAutos() {
+		// Dit zou moeten kloppen, zelde autos toegevoegd aan temp als aan k1 
+		ArrayList<Auto> temp = new ArrayList<Auto>();
+		temp.add(a1); temp.add(a2);
+		assertEquals(k1.getAutos(), temp);
+		
+		// Auto erbij, zou false moeten zijn
+		temp.add(a3);
+		assertFalse(temp.equals(k1.getAutos()));
+		
+		// Auto eraf, zou false moeten zijn
+		temp.remove(2);
+		temp.remove(1);
+		assertFalse(temp.equals(k1.getAutos()));
+		
+		// Zelfde aantal autos in arraylist, maar een andere, zou false moeten zijn
+		temp.add(a4);
+		assertFalse(temp.equals(k1.getAutos()));
 	}
 
 	@Test
-	public void testGetAutos() {
-
+	public void testVoegAutoToe() {
+		// K1 zou nu 3 autos moeten hebben, a1; a2 en a5
+		k1.voegAutoToe(a5);
+		
+		assertEquals(a1, k1.getAutos().get(0));
+		assertEquals(a2, k1.getAutos().get(1));
+		assertEquals(a5, k1.getAutos().get(2));
+		
+		assertFalse(a3.equals(k1.getAutos().get(1)));
 	}
 
+	
 	@Test
 	public void testGetNaam() {
 		String temp1 = "Max van Kuik"; // zou gelijk moeten zijn aan de naam
@@ -107,12 +144,12 @@ public class KlantTest {
 	@Test
 	public void testGetWachtwoord() {
 		// zou gelijk moeten zijn aan het wachtwoord van k1
-		String temp1 = "maxuser";
+		String temp1 = "123";
 		// zou gelijk moeten zijn aan het wachtwoord van k2
-		String temp2 = "bencouser";
+		String temp2 = "welkom";
 
-		assertEquals(temp1, k1.getGebruikersnaam());
-		assertEquals(temp2, k2.getGebruikersnaam());
+		assertEquals(temp1, k1.getWachtwoord());
+		assertEquals(temp2, k2.getWachtwoord());
 	}
 
 	@Test
@@ -278,6 +315,8 @@ public class KlantTest {
 
 		// Zouden precies hetzelfde moeten zijn
 		assertTrue(k1.equals(k3));
+		
+		assertTrue(!(k1.equals(null)));
 	}
 
 
