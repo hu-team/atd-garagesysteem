@@ -13,36 +13,17 @@ public class Factuur {
 	private Calendar calendar;
 	
 	/**
-	 * Lazy getters
+	 * Lazy getter
 	 */
-	private ArrayList<Klus> klussen;
-	private ArrayList<Reservering> reserveringen;
+	private ArrayList<Factuuronderdeel> onderdelen;
 	
 	public Factuur() {
 		this.betaald = false;
 		this.calendar = Calendar.getInstance();
 		
-		this.klussen = null;
-		this.reserveringen = null;
+		this.onderdelen = null;
 	}
 	
-	/**
-	 * Voeg een klus toe.
-	 * 
-	 * @param klus
-	 */
-	public void addKlus(Klus klus) {
-		this.klussen.add(klus);
-	}
-	
-	/**
-	 * Voeg een reservering toe.
-	 * 
-	 * @param reservering
-	 */
-	public void addReservering(Reservering reservering) {
-		this.reserveringen.add(reservering);
-	}
 	
 	/**
 	 * Get totaalprijs van alle onderdelen inclusief btw
@@ -51,39 +32,24 @@ public class Factuur {
 	public double getTotaalPrijs() {
 		double totaal = 0;
 		
-		for(int i = 0; i < this.reserveringen.size(); i++) {
-			totaal += this.reserveringen.get(i).getTotaalPrijs();
-		}
-		
-		for(int i = 0; i < this.klussen.size(); i++) {
-			totaal += this.klussen.get(i).getTotaalPrijs();
+		for(int i = 0; i < this.getOnderdelen().size(); i++) {
+			totaal += this.getOnderdelen().get(i).getTotaalprijs();
 		}
 		
 		return totaal;
 	}
 	
-	/**
-	 * Get reserveringen
-	 * @return reserveringen
-	 */
-	public ArrayList<Reservering> getReserveringen() {
-		if(this.reserveringen == null) {
-			// Lazy getter
-			// TODO Lazy getter aanroepen
-		}
-		return this.reserveringen;
-	}
 	
 	/**
-	 * Get klussen
-	 * @return klussen
+	 * Get Onderdelen
+	 * @return onderdelen
 	 */
-	public ArrayList<Klus> getKlussen() {
-		if(this.klussen == null) {
+	public ArrayList<Factuuronderdeel> getOnderdelen() {
+		if(this.onderdelen == null) {
 			// Lazy getter
 			// TODO Lazy getter aanroepen
 		}
-		return this.klussen;
+		return this.onderdelen;
 	}
 	
 	/**
