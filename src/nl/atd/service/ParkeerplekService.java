@@ -26,6 +26,14 @@ public class ParkeerplekService {
 		return this.parkeerplekDAO.getAlleVrijePlekken(datum);
 	}
 	
+	public ArrayList<Parkeerplek> getAlleVrijePlekkenTussenVanTot(Calendar van, Calendar tot){
+		return this.parkeerplekDAO.getParkeerplekkenTussenVanTot(van, tot);
+	}
+	
+	public Parkeerplek getParkeerplekOpPlekEnRij(char rij, int plek){
+		return this.parkeerplekDAO.getParkeerplekkenOpPlekEnRij(rij, plek).get(0);
+	}
+	
 	/**
 	 * Add parkeerplek
 	 * @param plek

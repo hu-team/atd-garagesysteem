@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -84,8 +85,9 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 		if(rij.matches(".*\\d+.*")){
 			error = true;
 			errorString += "Rij bevat een nummer. <br />";
+		}else{
+			rijChar = rij.charAt(0);
 		}
-		
 		
 		if(error){
 			req.setAttribute("error", error);
@@ -98,15 +100,12 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 			return;
 		}
 		
-		rijChar = rij.charAt(0);
-		
 		Klant kl = ServiceProvider.getKlantService().getKlantByGebruikersnaam(klant);;
 		Auto au = ServiceProvider.getAutoService().getAutoOpKenteken(auto);
 		
-		Parkeerplek parkeerplek = new Parkeerplek(rijChar, plekNumeriek);
+		Parkeerplek parkeerplek = ServiceProvider.getParkeerplekService().getParkeerplekOpPlekEnRij(rijChar, plekNumeriek);
 		
 		Reservering reservering = new Reservering(kl, au);
-		
 		reservering.setVan(vanCalendar);
 		reservering.setTot(totCalendar);
 		

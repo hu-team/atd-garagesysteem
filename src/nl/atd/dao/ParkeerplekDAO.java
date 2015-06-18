@@ -2,6 +2,7 @@ package nl.atd.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -80,12 +81,39 @@ public class ParkeerplekDAO extends BaseDAO {
 		}
 	}
 	
+	public ArrayList<Parkeerplek> getParkeerplekkenTussenVanTot(Calendar van, Calendar tot){
+		ArrayList<Parkeerplek> plekken = new ArrayList<Parkeerplek>();
+		
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM parkeerplek WHERE "
+					+ "parkeerplekid NOT IN("
+					+ "SELECT parkeerplek FROM reservering WHERE "
+					+ "(van BETWEEN ? AND ?) "
+					+ "OR "
+					+ "(tot BETWEEN ? AND ?));");
+			
+			ps.setTimestamp(1, new Timestamp(van.getTimeInMillis()));
+			ps.setTimestamp(2, new Timestamp(tot.getTimeInMillis()));
+			ps.setTimestamp(3, new Timestamp(van.getTimeInMillis()));
+			ps.setTimestamp(4, new Timestamp(tot.getTimeInMillis()));
+			
+			plekken = this.getPlekken(ps);
+			
+			ps.closeOnCompletion();
+			
+		}catch(Exception e){
+			
+		}
+		return plekken;
+	}
+	
 	/**
 	 * Get plekken met rij en plek
 	 * @param rij
 	 * @param plek
 	 * @return plekken
 	 */
+	
 	public ArrayList<Parkeerplek> getParkeerplekkenOpPlekEnRij(char rij, int plek) {
 		ArrayList<Parkeerplek> plekken = new ArrayList<Parkeerplek>();
 		
@@ -95,6 +123,8 @@ public class ParkeerplekDAO extends BaseDAO {
 			ps.setInt(2, plek);
 			
 			plekken = this.getPlekken(ps);
+			
+			ps.closeOnCompletion();
 		}catch(Exception e) {}
 		
 		return plekken;
