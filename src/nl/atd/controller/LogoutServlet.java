@@ -18,6 +18,8 @@ public class LogoutServlet extends HttpServlet {
 			AuthHelper.logOut(req.getSession());
 			
 			resp.sendRedirect(req.getContextPath() + "/");
+		}else{
+			resp.sendRedirect(req.getContextPath() + "/");
 		}
 	}
 }
