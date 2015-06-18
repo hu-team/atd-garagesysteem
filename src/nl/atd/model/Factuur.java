@@ -12,6 +12,9 @@ public class Factuur {
 	private boolean betaald;
 	private Calendar calendar;
 	
+	/**
+	 * Lazy getters
+	 */
 	private ArrayList<Klus> klussen;
 	private ArrayList<Reservering> reserveringen;
 	
@@ -19,8 +22,8 @@ public class Factuur {
 		this.betaald = false;
 		this.calendar = Calendar.getInstance();
 		
-		this.klussen = new ArrayList<Klus>();
-		this.reserveringen = new ArrayList<Reservering>();
+		this.klussen = null;
+		this.reserveringen = null;
 	}
 	
 	/**
@@ -64,6 +67,10 @@ public class Factuur {
 	 * @return reserveringen
 	 */
 	public ArrayList<Reservering> getReserveringen() {
+		if(this.reserveringen == null) {
+			// Lazy getter
+			// TODO Lazy getter aanroepen
+		}
 		return this.reserveringen;
 	}
 	
@@ -72,6 +79,10 @@ public class Factuur {
 	 * @return klussen
 	 */
 	public ArrayList<Klus> getKlussen() {
+		if(this.klussen == null) {
+			// Lazy getter
+			// TODO Lazy getter aanroepen
+		}
 		return this.klussen;
 	}
 	
