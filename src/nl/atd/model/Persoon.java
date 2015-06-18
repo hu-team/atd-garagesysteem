@@ -88,7 +88,7 @@ public abstract class Persoon {
 		b = b && (this.naam.equals(((Persoon) ander).getNaam()));
 		b = b && (this.gebruikersnaam.equals(((Persoon) ander).getGebruikersnaam()));
 		b = b && (this.wachtwoord.equals(((Persoon) ander).getWachtwoord()));
-
+		
 		return b;
 	}
 

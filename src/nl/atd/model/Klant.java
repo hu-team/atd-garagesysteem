@@ -60,6 +60,15 @@ public class Klant extends Persoon {
 	}
 
 	/**
+	 * Set email
+	 * 
+	 * @param email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	/**
 	 * Get laatste bezoek
 	 * 
 	 * @return laatste bezoek klant
@@ -78,14 +87,7 @@ public class Klant extends Persoon {
 		this.laatsteBezoek = lb;
 	}
 
-	/**
-	 * Set email
-	 * 
-	 * @param email
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 	
 	/**
 	 * Get Adres van klant
@@ -159,25 +161,25 @@ public class Klant extends Persoon {
 	 */
 	public boolean equals(Object ander) {
 		boolean b;
-
+		
 		if (ander instanceof Klant) {
 			b = true;
 		} else {
 			b = false;
 		}
 
-		b = b && super.equals(ander) && (this.email.equals(((Klant)ander).getEmail()));
+		b = b && super.equals(ander); 
+		b = b && (this.email.equals(((Klant)ander).getEmail()));
 		b = b && (this.adres.equals(((Klant)ander).getAdres()));
 		b = b && (this.postcode.equals(((Klant)ander).getPostcode()));
 		b = b && (this.woonplaats.equals(((Klant)ander).getWoonplaats()));
 		b = b && (this.telefoonnummer.equals(((Klant)ander).getTelefoonnummer()));
-		
+
 		// Calendar vergelijken, DAY.OF.YEAR - YEAR - HOURS : MINUTES
 		b = b && ((this.laatsteBezoek == null && ((Klant)ander).getLaatsteBezoek() == null) || 
 				((this.laatsteBezoek).get(Calendar.YEAR) == ((Klant)ander).getLaatsteBezoek().get(Calendar.YEAR) &&
 				(this.laatsteBezoek).get(Calendar.HOUR_OF_DAY) == ((Klant)ander).getLaatsteBezoek().get(Calendar.HOUR_OF_DAY) &&
 				(this.laatsteBezoek).get(Calendar.MINUTE) == ((Klant)ander).getLaatsteBezoek().get(Calendar.MINUTE)));
-		
 		return b;
 	}
 
