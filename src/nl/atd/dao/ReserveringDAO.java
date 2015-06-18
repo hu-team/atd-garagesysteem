@@ -88,6 +88,26 @@ public class ReserveringDAO extends BaseDAO {
 		return reserveringen;
 	}
 	
+	/**
+	 * Get reserveringen
+	 * @param id
+	 * @return reservering of null
+	 */
+	public Reservering getReserveringOpId(int id) {
+		ArrayList<Reservering> reserveringen = new ArrayList<Reservering>();
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM reservering WHERE reserveringid = ?");
+			ps.setInt(1, id);
+			
+			reserveringen = this.getReserveringen(ps);
+			
+			ps.closeOnCompletion();
+		}catch(Exception e){}
+		
+		return reserveringen.size() > 0 ? reserveringen.get(0) : null;
+	}
+	
+	
 	public boolean addReservering(Reservering reservering, Parkeerplek parkeerplek){
 		try{
 			PreparedStatement ps = this.getPreparedStatement("INSERT INTO reservering (van, tot, auto, klant, parkeerplek) VALUES(?, ?, ?, ?, ?)");

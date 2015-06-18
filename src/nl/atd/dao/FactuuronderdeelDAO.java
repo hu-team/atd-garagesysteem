@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import nl.atd.model.Factuur;
 import nl.atd.model.Factuuronderdeel;
+import nl.atd.service.ServiceProvider;
 
 public class FactuuronderdeelDAO extends BaseDAO {
 	
@@ -20,8 +21,20 @@ public class FactuuronderdeelDAO extends BaseDAO {
 				onderdeel.setOmschrijving(set.getString("omschrijving"));
 				onderdeel.setTotaalprijs(set.getDouble("totaalprijs"));
 				
-				// TODO, mapping van welk onderdeel
+				// Mapping van klus OF reservering
+				int klusid = set.getInt("klusid");
+				if(set.wasNull()) {
+					onderdeel.setKlus(null);
+				}else{
+					onderdeel.setKlus(ServiceProvider.getKlusService().getKlusOpId(klusid));
+				}
 				
+				int reserveringid = set.getInt("reserveringid");
+				if(set.wasNull()) {
+					onderdeel.setReservering(null);
+				}else{
+					onderdeel.setReservering(ServiceProvider.getReserveringService().getReserveringOpId(reserveringid));
+				}
 				
 				onderdelen.add(onderdeel);
 			}

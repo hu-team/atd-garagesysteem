@@ -3,6 +3,8 @@ package nl.atd.model;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import nl.atd.service.ServiceProvider;
+
 /**
  * Factuur met aantal onderdelen.
  * @author ATD Developers
@@ -68,7 +70,7 @@ public class Factuur {
 	public ArrayList<Factuuronderdeel> getOnderdelen() {
 		if(this.onderdelen == null) {
 			// Lazy getter
-			// TODO Lazy getter aanroepen
+			this.onderdelen = ServiceProvider.getFactuuronderdeelService().getAlleOnderdelen(this);
 		}
 		return this.onderdelen;
 	}

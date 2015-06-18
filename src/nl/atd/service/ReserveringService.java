@@ -26,7 +26,22 @@ public class ReserveringService {
 		return this.reserveringDAO.getReserveringenOpPlek(ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(plek));
 	}
 	
+	/**
+	 * Add reservering
+	 * @param reservering
+	 * @param parkeerplek
+	 * @return gelukt?
+	 */
 	public boolean addReservering(Reservering reservering, Parkeerplek parkeerplek){
 		return this.reserveringDAO.addReservering(reservering, parkeerplek);
+	}
+
+	/**
+	 * Get reservering op id
+	 * @param reserveringid
+	 * @return reservering of null
+	 */
+	public Reservering getReserveringOpId(int reserveringid) {
+		return this.reserveringDAO.getReserveringOpId(reserveringid);
 	}
 }
