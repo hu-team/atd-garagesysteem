@@ -13,13 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 import nl.atd.model.Parkeerplek;
 import nl.atd.model.Reservering;
 import nl.atd.service.ServiceProvider;
 
-public class ReserveerParkeerplekServlet extends HttpServlet{
+public class ReserveerParkeerplekKlantServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -35,7 +36,6 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 		String totDatum = req.getParameter("totDatum");
 		String totTijdstip = req.getParameter("totTijdstip");
 		
-		String klant = req.getParameter("klant");
 		String auto = req.getParameter("auto");
 		
 		boolean error = false;
@@ -49,11 +49,6 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 				|| vanTijdstip.trim().isEmpty() || totTijdstip.trim().isEmpty()){
 			error = true;
 			errorString += "Vul alle velden in! <br />";
-		}
-		
-		if(klant == null || klant.trim().isEmpty() || ServiceProvider.getKlantService().getKlantByGebruikersnaam(klant) == null){
-			error = true;
-			errorString += "Selecteer een geldige klant! <br />";
 		}
 		
 		if(auto == null || auto.trim().isEmpty() || ServiceProvider.getAutoService().getAutoOpKenteken(auto) == null){
@@ -92,14 +87,14 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 			req.setAttribute("error", error);
 			req.setAttribute("errorString", errorString);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("reserveerparkeerplek.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("reserveerparkeerplekklant.jsp");
 			
 			rd.forward(req, resp);
 			
 			return;
 		}
 		
-		Klant kl = ServiceProvider.getKlantService().getKlantByGebruikersnaam(klant);
+		Klant kl = ServiceProvider.getKlantService().getKlantByGebruikersnaam(AuthHelper.getGebruikersnaam(req.getSession()));
 		Auto au = ServiceProvider.getAutoService().getAutoOpKenteken(auto);
 		
 		Parkeerplek parkeerplek = ServiceProvider.getParkeerplekService().getParkeerplekOpPlekEnRij(rijChar, plekNumeriek);
@@ -114,9 +109,10 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 			req.setAttribute("error", true);
 			req.setAttribute("errorString", "Opslaan is mislukt.");
 			
-			RequestDispatcher rd = req.getRequestDispatcher("reserveerparkeerplek.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("reserveerparkeerplekklant.jsp");
 			
 			rd.forward(req, resp);
 		}
+		
 	}
 }
