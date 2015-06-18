@@ -17,6 +17,8 @@ public class ServiceProvider {
 	private static OnderdeelService onderdeelService = new OnderdeelService();
 	private static ParkeerplekService parkeerplekService = new ParkeerplekService();
 	private static ReserveringService reserveringService = new ReserveringService();
+	private static FactuurService factuurService = new FactuurService();
+	private static FactuuronderdeelService factuuronderdeelService = new FactuuronderdeelService();
 	
 	/**
 	 * Krijg Monteur Service Provider
@@ -80,5 +82,21 @@ public class ServiceProvider {
 	 */
 	public static ReserveringService getReserveringService() {
 		return reserveringService;
+	}
+	
+	/**
+	 * Krijg factuur service provider
+	 * @return factuur service
+	 */
+	public static FactuurService getFactuurService() {
+		return factuurService;
+	}
+	
+	/**
+	 * Krijg factuur onderdeel provider
+	 * @return factuur service
+	 */
+	public static FactuuronderdeelService getFactuuronderdeelService() {
+		return factuuronderdeelService;
 	}
 }
