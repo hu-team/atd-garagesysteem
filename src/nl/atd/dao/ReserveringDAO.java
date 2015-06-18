@@ -2,9 +2,11 @@ package nl.atd.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import nl.atd.model.Parkeerplek;
 import nl.atd.model.Reservering;
 import nl.atd.service.ServiceProvider;
 
@@ -84,5 +86,22 @@ public class ReserveringDAO extends BaseDAO {
 			reserveringen = this.getReserveringen(ps);
 		}catch(Exception e) {}
 		return reserveringen;
+	}
+	
+	public boolean addReservering(Reservering reservering, Parkeerplek parkeerplek){
+		try{
+			PreparedStatement ps = this.getPreparedStatement("INSERT INTO reservering (van, tot, auto, klant, parkeerplek) VALUES(?, ?, ?, ?, ?)");
+			ps.setTimestamp(1, new Timestamp(reservering.getVan().getTimeInMillis()));
+			ps.setTimestamp(2, new Timestamp(reservering.getTot().getTimeInMillis()));
+			ps.setInt(3, ServiceProvider.getAutoService().getAutoIdOpKenteken(reservering.getAuto().getKenteken()));
+			ps.setString(4, reservering.getKlant().getGebruikersnaam());
+			ps.setInt(5, ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(parkeerplek));
+			
+			boolean gelukt = ps.execute();
+			
+			return gelukt;
+		}catch(Exception e){
+			return false;
+		}
 	}
 }

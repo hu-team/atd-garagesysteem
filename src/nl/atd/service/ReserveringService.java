@@ -12,6 +12,7 @@ public class ReserveringService {
 	 * Get alle reserveringen
 	 * @return list reserveringen
 	 */
+	
 	public ArrayList<Reservering> getAlleReserveringen() {
 		return this.reserveringDAO.getAlleReserveringen();
 	}
@@ -23,5 +24,9 @@ public class ReserveringService {
 	 */
 	public ArrayList<Reservering> getReserveringenOpPlek(Parkeerplek plek) {
 		return this.reserveringDAO.getReserveringenOpPlek(ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(plek));
+	}
+	
+	public boolean addReservering(Reservering reservering, Parkeerplek parkeerplek){
+		return this.reserveringDAO.addReservering(reservering, parkeerplek);
 	}
 }
