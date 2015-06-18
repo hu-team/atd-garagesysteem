@@ -59,7 +59,10 @@
   	<servlet-name>edit klant klant</servlet-name>
   	<servlet-class>nl.atd.controller.EditKlantKlant</servlet-class>
   </servlet>
-  
+  <servlet>
+  	<servlet-name>reserveer parkeerplek servlet</servlet-name>
+  	<servlet-class>nl.atd.controller.ReserveerParkeerplekServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>login servlet</servlet-name>
@@ -130,5 +133,9 @@
   <servlet-mapping>
     <servlet-name>edit klant klant</servlet-name>
     <url-pattern>/secure/editklantklant</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>reserveer parkeerplek servlet</servlet-name>
+  	<url-pattern>/secure/reserveerparkeerplek</url-pattern>
   </servlet-mapping>
 </web-app>
