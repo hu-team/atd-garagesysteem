@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class OnderdeelTest {
 	private Artikel a1, a2, a3;
-	private Onderdeel ond1, ond2, ond3;
+	private Onderdeel ond1, ond2, ond3, ond4;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -36,8 +36,32 @@ public class OnderdeelTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testGetArtikel() {
+		// ond1 = a1
+		// ond2 = a2
+		// ond3 = a3
+
+		assertEquals(a1, ond1.getArtikel());
+		assertEquals(a2, ond2.getArtikel());
+		assertEquals(a3, ond3.getArtikel());
+	}
+	
+	@Test
+	public void testGetAantal() {
+		// ond1 aantal = 8
+		// ond2 aantal = 3
+		// ond3 aantal = 2
+
+		assertEquals(8, ond1.getAantal());
+		assertEquals(3, ond2.getAantal());
+		assertEquals(2, ond3.getAantal());
+	}
+	
+	@Test 
+	public void testEquals() {
+		ond4 = new Onderdeel(a1, 8);
+		
+		assertEquals(ond1, ond4);
 	}
 	
 	@After
