@@ -121,6 +121,7 @@ public class ReserveringDAO extends BaseDAO {
 			
 			return gelukt;
 		}catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}
 	}

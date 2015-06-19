@@ -114,7 +114,7 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 			req.setAttribute("error", true);
 			req.setAttribute("errorString", "Opslaan is mislukt.");
 			
-			RequestDispatcher rd = req.getRequestDispatcher("reserveerparkeerplek.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/");
 			
 			rd.forward(req, resp);
 		}

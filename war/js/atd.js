@@ -201,6 +201,10 @@ var app = function() {
 		var html = "";
 		
 		data.forEach(function(val, i) {
+			if(i === 0) {
+				$("#inputPlek").val(data[i].plek);
+				$("#inputRij").val(data[i].rij);
+			}
 			html += "<option data-rij="+data[i].rij+" data-plek="+data[i].plek+" >Rij: "+data[i].rij+" Plek: "+data[i].plek+"</optiob>";
 		});
 		

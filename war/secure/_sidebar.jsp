@@ -42,6 +42,12 @@
 	</a>
 </li>
 <li>
+	<a href="<%=application.getContextPath()%>/secure/reserveerparkeerplekklant.jsp">
+		<i class="fa fa-car"></i>
+		<span class="hidden-tablet">Plek Reserveren</span>
+	</a>
+</li>
+<li>
 	<a href="<%=application.getContextPath()%>/secure/editklantklant.jsp">
 		<i class="fa fa-user"></i>
 		<span class="hidden-tablet">Mijn gegevens wijzigen</span>
