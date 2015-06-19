@@ -32,6 +32,10 @@
     <servlet-class>nl.atd.controller.AjaxKlantAutoServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>ajax get plekken</servlet-name>
+    <servlet-class>nl.atd.controller.AjaxPlekkenServlet</servlet-class>
+  </servlet> 
+  <servlet>
     <servlet-name>add artikel servlet</servlet-name>
     <servlet-class>nl.atd.controller.AddArtikelServlet</servlet-class>
   </servlet>
@@ -44,12 +48,12 @@
     <servlet-class>nl.atd.controller.AddKlusServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>edit klus servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.EditKlusServlet</servlet-class>
+    <servlet-name>edit klus servlet</servlet-name>
+    <servlet-class>nl.atd.controller.EditKlusServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>add klus klant servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.AddKlusKlantServlet</servlet-class>
+    <servlet-name>add klus klant servlet</servlet-name>
+    <servlet-class>nl.atd.controller.AddKlusKlantServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>add auto servlet</servlet-name>
@@ -60,21 +64,20 @@
     <servlet-class>nl.atd.controller.AddOnderdeelServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>edit klant klant</servlet-name>
-  	<servlet-class>nl.atd.controller.EditKlantKlant</servlet-class>
+    <servlet-name>edit klant klant</servlet-name>
+    <servlet-class>nl.atd.controller.EditKlantKlant</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>reserveer parkeerplek servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.ReserveerParkeerplekServlet</servlet-class>
+    <servlet-name>reserveer parkeerplek servlet</servlet-name>
+    <servlet-class>nl.atd.controller.ReserveerParkeerplekServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>reserveer parkeerplek klant servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.ReserveerParkeerplekKlantServlet</servlet-class>
+    <servlet-name>reserveer parkeerplek klant servlet</servlet-name>
+    <servlet-class>nl.atd.controller.ReserveerParkeerplekKlantServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-  	<servlet-name>installer servlet</servlet-name>
-  	<url-pattern>/installer/install</url-pattern>
+    <servlet-name>installer servlet</servlet-name>
+    <url-pattern>/installer/install</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>login servlet</servlet-name>
@@ -84,8 +87,6 @@
     <servlet-name>logout servlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
-  
-  
   <filter>
     <filter-name>LoginFilter</filter-name>
     <filter-class>nl.atd.controller.LoginFilter</filter-class>
@@ -106,8 +107,6 @@
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
-  
-  
   <servlet-mapping>
     <servlet-name>add monteur servlet</servlet-name>
     <url-pattern>/secure/addmonteur</url-pattern>
@@ -125,6 +124,10 @@
     <url-pattern>/secure/ajaxgetklantautos</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>ajax get plekken</servlet-name>
+    <url-pattern>/secure/ajaxgetplekken</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
     <servlet-name>add artikel servlet</servlet-name>
     <url-pattern>/secure/addartikel</url-pattern>
   </servlet-mapping>
@@ -137,12 +140,12 @@
     <url-pattern>/secure/addklus</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>edit klus servlet</servlet-name>
-  	<url-pattern>/secure/editklus</url-pattern>
+    <servlet-name>edit klus servlet</servlet-name>
+    <url-pattern>/secure/editklus</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>add klus klant servlet</servlet-name>
-  	<url-pattern>/secure/addklusklant</url-pattern>
+    <servlet-name>add klus klant servlet</servlet-name>
+    <url-pattern>/secure/addklusklant</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>add auto servlet</servlet-name>
@@ -157,11 +160,11 @@
     <url-pattern>/secure/editklantklant</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>reserveer parkeerplek servlet</servlet-name>
-  	<url-pattern>/secure/reserveerparkeerplek</url-pattern>
+    <servlet-name>reserveer parkeerplek servlet</servlet-name>
+    <url-pattern>/secure/reserveerparkeerplek</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>reserveer parkeerplek klant servlet</servlet-name>
-  	<url-pattern>/secure/reserveerparkeerplekklant</url-pattern>
+    <servlet-name>reserveer parkeerplek klant servlet</servlet-name>
+    <url-pattern>/secure/reserveerparkeerplekklant</url-pattern>
   </servlet-mapping>
 </web-app>

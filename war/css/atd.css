@@ -42,6 +42,10 @@ input#kenteken {
 	text-align: center;
 }
 
+#hide-parkeerplek, #hide-error {
+	display: none
+}
+
 .has-error {
 	color: red;
 }

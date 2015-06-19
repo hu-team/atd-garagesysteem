@@ -3,7 +3,6 @@
  */
 
 // Kenteken: https://api.datamarket.azure.com/opendata.rdw/VRTG.Open.Data/v1/KENT_VRTG_O_DAT('xnrr85')?$format=json
-
 var app = function() {
 	function inlog() {
 		var usertype = $("#user-type").val();
@@ -50,49 +49,54 @@ var app = function() {
 		var selected = $("#rightValues option:selected");
 		_hideAantal(selected.val());
 	}
-	
+
 	function kentekenParsen() {
 		var kenteken = $("#kenteken").val();
 		kenteken = kenteken.replace(/\W+/g, "");
 		kenteken = kenteken.toUpperCase();
 		$("#kenteken").val(kenteken);
-		
-		if(kenteken.length !== 6) {
+
+		if (kenteken.length !== 6) {
 			$("#kenteken").parent().parent().addClass("has-error");
-		}else{
+		} else {
 			$("#kenteken").parent().parent().removeClass("has-error");
 		}
 	}
-	
+
 	function kentekenOpzoeken() {
 		kentekenParsen();
-		var kenteken = $("#kenteken").val(); 
-		
-		$.ajax({
-			method : "GET",
-			url : "https://api.datamarket.azure.com/opendata.rdw/VRTG.Open.Data/v1/KENT_VRTG_O_DAT('" + kenteken + "')?$format=json"
-		}).done(
-				function(data) {
-					var merk = "";
-					var handelsnaam = "";
-					
-					if('d' in data && 'Merk' in data.d) {
-						merk = data.d.Merk;
-					}
-					if('d' in data && 'Handelsbenaming' in data.d) {
-						handelsnaam = data.d.Handelsbenaming;
-					}
-					
-					if((merk.length + handelsnaam.length) > 0) {
-						$("#kentekendata").text("Merk: " + merk + ", Model: " + handelsnaam);
-						
-						// Velden vervangen met kentekendata
-						$("#merk").val(merk);
-						$("#model").val(handelsnaam);
-					}else{
-						$("#kentekendata").text("Onbekend...");
-					}
-				});
+		var kenteken = $("#kenteken").val();
+
+		$
+				.ajax(
+						{
+							method : "GET",
+							url : "https://api.datamarket.azure.com/opendata.rdw/VRTG.Open.Data/v1/KENT_VRTG_O_DAT('"
+									+ kenteken + "')?$format=json"
+						}).done(
+						function(data) {
+							var merk = "";
+							var handelsnaam = "";
+
+							if ('d' in data && 'Merk' in data.d) {
+								merk = data.d.Merk;
+							}
+							if ('d' in data && 'Handelsbenaming' in data.d) {
+								handelsnaam = data.d.Handelsbenaming;
+							}
+
+							if ((merk.length + handelsnaam.length) > 0) {
+								$("#kentekendata").text(
+										"Merk: " + merk + ", Model: "
+												+ handelsnaam);
+
+								// Velden vervangen met kentekendata
+								$("#merk").val(merk);
+								$("#model").val(handelsnaam);
+							} else {
+								$("#kentekendata").text("Onbekend...");
+							}
+						});
 	}
 
 	function _artikelAantal(name) {
@@ -161,6 +165,92 @@ var app = function() {
 				});
 	}
 
+	function zoekPlek() {
+		$("#hide-parkeerplek").fadeOut(300);
+		if (_zoekPlekInput()) {
+			_AjaxGetPlekken();
+		}
+
+	}
+
+	function _AjaxGetPlekken() {
+		$.ajax({
+			type : 'POST',
+			url: 'ajaxgetplekken',
+			data : {
+				vanDatum : $("#van").val(),
+				totDatum : $("#tot").val(),
+				vanTijdstip : $("#vantijd").val(),
+				totTijdstip : $("#tottijd").val()
+			},
+			success: function(data) {
+				if(data.length === 0) {
+					$("#hide-parkeerplek").fadeOut(300);
+					$("#hide-error").css("display", "block");
+					$("#hide-error .controls").html("Geen plekken gevonden")
+				} else {
+					$("#hide-error").css("display", "none");
+					_setPlekken(data);
+				}
+			}
+		})
+	}
+	
+	function _setPlekken(data) {
+		var $select = $("#parkeerplek-select");
+		var html = "";
+		
+		data.forEach(function(val, i) {
+			html += "<option data-rij="+data[i].rij+" data-plek="+data[i].plek+" >Rij: "+data[i].rij+" Plek: "+data[i].plek+"</optiob>";
+		});
+		
+		$select.html(html);
+		$("#aantal-plekken").html("Aantal plekken: " + data.length);
+		$("#hide-parkeerplek").fadeIn(500);
+	}
+
+	function _zoekPlekInput() {
+		var $vanDatum = $("#van")
+		var $totDatum = $("#tot")
+		var $vanTijd = $("#vantijd")
+		var $totTijd = $("#tottijd")
+		var error = {
+			border : "3px solid #ff0000"
+		};
+		var ok = {
+			border : "0px"
+		};
+		var arr = [ $vanDatum, $totDatum, $vanTijd, $totTijd ];
+		var tmp = [];
+
+		arr.forEach(function(val, i) {
+			if (arr[i].val() === "") {
+				arr[i].css(error);
+				tmp.push("err");
+			} else {
+				arr[i].css(ok);
+			}
+		})
+
+		if (tmp.length === 0) {
+			return true;
+		}
+
+		return false;
+
+	}
+	
+	function veranderPlek() {
+		var selected = $("#parkeerplek-select option:selected");
+		var rij = selected.data("rij");
+		var plek = selected.data("plek");
+		var inputRij = $("#inputRij");
+		var inputPlek = $("#inputPlek");
+		
+		inputRij.val(rij);
+		inputPlek.val(plek);
+	}
+
 	function alertFirst(link) {
 		var obj = {
 			title : "Let op!",
@@ -186,7 +276,9 @@ var app = function() {
 		autolijst : autolijst,
 		alertFirst : alertFirst,
 		kentekenParsen : kentekenParsen,
-		kentekenOpzoeken : kentekenOpzoeken
+		kentekenOpzoeken : kentekenOpzoeken,
+		zoekPlek : zoekPlek,
+		veranderPlek : veranderPlek
 	}
 
 }();
@@ -202,8 +294,8 @@ $(function() {
 	$("#goback").click(function() {
 		app.gaterug();
 	});
-	
-	$("#factuur-voorbeeld").click(function(){
+
+	$("#factuur-voorbeeld").click(function() {
 		window.print();
 	});
 
@@ -223,8 +315,8 @@ $(function() {
 		e.preventDefault();
 		app.alertFirst($(this).attr("href"));
 	});
-	
-	if($("#kenteken").length > 0) {
+
+	if ($("#kenteken").length > 0) {
 		$("#kenteken").change(function() {
 			app.kentekenParsen();
 		})
@@ -239,5 +331,14 @@ $(function() {
 			app.autolijst();
 		});
 	}
+
+	$("#zoekPlek").click(function(e) {
+		e.preventDefault();
+		app.zoekPlek();
+	});
+	
+	$("#parkeerplek-select").change(function(){
+		app.veranderPlek();
+	});
 
 });

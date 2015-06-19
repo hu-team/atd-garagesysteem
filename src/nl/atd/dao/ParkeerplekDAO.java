@@ -96,13 +96,12 @@ public class ParkeerplekDAO extends BaseDAO {
 			ps.setTimestamp(2, new Timestamp(tot.getTimeInMillis()));
 			ps.setTimestamp(3, new Timestamp(van.getTimeInMillis()));
 			ps.setTimestamp(4, new Timestamp(tot.getTimeInMillis()));
-			
 			plekken = this.getPlekken(ps);
 			
 			ps.closeOnCompletion();
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		return plekken;
 	}
