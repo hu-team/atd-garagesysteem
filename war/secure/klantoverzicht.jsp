@@ -57,7 +57,11 @@
 								<a class="btn btn-success"
 									href="autooverzicht.jsp?klant=${klant.gebruikersnaam}"> <i
 										class="fa fa-car"></i>
-								</a></td>
+								</a>
+								<a class="btn btn-success parking-style" href="reserveerparkeerplek.jsp?klant=${klant.gebruikersnaam}">
+									P
+								</a>
+								</td>
 							</tr>
 						</c:forEach>
 

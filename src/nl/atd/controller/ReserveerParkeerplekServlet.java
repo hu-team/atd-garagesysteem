@@ -41,6 +41,7 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 		boolean error = false;
 		String errorString = "";
 		
+		
 		int plekNumeriek = 0;
 		char rijChar = 'A';
 		
@@ -64,7 +65,7 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 		Calendar vanCalendar = Calendar.getInstance();
 		Calendar totCalendar = Calendar.getInstance();
 		
-		DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		df.setTimeZone(TimeZone.getDefault());
 		try{
 			vanCalendar.setTime(df.parse(vanDatum + " " + vanTijdstip));
@@ -115,7 +116,7 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 			req.setAttribute("error", true);
 			req.setAttribute("errorString", "Opslaan is mislukt.");
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/");
+			RequestDispatcher rd = req.getRequestDispatcher("reserveerparkeerplek.jsp");
 			
 			rd.forward(req, resp);
 		}

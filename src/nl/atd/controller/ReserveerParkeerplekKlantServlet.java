@@ -59,7 +59,7 @@ public class ReserveerParkeerplekKlantServlet extends HttpServlet{
 		Calendar vanCalendar = Calendar.getInstance();
 		Calendar totCalendar = Calendar.getInstance();
 		
-		DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		df.setTimeZone(TimeZone.getDefault());
 		try{
 			vanCalendar.setTime(df.parse(vanDatum + " " + vanTijdstip));

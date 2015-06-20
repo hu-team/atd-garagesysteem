@@ -32,8 +32,11 @@
 				<form class="form-horizontal" method="post"
 					action="reserveerparkeerplekklant">
 					<c:if test="${error}">
+					<div class="alert alert-error">
 						${errorString};
+					</div>
 					</c:if>
+					
 					<div class="control-group">
 						<div class="controls">
 							<select name="auto">

@@ -5,9 +5,8 @@
 <%@page import="nl.atd.service.ServiceProvider"%>
 <%@ include file="_header.jsp"%>
 <%
-	String gebruikersnaam = AuthHelper.getGebruikersnaam(request
-			.getSession());
-	out.print(gebruikersnaam);
+if(request.getParameter("klant") == null && !AuthHelper.isAdmin(session)) { response.sendRedirect(request.getContextPath() + "/secure/klantoverzicht.jsp"); return; }
+	String gebruikersnaam = request.getParameter("klant");
 	Klant klant = ServiceProvider.getKlantService()
 			.getKlantByGebruikersnaam(gebruikersnaam);
 	if (klant == null)
@@ -30,10 +29,14 @@
 			</div>
 			<div class="box-content">
 				<form class="form-horizontal" method="post"
-					action="reserveerparkeerplekklant">
+					action="reserveerparkeerplek">
+					
 					<c:if test="${error}">
+					<div class="alert alert-error">
 						${errorString};
+					</div>
 					</c:if>
+					
 					<div class="control-group">
 						<div class="controls">
 							<select name="auto">
@@ -45,6 +48,7 @@
 							</select> <input type="hidden" name="rij" id="inputRij">
 						</div>
 					</div>
+					<input type="hidden" name="klant" value="<% out.print(gebruikersnaam); %>">
 					<input type="hidden" name="plek" id="inputPlek">
 					<fieldset>
 						<div class="control-group">
@@ -58,21 +62,21 @@
 							<label class="control-label" for="tot">Tot: </label>
 							<div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="tot"
-									name="totDatum" value='<c:out value="${artikel.code }" />'>
+									name="totDatum" value='<c:out value="${totDatum}" />'>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="vantijd">Van tijd: </label>
 							<div class="controls">
 								<input type="text" class="input-xlarge" id="vantijd"
-									name="vanTijdstip" value='<c:out value="${artikel.naam }" />'>
+									name="vanTijdstip" value='<c:out value="${vanTijdstip}" />'>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="tottijd">Tot tijd: </label>
 							<div class="controls">
 								<input type="text" class="input-xlarge" id="tottijd"
-									name="totTijdstip" value='<c:out value="${artikel.naam }" />'>
+									name="totTijdstip" value='<c:out value="${totTijdstip}" />'>
 							</div>
 						</div>
 						<div class="control-group">
