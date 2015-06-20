@@ -62,7 +62,7 @@ public class MailHelper {
 			message.setContent(content, "text/html; charset=utf-8");
 			
 			// TODO: Mail account met settings, dan pas activeren
-			//Transport.send(message);
+			Transport.send(message);
 			
 			return true;
 		}catch(Exception e) {
