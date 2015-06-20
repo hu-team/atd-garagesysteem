@@ -3,6 +3,7 @@ package nl.atd.service;
 import java.util.ArrayList;
 
 import nl.atd.dao.KlantDAO;
+import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 
 public class KlantService {
@@ -33,6 +34,15 @@ public class KlantService {
 	 */
 	public Klant getKlantByGebruikersnaam(String gebruikersnaam){
 		return this.klantDAO.getKlant(gebruikersnaam);
+	}
+	
+	/**
+	 * Get klant met auto
+	 * @param auto
+	 * @return klant of null
+	 */
+	public Klant getKlantMetAuto(Auto auto) {
+		return this.klantDAO.getKlantMetAuto(auto);
 	}
 	
 	/**

@@ -81,6 +81,11 @@
   	<servlet-class>nl.atd.controller.AddFactuurServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>stuur auto herinnering servlet</servlet-name>
+  	<servlet-class>nl.atd.controller.StuurAutoHerinneringServlet</servlet-class>
+  </servlet>
+  
   
   
   <servlet-mapping>
@@ -178,5 +183,9 @@
   <servlet-mapping>
     <servlet-name>add factuur servlet</servlet-name>
     <url-pattern>/secure/addfactuur</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>stuur auto herinnering servlet</servlet-name>
+  	<url-pattern>/secure/stuurautoherinnering</url-pattern>
   </servlet-mapping>
 </web-app>

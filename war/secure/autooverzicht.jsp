@@ -6,7 +6,7 @@
 <%@page import="nl.atd.model.Artikel"%>
 <%@page import="nl.atd.service.ServiceProvider"%>
 <%@ include file="_header.jsp"%>
-<<fmt:setLocale value="nl_NL"/>
+<fmt:setLocale value="nl_NL"/>
 <%
 if(!AuthHelper.isMonteur(session) && !AuthHelper.isAdmin(session)) response.sendRedirect(request.getContextPath() + "/secure/");
 if(request.getParameter("klant") == null && !AuthHelper.isAdmin(session)) { response.sendRedirect(request.getContextPath() + "/secure/klantoverzicht.jsp"); return; }
@@ -44,7 +44,9 @@ pageContext.setAttribute("autos", autos);
 							<td>Bouwjaar</td>
 							<td>Kenteken</td>
 							<td>Laatste Beurt</td>
+							<c:if test="${empty klant }">
 							<td>Actie's</td>
+							</c:if>
 						</tr>
 					</thead>
 					<tbody>
@@ -74,13 +76,15 @@ pageContext.setAttribute("autos", autos);
 								</c:otherwise>
 								</c:choose>
 								
+								<c:if test="${empty klant }">
 								<td>
 								<c:if test="${not auto.laatsteBeurtRedelijk }">
-								<a class="btn btn-success" href="#" title="Stuur herinneringsmail"> 
+								<a class="btn btn-success" href="stuurautoherinnering.jsp?auto=${auto.kenteken }" title="Stuur herinneringsmail"> 
 								<i class="fa fa-envelope"></i>
 								</a>
 								</c:if>
 								</td>
+								</c:if>
 							</tr>
 						</c:forEach>
 

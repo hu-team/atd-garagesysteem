@@ -22,6 +22,9 @@ public class MailHelper {
 			+ "AutoTotaalDienst";
 	
 	
+	private static final String AFZENDER_NAAM = "ATD Applicatie";
+	private static final String AFZENDER_EMAIL = "atd@lt-box.info";
+	
 	public static Session getMailSession() {
 		
 		Properties props = new Properties();
@@ -45,7 +48,7 @@ public class MailHelper {
 		MimeMessage message = new MimeMessage(session);
 		
 		try{
-			message.setFrom(new InternetAddress("atd@lt-box.info", "ATD Applicatie"));
+			message.setFrom(new InternetAddress(AFZENDER_EMAIL, AFZENDER_NAAM));
 			message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(klant.getEmail(), klant.getNaam()));
 			message.setSubject("Welkom bij AutoTotaalDienst Online!");
 			message.setSentDate(Calendar.getInstance().getTime());
@@ -60,6 +63,34 @@ public class MailHelper {
 			
 			// TODO: Mail account met settings, dan pas activeren
 			//Transport.send(message);
+			
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public static boolean sendEmailNaarKlant(Klant klant, String onderwerp, String inhoud) {
+		if(klant.getEmail() == null || klant.getNaam() == null || klant.getEmail().isEmpty() || klant.getNaam().isEmpty()) {
+			return false;
+		}
+		
+		Session session = getMailSession();
+		
+		MimeMessage message = new MimeMessage(session);
+		
+		try{
+			message.setFrom(new InternetAddress(AFZENDER_EMAIL, AFZENDER_NAAM));
+			message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(klant.getEmail(), klant.getNaam()));
+			message.setSubject(onderwerp);
+			message.setSentDate(Calendar.getInstance().getTime());
+			
+			message.setContent(inhoud, "text/html; charset=utf-8");
+			
+			// TODO: Mail account met settings, dan pas activeren
+			Transport.send(message);
 			
 			return true;
 		}catch(Exception e) {

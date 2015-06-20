@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import sun.launcher.resources.launcher;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 
@@ -20,13 +21,11 @@ public class KlantDAO extends BaseDAO {
 	 * @param metAutos
 	 * @return array met klanten
 	 */
-	private ArrayList<Klant> getKlanten(String query, boolean metAutos) {
+	private ArrayList<Klant> getKlanten(PreparedStatement statement, boolean metAutos) {
 		ArrayList<Klant> klanten = new ArrayList<Klant>();
 		
 		try {
-			Connection connection = this.getConnection();
-			Statement statement = connection.createStatement();
-			ResultSet set = statement.executeQuery(query);
+			ResultSet set = statement.executeQuery();
 			
 			while(set.next()) {
 				Klant klant = new Klant(set.getString("naam"));
@@ -66,8 +65,8 @@ public class KlantDAO extends BaseDAO {
 				klanten.add(klant);
 			}
 			
+			statement.getConnection().close();
 			statement.close();
-			connection.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,12 +76,35 @@ public class KlantDAO extends BaseDAO {
 	}
 	
 	/**
+	 * Old style query building (SQL INJECTIE!!)
+	 * @param query
+	 * @param metAutos
+	 * @deprecated SQL Injectie mogelijk
+	 * @return
+	 */
+	@Deprecated
+	private ArrayList<Klant> getKlanten(String query, boolean metAutos) {
+		try{
+			return this.getKlanten(this.getPreparedStatement(query), metAutos);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Klant>();
+	}
+	
+	/**
 	 * Get alle klanten in database
 	 * @param autos boolean, moeten autos ook uit db gehaald worden?
 	 * @return array met klanten
 	 */
 	public ArrayList<Klant> getAlleKlanten(boolean autos) {
-		return this.getKlanten("SELECT * FROM klant", autos);
+		try{
+			return this.getKlanten(this.getPreparedStatement("SELECT * FROM klant"), autos);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ArrayList<Klant>();
 	} 
 	
 	/**
@@ -91,12 +113,50 @@ public class KlantDAO extends BaseDAO {
 	 * @return klant of null
 	 */
 	public Klant getKlant(String gebruikersnaam) {
-		ArrayList<Klant> klanten = this.getKlanten("SELECT * FROM klant WHERE gebruikersnaam LIKE '" + gebruikersnaam + "'", true);
+		ArrayList<Klant> klanten = new ArrayList<Klant>();
+		//ArrayList<Klant> klanten = this.getKlanten("SELECT * FROM klant WHERE gebruikersnaam LIKE '" + gebruikersnaam + "'", true);
+		
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM klant WHERE gebruikersnaam LIKE ?");
+			ps.setString(1, gebruikersnaam);
+			
+			klanten = this.getKlanten(ps, true);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(klanten.size() > 0) {
+			return klanten.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * Get klant door op auto te zoeken
+	 * @param auto
+	 * @return klant of null
+	 */
+	public Klant getKlantMetAuto(Auto auto) {
+		ArrayList<Klant> klanten = new ArrayList<Klant>();
+		
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM klant WHERE gebruikersnaam IN ("
+					+ "SELECT klant FROM auto WHERE kenteken LIKE ?"
+					+ ")");
+			
+			ps.setString(1, auto.getKenteken());
+			
+			klanten = this.getKlanten(ps, true);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		if(klanten.size() >= 1) {
 			return klanten.get(0);
 		}
 		return null;
 	}
+	
 	
 	/**
 	 * Add Klant
