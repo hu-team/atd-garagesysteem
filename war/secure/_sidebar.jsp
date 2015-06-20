@@ -15,6 +15,12 @@
 		</a>
 	</li>
 	<li>
+		<a href="<%=application.getContextPath()%>/secure/autooverzicht.jsp">
+			<i class="fa fa-car"></i>
+			<span class="hidden-tablet"> Auto overzicht</span>
+		</a>
+	</li>
+	<li>
 		<a href="<%=application.getContextPath()%>/secure/factuuroverzicht.jsp">
 			<i class="fa fa-money"></i>
 			<span class="hidden-tablet"> Factuur overzicht</span>

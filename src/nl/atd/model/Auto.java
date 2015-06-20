@@ -30,16 +30,17 @@ public class Auto {
 	 * 
 	 * @return na 6 maanden?
 	 */
-	public boolean isLaatsteBeurt() {
-		Calendar overtijd = Calendar.getInstance();
-		Calendar vandaag = Calendar.getInstance();
-
-		overtijd = laatsteBeurt;
-		if(overtijd == null) return false;
+	public boolean isLaatsteBeurtRedelijk() {
+		if(this.laatsteBeurt == null) return false;
 		
-		overtijd.add(Calendar.MONTH, +6);
+		Calendar streef = Calendar.getInstance();
 
-		return vandaag.after(overtijd);
+		Calendar lb = (Calendar)laatsteBeurt.clone();
+		if(lb == null) return false;
+		
+		streef.add(Calendar.MONTH, -6);
+
+		return !lb.before(streef);
 	}
 
 	/**
@@ -76,6 +77,15 @@ public class Auto {
 	 */
 	public Calendar getLaatsteBeurt() {
 		return laatsteBeurt;
+	}
+	
+	/**
+	 * Set laatste beurt datum
+	 * 
+	 * @param cal nieuwe datum
+	 */
+	public void setLaatsteBeurt(Calendar cal) {
+		this.laatsteBeurt = cal;
 	}
 
 	/**

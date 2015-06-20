@@ -18,7 +18,8 @@ import nl.atd.model.Klant;
 import nl.atd.service.ServiceProvider;
 
 public class AddFactuurServlet extends HttpServlet {
-	
+	private static final long serialVersionUID = 1368099967044309586L;
+
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException ,IOException {
 		String klantGebruikersnaam = req.getParameter("klant");
 		String datum = req.getParameter("datum");

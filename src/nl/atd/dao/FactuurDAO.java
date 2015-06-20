@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import jdk.nashorn.internal.runtime.regexp.joni.constants.OPSize;
 import nl.atd.model.Factuur;
 import nl.atd.service.ServiceProvider;
 

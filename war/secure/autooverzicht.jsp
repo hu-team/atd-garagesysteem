@@ -6,16 +6,24 @@
 <%@page import="nl.atd.model.Artikel"%>
 <%@page import="nl.atd.service.ServiceProvider"%>
 <%@ include file="_header.jsp"%>
-
+<<fmt:setLocale value="nl_NL"/>
 <%
-if(request.getParameter("klant") == null) response.sendRedirect(request.getContextPath() + "/secure/klantoverzicht.jsp");
-
 if(!AuthHelper.isMonteur(session) && !AuthHelper.isAdmin(session)) response.sendRedirect(request.getContextPath() + "/secure/");
+if(request.getParameter("klant") == null && !AuthHelper.isAdmin(session)) { response.sendRedirect(request.getContextPath() + "/secure/klantoverzicht.jsp"); return; }
 
-Klant klant = ServiceProvider.getKlantService().getKlantByGebruikersnaam(request.getParameter("klant"));
-if(klant == null) response.sendRedirect(request.getContextPath() + "/secure/klantoverzicht.jsp");
-request.setAttribute("klant", klant);
+Klant klant = null;
+ArrayList<Auto> autos = new ArrayList<Auto>();
 
+if(request.getParameter("klant") != null) { 
+	klant = ServiceProvider.getKlantService().getKlantByGebruikersnaam(request.getParameter("klant"));
+	if(klant == null) response.sendRedirect(request.getContextPath() + "/secure/klantoverzicht.jsp");
+	autos = ServiceProvider.getAutoService().getAutosVanKlant(klant.getGebruikersnaam());
+}else{
+	autos = ServiceProvider.getAutoService().getAlleAutos();
+}
+
+pageContext.setAttribute("klant", klant);
+pageContext.setAttribute("autos", autos);
 %>
 
 <div id="content" class="span10">
@@ -23,8 +31,7 @@ request.setAttribute("klant", klant);
 		<div class="box span12">
 			<div class="box-header" data-original-title="">
 				<h2>
-					<i class="halflings-icon white th-list"></i><span class="break"></span>Auto
-					lijst voor '<c:out value="${klant.naam }" />'
+					<i class="halflings-icon white th-list"></i><span class="break"></span>Autolijst
 				</h2>
 			</div>
 			<div class="box-content">
@@ -37,24 +44,43 @@ request.setAttribute("klant", klant);
 							<td>Bouwjaar</td>
 							<td>Kenteken</td>
 							<td>Laatste Beurt</td>
+							<td>Actie's</td>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="auto"
-							items="${ServiceProvider.getAutoService().getAutosVanKlant(klant.getGebruikersnaam())}">
+							items="${autos}">
 							<tr>
 								<td>${auto.merk}</td>
 								<td>${auto.model}</td>
 								<td>${auto.bouwjaar}</td>
 								<td>${auto.kenteken}</td>
+								
 								<c:choose>
-								<c:when test="${empty auto.getLaatsteBeurt() }">
-								<td>Onbekend</td>
+								<c:when test="${empty auto.laatsteBeurt }">
+								<td class="text-warning">Onbekend</td>
 								</c:when>
 								<c:otherwise>
-								<td>${auto.getLaatsteBeurt()}</td>
+								<c:choose>
+								<c:when test="${auto.laatsteBeurtRedelijk }">
+								<td><fmt:formatDate dateStyle="short" value="${auto.laatsteBeurt.time }"/></td>
+								</c:when>
+								<c:otherwise>
+								<td class="text-warning">
+								<fmt:formatDate dateStyle="short" value="${auto.laatsteBeurt.time }"/>
+								</td>
 								</c:otherwise>
 								</c:choose>
+								</c:otherwise>
+								</c:choose>
+								
+								<td>
+								<c:if test="${not auto.laatsteBeurtRedelijk }">
+								<a class="btn btn-success" href="#" title="Stuur herinneringsmail"> 
+								<i class="fa fa-envelope"></i>
+								</a>
+								</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 
@@ -64,6 +90,7 @@ request.setAttribute("klant", klant);
 		</div>
 		<div class="clearfix"></div>
 
+		<c:if test="${not empty klant }">
 		<div class="row-fluid sortable ui-sortable">
 			<div class="box span12">
 				<div class="box-header" data-original-title="">
@@ -140,6 +167,7 @@ request.setAttribute("klant", klant);
 				</div>
 			</div>
 		</div>
+		</c:if>
 	</div>
 </div>
 <%@ include file="_footer.jsp"%>

@@ -72,4 +72,12 @@ public class AutoService {
 	public void deleteAlleAutos() {
 		autoDAO.deleteAlles();
 	}
+
+	/**
+	 * Set laatste beurt van auto
+	 * @param auto met nieuwe laatstebeurt
+	 */
+	public void setAutoLaatsteBeurt(Auto auto) {
+		this.autoDAO.setAutoLaatsteBeurt(auto);
+	}
 }

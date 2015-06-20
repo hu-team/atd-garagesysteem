@@ -163,7 +163,37 @@ public class AutoDAO extends BaseDAO {
 			return false;
 		}
 	}
+	
+	/**
+	 * Laatste beurt van auto bewerken
+	 * @param auto
+	 */
+	public void setAutoLaatsteBeurt(Auto auto) {
+		try{
+			int autoid = this.getAutoIdOpKenteken(auto.getKenteken());
+			
+			if(autoid > 0) {
+				PreparedStatement ps = this.getPreparedStatement("UPDATE auto "
+						+ "SET laatste_beurt = ? "
+						+ "WHERE autoid = ? "
+						+ "LIMIT 1");
+				
+				ps.setTimestamp(1, new Timestamp(auto.getLaatsteBeurt().getTimeInMillis()));
+				ps.setInt(2, autoid);
+				
+				ps.executeUpdate();
+				
+				ps.getConnection().close();
+				ps.close();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
+	/**
+	 * Alles verwijderen (ALLEEN IN TESTS! LET NIET OP FK's)
+	 */
 	public void deleteAlles() {
 		try {
 			Connection connection = this.getConnection();

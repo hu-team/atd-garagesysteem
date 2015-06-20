@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.model.Auto;
 import nl.atd.model.Klus;
 import nl.atd.model.Monteur;
 import nl.atd.service.ServiceProvider;
@@ -78,6 +79,15 @@ public class EditKlusServlet extends HttpServlet{
 		klus.setType(type);
 		klus.setUren(urenNumeriek);
 		klus.setKlaar(klaar == null ? false : true);
+		
+		if(klus.isKlaar()) {
+			// Zet auto onderhoud voltooid
+			Auto auto = klus.getAuto();
+			auto.setLaatsteBeurt(klus.getCalendar());
+			
+			// Laatste beurt bijwerken
+			ServiceProvider.getAutoService().setAutoLaatsteBeurt(auto);
+		}
 		
 		ServiceProvider.getKlusService().editKlus(klus);
 		
