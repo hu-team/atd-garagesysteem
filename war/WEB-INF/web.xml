@@ -75,6 +75,14 @@
     <servlet-name>reserveer parkeerplek klant servlet</servlet-name>
     <servlet-class>nl.atd.controller.ReserveerParkeerplekKlantServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>add factuur servlet</servlet-name>
+  	<servlet-class>nl.atd.controller.AddFactuurServlet</servlet-class>
+  </servlet>
+  
+  
+  
   <servlet-mapping>
     <servlet-name>installer servlet</servlet-name>
     <url-pattern>/installer/install</url-pattern>
@@ -166,5 +174,9 @@
   <servlet-mapping>
     <servlet-name>reserveer parkeerplek klant servlet</servlet-name>
     <url-pattern>/secure/reserveerparkeerplekklant</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>add factuur servlet</servlet-name>
+    <url-pattern>/secure/addfactuur</url-pattern>
   </servlet-mapping>
 </web-app>

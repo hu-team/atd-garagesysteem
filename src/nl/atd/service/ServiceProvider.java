@@ -1,5 +1,7 @@
 package nl.atd.service;
 
+import nl.atd.model.Factuur;
+
 /**
  * ServiceProvider zorgt voor de koppeling tussen business logic
  * en de achterliggende persistance laag. 

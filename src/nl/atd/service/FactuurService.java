@@ -16,4 +16,14 @@ public class FactuurService {
 	public ArrayList<Factuur> getAlleFacturen() {
 		return this.factuurDAO.getAlleFacturen();
 	}
+	
+	/**
+	 * Add factuur
+	 * @param factuur
+	 * @return factuurnummer
+	 */
+	public int addFactuur(Factuur factuur) {
+		this.factuurDAO.addFactuur(factuur);
+		return factuur.getFactuurnummer();
+	}
 }

@@ -17,4 +17,6 @@ public class FactuuronderdeelService {
 	public ArrayList<Factuuronderdeel> getAlleOnderdelen(Factuur factuur) {
 		return this.factuuronderdeelDAO.getFactuuronderdelenVanFactuur(factuur);
 	}
+	
+	
 }

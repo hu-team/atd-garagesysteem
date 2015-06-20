@@ -2,9 +2,11 @@ package nl.atd.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import jdk.nashorn.internal.runtime.regexp.joni.constants.OPSize;
 import nl.atd.model.Factuur;
 import nl.atd.service.ServiceProvider;
 
@@ -39,7 +41,10 @@ public class FactuurDAO extends BaseDAO {
 		return facturen;
 	}
 	
-	
+	/**
+	 * Get alle facturen
+	 * @return alle facturen
+	 */
 	public ArrayList<Factuur> getAlleFacturen() {
 		ArrayList<Factuur> facturen = new ArrayList<Factuur>();
 		
@@ -50,6 +55,41 @@ public class FactuurDAO extends BaseDAO {
 		}
 		
 		return facturen;
+	}
+
+
+	/**
+	 * Add factuur
+	 * @param factuur
+	 * @return gelukt
+	 */
+	public boolean addFactuur(Factuur factuur) {
+		try{
+			PreparedStatement ps = this.getPreparedStatement("INSERT INTO factuur (betaald, datum, klant) VALUES(?, ?, ?)");
+			
+			ps.setBoolean(1, factuur.isBetaald());
+			ps.setTimestamp(2, new Timestamp(factuur.getDatum().getTimeInMillis()));
+			ps.setString(3, factuur.getKlant().getGebruikersnaam());
+			
+			ps.executeUpdate();
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			
+			boolean gelukt = false;
+			if(rs.next()) {
+				factuur.setFactuurnummer(rs.getInt(1));
+				gelukt = true;
+			}
+			
+			rs.close();
+			ps.getConnection().close();
+			ps.close();
+			
+			return gelukt;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }
