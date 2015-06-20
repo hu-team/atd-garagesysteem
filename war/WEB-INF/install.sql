@@ -151,3 +151,6 @@ ALTER TABLE `reservering`
 ADD CONSTRAINT `reservering_auto` FOREIGN KEY (`auto`) REFERENCES `auto` (`autoid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `reservering_klant` FOREIGN KEY (`klant`) REFERENCES `klant` (`gebruikersnaam`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `reservering_parkeerplek` FOREIGN KEY (`parkeerplek`) REFERENCES `parkeerplek` (`parkeerplekid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+INSERT INTO `atd`.`parkeerplek` (`parkeerplekid`, `rij`, `plek`) VALUES (NULL, 'A', '1'), (NULL, 'A', '2'), (NULL, 'A', '3'), (NULL, 'B', '1'), (NULL, 'B', '2'), (NULL, 'B', '3'), (NULL, 'C', '1'), (NULL, 'C', '2'), (NULL, 'C', '3');
