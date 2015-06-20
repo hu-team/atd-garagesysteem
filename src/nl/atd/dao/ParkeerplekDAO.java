@@ -25,7 +25,8 @@ public class ParkeerplekDAO extends BaseDAO {
 				plekken.add(parkeerplek);
 			}
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -46,7 +47,8 @@ public class ParkeerplekDAO extends BaseDAO {
 			PreparedStatement st = this.getPreparedStatement(query);
 			plekken = this.getPlekken(st);
 			
-			st.closeOnCompletion();
+			st.getConnection().close();
+			st.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -67,9 +69,6 @@ public class ParkeerplekDAO extends BaseDAO {
 			st.setInt(1, id);
 			
 			plekken = this.getPlekken(st);
-			
-			st.closeOnCompletion();
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -122,9 +121,6 @@ public class ParkeerplekDAO extends BaseDAO {
 			ps.setTimestamp(3, new Timestamp(van.getTimeInMillis()));
 			ps.setTimestamp(4, new Timestamp(tot.getTimeInMillis()));
 			plekken = this.getPlekken(ps);
-			
-			ps.closeOnCompletion();
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -148,7 +144,8 @@ public class ParkeerplekDAO extends BaseDAO {
 			
 			plekken = this.getPlekken(ps);
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 		}catch(Exception e) {}
 		
 		return plekken;
@@ -172,7 +169,8 @@ public class ParkeerplekDAO extends BaseDAO {
 				nummer = set.getInt("parkeerplekid");
 			}
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 			
 			return nummer;
 		}catch(Exception e) {}
@@ -193,7 +191,8 @@ public class ParkeerplekDAO extends BaseDAO {
 			
 			boolean gelukt = ps.execute();
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 			
 			return gelukt;
 		}catch(Exception e){

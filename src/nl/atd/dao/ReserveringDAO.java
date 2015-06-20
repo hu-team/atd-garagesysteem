@@ -39,7 +39,8 @@ public class ReserveringDAO extends BaseDAO {
 				reserveringen.add(reservering);
 			}
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -59,7 +60,8 @@ public class ReserveringDAO extends BaseDAO {
 			PreparedStatement st = this.getPreparedStatement(query);
 			reserveringen = this.getReserveringen(st);
 			
-			st.closeOnCompletion();
+			st.getConnection().close();
+			st.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -122,7 +124,8 @@ public class ReserveringDAO extends BaseDAO {
 			
 			reserveringen = this.getReserveringen(ps);
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 		}catch(Exception e){}
 		
 		return reserveringen.size() > 0 ? reserveringen.get(0) : null;
@@ -140,7 +143,8 @@ public class ReserveringDAO extends BaseDAO {
 			
 			ps.execute();
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 			
 			return true;
 		}catch(Exception e){

@@ -38,6 +38,9 @@ public class OnderdeelDAO extends BaseDAO {
 				onderdelen.add(onderdeel);
 			}
 			
+			connection.close();
+			st.close();
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -61,6 +64,7 @@ public class OnderdeelDAO extends BaseDAO {
 			st.setInt(3, onderdeel.getAantal());
 			
 			st.execute();
+			st.close();
 			connection.close();
 			
 			return true;
@@ -95,6 +99,7 @@ public class OnderdeelDAO extends BaseDAO {
 			statement.executeUpdate("TRUNCATE onderdeel;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
+			statement.close();
 			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();

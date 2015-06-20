@@ -39,9 +39,10 @@ public class FactuuronderdeelDAO extends BaseDAO {
 				onderdelen.add(onderdeel);
 			}
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		
 		return onderdelen;
@@ -60,7 +61,7 @@ public class FactuuronderdeelDAO extends BaseDAO {
 			ps.setInt(1, factuur.getFactuurnummer());
 			
 			onderdelen = this.getFactuuronderdelen(ps);
-		}catch(Exception e){}
+		}catch(Exception e){e.printStackTrace();}
 		
 		return onderdelen;
 	}

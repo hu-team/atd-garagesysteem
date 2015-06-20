@@ -51,7 +51,8 @@ public class AutoDAO extends BaseDAO {
 				autos.add(auto);
 			}
 			
-			statement.closeOnCompletion();
+			statement.close();
+			connection.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,8 +78,8 @@ public class AutoDAO extends BaseDAO {
 				nr = set.getInt("autoid");
 			}
 			
-			statement.closeOnCompletion();
-			
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -153,7 +154,9 @@ public class AutoDAO extends BaseDAO {
 			statement.setString(5, klant);
 			
 			statement.execute();
-			statement.closeOnCompletion();			
+			
+			statement.getConnection().close();
+			statement.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -168,7 +171,9 @@ public class AutoDAO extends BaseDAO {
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
 			statement.executeUpdate("TRUNCATE auto;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
-			statement.closeOnCompletion();
+			
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

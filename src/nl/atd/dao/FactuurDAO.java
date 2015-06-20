@@ -27,9 +27,10 @@ public class FactuurDAO extends BaseDAO {
 				facturen.add(factuur);
 			}
 			
-			ps.closeOnCompletion();
+			ps.getConnection().close();
+			ps.close();
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		
 		return facturen;
@@ -42,6 +43,7 @@ public class FactuurDAO extends BaseDAO {
 		try{
 			facturen = this.getFacturen(this.getPreparedStatement("SELECT * FROM factuur ORDER BY datum"));
 		}catch(Exception e) {
+			e.printStackTrace();
 		}
 		
 		return facturen;

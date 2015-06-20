@@ -32,7 +32,8 @@ public class MonteurDAO extends BaseDAO {
 				monteuren.add(monteur);
 			}
 			
-			st.closeOnCompletion();
+			st.close();
+			connection.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -76,7 +77,9 @@ public class MonteurDAO extends BaseDAO {
 			st.setInt(4, monteur.getSalarisnummer());
 			
 			st.execute();
-			st.closeOnCompletion();
+			
+			st.getConnection().close();
+			st.close();
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -92,7 +95,8 @@ public class MonteurDAO extends BaseDAO {
 			statement.executeUpdate("TRUNCATE monteur;");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
 
-			statement.closeOnCompletion();
+			statement.close();
+			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
