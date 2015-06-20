@@ -4,8 +4,10 @@
 <%@page import="nl.atd.service.ServiceProvider"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-	if (!AuthHelper.isAdmin(session) && !AuthHelper.isMonteur(session))
+	if (!AuthHelper.isAdmin(session) && !AuthHelper.isMonteur(session)) {
 		response.sendRedirect(application.getContextPath() + "/secure/");
+		return;
+	}
 %>
 
 <%@ include file="_header.jsp"%>

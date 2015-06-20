@@ -8,7 +8,7 @@
 <%@page import="nl.atd.service.ServiceProvider"%>
 <%@ include file="_header.jsp"%>
 <%
-if(request.getParameter("id") == null) response.sendRedirect(request.getContextPath() + "/secure/index.jsp");
+if(request.getParameter("id") == null) { response.sendRedirect(request.getContextPath() + "/secure/index.jsp"); return; }
 
 if(!AuthHelper.isMonteur(session) && !AuthHelper.isAdmin(session)) { response.sendRedirect(request.getContextPath() + "/secure/index.jsp"); return; }
 

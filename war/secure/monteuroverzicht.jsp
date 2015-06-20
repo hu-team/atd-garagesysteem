@@ -3,7 +3,7 @@
 <%@page import="nl.atd.model.Monteur"%>
 <%@page import="nl.atd.service.ServiceProvider" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<% if(!AuthHelper.isAdmin(session)) response.sendRedirect(application.getContextPath() + "/secure/"); %>
+<% if(!AuthHelper.isAdmin(session)) { response.sendRedirect(application.getContextPath() + "/secure/"); return; } %>
 
 <%@ include file="_header.jsp" %>
 

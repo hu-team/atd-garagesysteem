@@ -14,6 +14,12 @@
 			<span class="hidden-tablet"> Monteurs overzicht</span>
 		</a>
 	</li>
+	<li>
+		<a href="<%=application.getContextPath()%>/secure/factuuroverzicht.jsp">
+			<i class="fa fa-money"></i>
+			<span class="hidden-tablet"> Factuur overzicht</span>
+		</a>
+	</li>
 	<% } %>
 	<li>
 		<a href="<%=application.getContextPath()%>/secure/klantoverzicht.jsp">
