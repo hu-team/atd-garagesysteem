@@ -55,7 +55,54 @@ public class FactuurDAO extends BaseDAO {
 		
 		return facturen;
 	}
+	
+	/**
+	 * Get factuur op nummer
+	 * @param nummer
+	 * @return factuur of null
+	 */
+	public Factuur getFactuurOpNummer(int nummer) {
+		ArrayList<Factuur> facturen = new ArrayList<Factuur>();
+		
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM factuur WHERE factuurid = ? ORDER BY datum");
+			ps.setInt(1, nummer);
+			
+			facturen = this.getFacturen(ps);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(facturen.size() > 0) return facturen.get(0);
+		return null;
+	}
 
+	/**
+	 * Set factuur betaal status (update)
+	 * @param factuur
+	 * @return gelukt
+	 */
+	public boolean setFactuurBetaald(Factuur factuur) {
+		try{
+			PreparedStatement ps = this.getPreparedStatement("UPDATE factuur "
+					+ "SET betaald = ? "
+					+ "WHERE factuurid = ? "
+					+ "LIMIT 1");
+			
+			ps.setBoolean(1, factuur.isBetaald());
+			ps.setInt(2, factuur.getFactuurnummer());
+			
+			ps.executeUpdate();
+			
+			ps.getConnection().close();
+			ps.close();
+			
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	/**
 	 * Add factuur
@@ -90,5 +137,6 @@ public class FactuurDAO extends BaseDAO {
 		}
 		return false;
 	}
+
 	
 }

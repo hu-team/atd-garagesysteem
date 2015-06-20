@@ -41,8 +41,26 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 								<td><fmt:formatDate type="both" value="${factuur.datum.time }" /></td>
 								<td>${factuur.klant.naam }</td>
 								<td><fmt:formatNumber type="currency" value="${factuur.totaalPrijs }" /></td>
-								<td>status</td>
-								<td>buttons</td>
+								<td>
+								<c:choose>
+								<c:when test="${factuur.betaald }">
+								<span class="text-success">Betaald</span>
+								</c:when>
+								<c:otherwise>
+								<span class="text-warning">Onbetaald!</span>
+								</c:otherwise>
+								</c:choose>
+								</td>
+								<td>
+								<a class="btn btn-success" href="factuur.jsp?nummer=${factuur.factuurnummer}"> 
+								<i class="fa fa-file-text"></i>
+								</a>
+								<c:if test="${not factuur.betaald }">
+								<a class="btn btn-warning" href="stuurfactuurherinnering.jsp?nummer=${factuur.factuurnummer}" title="Verstuur factuur herinneringsmail"> 
+								<i class="fa fa-envelope"></i>
+								</a>
+								</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 

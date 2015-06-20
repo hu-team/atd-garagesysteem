@@ -18,6 +18,24 @@ public class FactuurService {
 	}
 	
 	/**
+	 * Get factuur op nummer
+	 * @param nummer
+	 * @return factuur of null
+	 */
+	public Factuur getFactuurOpNummer(int nummer) {
+		return this.factuurDAO.getFactuurOpNummer(nummer);
+	}
+	
+	/**
+	 * Set factuur betaal status
+	 * @param factuur
+	 * @return gelukt
+	 */
+	public boolean setFactuurBetaald(Factuur factuur) {
+		return this.factuurDAO.setFactuurBetaald(factuur);
+	}
+	
+	/**
 	 * Add factuur
 	 * @param factuur
 	 * @return factuurnummer
