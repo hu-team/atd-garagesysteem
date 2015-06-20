@@ -49,7 +49,7 @@ public class AddKlusKlantServlet extends HttpServlet{
 		Calendar datumCalendar = Calendar.getInstance();
 		
 		// Formatting datum en tijd
-		DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy kk:mm");
 		df.setTimeZone(TimeZone.getDefault());
 		try{
 			datumCalendar.setTime(df.parse(datum + " " + tijdstip));
