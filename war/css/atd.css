@@ -75,8 +75,8 @@ td>span.yellow, td>span.red, td>span.green, td>span.blue {
 
 .kentekenagenda {
 	font-size: 9px;
-	width: 45px;
-	padding: 3px 15px;
+	width: 45px !important;
+	padding: 3px 15px !important;
 	margin-top: 0px;
 	color: black;
 }
