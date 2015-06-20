@@ -112,6 +112,5 @@ public class ReserveerParkeerplekKlantServlet extends HttpServlet{
 			
 			rd.forward(req, resp);
 		}
-		
 	}
 }

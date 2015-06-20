@@ -136,13 +136,20 @@ public class ParkeerplekDAO extends BaseDAO {
 	 */
 	public int getParkeerplekIdOpPlek(Parkeerplek plek) {
 		try{
-			PreparedStatement ps = this.getPreparedStatement("SELECT parkeerplek.parkeerplekid as id FROM parkeerplek WHERE rij LIKE ? AND plek = ?");
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM parkeerplek WHERE rij LIKE ? AND plek = ?");
 			ps.setString(1, Character.toString(plek.getRij()));
 			ps.setInt(2, plek.getPlek());
 			
 			ResultSet set = ps.executeQuery();
 			
-			return set.getInt("id");
+			int nummer = 0;
+			while(set.next()) {
+				nummer = set.getInt("parkeerplekid");
+			}
+			
+			ps.closeOnCompletion();
+			
+			return nummer;
 		}catch(Exception e) {}
 		
 		return 0;

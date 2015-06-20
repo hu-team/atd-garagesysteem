@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 import nl.atd.model.Parkeerplek;
 import nl.atd.model.Reservering;
@@ -117,9 +118,11 @@ public class ReserveringDAO extends BaseDAO {
 			ps.setString(4, reservering.getKlant().getGebruikersnaam());
 			ps.setInt(5, ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(parkeerplek));
 			
-			boolean gelukt = ps.execute();
+			ps.execute();
 			
-			return gelukt;
+			ps.closeOnCompletion();
+			
+			return true;
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
