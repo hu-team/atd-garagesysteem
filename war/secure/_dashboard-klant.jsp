@@ -1,3 +1,4 @@
+<%@page import="nl.atd.model.Reservering"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page import="nl.atd.model.Klant"%>
@@ -10,13 +11,16 @@ String gebruikersnaam = AuthHelper.getGebruikersnaam(session);
 
 Klant klant = ServiceProvider.getKlantService().getKlantByGebruikersnaam(gebruikersnaam);
 ArrayList<Klus> klussen = new ArrayList<Klus>();
+ArrayList<Reservering> reserveringen = new ArrayList<Reservering>();
 
 if(klant != null) {
 	klussen = ServiceProvider.getKlusService().getKlussenVanKlant(klant);
+	reserveringen = ServiceProvider.getReserveringService().getReserveringenVanKlant(klant);
 }
 
 pageContext.setAttribute("klant", klant);
 pageContext.setAttribute("klussen", klussen);
+pageContext.setAttribute("reserveringen", reserveringen);
 
 %>
 <div class="row mm">
@@ -135,6 +139,39 @@ pageContext.setAttribute("klussen", klussen);
 				<tr>
 				
 				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="box span6" ontablet="span6" ondesktop="span6">
+	<div class="box-header">
+		<h2>
+			<i class="halflings-icon white user"></i><span class="break"></span>Reserveringen parkeerplekken
+		</h2>
+	</div>
+	<div class="box-content">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Auto</th>
+					<th>Parkeerplek</th>
+					<th>Van</th>
+					<th>Tot</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="reservering" items="${reserveringen }">
+				<tr>
+					<td>
+					<span class="kenteken">${reservering.auto.kenteken}</span>
+							${reservering.auto.merk } ${reservering.auto.model }
+					</td>
+					<td>${reservering.parkeerplek.rij } - ${reservering.parkeerplek.plek }</td>
+					<td><fmt:formatDate dateStyle="short" timeStyle="short" type="both" value="${reservering.van.time }" /></td>
+					<td><fmt:formatDate dateStyle="short" timeStyle="short" type="both" value="${reservering.tot.time }" /></td>	
+				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
