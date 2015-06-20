@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import nl.atd.model.Factuur;
+import nl.atd.service.ServiceProvider;
 
 public class FactuurDAO extends BaseDAO {
 	
@@ -23,6 +24,8 @@ public class FactuurDAO extends BaseDAO {
 				Calendar datum = Calendar.getInstance();
 				datum.setTimeInMillis(set.getTimestamp("datum").getTime());
 				factuur.setDatum(datum);
+				
+				factuur.setKlant(ServiceProvider.getKlantService().getKlantByGebruikersnaam(set.getString("klant")));
 				
 				facturen.add(factuur);
 			}

@@ -15,6 +15,8 @@ public class Factuur {
 	private boolean betaald;
 	private Calendar calendar;
 	
+	private Klant klant;
+	
 	/**
 	 * Lazy getter
 	 */
@@ -25,17 +27,31 @@ public class Factuur {
 		this.calendar = Calendar.getInstance();
 		
 		this.onderdelen = null;
+		this.klant = null;
 	}
 	
 	
+	/**
+	 * @return the klant
+	 */
+	public Klant getKlant() {
+		return klant;
+	}
+
+	/**
+	 * @param klant the klant to set
+	 */
+	public void setKlant(Klant klant) {
+		this.klant = klant;
+	}
+
+
 	/**
 	 * @return the factuurnummer
 	 */
 	public int getFactuurnummer() {
 		return factuurnummer;
 	}
-
-
 
 
 	/**

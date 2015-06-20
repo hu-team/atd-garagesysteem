@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS `auto` (
 CREATE TABLE IF NOT EXISTS `factuur` (
 `factuurid` int(11) NOT NULL,
   `betaald` tinyint(1) NOT NULL DEFAULT '0',
-  `datum` timestamp NULL DEFAULT NULL
+  `datum` timestamp NULL DEFAULT NULL,
+  `klant` VARCHAR(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `factuuronderdeel` (
@@ -151,6 +152,9 @@ ALTER TABLE `reservering`
 ADD CONSTRAINT `reservering_auto` FOREIGN KEY (`auto`) REFERENCES `auto` (`autoid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `reservering_klant` FOREIGN KEY (`klant`) REFERENCES `klant` (`gebruikersnaam`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `reservering_parkeerplek` FOREIGN KEY (`parkeerplek`) REFERENCES `parkeerplek` (`parkeerplekid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE `factuur` 
+ADD CONSTRAINT `factuur_klant` FOREIGN KEY (`klant`) REFERENCES `klant` (`gebruikersnaam`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 INSERT INTO `atd`.`parkeerplek` (`parkeerplekid`, `rij`, `plek`) VALUES (NULL, 'A', '1'), (NULL, 'A', '2'), (NULL, 'A', '3'), (NULL, 'B', '1'), (NULL, 'B', '2'), (NULL, 'B', '3'), (NULL, 'C', '1'), (NULL, 'C', '2'), (NULL, 'C', '3');
