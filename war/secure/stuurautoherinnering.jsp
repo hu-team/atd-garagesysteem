@@ -49,12 +49,12 @@ pageContext.setAttribute("klant", klant);
 						<input type="hidden" name="auto" value='<c:out value="${auto.kenteken }" />' />
 
 						<div class="control-group">
-							<label class="control-label" for="kenteken">Bericht: </label>
+							<label class="control-label" for="bericht">Bericht: </label>
 							<div class="controls">
 								<h3>Stuur herinneringsmail naar:</h3>
 								<h5><c:out value="${klant.naam }" /> - <c:out value="${klant.email }" /></h5>
 							
-								<textarea class="cleditor" name="bericht">
+								<textarea class="cleditor" id="bericht" name="bericht">
 									<strong>Beste ${klant.naam },</strong><br /><br />
 									Uw ${auto.merk } ${auto.model } (${auto.kenteken }) is nodig toe aan onderhoud, laatste onderhoudsbeurt is op <c:choose><c:when test="${not empty auto.laatsteBeurt }"><fmt:formatDate dateStyle="long" value="${auto.laatsteBeurt }"/></c:when><c:otherwise>een onbekende datum</c:otherwise></c:choose> geweest.<br />
 									Wij bevelen u aan om elke 6 maanden een onderhoudsbeurt te laten doen. <br /><br />
