@@ -16,7 +16,7 @@ public class AutoTest {
 
 	@Before
 	public void setUp() throws Exception {
-		laatste.set(2015, Calendar.MAY, 16);
+		laatste.set(2015, Calendar.JUNE, 16);
 		a1 = new Auto("Mercedes", "A180", 2015, laatste);
 		a1.setKenteken("GB1231");
 
@@ -34,11 +34,11 @@ public class AutoTest {
 	@Test
 	public void testIsLaatsteBeurt() {
 		// Beurt van a1 is pas geleden, dus true;
-		assertTrue(a1.isLaatsteBeurt());
+		assertFalse(a1.isLaatsteBeurtRedelijk());
 		// Beurt van a4 is langer dan 6 maanden geleden, dus false;
-		assertFalse(a4.isLaatsteBeurt());
+		assertFalse(a4.isLaatsteBeurtRedelijk());
 		// a3 heeft nog geen beurt gehad (null), dus false;
-		assertFalse(a3.isLaatsteBeurt());
+		assertFalse(a3.isLaatsteBeurtRedelijk());
 	}
 
 	@Test
