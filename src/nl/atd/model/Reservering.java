@@ -14,6 +14,8 @@ public class Reservering {
 	private Klant klant;
 	private Auto auto;
 	
+	private Parkeerplek parkeerplek;
+	
 	public Reservering(Klant kl, Auto au){
 		this.klant = kl;
 		this.auto = au;
@@ -68,6 +70,40 @@ public class Reservering {
 	 */
 	public Auto getAuto(){
 		return auto;
+	}
+	
+	/**
+	 * Set klant
+	 * @param klant
+	 */
+	public void setKlant(Klant klant) {
+		this.klant = klant;
+	}
+	
+	/**
+	 * Set auto
+	 * @param auto
+	 */
+	public void setAuto(Auto auto) {
+		this.auto = auto;
+	}
+	
+	
+
+	/**
+	 * Get parkeerplek
+	 * @return the parkeerplek
+	 */
+	public Parkeerplek getParkeerplek() {
+		return parkeerplek;
+	}
+
+	/**
+	 * Set parkeerplek
+	 * @param parkeerplek the parkeerplek to set
+	 */
+	public void setParkeerplek(Parkeerplek parkeerplek) {
+		this.parkeerplek = parkeerplek;
 	}
 
 	/**

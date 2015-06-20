@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.logging.Logger;
 
+import nl.atd.model.Klant;
 import nl.atd.model.Parkeerplek;
 import nl.atd.model.Reservering;
 import nl.atd.service.ServiceProvider;
@@ -33,6 +33,8 @@ public class ReserveringDAO extends BaseDAO {
 				
 				reservering.setVan(van);
 				reservering.setTot(tot);
+				
+				reservering.setParkeerplek(ServiceProvider.getParkeerplekService().getParkeerplekOpId(set.getInt("parkeerplek")));
 				
 				reserveringen.add(reservering);
 			}
@@ -90,6 +92,24 @@ public class ReserveringDAO extends BaseDAO {
 	}
 	
 	/**
+	 * Get reserveringen van klant
+	 * @param klant
+	 * @return lijst met reserveringen van klant
+	 */
+	public ArrayList<Reservering> getReserveringenVanKlant(Klant klant) {
+		ArrayList<Reservering> reserveringen = new ArrayList<Reservering>();
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM reservering WHERE klant LIKE ?");
+			ps.setString(1, klant.getGebruikersnaam());
+			
+			reserveringen = this.getReserveringen(ps);
+		}catch(Exception e) {e.printStackTrace();}
+		return reserveringen;
+	}
+	
+	
+	
+	/**
 	 * Get reserveringen
 	 * @param id
 	 * @return reservering of null
@@ -109,14 +129,14 @@ public class ReserveringDAO extends BaseDAO {
 	}
 	
 	
-	public boolean addReservering(Reservering reservering, Parkeerplek parkeerplek){
+	public boolean addReservering(Reservering reservering){
 		try{
 			PreparedStatement ps = this.getPreparedStatement("INSERT INTO reservering (van, tot, auto, klant, parkeerplek) VALUES(?, ?, ?, ?, ?)");
 			ps.setTimestamp(1, new Timestamp(reservering.getVan().getTimeInMillis()));
 			ps.setTimestamp(2, new Timestamp(reservering.getTot().getTimeInMillis()));
 			ps.setInt(3, ServiceProvider.getAutoService().getAutoIdOpKenteken(reservering.getAuto().getKenteken()));
 			ps.setString(4, reservering.getKlant().getGebruikersnaam());
-			ps.setInt(5, ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(parkeerplek));
+			ps.setInt(5, ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(reservering.getParkeerplek()));
 			
 			ps.execute();
 			

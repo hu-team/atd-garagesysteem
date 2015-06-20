@@ -102,7 +102,11 @@ public class ReserveerParkeerplekKlantServlet extends HttpServlet{
 		Reservering reservering = new Reservering(kl, au);
 		reservering.setVan(vanCalendar);
 		reservering.setTot(totCalendar);
-		if(ServiceProvider.getReserveringService().addReservering(reservering, parkeerplek)){
+		reservering.setKlant(kl);
+		reservering.setAuto(au);
+		reservering.setParkeerplek(parkeerplek);
+		
+		if(ServiceProvider.getReserveringService().addReservering(reservering)){
 			resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 		}else{
 			req.setAttribute("error", true);

@@ -54,4 +54,13 @@ public class ParkeerplekService {
 	public int getParkeerplekIdOpPlek(Parkeerplek plek) {
 		return this.parkeerplekDAO.getParkeerplekIdOpPlek(plek);
 	}
+	
+	/**
+	 * Get parkeerplek op id
+	 * @param id
+	 * @return parkeerplek of null
+	 */
+	public Parkeerplek getParkeerplekOpId(int id) {
+		return this.parkeerplekDAO.getParkeerplekOpId(id);
+	}
 }

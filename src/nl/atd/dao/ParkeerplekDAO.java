@@ -55,6 +55,31 @@ public class ParkeerplekDAO extends BaseDAO {
 	}
 	
 	/**
+	 * Get parkeerplek op id
+	 * @param id
+	 * @return parkeerplek of null
+	 */
+	public Parkeerplek getParkeerplekOpId(int id) {
+		ArrayList<Parkeerplek> plekken = new ArrayList<Parkeerplek>();
+		
+		try{
+			PreparedStatement st = this.getPreparedStatement("SELECT * FROM parkeerplek WHERE parkeerplekid = ?");
+			st.setInt(1, id);
+			
+			plekken = this.getPlekken(st);
+			
+			st.closeOnCompletion();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		if(plekken.size() > 0) return plekken.get(0);
+		return null;
+	}
+	
+	
+	/**
 	 * Get alle parkeerplekken
 	 * @return plekken in array
 	 */

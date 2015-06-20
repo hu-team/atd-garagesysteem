@@ -2,7 +2,8 @@ package nl.atd.service;
 
 import java.util.ArrayList;
 
-import nl.atd.dao.ReserveringDAO;import nl.atd.model.Parkeerplek;
+import nl.atd.dao.ReserveringDAO;import nl.atd.model.Klant;
+import nl.atd.model.Parkeerplek;
 import nl.atd.model.Reservering;
 
 public class ReserveringService {
@@ -12,9 +13,17 @@ public class ReserveringService {
 	 * Get alle reserveringen
 	 * @return list reserveringen
 	 */
-	
 	public ArrayList<Reservering> getAlleReserveringen() {
 		return this.reserveringDAO.getAlleReserveringen();
+	}
+	
+	/**
+	 * Get alle reserveringen van klant
+	 * @param klant
+	 * @return list reserveringen
+	 */
+	public ArrayList<Reservering> getReserveringenVanKlant(Klant klant) {
+		return this.reserveringDAO.getReserveringenVanKlant(klant);
 	}
 	
 	/**
@@ -29,11 +38,10 @@ public class ReserveringService {
 	/**
 	 * Add reservering
 	 * @param reservering
-	 * @param parkeerplek
 	 * @return gelukt?
 	 */
-	public boolean addReservering(Reservering reservering, Parkeerplek parkeerplek){
-		return this.reserveringDAO.addReservering(reservering, parkeerplek);
+	public boolean addReservering(Reservering reservering){
+		return this.reserveringDAO.addReservering(reservering);
 	}
 
 	/**
