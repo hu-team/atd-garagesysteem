@@ -257,6 +257,52 @@ var app = function() {
 	
 	function zoekFactuurOnderdelen() {
 		var klantnaam = $("#factuur-klant").val();
+		
+		$.ajax({
+			type : 'POST',
+			url: 'ajaxfactuuronderdeel',
+			data: {
+				klant: klantnaam
+			}
+		}).done(function(data) {
+			_setFactuurOnderdelen(data);
+		});
+		
+	}
+	
+	function _setFactuurOnderdelen(data) {
+		var klussen = data[0];
+		var reservering = data[1];
+		var html = "";
+		var error = false;
+		
+		if(klussen.length === 0 && reservering.length === 0) {
+			error = true;
+			html = "Geen onderdelen kunnen vinden";
+			
+		}
+		
+		if(klussen.length) {
+			klussen.forEach(function(val, i){
+				var item = '<option value="'+klussen[i]+'">Klus: "'+klussen[i]['type']+'"</option>';
+				html += item;
+			});
+		}
+		
+		if(reservering.length) {
+			reservering.forEach(function(val, i){
+				var item = '<option value="'+reservering[i]+'">Reservering: "'+reservering[i]['prijs']+'"</option>';
+				html += item;
+			});
+		}
+		
+		if(!error) {
+			$("#factuur-items").html(html);
+			$("#factuur-onderdeel-search").fadeOut(500,function(){
+				$("#factuur-onderdeel-items").fadeIn(500);
+			});
+		} 
+		
 	}
 
 	function alertFirst(link) {
@@ -347,7 +393,7 @@ $(function() {
 	});
 	
 	$("#factuur-search-items").click(function(e){
-		e.prevenDefault();
+		e.preventDefault();
 		app.zoekFactuurOnderdelen();
 	});
 	
