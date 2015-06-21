@@ -77,23 +77,14 @@
   </servlet>
   
   <servlet>
-<<<<<<< HEAD
     <servlet-name>ajax get factuur onderdeel</servlet-name>
     <servlet-class>nl.atd.controller.AjaxFactuurOnderdelenServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>add factuur servlet</servlet-name>
     <servlet-class>nl.atd.controller.AddFactuurServlet</servlet-class>
-=======
-  	<servlet-name>add factuur servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.AddFactuurServlet</servlet-class>
   </servlet>
   
-  <servlet>
-  	<servlet-name>stuur auto herinnering servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.StuurAutoHerinneringServlet</servlet-class>
->>>>>>> 376bbeb72385db563dd482536dad594f206d20e9
-  </servlet>
   <servlet>
   	<servlet-name>stuur factuur herinnering servlet</servlet-name>
   	<servlet-class>nl.atd.controller.StuurFactuurHerinneringServlet</servlet-class>
