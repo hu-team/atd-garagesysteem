@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import sun.launcher.resources.launcher;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 

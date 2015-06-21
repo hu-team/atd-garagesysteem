@@ -105,6 +105,33 @@ public class ParkeerplekDAO extends BaseDAO {
 		}
 	}
 	
+	public ArrayList<Parkeerplek> getParkeerplekkenOpDatum(Calendar datum){
+		ArrayList<Parkeerplek> plekken = new ArrayList<Parkeerplek>();
+		
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM parkeerplek WHERE "
+					+ "parkeeplek.rij IN(SELECT rij FROM reservering WHERE MONTH(van) = ? AND YEAR(van) = ?) "
+					+ "AND "
+					+ "parkeerplek.plek IN(SELECT plek FROM reservering WHERE MONTH(van) = ? AND YEAR(van) = ?);");
+			
+			ps.setInt(1, datum.get(Calendar.MONTH + 1	));
+			ps.setInt(2, datum.get(Calendar.YEAR));
+			ps.setInt(3, datum.get(Calendar.MONTH + 1));
+			ps.setInt(4, datum.get(Calendar.YEAR));
+			
+			plekken = this.getPlekken(ps);
+			
+			ps.getConnection().close();
+			ps.close();
+			
+		}catch(Exception e){
+			
+		}
+		
+		return plekken;
+	}
+	
+	
 	public ArrayList<Parkeerplek> getParkeerplekkenTussenVanTot(Calendar van, Calendar tot){
 		ArrayList<Parkeerplek> plekken = new ArrayList<Parkeerplek>();
 		
@@ -177,6 +204,7 @@ public class ParkeerplekDAO extends BaseDAO {
 		
 		return 0;
 	}
+	
 	
 	/**
 	 * Add parkeerplek
