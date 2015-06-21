@@ -33,7 +33,7 @@
 					action="reserveerparkeerplekklant">
 					<c:if test="${error}">
 					<div class="alert alert-error">
-						${errorString};
+						${errorString}
 					</div>
 					</c:if>
 					

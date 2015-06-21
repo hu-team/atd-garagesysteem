@@ -34,7 +34,7 @@
   <servlet>
     <servlet-name>ajax get plekken</servlet-name>
     <servlet-class>nl.atd.controller.AjaxPlekkenServlet</servlet-class>
-  </servlet> 
+  </servlet>
   <servlet>
     <servlet-name>add artikel servlet</servlet-name>
     <servlet-class>nl.atd.controller.AddArtikelServlet</servlet-class>
@@ -75,23 +75,18 @@
     <servlet-name>reserveer parkeerplek klant servlet</servlet-name>
     <servlet-class>nl.atd.controller.ReserveerParkeerplekKlantServlet</servlet-class>
   </servlet>
-  
   <servlet>
-  	<servlet-name>add factuur servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.AddFactuurServlet</servlet-class>
-  </servlet>
-  
-  <servlet>
-  	<servlet-name>stuur auto herinnering servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.StuurAutoHerinneringServlet</servlet-class>
+    <servlet-name>add factuur servlet</servlet-name>
+    <servlet-class>nl.atd.controller.AddFactuurServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>stuur factuur herinnering servlet</servlet-name>
-  	<servlet-class>nl.atd.controller.StuurFactuurHerinneringServlet</servlet-class>
+    <servlet-name>stuur auto herinnering servlet</servlet-name>
+    <servlet-class>nl.atd.controller.StuurAutoHerinneringServlet</servlet-class>
   </servlet>
-  
-  
-  
+  <servlet>
+    <servlet-name>stuur factuur herinnering servlet</servlet-name>
+    <servlet-class>nl.atd.controller.StuurFactuurHerinneringServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>installer servlet</servlet-name>
     <url-pattern>/installer/install</url-pattern>
@@ -143,7 +138,7 @@
   <servlet-mapping>
     <servlet-name>ajax get plekken</servlet-name>
     <url-pattern>/secure/ajaxgetplekken</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>add artikel servlet</servlet-name>
     <url-pattern>/secure/addartikel</url-pattern>
@@ -189,11 +184,11 @@
     <url-pattern>/secure/addfactuur</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>stuur auto herinnering servlet</servlet-name>
-  	<url-pattern>/secure/stuurautoherinnering</url-pattern>
+    <servlet-name>stuur auto herinnering servlet</servlet-name>
+    <url-pattern>/secure/stuurautoherinnering</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>stuur factuur herinnering servlet</servlet-name>
-  	<url-pattern>/secure/stuurfactuurherinnering</url-pattern>
+    <servlet-name>stuur factuur herinnering servlet</servlet-name>
+    <url-pattern>/secure/stuurfactuurherinnering</url-pattern>
   </servlet-mapping>
 </web-app>

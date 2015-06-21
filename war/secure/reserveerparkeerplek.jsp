@@ -33,7 +33,7 @@ if(request.getParameter("klant") == null && !AuthHelper.isAdmin(session)) { resp
 					
 					<c:if test="${error}">
 					<div class="alert alert-error">
-						${errorString};
+						${errorString}
 					</div>
 					</c:if>
 					
