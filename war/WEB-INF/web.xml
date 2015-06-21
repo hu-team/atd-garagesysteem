@@ -89,7 +89,10 @@
   	<servlet-name>stuur factuur herinnering servlet</servlet-name>
   	<servlet-class>nl.atd.controller.StuurFactuurHerinneringServlet</servlet-class>
   </servlet>
-  
+  <servlet>
+  	<servlet-name>bezette parkeerplaats servlet</servlet-name>
+  	<servlet-class>nl.atd.controller.BezetteParkeerplaatsServlet</servlet-class>
+  </servlet>
   
   
   <servlet-mapping>
@@ -195,5 +198,9 @@
   <servlet-mapping>
   	<servlet-name>stuur factuur herinnering servlet</servlet-name>
   	<url-pattern>/secure/stuurfactuurherinnering</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>bezette parkeerplaats servlet</servlet-name>
+  	<url-pattern>/secure/bezetteparkeerplaats</url-pattern>
   </servlet-mapping>
 </web-app>
