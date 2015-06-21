@@ -65,6 +65,11 @@ public class ReserveerParkeerplekServlet extends HttpServlet{
 		Calendar vanCalendar = Calendar.getInstance();
 		Calendar totCalendar = Calendar.getInstance();
 		
+		if(totCalendar.before(vanCalendar)){
+			error = true;
+			errorString += "Uw eind datum moet na begin datum zijn. <br />";
+		}
+		
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		df.setTimeZone(TimeZone.getDefault());
 		try{
