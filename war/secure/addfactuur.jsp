@@ -19,7 +19,6 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 				</h2>
 			</div>
 			<div class="box-content">
-<<<<<<< HEAD
 				<form class="form-horizontal" method="post" action="#">
 					<c:if test="${error}">
 						<div class="alert alert-error">${errorString}</div>
@@ -66,9 +65,7 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 				</form>
 				klant, datum, onderdelen (+ add, verwijzing naar klus OF reservering
 				van KLANT die eerder is ingevuld, ajax denk ik)
-=======
 				klant, datum, onderdelen (+ add, verwijzing naar klus OF reservering van KLANT die eerder is ingevuld, ajax denk ik)
->>>>>>> 376bbeb72385db563dd482536dad594f206d20e9
 			</div>
 		</div>
 		<div class="clearfix"></div>

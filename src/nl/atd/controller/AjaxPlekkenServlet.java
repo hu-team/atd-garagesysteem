@@ -57,7 +57,7 @@ public class AjaxPlekkenServlet extends HttpServlet {
 		Calendar van = Calendar.getInstance();
 		Calendar tot = Calendar.getInstance();
 		
-		DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		df.setTimeZone(TimeZone.getDefault());
 		try{
 			van.setTime(df.parse(vanDatum + " " + vanTijdstip));

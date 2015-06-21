@@ -213,12 +213,14 @@ public class ParkeerplekDAO extends BaseDAO {
 			ps.setString(1, Character.toString(plek.getRij()));
 			ps.setInt(2, plek.getPlek());
 			
-			boolean gelukt = ps.execute();
+			ps.execute();
+//			boolean gelukt = ps.execute();
 			
 			ps.getConnection().close();
 			ps.close();
 			
-			return gelukt;
+			return 	true;
+			//return gelukt;
 		}catch(Exception e){
 			return false;
 		}
