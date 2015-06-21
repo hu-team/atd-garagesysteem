@@ -25,6 +25,11 @@ public class BezetteParkeerplekkenServlet extends HttpServlet{
 		boolean error = false;
 		String errorString = "";
 		
+		if(datum == null || datum.trim().isEmpty()){
+			error = true;
+			errorString += "";
+		}
+		
 		Calendar newDatum = Calendar.getInstance();
 		
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
