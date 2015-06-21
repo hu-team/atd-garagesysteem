@@ -114,10 +114,11 @@ public class Reservering {
 		
 		long milisecond1 = van.getTimeInMillis();
 		long milisecond2 = tot.getTimeInMillis();
-		
+
 		long diff = milisecond2 - milisecond1;
-		long diffDays = diff / (24 * 60 * 60 * 1000);
 		
+		long diffDays = diff / (24 * 60 * 60 * 1000);
+
 		return 15 * (int)diffDays;
 	}
 
@@ -127,7 +128,7 @@ public class Reservering {
 	 */
 	public String getFactuurOmschrijving() {
 		
-		return "Parkeerplek reservering: " + getKlant() + " " + getAuto() + "\t\t €" + getTotaalPrijs();
+		return "Parkeerplek reservering: " + getKlant() + " " + getAuto() + "\t\t ï¿½" + getTotaalPrijs();
 	}
 	
 	

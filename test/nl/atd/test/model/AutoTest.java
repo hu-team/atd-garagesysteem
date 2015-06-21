@@ -13,11 +13,13 @@ import org.junit.Test;
 public class AutoTest {
 	private Auto a1, a2, a3, a4;
 	private Calendar laatste = Calendar.getInstance();
+	private Calendar eerste = Calendar.getInstance();
 
 	@Before
 	public void setUp() throws Exception {
-		laatste.set(2015, Calendar.JUNE, 16);
-		a1 = new Auto("Mercedes", "A180", 2015, laatste);
+		eerste.set(2015, Calendar.JUNE, 16);
+		a1 = new Auto("Mercedes", "A180", 2015, eerste
+				);
 		a1.setKenteken("GB1231");
 
 		a2 = new Auto("Ford", "Mondeo", 2012, null);
@@ -34,7 +36,7 @@ public class AutoTest {
 	@Test
 	public void testIsLaatsteBeurt() {
 		// Beurt van a1 is pas geleden, dus true;
-		assertFalse(a1.isLaatsteBeurtRedelijk());
+		assertTrue(a1.isLaatsteBeurtRedelijk());
 		// Beurt van a4 is langer dan 6 maanden geleden, dus false;
 		assertFalse(a4.isLaatsteBeurtRedelijk());
 		// a3 heeft nog geen beurt gehad (null), dus false;
