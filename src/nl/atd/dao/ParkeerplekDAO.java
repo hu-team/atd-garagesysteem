@@ -110,14 +110,10 @@ public class ParkeerplekDAO extends BaseDAO {
 		
 		try{
 			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM parkeerplek WHERE "
-					+ "parkeeplek.rij IN(SELECT rij FROM reservering WHERE MONTH(van) = ? AND YEAR(van) = ?) "
-					+ "AND "
-					+ "parkeerplek.plek IN(SELECT plek FROM reservering WHERE MONTH(van) = ? AND YEAR(van) = ?);");
+					+ "parkeerplekid IN(SELECT parkeerplekid FROM reservering WHERE MONTH(van) = ? AND YEAR(van) = ?);");
 			
 			ps.setInt(1, datum.get(Calendar.MONTH + 1	));
 			ps.setInt(2, datum.get(Calendar.YEAR));
-			ps.setInt(3, datum.get(Calendar.MONTH + 1));
-			ps.setInt(4, datum.get(Calendar.YEAR));
 			
 			plekken = this.getPlekken(ps);
 			
