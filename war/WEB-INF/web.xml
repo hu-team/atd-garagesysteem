@@ -75,7 +75,6 @@
     <servlet-name>reserveer parkeerplek klant servlet</servlet-name>
     <servlet-class>nl.atd.controller.ReserveerParkeerplekKlantServlet</servlet-class>
   </servlet>
-  
   <servlet>
     <servlet-name>ajax get factuur onderdeel</servlet-name>
     <servlet-class>nl.atd.controller.AjaxFactuurOnderdelenServlet</servlet-class>
@@ -84,7 +83,10 @@
     <servlet-name>add factuur servlet</servlet-name>
     <servlet-class>nl.atd.controller.AddFactuurServlet</servlet-class>
   </servlet>
-  
+ <servlet>
+  	<servlet-name>stuur auto herinnering servlet</servlet-name>
+  	<servlet-class>nl.atd.controller.StuurAutoHerinneringServlet</servlet-class>
+  </servlet>
   <servlet>
   	<servlet-name>stuur factuur herinnering servlet</servlet-name>
   	<servlet-class>nl.atd.controller.StuurFactuurHerinneringServlet</servlet-class>
@@ -92,9 +94,7 @@
   <servlet>
   	<servlet-name>bezette parkeerplaats servlet</servlet-name>
   	<servlet-class>nl.atd.controller.BezetteParkeerplaatsServlet</servlet-class>
-  </servlet>
-  
-  
+  </servlet> 
   <servlet-mapping>
     <servlet-name>installer servlet</servlet-name>
     <url-pattern>/installer/install</url-pattern>
