@@ -36,7 +36,7 @@ public class AddParkeerplekServlet extends HttpServlet{
 			plekNumeriek = Integer.parseInt(plek);
 		}catch(NumberFormatException nfe) {
 			error = true;
-			errorString += "<br />";
+			errorString += "Plek mag alleen maar nummer bevatten. <br />";
 		}
 		
 		if(rij.matches(".*\\d+.*")){
@@ -50,7 +50,7 @@ public class AddParkeerplekServlet extends HttpServlet{
 			req.setAttribute("error", error);
 			req.setAttribute("errorString", errorString);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("parkeerplekoverzicht.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("addparkeerplek.jsp");
 			
 			rd.forward(req, resp);
 			
