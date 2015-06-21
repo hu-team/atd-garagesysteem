@@ -88,6 +88,11 @@ td>span.yellow, td>span.red, td>span.green, td>span.blue {
 	font-weight: bold;
   	font-size: 20px;
 }
+
+#factuur-onderdeel-items {
+	display:none;
+
+}
 /*
 * Factuur onderdeel
 */

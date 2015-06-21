@@ -31,7 +31,7 @@
 						<div class="control-group">
 							<label class="control-label" for="naam">Klant: </label>
 							<div class="controls">
-								<select name="klant">
+								<select name="klant" id="factuur-klant">
 									<c:forEach var="klant"
 										items="${ServiceProvider.getKlantService().getAlleKlantenAuto()}">
 										<option value="${klant.naam}">${klant.naam}</option>
@@ -45,7 +45,12 @@
 								<input type="date" name="datum" class="datepicker">
 							</div>
 						</div>
-						<div class="control-group">
+						<div class="control-group" id="factuur-onderdeel-search">
+							<div class="controls">
+								<button class="btn btn-primary" id="factuur-search-items">Onderdelen zoeken</button>
+							</div>
+						</div>
+						<div class="control-group" id="factuur-onderdeel-items">
 							<label class="control-label" for="datum">Onderdelen: </label>
 							<div class="controls">
 								<select name="onderdelen" multiple>

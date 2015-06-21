@@ -254,6 +254,10 @@ var app = function() {
 		inputRij.val(rij);
 		inputPlek.val(plek);
 	}
+	
+	function zoekFactuurOnderdelen() {
+		var klantnaam = $("#factuur-klant").val();
+	}
 
 	function alertFirst(link) {
 		var obj = {
@@ -282,7 +286,8 @@ var app = function() {
 		kentekenParsen : kentekenParsen,
 		kentekenOpzoeken : kentekenOpzoeken,
 		zoekPlek : zoekPlek,
-		veranderPlek : veranderPlek
+		veranderPlek : veranderPlek,
+		zoekFactuurOnderdelen : zoekFactuurOnderdelen
 	}
 
 }();
@@ -339,6 +344,11 @@ $(function() {
 	$("#zoekPlek").click(function(e) {
 		e.preventDefault();
 		app.zoekPlek();
+	});
+	
+	$("#factuur-search-items").click(function(e){
+		e.prevenDefault();
+		app.zoekFactuurOnderdelen();
 	});
 	
 	$("#parkeerplek-select").change(function(){
