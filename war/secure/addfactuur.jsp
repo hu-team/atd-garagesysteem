@@ -49,10 +49,7 @@
 							<label class="control-label" for="datum">Onderdelen: </label>
 							<div class="controls">
 								<select name="onderdelen" multiple>
-									<c:forEach var="klus"
-										items="${ServiceProvider.getKlusService().getKlussenVanKlant('masterthierry')">
-										
-									</c:forEach>
+									
 								</select>
 							</div>
 						</div>
