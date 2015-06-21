@@ -297,10 +297,14 @@ var app = function() {
 		}
 		
 		if(!error) {
+			$("#hide-error").css("display", "none");
 			$("#factuur-items").html(html);
 			$("#factuur-onderdeel-search").fadeOut(500,function(){
 				$("#factuur-onderdeel-items").fadeIn(500);
 			});
+		} else {
+			$("#hide-error .controls").find(".alert").html(html);
+			$("#hide-error").fadeIn(500);
 		} 
 		
 	}

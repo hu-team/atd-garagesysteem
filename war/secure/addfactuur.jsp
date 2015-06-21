@@ -30,7 +30,7 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 								<select name="klant" id="factuur-klant">
 									<c:forEach var="klant"
 										items="${ServiceProvider.getKlantService().getAlleKlantenAuto()}">
-										<option value="${klant.naam}">${klant.naam}</option>
+										<option value="${klant.gebruikersnaam}">${klant.naam}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -38,7 +38,7 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 						<div class="control-group">
 							<label class="control-label" for="datum">Datum: </label>
 							<div class="controls">
-								<input type="date" name="datum" class="datepicker">
+								<input type="text" name="datum" class="datepicker">
 							</div>
 						</div>
 						<div class="control-group" id="factuur-onderdeel-search">
@@ -46,10 +46,15 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 								<button class="btn btn-primary" id="factuur-search-items">Onderdelen zoeken</button>
 							</div>
 						</div>
+						<div class="control-group" id="hide-error">
+							<div class="controls">
+								<p class="alert alert-error"></p>
+							</div>
+						</div>
 						<div class="control-group" id="factuur-onderdeel-items">
 							<label class="control-label" for="datum">Onderdelen: </label>
 							<div class="controls">
-								<select name="onderdelen" multiple>
+								<select name="onderdelen" id="factuur-items" multiple>
 									
 								</select>
 							</div>

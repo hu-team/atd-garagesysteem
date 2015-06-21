@@ -45,7 +45,9 @@ input#kenteken {
 #hide-parkeerplek, #hide-error {
 	display: none
 }
-
+select#factuur-items {
+  height: 150px !important;
+}
 .has-error {
 	color: red;
 }

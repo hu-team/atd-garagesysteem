@@ -194,7 +194,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ajax get factuur onderdeel</servlet-name>
-    <url-pattern>/secure/factuuronderdeel</url-pattern>
+    <url-pattern>/secure/ajaxfactuuronderdeel</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>add factuur servlet</servlet-name>
