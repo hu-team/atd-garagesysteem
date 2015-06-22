@@ -270,7 +270,6 @@ public class Klus {
 		b = b && ((this.calendar).get(Calendar.HOUR_OF_DAY) == ((Klus)ander).getCalendar().get(Calendar.HOUR_OF_DAY));
 		b = b && ((this.calendar).get(Calendar.MINUTE) == ((Klus)ander).getCalendar().get(Calendar.MINUTE));
 
-	
 		return b;
 	}
 

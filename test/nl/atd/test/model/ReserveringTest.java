@@ -247,8 +247,9 @@ public class ReserveringTest {
 		temp3.setTimeInMillis(1900000000);
 		r1.setTot(temp3);
 		// temp 3 = 22 dagen (tot)
-
-		// 
+		// r1 totaalprijs = 150.0 euro
+		assertEquals(150.0, r1.getTotaalPrijs(), 01);
+		
 	}
 	
 	@After
