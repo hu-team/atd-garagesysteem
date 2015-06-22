@@ -19,7 +19,7 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 				</h2>
 			</div>
 			<div class="box-content">
-				<form class="form-horizontal" method="post" action="#">
+				<form class="form-horizontal" method="post" action="addfactuur">
 					<c:if test="${error}">
 						<div class="alert alert-error">${errorString}</div>
 					</c:if>
