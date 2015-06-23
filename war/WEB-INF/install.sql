@@ -157,4 +157,4 @@ ALTER TABLE `factuur`
 ADD CONSTRAINT `factuur_klant` FOREIGN KEY (`klant`) REFERENCES `klant` (`gebruikersnaam`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
-INSERT INTO `atd`.`parkeerplek` (`parkeerplekid`, `rij`, `plek`) VALUES (NULL, 'A', '1'), (NULL, 'A', '2'), (NULL, 'A', '3'), (NULL, 'B', '1'), (NULL, 'B', '2'), (NULL, 'B', '3'), (NULL, 'C', '1'), (NULL, 'C', '2'), (NULL, 'C', '3');
+INSERT INTO `parkeerplek` (`parkeerplekid`, `rij`, `plek`) VALUES (NULL, 'A', '1'), (NULL, 'A', '2'), (NULL, 'A', '3'), (NULL, 'B', '1'), (NULL, 'B', '2'), (NULL, 'B', '3'), (NULL, 'C', '1'), (NULL, 'C', '2'), (NULL, 'C', '3');
