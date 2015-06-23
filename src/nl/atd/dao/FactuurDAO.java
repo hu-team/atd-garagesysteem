@@ -1,7 +1,9 @@
 package nl.atd.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -111,13 +113,16 @@ public class FactuurDAO extends BaseDAO {
 	 */
 	public boolean addFactuur(Factuur factuur) {
 		try{
-			PreparedStatement ps = this.getPreparedStatement("INSERT INTO factuur (betaald, datum, klant) VALUES(?, ?, ?)");
+			
+			//PreparedStatement ps = this.getPreparedStatement("INSERT INTO factuur (betaald, datum, klant) VALUES(?, ?, ?)");
+			PreparedStatement ps = this.getConnection().prepareStatement("INSERT INTO factuur (betaald, datum, klant) VALUES(?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			
 			ps.setBoolean(1, factuur.isBetaald());
 			ps.setTimestamp(2, new Timestamp(factuur.getDatum().getTimeInMillis()));
 			ps.setString(3, factuur.getKlant().getGebruikersnaam());
 			
 			ps.executeUpdate();
+		
 			
 			ResultSet rs = ps.getGeneratedKeys();
 			

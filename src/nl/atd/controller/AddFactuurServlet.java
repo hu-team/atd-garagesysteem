@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import nl.atd.model.Factuur;
+import nl.atd.model.Factuuronderdeel;
 import nl.atd.model.Klant;
+import nl.atd.model.Klus;
+import nl.atd.model.Reservering;
 import nl.atd.service.ServiceProvider;
 
 public class AddFactuurServlet extends HttpServlet {
@@ -23,10 +26,14 @@ public class AddFactuurServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException ,IOException {
 		String klantGebruikersnaam = req.getParameter("klant");
 		String datum = req.getParameter("datum");
+		String klusid = req.getParameter("klusid");
+		String reserveringid = req.getParameter("reserveringid");
 		
 		
 		boolean error = false;
 		String errorString = "";
+		
+
 		
 		if(klantGebruikersnaam == null || datum == null ||
 				klantGebruikersnaam.isEmpty() || datum.isEmpty()) {
@@ -76,14 +83,26 @@ public class AddFactuurServlet extends HttpServlet {
 		factuur.setBetaald(false);
 		
 		
+		
 		int factuurnummer = ServiceProvider.getFactuurService().addFactuur(factuur);
 		
 		if(factuurnummer > 0) {
-			// Gelukt, nu onderdelen
+			Factuuronderdeel factuuronderdeel = new Factuuronderdeel();
+			Klus factuurklus = ServiceProvider.getKlusService().getKlusOpId(Integer.parseInt(klusid));
+			Reservering factuurreservering = ServiceProvider.getReserveringService().getReserveringOpId(Integer.parseInt(reserveringid));
+			
+			if(factuurklus != null) {
+				factuuronderdeel.setKlus(factuurklus);
+			}
+			
+			if(factuurreservering != null) {
+				factuuronderdeel.setReservering(factuurreservering);
+			}
+			
 			
 		}
 		
 		
-	}
+	}  
 
 }

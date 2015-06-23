@@ -91,7 +91,7 @@ td>span.yellow, td>span.red, td>span.green, td>span.blue {
   	font-size: 20px;
 }
 
-#factuur-onderdeel-items {
+#factuur-onderdeel-klus, #factuur-onderdeel-reservering {
 	display:none;
 
 }

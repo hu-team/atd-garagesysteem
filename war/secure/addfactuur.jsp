@@ -51,26 +51,31 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 								<p class="alert alert-error"></p>
 							</div>
 						</div>
-						<div class="control-group" id="factuur-onderdeel-items">
-							<label class="control-label" for="datum">Onderdelen: </label>
+						<div class="control-group" id="factuur-onderdeel-klus">
+							<label class="control-label" for="datum">Klus: </label>
 							<div class="controls">
-								<select name="onderdelen" id="factuur-items" multiple>
+								<select name="klusid" id="factuur-items-klus">
+									
+								</select>
+							</div>
+						</div>
+						<div class="control-group" id="factuur-onderdeel-reservering">
+							<label class="control-label" for="datum">Reservering: </label>
+							<div class="controls">
+								<select name="reserveringid" id="factuur-items-reservering">
 									
 								</select>
 							</div>
 						</div>
 					</fieldset>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Factuur
+						<button type="submit" id="factuur-add" class="btn btn-primary" disabled>Factuur
 							aanmaken</button>
 						<a
 							href="<%=application.getContextPath()%>/secure/factuuroverzicht.jsp"
 							class="btn btn-danger promise-me">Annuleren</a>
 					</div>
 				</form>
-				klant, datum, onderdelen (+ add, verwijzing naar klus OF reservering
-				van KLANT die eerder is ingevuld, ajax denk ik)
-				klant, datum, onderdelen (+ add, verwijzing naar klus OF reservering van KLANT die eerder is ingevuld, ajax denk ik)
 			</div>
 		</div>
 		<div class="clearfix"></div>

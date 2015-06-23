@@ -50,13 +50,14 @@ public class AjaxFactuurOnderdelenServlet extends HttpServlet {
 		JSONArray reserveringArray = new JSONArray();
 		String resp = "";
 		
-		//if(AuthHelper.isAdmin(request.getSession())) {
+		if(AuthHelper.isAdmin(request.getSession())) {
 			for(Klus k : klussen) {
 				JSONObject klusObject = new JSONObject();
 				
 				if(k.isKlaar()) {
+					int klusid = ServiceProvider.getKlusService().getKlusIdOpKlus(k);
 					try {
-						klusObject.put("id", klussen.indexOf(k));
+						klusObject.put("id", klusid);
 						klusObject.put("type", k.getType());
 						klusObject.put("uren", k.getUren());
 						klusObject.put("prijs", k.getTotaalPrijs());
@@ -70,7 +71,9 @@ public class AjaxFactuurOnderdelenServlet extends HttpServlet {
 			
 			for(Reservering r : reservering) {
 				JSONObject reserveringObject = new JSONObject();
+				int reserveringid = ServiceProvider.getReserveringService().getReserveringId(r.getVan(), r.getParkeerplek());
 				try {
+					reserveringObject.put("id", reserveringid);
 					reserveringObject.put("prijs", r.getTotaalPrijs());
 					reserveringArray.put(reserveringObject);
 				} catch (JSONException e) {
@@ -88,7 +91,7 @@ public class AjaxFactuurOnderdelenServlet extends HttpServlet {
 			out.print(resp);
 			out.flush();
 			
-		//}
+		}
 		
 	}
 }

@@ -61,6 +61,7 @@
 								<a class="btn btn-success parking-style" href="reserveerparkeerplek.jsp?klant=${klant.gebruikersnaam}">
 									P
 								</a>
+								<a class="btn btn-success" href="stuurautoherinnering.jsp?${klant.gebruikersnaam}"><i class="fa fa-envelope-o"></i></a>
 								</td>
 							</tr>
 						</c:forEach>
