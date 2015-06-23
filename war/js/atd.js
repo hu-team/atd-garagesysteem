@@ -295,7 +295,7 @@ var app = function() {
 
     if(klussen.length) {
       klussen.forEach(function(val, i){
-        var $string = "['klus']['id']['"+klussen[i]['id']+"']";
+        var $string = klussen[i]['id'];
         var item = '<option value="'+$string+'">Klus: "'+klussen[i]['type']+'"</option>';
         htmlklus += item;
       });
@@ -303,7 +303,7 @@ var app = function() {
 
     if(reservering.length) {
       reservering.forEach(function(val, i){
-        var $string = "['reservering']['id']['"+reservering[i]['id']+"']";
+        var $string = reservering[i]['id'];
         var item = '<option value="'+$string+'">Reservering: "'+reservering[i]['prijs']+'"</option>';
         htmlreservering += item;
       });

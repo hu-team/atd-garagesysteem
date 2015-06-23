@@ -18,5 +18,9 @@ public class FactuuronderdeelService {
 		return this.factuuronderdeelDAO.getFactuuronderdelenVanFactuur(factuur);
 	}
 	
+	public boolean addFactuurOnderdelen(Factuuronderdeel fo, int factuurid) {
+		return this.factuuronderdeelDAO.addFactuurOnderdeel(fo, factuurid);
+	}
+	
 	
 }

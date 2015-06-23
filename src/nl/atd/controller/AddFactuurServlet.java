@@ -88,17 +88,33 @@ public class AddFactuurServlet extends HttpServlet {
 		
 		if(factuurnummer > 0) {
 			Factuuronderdeel factuuronderdeel = new Factuuronderdeel();
-			Klus factuurklus = ServiceProvider.getKlusService().getKlusOpId(Integer.parseInt(klusid));
-			Reservering factuurreservering = ServiceProvider.getReserveringService().getReserveringOpId(Integer.parseInt(reserveringid));
 			
-			if(factuurklus != null) {
-				factuuronderdeel.setKlus(factuurklus);
+			if(klusid != null) {
+				Klus factuurklus = ServiceProvider.getKlusService().getKlusOpId(Integer.parseInt(klusid));
+				
+				if(factuurklus != null) {
+					factuuronderdeel.setKlus(factuurklus);
+				}
 			}
 			
-			if(factuurreservering != null) {
-				factuuronderdeel.setReservering(factuurreservering);
+			if(reserveringid != null) {
+				Reservering factuurreservering = ServiceProvider.getReserveringService().getReserveringOpId(Integer.parseInt(reserveringid));
+				
+				if(factuurreservering != null) {
+					factuuronderdeel.setReservering(factuurreservering);
+				}
 			}
 			
+			
+			factuuronderdeel.setTotaalprijs(factuur.getTotaalPrijs());
+			if(ServiceProvider.getFactuuronderdeelService().addFactuurOnderdelen(factuuronderdeel, factuurnummer)) {
+				
+				RequestDispatcher rd = req.getRequestDispatcher("factuuroverzicht.jsp");
+				
+				rd.forward(req, resp);
+				
+				return;
+			}
 			
 		}
 		
