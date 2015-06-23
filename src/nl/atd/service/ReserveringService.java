@@ -1,6 +1,7 @@
 package nl.atd.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import nl.atd.dao.ReserveringDAO;import nl.atd.model.Klant;
 import nl.atd.model.Parkeerplek;
@@ -43,7 +44,17 @@ public class ReserveringService {
 	public boolean addReservering(Reservering reservering){
 		return this.reserveringDAO.addReservering(reservering);
 	}
-
+	
+	/**
+	 * Get reserveringid, zoeken van reserveringid op unieke parameters.
+	 * @param van
+	 * @param plek
+	 * @return reserveringid of 0
+	 */
+	public int getReserveringId(Calendar van, Parkeerplek plek){
+		return this.reserveringDAO.getReserveringId(van, plek);
+	}
+	
 	/**
 	 * Get reservering op id
 	 * @param reserveringid

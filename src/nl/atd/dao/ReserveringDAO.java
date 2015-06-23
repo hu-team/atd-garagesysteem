@@ -1,7 +1,9 @@
-package nl.atd.dao;
+	package nl.atd.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -131,7 +133,46 @@ public class ReserveringDAO extends BaseDAO {
 		return reserveringen.size() > 0 ? reserveringen.get(0) : null;
 	}
 	
+	/**
+	 * Get reserveringid, zoeken van reserveringid op unieke parameters.
+	 * @param van
+	 * @param parkeerplek
+	 * @return ReserveringID of 0
+	 */
+	public int getReserveringId(Calendar van, Parkeerplek plek){
+		return this.getReserveringIdOpQuery("SELECT reserveringid FROM reservering WHERE "
+				+ "van=FROM_UNIXTIME(" + (van.getTimeInMillis() / 1000) + ")"
+				+ "AND "
+				+ "parkeerplek=" + ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(plek) + ";");
+	}
 	
+	/**
+	 * ReserveringID opzoeken met query
+	 * @param query
+	 * @return id of 0
+	 */
+	
+	private int getReserveringIdOpQuery(String query) {
+		int nr = 0;
+
+		try {
+			Connection connection = this.getConnection();
+			Statement statement = connection.createStatement();
+
+			ResultSet set = statement.executeQuery(query);
+
+			while (set.next()) {
+				nr = set.getInt("reserveringid");
+			}
+
+			statement.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return nr;
+	}
 	public boolean addReservering(Reservering reservering){
 		try{
 			PreparedStatement ps = this.getPreparedStatement("INSERT INTO reservering (van, tot, auto, klant, parkeerplek) VALUES(?, ?, ?, ?, ?)");
