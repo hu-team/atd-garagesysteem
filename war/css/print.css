@@ -53,4 +53,7 @@
 	footer {
 	display: none;
 	}
+	.onderdeel-padding {
+		padding: 0px;
+	}
 }
