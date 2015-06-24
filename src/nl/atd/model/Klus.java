@@ -36,8 +36,7 @@ public class Klus {
 	/**
 	 * Set de klaarstatus
 	 * 
-	 * @param kl
-	 *            klaarstatus
+	 * @param kl klaarstatus
 	 */
 	public void setKlaar(boolean kl) {
 		this.klaar = kl;
@@ -64,8 +63,7 @@ public class Klus {
 	/**
 	 * Voeg onderdeel toe aan onderdelen
 	 * 
-	 * @param ond
-	 *            toe te voegen onderdeel
+	 * @param ond toe te voegen onderdeel
 	 */
 	public void addOnderdeel(Onderdeel ond) {
 		this.onderdelen.add(ond);
@@ -74,8 +72,7 @@ public class Klus {
 	/**
 	 * Verwijder onderdeel uit lijst
 	 * 
-	 * @param ond
-	 *            onderdeel te verwijderen
+	 * @param ond onderdeel te verwijderen
 	 */
 	public void verwijderOnderdeel(Onderdeel ond) {
 		this.onderdelen.remove(ond);
@@ -84,8 +81,7 @@ public class Klus {
 	/**
 	 * Vervang de onderdeellijst door een nieuwe lijst
 	 * 
-	 * @param ond
-	 *            array met onderdelen
+	 * @param ond array met onderdelen
 	 */
 	public void setOnderdelen(ArrayList<Onderdeel> ond) {
 		this.onderdelen = ond;
@@ -94,8 +90,7 @@ public class Klus {
 	/**
 	 * Set het aantal uren gewerkt aan klus
 	 * 
-	 * @param ur
-	 *            uren
+	 * @param ur uren
 	 */
 	public void setUren(int ur) {
 		this.uren = ur;
@@ -113,8 +108,7 @@ public class Klus {
 	/**
 	 * Voeg aantal uren toe aan huidig aantal uren
 	 * 
-	 * @param ur
-	 *            uren toe te voegen
+	 * @param ur uren toe te voegen
 	 */
 	public void addUren(int ur) {
 		this.uren += ur;
@@ -132,8 +126,7 @@ public class Klus {
 	/**
 	 * Set datum en tijd van klus
 	 * 
-	 * @param cl
-	 *            datum en tijd
+	 * @param cl datum en tijd
 	 */
 	public void setCalendar(Calendar cl) {
 		this.calendar = cl;
@@ -169,8 +162,7 @@ public class Klus {
 	/**
 	 * Set type klus
 	 * 
-	 * @param typ
-	 *            type
+	 * @param typ type
 	 */
 	public void setType(String typ) {
 		this.type = typ;
@@ -188,8 +180,7 @@ public class Klus {
 	/**
 	 * Set omschrijving van klus
 	 * 
-	 * @param om
-	 *            omschrijving
+	 * @param om omschrijving
 	 */
 	public void setOmschrijving(String om) {
 		this.omschrijving = om;
@@ -237,8 +228,7 @@ public class Klus {
 	/**
 	 * Wijs een monteur toe aan klus
 	 * 
-	 * @param mn
-	 *            monteur
+	 * @param mn monteur
 	 */
 	public void setMonteur(Monteur mn) {
 		this.monteur = mn;
@@ -259,12 +249,8 @@ public class Klus {
 		b = b && (this.monteur.equals(((Klus) ander).getMonteur()));
 		b = b && (this.klant.equals(((Klus) ander).getKlant()));
 		b = b && (this.auto.equals(((Klus) ander).getAuto()));
-
-		// Omdat in de tests de database moet worden geleegd bij tearDown()
-		// b = b && (this.onderdelen.equals(((Klant)ander).getOnderdelen()));
-
+		
 		// Calendar vergelijken, DAY.OF.YEAR - YEAR - HOURS : MINUTES
-	
 		b = b && ((this.calendar).get(Calendar.DAY_OF_YEAR) == ((Klus)ander).getCalendar().get(Calendar.DAY_OF_YEAR));
 		b = b && ((this.calendar).get(Calendar.YEAR) == ((Klus)ander).getCalendar().get(Calendar.YEAR));
 		b = b && ((this.calendar).get(Calendar.HOUR_OF_DAY) == ((Klus)ander).getCalendar().get(Calendar.HOUR_OF_DAY));

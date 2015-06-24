@@ -20,6 +20,13 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 				</h2>
 			</div>
 			<div class="box-content">
+			
+				<c:if test="${not empty param.done}">
+					<div class="alert alert-success">
+						Factuur gemaakt!
+					</div>
+				</c:if>
+			
 				<table
 					class="table table-striped table-bordered bootstrap-datatable datatable dataTable">
 					<thead>

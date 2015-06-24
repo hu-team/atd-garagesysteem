@@ -9,6 +9,7 @@ public class Factuuronderdeel {
 	public Factuuronderdeel() {
 		this.klus = null;
 		this.reservering = null;
+		this.omschrijving = "";
 	}
 
 	/**

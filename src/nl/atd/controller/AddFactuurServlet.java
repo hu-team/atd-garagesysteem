@@ -41,6 +41,11 @@ public class AddFactuurServlet extends HttpServlet {
 			errorString += "Vul alle velden in! <br />";
 		}
 		
+		if(klusid == null && reserveringid == null) {
+			error = true;
+			errorString += "Voeg een klus of reservering toe <br />";
+		}
+		
 		Calendar datumCalendar = null;
 		if(datum != null) {
 			datumCalendar = Calendar.getInstance();
@@ -86,39 +91,53 @@ public class AddFactuurServlet extends HttpServlet {
 		
 		int factuurnummer = ServiceProvider.getFactuurService().addFactuur(factuur);
 		
+		boolean status = true;
+		
 		if(factuurnummer > 0) {
-			Factuuronderdeel factuuronderdeel = new Factuuronderdeel();
-			
-			if(klusid != null) {
+			if(klusid != null && !klusid.trim().isEmpty()) {
+				Factuuronderdeel factuuronderdeel = new Factuuronderdeel();
+				
 				Klus factuurklus = ServiceProvider.getKlusService().getKlusOpId(Integer.parseInt(klusid));
 				
 				if(factuurklus != null) {
 					factuuronderdeel.setKlus(factuurklus);
+					factuuronderdeel.setOmschrijving(factuurklus.getFactuurOmschrijving());
+					factuuronderdeel.setTotaalprijs(factuurklus.getTotaalPrijs());
+					if(!ServiceProvider.getFactuuronderdeelService().addFactuurOnderdelen(factuuronderdeel, factuurnummer)) {
+						status = false;
+					}
 				}
 			}
 			
-			if(reserveringid != null) {
+			if(reserveringid != null && !reserveringid.trim().isEmpty()) {
+				Factuuronderdeel factuuronderdeel = new Factuuronderdeel();
+				
 				Reservering factuurreservering = ServiceProvider.getReserveringService().getReserveringOpId(Integer.parseInt(reserveringid));
 				
 				if(factuurreservering != null) {
 					factuuronderdeel.setReservering(factuurreservering);
+					factuuronderdeel.setOmschrijving(factuurreservering.getFactuurOmschrijving());
+					factuuronderdeel.setTotaalprijs(factuurreservering.getTotaalPrijs());
+					if(!ServiceProvider.getFactuuronderdeelService().addFactuurOnderdelen(factuuronderdeel, factuurnummer)) {
+						status = false;
+					}
 				}
 			}
 			
-			
-			factuuronderdeel.setTotaalprijs(factuur.getTotaalPrijs());
-			if(ServiceProvider.getFactuuronderdeelService().addFactuurOnderdelen(factuuronderdeel, factuurnummer)) {
-				
-				RequestDispatcher rd = req.getRequestDispatcher("factuuroverzicht.jsp");
-				
-				rd.forward(req, resp);
-				
+			if(status) {
+				resp.sendRedirect(req.getContextPath() + "/secure/factuuroverzicht.jsp?done=1");
 				return;
 			}
 			
 		}
 		
 		
+		req.setAttribute("error", true);
+		req.setAttribute("errorString", "Mogelijk bestaat klus of reservering niet of komt het niet overeen met onze data<br />");
+		
+		RequestDispatcher rd = req.getRequestDispatcher("addfactuur.jsp");
+		
+		rd.forward(req, resp);
 	}  
 
 }
