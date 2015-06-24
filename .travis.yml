@@ -5,4 +5,8 @@ services: mysql
 
 before_install:
   - mysql -e "create database IF NOT EXISTS atd;" -uroot
+
+before_script:
+  - mysql -uroot atd < war/WEB-INF/install.sql
+  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
   
