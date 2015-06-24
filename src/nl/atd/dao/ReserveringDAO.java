@@ -111,7 +111,29 @@ public class ReserveringDAO extends BaseDAO {
 		return reserveringen;
 	}
 	
-	
+	/**
+	 * Get reserveringen op maand en jaar
+	 * @param datum
+	 * @return lijst met reserveringen
+	 */
+	public ArrayList<Reservering> getReserveringenOpMaand(Calendar datum){
+		ArrayList<Reservering> reserveringen = new ArrayList<Reservering>();
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM reservering WHERE MONTH(van)=? AND YEAR(van)=?;");
+			
+			ps.setInt(1, datum.get(Calendar.MONTH) + 1);
+			ps.setInt(2, datum.get(Calendar.YEAR));
+			
+			reserveringen = this.getReserveringen(ps);
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return reserveringen;
+		
+	}
 	
 	/**
 	 * Get reserveringen
@@ -173,6 +195,7 @@ public class ReserveringDAO extends BaseDAO {
 
 		return nr;
 	}
+	
 	public boolean addReservering(Reservering reservering){
 		try{
 			PreparedStatement ps = this.getPreparedStatement("INSERT INTO reservering (van, tot, auto, klant, parkeerplek) VALUES(?, ?, ?, ?, ?)");

@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.service.ServiceProvider;
+
+
 public class BezetteParkeerplekkenServlet extends HttpServlet{
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1762750467936644308L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -52,12 +55,8 @@ public class BezetteParkeerplekkenServlet extends HttpServlet{
 			return;
 		}
 		
-		req.getSession().setAttribute("datum", newDatum);
-		resp.sendRedirect(req.getContextPath() + "/secure/bezetteparkeerplekkenoverzicht.jsp");
+		req.setAttribute("datum", newDatum);
+		req.getRequestDispatcher("bezetteparkeerplekoverzicht.jsp").forward(req, resp);
 		
-		//TODO ForEach in de JSTL pagina
-		//in bezetteparkeerplekkenoverzicht.jsp
-		//Eerst moet de Calendar object worden opgehaald van session. Calendar datum = (Calendar)req.getSession().getAttribute("datum");
-		//daarna komt dan een JSTL: <forEach items="<%=ServiceProvider.getParkeerplekService().getParkeerplekOpDatum(datum); %>" var="parkeerplek"></forEach>
 	}
 }

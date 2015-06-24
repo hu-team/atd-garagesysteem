@@ -46,6 +46,15 @@ public class ReserveringService {
 	}
 	
 	/**
+	 * Get reservering op maand en jaar
+	 * @param datum
+	 * @return lijst met reserveringen
+	 */
+	public ArrayList<Reservering> getReserveringOpMaand(Calendar datum){
+		return this.reserveringDAO.getReserveringenOpMaand(datum);
+	}
+	
+	/**
 	 * Get reserveringid, zoeken van reserveringid op unieke parameters.
 	 * @param van
 	 * @param plek

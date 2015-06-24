@@ -105,6 +105,12 @@ public class ParkeerplekDAO extends BaseDAO {
 		}
 	}
 	
+	/**
+	 * Get bezette parkeerplekken op datum
+	 * @param datum
+	 * @return lijst met bezette parkeerplekken
+	 */
+	
 	public ArrayList<Parkeerplek> getParkeerplekkenOpDatum(Calendar datum){
 		ArrayList<Parkeerplek> plekken = new ArrayList<Parkeerplek>();
 		
@@ -127,7 +133,12 @@ public class ParkeerplekDAO extends BaseDAO {
 		return plekken;
 	}
 	
-	
+	/**
+	 * Get parkeerplekken tussen 2 datums
+	 * @param van
+	 * @param tot
+	 * @return lijst met bezette parkeerplekken tussen 2 datums
+	 */
 	public ArrayList<Parkeerplek> getParkeerplekkenTussenVanTot(Calendar van, Calendar tot){
 		ArrayList<Parkeerplek> plekken = new ArrayList<Parkeerplek>();
 		
