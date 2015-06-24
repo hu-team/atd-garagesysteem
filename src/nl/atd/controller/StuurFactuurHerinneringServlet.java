@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import nl.atd.helper.AuthHelper;
 import nl.atd.helper.MailHelper;
-import nl.atd.model.Auto;
 import nl.atd.model.Factuur;
-import nl.atd.model.Klant;
 import nl.atd.service.ServiceProvider;
 
 public class StuurFactuurHerinneringServlet extends HttpServlet {

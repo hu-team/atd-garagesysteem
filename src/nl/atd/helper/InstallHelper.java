@@ -83,15 +83,4 @@ public class InstallHelper {
 		return true;
 	}
 	
-
-	private boolean isDatabaseInstalled() {
-		try{
-			Connection connection = DatabaseHelper.getDatabaseConnection();
-			// TODO tabelvalidatie
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
 }

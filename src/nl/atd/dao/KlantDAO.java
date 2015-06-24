@@ -81,6 +81,7 @@ public class KlantDAO extends BaseDAO {
 	 * @deprecated SQL Injectie mogelijk
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	@Deprecated
 	private ArrayList<Klant> getKlanten(String query, boolean metAutos) {
 		try{
