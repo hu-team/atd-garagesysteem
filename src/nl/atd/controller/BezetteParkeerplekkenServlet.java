@@ -39,7 +39,7 @@ public class BezetteParkeerplekkenServlet extends HttpServlet{
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		df.setTimeZone(TimeZone.getDefault());
 		try{
-			newDatum.setTime(df.parse(datum));
+			newDatum.setTime(df.parse("01-" + datum));
 		}catch(ParseException pe) {
 			error = true;
 			errorString += "Datum is niet in een geldige notatie, gebruik DD-MM-YYYY. <br />";
