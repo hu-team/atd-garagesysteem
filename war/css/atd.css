@@ -86,6 +86,10 @@ td>span.yellow, td>span.red, td>span.green, td>span.blue {
 .margin-abit {
 	margin-top: 15px;
 }
+.bgtje {
+	background: blue;
+	padding: 2px 2px;
+}
 .parking-style {
 	font-weight: bold;
   	font-size: 20px;
