@@ -8,6 +8,9 @@
 		response.sendRedirect(application.getContextPath() + "/secure/");
 		return;
 	}
+
+	pageContext.setAttribute("ismonteur", AuthHelper.isMonteur(session));
+
 %>
 
 <%@ include file="_header.jsp"%>
@@ -61,7 +64,9 @@
 								<a class="btn btn-success parking-style" href="reserveerparkeerplek.jsp?klant=${klant.gebruikersnaam}">
 									P
 								</a>
+								<c:if test="${not ismonteur }">
 								<a class="btn btn-success" href="stuurautoherinnering.jsp?${klant.gebruikersnaam}"><i class="fa fa-envelope-o"></i></a>
+								</c:if>
 								</td>
 							</tr>
 						</c:forEach>

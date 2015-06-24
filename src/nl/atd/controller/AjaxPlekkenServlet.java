@@ -63,8 +63,16 @@ public class AjaxPlekkenServlet extends HttpServlet {
 			van.setTime(df.parse(vanDatum + " " + vanTijdstip));
 			tot.setTime(df.parse(totDatum + " " + totTijdstip));
 		}catch(ParseException pe) {
-
+			pe.printStackTrace();
+			
+			resp.setContentType("application/json");
+			PrintWriter out = resp.getWriter();  
+			out.print("[]");
+			out.flush();
+			
+			return;
 		}
+		
 		
 		ArrayList<Parkeerplek> parkeerplekken = ServiceProvider.getParkeerplekService().getAlleVrijePlekkenTussenVanTot(van, tot);
 		
