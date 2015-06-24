@@ -10,6 +10,11 @@ import nl.atd.service.ServiceProvider;
 
 public class FactuuronderdeelDAO extends BaseDAO {
 	
+	/**
+	 * Get factuur onderdelen
+	 * @param ps
+	 * @return onderdelen van factuur
+	 */
 	private ArrayList<Factuuronderdeel> getFactuuronderdelen(PreparedStatement ps) {
 		ArrayList<Factuuronderdeel> onderdelen = new ArrayList<Factuuronderdeel>();
 		

@@ -87,6 +87,10 @@ public class MonteurDAO extends BaseDAO {
 		}
 	}
 
+	/**
+	 * Delete alle monteur data
+	 * ALLEEN VOOR TESTS
+	 */
 	public void deleteAlles() {
 		try {
 			Connection connection = this.getConnection();

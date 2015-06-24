@@ -120,6 +120,10 @@ public class ArtikelDAO extends BaseDAO {
 		}
 	}
 
+	/**
+	 * Delete alle artikelen
+	 * ALLEEN VOOR TESTS
+	 */
 	public void deleteAlles() {
 		try {
 			Connection connection = this.getConnection();
