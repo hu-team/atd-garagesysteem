@@ -21,6 +21,12 @@
 		</a>
 	</li>
 	<li>
+		<a href="<%=application.getContextPath()%>/secure/bezetteparkeerplek.jsp">
+			<i class="parking-style bgtje">P</i>
+			<span class="hidden-tablet"> Parkeerplekken overzicht</span>
+		</a>
+	</li>
+	<li>
 		<a href="<%=application.getContextPath()%>/secure/factuuroverzicht.jsp">
 			<i class="fa fa-money"></i>
 			<span class="hidden-tablet"> Factuur overzicht</span>
@@ -56,7 +62,7 @@
 <li>
 	<a href="<%=application.getContextPath()%>/secure/reserveerparkeerplekklant.jsp">
 		<i class="fa fa-car"></i>
-		<span class="hidden-tablet">Plek Reserveren</span>
+		<span class="hidden-tablet">Plek reserveren</span>
 	</a>
 </li>
 <li>
