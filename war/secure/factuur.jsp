@@ -4,7 +4,6 @@
 <%@page import="nl.atd.helper.AuthHelper"%>
 <%@ include file="_header.jsp"%>
 <%
-if (!AuthHelper.isAdmin(session)) { response.sendRedirect(application.getContextPath() + "/secure/index.jsp"); return; }
 if (request.getParameter("nummer") == null) { response.sendRedirect(application.getContextPath() + "/secure/factuuroverzicht.jsp"); return; }
 
 int factuurnummer = 0;
@@ -17,6 +16,20 @@ try{
 
 Factuur factuur = ServiceProvider.getFactuurService().getFactuurOpNummer(factuurnummer);
 if(factuur == null) {response.sendRedirect(application.getContextPath() + "/secure/factuuroverzicht.jsp"); return;}
+
+boolean bedrijfseigenaar = AuthHelper.isAdmin(session);
+
+// AUTH CONTROLE!!!!
+if (!AuthHelper.isAdmin(session)) { 
+	// Mogelijk wel eigenaar van de factuur?
+	if(AuthHelper.isKlant(session) && factuur.getKlant().getGebruikersnaam().equals(AuthHelper.getGebruikersnaam(session))) {
+		// Goed, het is de eigenaar van de factuur, die mag er bij!!
+		
+	}else{
+		response.sendRedirect(application.getContextPath() + "/secure/index.jsp"); return;		
+	}
+}
+
 
 if(request.getParameter("betaald") != null && request.getParameter("betaald").equals("1")) {
 	// Set op betaald, dan reload
@@ -33,6 +46,7 @@ pageContext.setAttribute("factuur", factuur);
 Calendar vervaldatum = (Calendar)factuur.getDatum().clone();
 vervaldatum.add(Calendar.MONTH, 1);
 
+pageContext.setAttribute("bedrijfseigenaar", bedrijfseigenaar);
 pageContext.setAttribute("vervaldatum", vervaldatum);
 
 %>
@@ -51,6 +65,7 @@ pageContext.setAttribute("vervaldatum", vervaldatum);
 			<div class="box-content">
 				<div class="factuur-actie">
 					<button class="btn btn-primary" id="factuur-voorbeeld">Print</button>
+					<c:if test="${bedrijfseigenaar }">
 					<c:if test="${not factuur.betaald }">
 					<a href="factuur.jsp?nummer=${factuur.factuurnummer }&betaald=1" class="btn btn-warning">Factuur op betaald zetten</a>
 					<a href="stuurfactuurherinnering.jsp?nummer=${factuur.factuurnummer }" class="btn btn-warning">Herinnering sturen</a>
@@ -59,7 +74,7 @@ pageContext.setAttribute("vervaldatum", vervaldatum);
 					<button type="button" readonly="readonly" disabled="disabled" class="btn btn-default disabled" title="Factuur is al betaald!">Herinnering sturen</button>
 					(Factuur is betaald)
 					</c:if>
-					
+					</c:if>
 					<hr>
 				</div>
 				<div id="factuur-model">

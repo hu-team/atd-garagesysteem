@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import nl.atd.dao.FactuurDAO;
 import nl.atd.model.Factuur;
+import nl.atd.model.Klant;
 
 public class FactuurService {
 
@@ -15,6 +16,15 @@ public class FactuurService {
 	 */
 	public ArrayList<Factuur> getAlleFacturen() {
 		return this.factuurDAO.getAlleFacturen();
+	}
+	
+	/**
+	 * Get klanten facturen
+	 * @param klant
+	 * @return lijst met klant facturen
+	 */
+	public ArrayList<Factuur> getFacturenVanKlant(Klant klant) {
+		return this.factuurDAO.getFacturenVanKlant(klant.getGebruikersnaam());
 	}
 	
 	/**
