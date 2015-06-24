@@ -216,4 +216,9 @@
   	<servlet-name>add parkeerplek servlet</servlet-name>
   	<url-pattern>/secure/addparkeerplek</url-pattern>
   </servlet-mapping>
+  
+  
+  <error-page>
+	<location>/errorpagina.jsp</location>
+  </error-page>
 </web-app>

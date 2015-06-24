@@ -265,6 +265,7 @@ var app = function() {
         klant: klantnaam
       }
     }).done(function(data) {
+    	console.log(data);
       _setFactuurOnderdelen(data);
     });
 
@@ -296,7 +297,7 @@ var app = function() {
     if(klussen.length) {
       klussen.forEach(function(val, i){
         var $string = klussen[i]['id'];
-        var item = '<option value="'+$string+'">Klus: "'+klussen[i]['type']+'"</option>';
+        var item = '<option value="'+$string+'">Klus: "'+klussen[i]['omschrijving']+'"</option>';
         htmlklus += item;
       });
     }
@@ -304,7 +305,7 @@ var app = function() {
     if(reservering.length) {
       reservering.forEach(function(val, i){
         var $string = reservering[i]['id'];
-        var item = '<option value="'+$string+'">Reservering: "'+reservering[i]['prijs']+'"</option>';
+        var item = '<option value="'+$string+'">Reservering: "'+reservering[i]['omschrijving']+'"</option>';
         htmlreservering += item;
       });
     }
@@ -340,6 +341,13 @@ var app = function() {
       window.location.replace(link);
     });
   }
+  
+  function genereerWachtwoord() {
+	  var random = Math.random().toString(36).slice(-8);
+	  
+	  $("#wachtwoord, #wachtwoord2").val(random);
+  }
+  
   ;
 
   return {
@@ -355,7 +363,8 @@ var app = function() {
     zoekPlek : zoekPlek,
     veranderPlek : veranderPlek,
     zoekFactuurOnderdelen : zoekFactuurOnderdelen,
-    resetZoekFactuur : resetZoekFactuur
+    resetZoekFactuur : resetZoekFactuur,
+    genereerWachtwoord : genereerWachtwoord
   }
 
 }();
@@ -425,6 +434,10 @@ $(function() {
   
   $("#factuur-klant").change(function(){
 	 app.resetZoekFactuur(); 
+  });
+  
+  $("#genereerwachtwoord").click(function() {
+	 app.genereerWachtwoord();
   });
 
 });

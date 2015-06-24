@@ -2,7 +2,7 @@ package nl.atd.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,11 +43,14 @@ public class AjaxFactuurOnderdelenServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String tmpklant = request.getParameter("klant");
 		Klant klant = ServiceProvider.getKlantService().getKlantByGebruikersnaam(tmpklant);
-		List<Klus> klussen = ServiceProvider.getKlusService().getKlussenVanKlant(klant);
-		List<Reservering> reservering = ServiceProvider.getReserveringService().getReserveringenVanKlant(klant);
+		
+		ArrayList<Klus> klussen = ServiceProvider.getKlusService().getKlussenVanKlant(klant);
+		ArrayList<Reservering> reservering = ServiceProvider.getReserveringService().getReserveringenVanKlant(klant);
+		
 		JSONArray factuurArray = new JSONArray();
 		JSONArray klussenArray = new JSONArray();
 		JSONArray reserveringArray = new JSONArray();
+		
 		String resp = "";
 		
 		if(AuthHelper.isAdmin(request.getSession())) {
@@ -61,6 +64,7 @@ public class AjaxFactuurOnderdelenServlet extends HttpServlet {
 						klusObject.put("type", k.getType());
 						klusObject.put("uren", k.getUren());
 						klusObject.put("prijs", k.getTotaalPrijs());
+						klusObject.put("omschrijving", k.getFactuurOmschrijving());
 						klussenArray.put(klusObject);
 					} catch (JSONException e) {
 						e.printStackTrace();
@@ -75,6 +79,7 @@ public class AjaxFactuurOnderdelenServlet extends HttpServlet {
 				try {
 					reserveringObject.put("id", reserveringid);
 					reserveringObject.put("prijs", r.getTotaalPrijs());
+					reserveringObject.put("omschrijving", r.getFactuurOmschrijving());
 					reserveringArray.put(reserveringObject);
 				} catch (JSONException e) {
 					e.printStackTrace();

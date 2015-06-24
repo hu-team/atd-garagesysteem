@@ -16,7 +16,8 @@ public class MailHelper {
 			+ "Naam: [NAAM] <br />"
 			+ "E-mail adres: [EMAIL] <br />"
 			+ "Telefoonnummer: [TELEFOONNUMMER] <br />"
-			+ "Gebruikersnaam: [GEBRUIKERSNAAM] <br /><br />"
+			+ "Gebruikersnaam: [GEBRUIKERSNAAM] <br />"
+			+ "Wachtwoord: [WACHTWOORD] <br /><br />"
 			+ "Voor de volledige details, of het wijzigen van uw gegevens dient u in te loggen in de applicatie. Dit kan op <a href='http://www.atd.nl/app'>http://www.atd.nl/app/</a><br /><br />"
 			+ "Met vriendelijke groet,<br />"
 			+ "AutoTotaalDienst";
@@ -46,7 +47,7 @@ public class MailHelper {
 		return session;
 	}
 	
-	public static boolean sendWelkomMailNaarKlant(Klant klant) {
+	public static boolean sendWelkomMailNaarKlant(Klant klant, String wachtwoord) {
 		if(klant.getEmail() == null || klant.getNaam() == null || klant.getEmail().isEmpty() || klant.getNaam().isEmpty()) {
 			return false;
 		}
@@ -66,6 +67,7 @@ public class MailHelper {
 			content = content.replace("[EMAIL]", klant.getEmail());
 			content = content.replace("[TELEFOONNUMMER]", klant.getTelefoonnummer());
 			content = content.replace("[GEBRUIKERSNAAM]", klant.getGebruikersnaam());
+			content = content.replace("[WACHTWOORD]", wachtwoord);
 			
 			message.setContent(content, "text/html; charset=utf-8");
 			

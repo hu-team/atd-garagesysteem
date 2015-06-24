@@ -1,3 +1,4 @@
+<%@page import="nl.atd.model.Factuur"%>
 <%@page import="nl.atd.model.Reservering"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -6,21 +7,25 @@
 <%@page import="nl.atd.model.Klus"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="nl.atd.helper.AuthHelper"%>
+<fmt:setLocale value="nl_NL" />
 <%
 String gebruikersnaam = AuthHelper.getGebruikersnaam(session);
 
 Klant klant = ServiceProvider.getKlantService().getKlantByGebruikersnaam(gebruikersnaam);
 ArrayList<Klus> klussen = new ArrayList<Klus>();
 ArrayList<Reservering> reserveringen = new ArrayList<Reservering>();
+ArrayList<Factuur> facturen = new ArrayList<Factuur>();
 
 if(klant != null) {
 	klussen = ServiceProvider.getKlusService().getKlussenVanKlant(klant);
 	reserveringen = ServiceProvider.getReserveringService().getReserveringenVanKlant(klant);
+	facturen = ServiceProvider.getFactuurService().getFacturenVanKlant(klant);
 }
 
 pageContext.setAttribute("klant", klant);
 pageContext.setAttribute("klussen", klussen);
 pageContext.setAttribute("reserveringen", reserveringen);
+pageContext.setAttribute("facturen", facturen);
 
 %>
 <div class="row mm">
@@ -48,7 +53,7 @@ pageContext.setAttribute("reserveringen", reserveringen);
 						</td>
 						<c:choose>
 							<c:when test="${klus.klaar}">
-								<td>Gereed</td>
+								<td><span class="green">Gereed</span></td>
 							</c:when>
 							<c:otherwise>
 								<td><span class="yellow">In behandeling</span></td>
@@ -122,7 +127,7 @@ pageContext.setAttribute("reserveringen", reserveringen);
 <div class="box span6" ontablet="span6" ondesktop="span6">
 	<div class="box-header">
 		<h2>
-			<i class="halflings-icon white user"></i><span class="break"></span>Facturen
+			<i class="halflings-icon white user"></i><span class="break"></span>Facturen (laatste 20)
 		</h2>
 	</div>
 	<div class="box-content">
@@ -133,12 +138,32 @@ pageContext.setAttribute("reserveringen", reserveringen);
 					<th>Nummer</th>
 					<th>Bedrag</th>
 					<th>Status</th>
+					<th>Actie</th>
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach var="factuur" items="${facturen }">
 				<tr>
-				
+					<td><fmt:formatDate type="date" value="${factuur.datum.time }" /></td>
+					<td>${factuur.factuurnummer }</td>
+					<td><fmt:formatNumber value="${factuur.totaalPrijs }" type="currency" /></td>
+					<td>
+					<c:choose>
+					<c:when test="${factuur.betaald }">
+					<span class="text-success">Betaald!</span>
+					</c:when>
+					<c:otherwise>
+					<span class="text-warning">Openstaand</span>
+					</c:otherwise>
+					</c:choose>
+					</td>
+					<td>
+					<a class="btn btn-success" href="factuur.jsp?nummer=${factuur.factuurnummer}"> 
+					<i class="fa fa-file-text"></i>
+					</a>
+					</td>
 				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
 	</div>

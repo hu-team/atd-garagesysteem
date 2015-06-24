@@ -1,6 +1,7 @@
 package nl.atd.controller;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,12 +17,11 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		if(!req.getParameter("username").isEmpty() && !req.getParameter("password").isEmpty()) {
-			String gebruikersnaam = req.getParameter("username");
-			String wachtwoord = req.getParameter("password");
-			
-			String typeString = req.getParameter("user-type2");
+		String gebruikersnaam = req.getParameter("username");
+		String wachtwoord = req.getParameter("password");
+		String typeString = req.getParameter("user-type2");
+
+		if(gebruikersnaam != null && wachtwoord != null && typeString != null && !gebruikersnaam.isEmpty() && !wachtwoord.isEmpty() && !typeString.isEmpty()) {
 			AuthType type = null;
 			if(typeString.equals("bedrijfsleider")) type = AuthType.ADMIN;
 			if(typeString.equals("monteur")) type = AuthType.MONTEUR;
@@ -31,6 +31,8 @@ public class LoginServlet extends HttpServlet {
 				if(AuthHelper.executeLogin(req.getSession(), gebruikersnaam, wachtwoord, type)) {
 					resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 					return;
+				}else{
+					Logger.getLogger("to4").warning("Failed Auth: Username: " + gebruikersnaam);
 				}
 			}
 		}

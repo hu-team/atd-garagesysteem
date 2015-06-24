@@ -80,7 +80,7 @@ public class AddKlantServlet extends HttpServlet{
 		
 		if(ServiceProvider.getKlantService().addKlant(klant)) {
 			if(welkomsmail != null && welkomsmail.equals("ja")) {
-				MailHelper.sendWelkomMailNaarKlant(klant);
+				MailHelper.sendWelkomMailNaarKlant(klant, wachtwoord);
 			}
 			
 			resp.sendRedirect(req.getContextPath() + "/secure/klantoverzicht.jsp?done=1");

@@ -127,8 +127,7 @@ public class Reservering {
 	 * @return String factooromschrijving
 	 */
 	public String getFactuurOmschrijving() {
-		
-		return "Parkeerplek reservering: " + getKlant() + " " + getAuto() + "\t\t �" + getTotaalPrijs();
+		return "Parkeerplek reservering: " + getKlant().getNaam() + " " + getAuto().getMerk() + " " + getAuto().getModel() + "\t\t " + getTotaalPrijs();
 	}
 	
 	

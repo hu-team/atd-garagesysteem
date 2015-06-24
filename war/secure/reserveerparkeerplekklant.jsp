@@ -24,7 +24,7 @@
 			<div class="box-header" data-original-title>
 				<h2>
 					<i class="halflings-icon white edit"></i><span class="break"></span>Parkeerplek
-					eserveren
+					reserveren
 				</h2>
 				<div class="box-icon"></div>
 			</div>

@@ -58,6 +58,25 @@ public class FactuurDAO extends BaseDAO {
 	}
 	
 	/**
+	 * Get facturen van gebruiker
+	 * @param gebruikersnaam
+	 * @return facturen
+	 */
+	public ArrayList<Factuur> getFacturenVanKlant(String gebruikersnaam) {
+		ArrayList<Factuur> facturen = new ArrayList<Factuur>();
+		
+		try{
+			PreparedStatement ps = this.getPreparedStatement("SELECT * FROM factuur WHERE klant LIKE ? ORDER BY betaald, datum LIMIT 20");
+			ps.setString(1, gebruikersnaam);
+			facturen = this.getFacturen(ps);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return facturen;
+	}
+	
+	/**
 	 * Get factuur op nummer
 	 * @param nummer
 	 * @return factuur of null
