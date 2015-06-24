@@ -2,8 +2,6 @@ package nl.atd.test.service;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
-
 import nl.atd.helper.AuthHelper;
 import nl.atd.helper.ConfigHelper;
 import nl.atd.model.Klant;

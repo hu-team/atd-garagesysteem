@@ -24,7 +24,7 @@ public class KlusTest {
 	private static Artikel a1, a2, a3;
 	private static Onderdeel ond1, ond2, ond3;
 	private static Calendar temp1, temp2;
-	private Klus klus1, klus2, klus3;
+	private Klus klus1, klus2;
 
 	private final ArrayList<Onderdeel> legeOndArray = new ArrayList<Onderdeel>();
 

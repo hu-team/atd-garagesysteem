@@ -1,7 +1,6 @@
 package nl.atd.test.model;
 
 import static org.junit.Assert.assertEquals;
-import nl.atd.model.Onderdeel;
 import nl.atd.model.Parkeerplek;
 
 import org.junit.After;
