@@ -48,6 +48,17 @@
 							bestaan) </label> <input type="text" class="form-control"
 							id="mysql_database" name="mysql_database" value="atd">
 					</div>
+					
+					<div class="form-group">
+						<label>
+						<input type="checkbox" name="data" checked="checked" value="1"> Genereer standaard data 
+						</label>
+						<p>
+						<small>Klanten: e.oegema, josine.bolle, melinda.blijderveen;</small><br />
+						<small>Monteuren: aarnoudboekema, anniekevangroningen</small><br />
+						<small>GEBRUIKERSNAAM IS TEVENS WACHTWOORD!</small>
+						</p>
+					</div>
 
 					<button class="btn btn-lg btn-success" type="submit">Installatie
 						starten!</button>

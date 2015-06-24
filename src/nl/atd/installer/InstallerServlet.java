@@ -41,6 +41,11 @@ public class InstallerServlet extends HttpServlet {
 		String mysqlPassword = req.getParameter("mysql_password");
 		String mysqlDatabase = req.getParameter("mysql_database");
 		
+		boolean data = false;
+		if(req.getParameter("data") != null && req.getParameter("data").equals("1")) {
+			data = true;
+		}
+		
 		InstallHelper installHelper = new InstallHelper(req.getServletContext());
 		
 		if(mysqlServer == null || mysqlUsername == null || mysqlPassword == null || mysqlDatabase == null) {
@@ -67,7 +72,7 @@ public class InstallerServlet extends HttpServlet {
 			c.close();
 			
 			// Nu laten wij database installeren
-			boolean gelukt = installHelper.doInstall();
+			boolean gelukt = installHelper.doInstall(data);
 			
 			if(gelukt) {
 				// Ziet er goed uit
