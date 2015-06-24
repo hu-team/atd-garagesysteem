@@ -3,11 +3,11 @@
 <%@page import="nl.atd.helper.AuthHelper"%>
 <%@ include file="_header.jsp" %>
 <% if(!AuthHelper.isAdmin(session)) response.sendRedirect(application.getContextPath() + "/secure/");
-if(request.getParameter("code") == null || request.getParameter("code").trim().isEmpty()) {response.sendRedirect(application.getContextPath()+"/secure/artikellijst.jsp"); return; }
+if(request.getParameter("code") == null || request.getParameter("code").trim().isEmpty()) {response.sendRedirect(application.getContextPath()+"/secure/artikeloverzicht.jsp"); return; }
 
 Artikel artikel = ServiceProvider.getArtikelService().getArtikelByCode(request.getParameter("code"));
 
-if(artikel == null) { response.sendRedirect(application.getContextPath()+"/secure/artikellijst.jsp"); return; }
+if(artikel == null) { response.sendRedirect(application.getContextPath()+"/secure/artikeloverzicht.jsp"); return; }
 
 %>
 <!-- start: Content -->
