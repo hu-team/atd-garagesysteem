@@ -27,7 +27,7 @@
 						<div class="control-group">
 							<label class="control-label">Datum: </label>
 							<div class="controls">
-								<input type="text" class="span6 datepicker" name="datum" value="${param.datum}">
+								<input type="text" class="span6 datepicker2" name="datum" value="${param.datum}">
 							</div>
 						</div>						
 						
@@ -43,4 +43,9 @@
 	</div>
 
 </div>
+    <style>
+    .ui-datepicker-calendar {
+        display: none;
+        }
+    </style>
 <%@ include file="_footer.jsp" %>
