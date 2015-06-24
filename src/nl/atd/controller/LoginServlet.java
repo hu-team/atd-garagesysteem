@@ -1,6 +1,7 @@
 package nl.atd.controller;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,8 @@ public class LoginServlet extends HttpServlet {
 				if(AuthHelper.executeLogin(req.getSession(), gebruikersnaam, wachtwoord, type)) {
 					resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
 					return;
+				}else{
+					Logger.getLogger("to4").warning("Failed Auth: Username: " + gebruikersnaam);
 				}
 			}
 		}

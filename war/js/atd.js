@@ -341,6 +341,13 @@ var app = function() {
       window.location.replace(link);
     });
   }
+  
+  function genereerWachtwoord() {
+	  var random = Math.random().toString(36).slice(-8);
+	  
+	  $("#wachtwoord, #wachtwoord2").val(random);
+  }
+  
   ;
 
   return {
@@ -356,7 +363,8 @@ var app = function() {
     zoekPlek : zoekPlek,
     veranderPlek : veranderPlek,
     zoekFactuurOnderdelen : zoekFactuurOnderdelen,
-    resetZoekFactuur : resetZoekFactuur
+    resetZoekFactuur : resetZoekFactuur,
+    genereerWachtwoord : genereerWachtwoord
   }
 
 }();
@@ -426,6 +434,10 @@ $(function() {
   
   $("#factuur-klant").change(function(){
 	 app.resetZoekFactuur(); 
+  });
+  
+  $("#genereerwachtwoord").click(function() {
+	 app.genereerWachtwoord();
   });
 
 });

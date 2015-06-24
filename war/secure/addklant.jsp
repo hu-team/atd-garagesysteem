@@ -71,17 +71,22 @@
 							<div class="controls">
 								<input type="text" class="input-xlarge" id="woonplaats" name="woonplaats" value="${param.woonplaats}">
 							</div>
-						</div>												
+						</div>
+						
+						<hr>
+						
 						<div class="control-group">
 							<label class="control-label" for="gebruikersnaam">Gebruikersnaam: </label>
 							<div class="controls">
 								<input class="input-xlarge" id="gebruikersnaam" type="text" name="gebruikersnaam"  value='<c:out value="${param.gebruikersnaam }" />'>
 							</div>
-						</div>					
+						</div>
+						
 						<div class="control-group">
 							<label class="control-label" for="wachtwoord">Wachtwoord: </label>
 							<div class="controls">
 								<input class="input-xlarge" id="wachtwoord" type="password" name="wachtwoord">
+								<button id="genereerwachtwoord" type="button" class="btn btn-success">Genereer wachtwoord</button>
 							</div>
 						</div>
 						
