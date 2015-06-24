@@ -138,5 +138,4 @@ public class ArtikelDAO extends BaseDAO {
 			e.printStackTrace();
 		}
 	}
-	
 }

@@ -30,6 +30,7 @@ public class LoginServlet extends HttpServlet {
 			if(type != null) {
 				if(AuthHelper.executeLogin(req.getSession(), gebruikersnaam, wachtwoord, type)) {
 					resp.sendRedirect(req.getContextPath() + "/secure/index.jsp");
+
 					return;
 				}else{
 					Logger.getLogger("to4").warning("Failed Auth: Username: " + gebruikersnaam);

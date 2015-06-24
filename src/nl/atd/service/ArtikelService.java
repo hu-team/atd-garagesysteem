@@ -62,7 +62,7 @@ public class ArtikelService {
 	 * Verwijder alle artikelen uit database
 	 * LET OP: gebruik alleen binnen tests
 	 */
-	public void deleteAlleKlanten() {
+	public void deleteAlleArtikelen() {
 		artikelDAO.deleteAlles();
 	}	
 }

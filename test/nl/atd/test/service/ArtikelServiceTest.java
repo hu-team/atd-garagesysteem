@@ -152,7 +152,7 @@ public class ArtikelServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
-		artikelService.deleteAlleKlanten();
+		artikelService.deleteAlleArtikelen();
 	}
 
 }
