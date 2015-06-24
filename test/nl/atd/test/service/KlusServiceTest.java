@@ -125,7 +125,7 @@ public class KlusServiceTest {
 	public void tearDown() throws Exception {
 		klusService.deleteAlleKlussen();
 		klantService.deleteAlleKlanten();
-		monteurService.deleteAlleMonteurs();
+		
 		autoService.deleteAlleAutos();
 	}
 

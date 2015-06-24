@@ -1,20 +1,33 @@
 package nl.atd.test.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
 
 import nl.atd.helper.AuthHelper;
+import nl.atd.helper.ConfigHelper;
 import nl.atd.model.Klant;
 import nl.atd.service.KlantService;
 import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class KlantServiceTest {
 	KlantService kservice = ServiceProvider.getKlantService();
 	private Klant k1, k2, k3, k4;
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		ConfigHelper.getProperties().put("installed", "true");
+		ConfigHelper.getProperties().put("mysql.host", "localhost:8889");
+		ConfigHelper.getProperties().put("mysql.database", "atd");
+		ConfigHelper.getProperties().put("mysql.username", "root");
+		ConfigHelper.getProperties().put("mysql.password", "root");
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		k1 = new Klant("Max van Kuik");
