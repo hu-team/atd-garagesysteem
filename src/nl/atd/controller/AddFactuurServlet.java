@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.helper.MailHelper;
 import nl.atd.model.Factuur;
 import nl.atd.model.Factuuronderdeel;
@@ -25,6 +26,8 @@ public class AddFactuurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1368099967044309586L;
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException ,IOException {
+		if(!AuthHelper.isAdmin(req.getSession())) {return;}
+		
 		String klantGebruikersnaam = req.getParameter("klant");
 		String datum = req.getParameter("datum");
 		String klusid = req.getParameter("klusid");

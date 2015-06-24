@@ -18,6 +18,7 @@ public class AddMonteurServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(!AuthHelper.isAdmin(req.getSession())) {return;}
 		
 		String voornaam = req.getParameter("voornaam");
 		String achternaam = req.getParameter("achternaam");

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klus;
 import nl.atd.model.Monteur;
@@ -19,6 +20,7 @@ public class EditKlusServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(!AuthHelper.isAdmin(req.getSession()) && !AuthHelper.isMonteur(req.getSession())) {return;}
 	
 		String type = req.getParameter("type");
 		String uren = req.getParameter("uren");

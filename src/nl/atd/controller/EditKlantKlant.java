@@ -18,6 +18,7 @@ public class EditKlantKlant extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(!AuthHelper.isKlant(req.getSession())) {return;}
 		
 		String gebruikersnaam = req.getParameter("gebruikersnaam");
 		String wachtwoord = req.getParameter("wachtwoord");

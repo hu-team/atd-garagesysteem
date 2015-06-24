@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.model.Parkeerplek;
 import nl.atd.service.ServiceProvider;
 
@@ -48,6 +49,8 @@ public class AjaxPlekkenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(!AuthHelper.isAdmin(req.getSession())) {return;}
+		
 		String vanDatum = req.getParameter("vanDatum");
 		String vanTijdstip = req.getParameter("vanTijdstip");
 		

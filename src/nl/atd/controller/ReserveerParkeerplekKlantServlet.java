@@ -26,6 +26,7 @@ public class ReserveerParkeerplekKlantServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(!AuthHelper.isKlant(req.getSession())) {return;}
 		
 		String rij = req.getParameter("rij");
 		String plek = req.getParameter("plek");

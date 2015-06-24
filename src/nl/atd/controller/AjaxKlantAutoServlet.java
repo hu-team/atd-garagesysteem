@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 import nl.atd.service.ServiceProvider;
@@ -22,6 +23,8 @@ public class AjaxKlantAutoServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(!AuthHelper.isAdmin(req.getSession()) && !AuthHelper.isMonteur(req.getSession())) {return;}
+		
 		String klantGebruikersnaam = req.getParameter("klant");
 		
 		Klant klant = ServiceProvider.getKlantService().getKlantByGebruikersnaam(klantGebruikersnaam);

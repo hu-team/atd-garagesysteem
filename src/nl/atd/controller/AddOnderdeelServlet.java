@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.model.Artikel;
 import nl.atd.model.Klus;
 import nl.atd.model.Onderdeel;
@@ -18,7 +19,7 @@ public class AddOnderdeelServlet extends HttpServlet{
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		if(!AuthHelper.isAdmin(req.getSession()) && !AuthHelper.isMonteur(req.getSession())) {return;}
 		
 		String artikel = req.getParameter("artikel");
 		String aantal = req.getParameter("aantal");

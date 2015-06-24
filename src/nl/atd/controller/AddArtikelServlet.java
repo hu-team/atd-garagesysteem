@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.model.Artikel;
 import nl.atd.service.ServiceProvider;
 
@@ -16,6 +17,7 @@ public class AddArtikelServlet extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(!AuthHelper.isAdmin(req.getSession())) {return;}
 		
 		String code = req.getParameter("code");
 		String naam = req.getParameter("naam");

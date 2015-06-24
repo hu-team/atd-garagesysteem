@@ -19,6 +19,7 @@ public class AddKlantServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(!AuthHelper.isAdmin(req.getSession()) && !AuthHelper.isMonteur(req.getSession())) {return;}
 		
 		String username = req.getParameter("gebruikersnaam");
 		String wachtwoord = req.getParameter("wachtwoord");

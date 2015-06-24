@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.AuthHelper;
 import nl.atd.model.Auto;
 import nl.atd.service.ServiceProvider;
 
@@ -17,6 +18,8 @@ public class AddAutoServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(!AuthHelper.isAdmin(req.getSession()) && !AuthHelper.isMonteur(req.getSession())) {return;}
+		
 		String klant = req.getParameter("klant");
 		String merk = req.getParameter("merk");
 		String model = req.getParameter("model");

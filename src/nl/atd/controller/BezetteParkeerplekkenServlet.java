@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import nl.atd.service.ServiceProvider;
+import nl.atd.helper.AuthHelper;
 
 
 public class BezetteParkeerplekkenServlet extends HttpServlet{
@@ -22,6 +22,7 @@ public class BezetteParkeerplekkenServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(!AuthHelper.isAdmin(req.getSession())) {return;}
 		
 		String datum = req.getParameter("datum");
 		

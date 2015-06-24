@@ -24,6 +24,7 @@ public class AddKlusKlantServlet extends HttpServlet{
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(!AuthHelper.isKlant(req.getSession())) {return;}
 		
 		String auto = req.getParameter("auto");
 		String type = req.getParameter("type");
