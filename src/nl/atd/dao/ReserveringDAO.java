@@ -197,6 +197,11 @@ public class ReserveringDAO extends BaseDAO {
 		return nr;
 	}
 	
+	/**
+	 * Add reservering
+	 * @param reservering
+	 * @return gelukt
+	 */
 	public boolean addReservering(Reservering reservering){
 		try{
 			PreparedStatement ps = this.getPreparedStatement("INSERT INTO reservering (van, tot, auto, klant, parkeerplek) VALUES(?, ?, ?, ?, ?)");

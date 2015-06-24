@@ -18,6 +18,12 @@ public class FactuuronderdeelService {
 		return this.factuuronderdeelDAO.getFactuuronderdelenVanFactuur(factuur);
 	}
 	
+	/**
+	 * Add factuur onderdeel
+	 * @param fo factuur onderdeel
+	 * @param factuurid op nummer
+	 * @return gelukt
+	 */
 	public boolean addFactuurOnderdelen(Factuuronderdeel fo, int factuurid) {
 		return this.factuuronderdeelDAO.addFactuurOnderdeel(fo, factuurid);
 	}

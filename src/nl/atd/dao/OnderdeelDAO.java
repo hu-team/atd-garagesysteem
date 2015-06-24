@@ -91,6 +91,10 @@ public class OnderdeelDAO extends BaseDAO {
 		return this.getOnderdelen("SELECT * FROM onderdeel WHERE idklus = " + klusid);
 	}
 
+	/**
+	 * Delete alle onderdelen
+	 * ALLEEN VOOR TESTS
+	 */
 	public void deleteAlles() {
 		try {
 			Connection connection = DatabaseHelper.getDatabaseConnection();

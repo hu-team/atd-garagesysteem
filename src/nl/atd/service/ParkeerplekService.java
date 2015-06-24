@@ -26,14 +26,31 @@ public class ParkeerplekService {
 		return this.parkeerplekDAO.getAlleVrijePlekken(datum);
 	}
 	
+	/**
+	 * Get parkeerplekken vrij op datum
+	 * @param datum
+	 * @return plekken
+	 */
 	public ArrayList<Parkeerplek> getParkeerplekkenOpDatum(Calendar datum){
 		return this.parkeerplekDAO.getParkeerplekkenOpDatum(datum);
 	}
 	
+	/**
+	 * Get vrijeplekken tussen
+	 * @param van
+	 * @param tot
+	 * @return plekken
+	 */
 	public ArrayList<Parkeerplek> getAlleVrijePlekkenTussenVanTot(Calendar van, Calendar tot){
 		return this.parkeerplekDAO.getParkeerplekkenTussenVanTot(van, tot);
 	}
 	
+	/**
+	 * Get plek op plek en rij
+	 * @param rij
+	 * @param plek
+	 * @return plek
+	 */
 	public Parkeerplek getParkeerplekOpPlekEnRij(char rij, int plek){
 		return this.parkeerplekDAO.getParkeerplekkenOpPlekEnRij(rij, plek).get(0);
 	}

@@ -12,6 +12,11 @@ import nl.atd.service.ServiceProvider;
 
 public class FactuurDAO extends BaseDAO {
 	
+	/**
+	 * Get facturen met prepared statement
+	 * @param ps
+	 * @return list facturen
+	 */
 	private ArrayList<Factuur> getFacturen(PreparedStatement ps) {
 		ArrayList<Factuur> facturen = new ArrayList<Factuur>();
 		
