@@ -53,6 +53,8 @@ public class ATD_US_01 {
 	    assertTrue(isElementPresent(By.linkText("Factuur overzicht")));
 	    assertTrue(isElementPresent(By.linkText("Klanten overzicht")));
 	    assertTrue(isElementPresent(By.linkText("Artikelen overzicht")));
+	    // Knop Parkeerplekken overzicht
+	    assertTrue(isElementPresent(By.xpath("//div[@id='sidebar-left']/div/ul/li[4]/a")));
 	}
 
 	@After
