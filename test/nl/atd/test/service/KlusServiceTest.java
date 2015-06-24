@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Calendar;
 
 import nl.atd.helper.AuthHelper;
+import nl.atd.helper.ConfigHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 import nl.atd.model.Klus;
@@ -17,6 +18,7 @@ import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class KlusServiceTest {
@@ -29,6 +31,15 @@ public class KlusServiceTest {
 	private Auto a1, a2, a3, a4;
 	private Monteur m1, m2;
 	private Klus klus1, klus2, klus3, klus4;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		ConfigHelper.getProperties().put("installed", "true");
+		ConfigHelper.getProperties().put("mysql.host", "localhost:8889");
+		ConfigHelper.getProperties().put("mysql.database", "atd");
+		ConfigHelper.getProperties().put("mysql.username", "root");
+		ConfigHelper.getProperties().put("mysql.password", "root");
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -125,7 +136,7 @@ public class KlusServiceTest {
 	public void tearDown() throws Exception {
 		klusService.deleteAlleKlussen();
 		klantService.deleteAlleKlanten();
-		
+		monteurService.deleteAlleMonteurs();
 		autoService.deleteAlleAutos();
 	}
 
