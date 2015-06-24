@@ -31,7 +31,7 @@ public class ReserveringDAO extends BaseDAO {
 				Calendar tot = Calendar.getInstance();
 				
 				van.setTimeInMillis(set.getTimestamp("van").getTime());
-				van.setTimeInMillis(set.getTimestamp("tot").getTime());
+				tot.setTimeInMillis(set.getTimestamp("tot").getTime());
 				
 				reservering.setVan(van);
 				reservering.setTot(tot);
@@ -141,9 +141,9 @@ public class ReserveringDAO extends BaseDAO {
 	 */
 	public int getReserveringId(Calendar van, Parkeerplek plek){
 		return this.getReserveringIdOpQuery("SELECT reserveringid FROM reservering WHERE "
-				+ "van=FROM_UNIXTIME(" + (van.getTimeInMillis() / 1000) + ")"
+				+ "van >= FROM_UNIXTIME(" + (van.getTimeInMillis() / 1000) + ") "
 				+ "AND "
-				+ "parkeerplek=" + ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(plek) + ";");
+				+ "parkeerplek = " + ServiceProvider.getParkeerplekService().getParkeerplekIdOpPlek(plek) + ";");
 	}
 	
 	/**
@@ -166,6 +166,7 @@ public class ReserveringDAO extends BaseDAO {
 			}
 
 			statement.close();
+			connection.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
