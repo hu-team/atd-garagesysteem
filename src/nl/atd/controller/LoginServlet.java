@@ -17,12 +17,11 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		if(!req.getParameter("username").isEmpty() && !req.getParameter("password").isEmpty()) {
-			String gebruikersnaam = req.getParameter("username");
-			String wachtwoord = req.getParameter("password");
-			
-			String typeString = req.getParameter("user-type2");
+		String gebruikersnaam = req.getParameter("username");
+		String wachtwoord = req.getParameter("password");
+		String typeString = req.getParameter("user-type2");
+
+		if(gebruikersnaam != null && wachtwoord != null && typeString != null && !gebruikersnaam.isEmpty() && !wachtwoord.isEmpty() && !typeString.isEmpty()) {
 			AuthType type = null;
 			if(typeString.equals("bedrijfsleider")) type = AuthType.ADMIN;
 			if(typeString.equals("monteur")) type = AuthType.MONTEUR;
