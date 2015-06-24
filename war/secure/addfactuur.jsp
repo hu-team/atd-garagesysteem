@@ -67,6 +67,16 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 								</select>
 							</div>
 						</div>
+						
+						<div class="control-group">
+							<label class="control-label"></label>
+							<div class="controls">
+								<label>
+								<input type="checkbox" class="checkbox" value="ja" name="mailversturen" checked="checked" />
+								 Stuur een e-mail naar de klant met een melding dat er een factuur beschikbaar is.
+								</label>
+							</div>
+						</div>
 					</fieldset>
 					<div class="form-actions">
 						<button type="submit" id="factuur-add" class="btn btn-primary" disabled>Factuur

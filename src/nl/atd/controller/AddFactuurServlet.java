@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import nl.atd.helper.MailHelper;
 import nl.atd.model.Factuur;
 import nl.atd.model.Factuuronderdeel;
 import nl.atd.model.Klant;
@@ -34,7 +35,6 @@ public class AddFactuurServlet extends HttpServlet {
 		String errorString = "";
 		
 
-		
 		if(klantGebruikersnaam == null || datum == null ||
 				klantGebruikersnaam.isEmpty() || datum.isEmpty()) {
 			error = true;
@@ -106,6 +106,8 @@ public class AddFactuurServlet extends HttpServlet {
 					if(!ServiceProvider.getFactuuronderdeelService().addFactuurOnderdelen(factuuronderdeel, factuurnummer)) {
 						status = false;
 					}
+				}else{
+					status = false;
 				}
 			}
 			
@@ -121,10 +123,18 @@ public class AddFactuurServlet extends HttpServlet {
 					if(!ServiceProvider.getFactuuronderdeelService().addFactuurOnderdelen(factuuronderdeel, factuurnummer)) {
 						status = false;
 					}
+				}else{
+					status = false;
 				}
 			}
 			
 			if(status) {
+				
+				if(req.getParameter("mailversturen") != null && req.getParameter("mailversturen").equals("ja")) {
+					// Mail versturen
+					MailHelper.sendEmailNaarKlant(klant, "Nieuwe factuur beschikbaar", MailHelper.NIEUWEFACTUUR);
+				}
+				
 				resp.sendRedirect(req.getContextPath() + "/secure/factuuroverzicht.jsp?done=1");
 				return;
 			}

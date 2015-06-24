@@ -45,7 +45,7 @@ pageContext.setAttribute("facturen", ServiceProvider.getFactuurService().getAlle
 							<tr>
 							<fmt:setLocale value="nl_NL" />
 								<td>${factuur.factuurnummer }</td>
-								<td><fmt:formatDate type="both" value="${factuur.datum.time }" /></td>
+								<td><fmt:formatDate type="date" value="${factuur.datum.time }" /></td>
 								<td>${factuur.klant.naam }</td>
 								<td><fmt:formatNumber type="currency" value="${factuur.totaalPrijs }" /></td>
 								<td>

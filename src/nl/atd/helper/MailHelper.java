@@ -21,9 +21,17 @@ public class MailHelper {
 			+ "Met vriendelijke groet,<br />"
 			+ "AutoTotaalDienst";
 	
+	public static final String NIEUWEFACTUUR = "<strong>Geachte klant,</strong><br /><br />Er is een nieuwe factuur beschikbaar in uw omgeving.<br />"
+			+ "Om de factuur in te zien dient u in te loggen in de applicatie. Dit kan op <a href='http://www.atd.nl/app'>http://www.atd.nl/app/</a><br /><br />"
+			+ "Met vriendelijke groet,<br />"
+			+ "AutoTotaalDienst";
 	
 	private static final String AFZENDER_NAAM = "ATD Applicatie";
 	private static final String AFZENDER_EMAIL = "atd@lt-box.info";
+
+
+	
+	
 	
 	public static Session getMailSession() {
 		
