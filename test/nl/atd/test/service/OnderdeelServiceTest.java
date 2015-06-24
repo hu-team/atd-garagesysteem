@@ -184,7 +184,7 @@ public class OnderdeelServiceTest {
 		klantService.deleteAlleKlanten();
 		monteurService.deleteAlleMonteurs();
 		autoService.deleteAlleAutos();
-		artikelService.deleteAlleKlanten();
+		artikelService.deleteAlleArtikelen();
 		onderdeelService.deleteAlleOnderdelen();
 	}
 

@@ -15,14 +15,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class ATD_US_01 {
+public class ATD_US_03 {
 	private WebDriver driver;
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
 	private StringBuffer verificationErrors = new StringBuffer();
 	
 	private String gebruikersnaam, wachtwoord;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		driver = new FirefoxDriver();
@@ -30,28 +30,25 @@ public class ATD_US_01 {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 		// Gegevens kunnen hier aangepast worden aan het begin van de test
-		gebruikersnaam = "henk";
-		wachtwoord = "henkje101";
+		gebruikersnaam = "bencovandam";
+		wachtwoord = "monteur1";
 	}
-	
+
 	@Test
-	public void testATDUS01() throws Exception {
+	public void testATDUS03() throws Exception {
 		driver.get(baseUrl + "/login.jsp");
 		
-		// Inloggen als bedrijfsleider  
-		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
+		// Inloggen als monteur
+		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Monteur");
 		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
 		driver.findElement(By.id("username")).clear();
 		driver.findElement(By.id("username")).sendKeys(gebruikersnaam);
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys(wachtwoord);
 		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
-	   
-		// De bedrijfsleider zou de volgende knoppen moeten zien in het menu 
-		assertTrue(isElementPresent(By.linkText("Monteurs overzicht")));
-	    assertTrue(isElementPresent(By.linkText("Auto overzicht")));
-	    assertTrue(isElementPresent(By.linkText("Factuur overzicht")));
-	    assertTrue(isElementPresent(By.linkText("Klanten overzicht")));
+		
+		// Monteurs zouden de volgende knoppen moeten zien in het menu 
+		assertTrue(isElementPresent(By.linkText("Klanten overzicht")));
 	    assertTrue(isElementPresent(By.linkText("Artikelen overzicht")));
 	}
 
