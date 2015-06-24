@@ -3,7 +3,7 @@
   associations="true" dependencies="true" nesting-relationships="true">  
   <class id="1" language="java" name="nl.atd.model.Klant" project="to4" file="/to4/src/nl/atd/model/Klant.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1416" y="-209"/>    
+    <position height="-1" width="-1" x="1056" y="-652"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="nl.atd.model.Persoon" project="to4" file="/to4/src/nl/atd/model/Persoon.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="939" y="282"/>    
+    <position height="-1" width="-1" x="1398" y="-385"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="nl.atd.model.Monteur" project="to4" file="/to4/src/nl/atd/model/Monteur.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="364" y="168"/>    
+    <position height="-1" width="-1" x="1236" y="-373"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="nl.atd.model.Auto" project="to4" file="/to4/src/nl/atd/model/Auto.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="745" y="-230"/>    
+    <position height="-1" width="-1" x="311" y="-305"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="nl.atd.model.Onderdeel" project="to4" file="/to4/src/nl/atd/model/Onderdeel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="79" y="-449"/>    
+    <position height="-1" width="-1" x="534" y="-591"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="nl.atd.model.Parkeerplek" project="to4" 
     file="/to4/src/nl/atd/model/Parkeerplek.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-62" y="-712"/>    
+    <position height="-1" width="-1" x="535" y="-782"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,56 +66,66 @@
   </class>  
   <class id="8" language="java" name="nl.atd.model.Factuur" project="to4" file="/to4/src/nl/atd/model/Factuur.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1426" y="-637"/>    
+    <position height="-1" width="-1" x="1367" y="-703"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="9">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="10" name="auto">        
-        <position height="0" width="0" x="462" y="160"/>      
-      </attribute>      
-      <multiplicity id="11" minimum="0" maximum="1">        
-        <position height="0" width="0" x="462" y="160"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <class id="9" language="java" name="nl.atd.model.Artikel" project="to4" file="/to4/src/nl/atd/model/Artikel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="315" y="-682"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="nl.atd.model.Klus" project="to4" file="/to4/src/nl/atd/model/Klus.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="777" y="-240"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="nl.atd.model.Factuuronderdeel" project="to4" 
+    file="/to4/src/nl/atd/model/Factuuronderdeel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1712" y="-550"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <association id="12">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="13" name="klant">        
-        <position height="0" width="0" x="1072" y="-242"/>      
-      </attribute>      
-      <multiplicity id="14" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1072" y="-242"/>      
-      </multiplicity>    
+    <bendpoint x="1510" y="-518"/>    
+    <bendpoint x="1265" y="-520"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="13" name="klus"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="15">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="16" name="parkeerplek">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="17" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="16" name="monteur"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="18">    
+    <bendpoint x="624" y="-527"/>    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="19" name="autos">        
-        <position height="0" width="0" x="462" y="160"/>      
+        <position height="0" width="0" x="28" y="85"/>      
       </attribute>      
       <multiplicity id="20" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="462" y="160"/>      
+        <position height="0" width="0" x="28" y="85"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
@@ -126,18 +136,108 @@
     <end type="TARGET" refId="2"/>  
   </generalization>  
   <association id="22">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="23" name="klant">        
-        <position height="0" width="0" x="1072" y="-242"/>      
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="23" name="parkeerplek">        
+        <position height="0" width="0" x="597" y="-70"/>      
       </attribute>      
       <multiplicity id="24" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1072" y="-242"/>      
+        <position height="0" width="0" x="597" y="-70"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="26" name="artikel"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="29" name="auto">        
+        <position height="0" width="0" x="28" y="85"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="28" y="85"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="32" name="klant">        
+        <position height="0" width="0" x="712" y="-685"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="1">        
+        <position height="0" width="0" x="712" y="-685"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="25">    
+  <association id="34">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="35" name="onderdelen"/>      
+      <multiplicity id="36" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="38" name="onderdelen"/>      
+      <multiplicity id="39" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <association id="41">    
+    <bendpoint x="1499" y="-525"/>    
+    <bendpoint x="1230" y="-528"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="42" name="reservering"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="45" name="klant">        
+        <position height="0" width="0" x="712" y="-685"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="1">        
+        <position height="0" width="0" x="712" y="-685"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="48" name="auto"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="51" name="klant"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="53">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
