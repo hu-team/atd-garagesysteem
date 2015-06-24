@@ -3,6 +3,7 @@ package nl.atd.test.model;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import nl.atd.model.Artikel;
 import nl.atd.model.Auto;
@@ -22,8 +23,9 @@ public class KlusTest {
 	private static Monteur m1, m2;
 	private static Artikel a1, a2, a3;
 	private static Onderdeel ond1, ond2, ond3;
+	private static Calendar temp1, temp2;
 	private Klus klus1, klus2, klus3;
-	
+
 	private final ArrayList<Onderdeel> legeOndArray = new ArrayList<Onderdeel>();
 
 	@BeforeClass
@@ -88,6 +90,13 @@ public class KlusTest {
 		ond2 = new Onderdeel(a2, 3);
 
 		ond3 = new Onderdeel(a3, 2);
+		
+		// Aanmaken van data
+		temp1 = Calendar.getInstance();
+		temp1.set(2015, Calendar.JUNE, 16);
+
+		temp2 = Calendar.getInstance();
+		temp2.set(2015, Calendar.MAY, 29);
 	}
 
 	@Before
@@ -100,15 +109,15 @@ public class KlusTest {
 		klus1.setUren(10);
 		klus1.addOnderdeel(ond1);
 		klus1.addOnderdeel(ond2);
-		
+
 		klus2 = new Klus(k2, auto2);
 		klus2.setMonteur(m1);
-		klus2.setOmschrijving("Omschrijving van klus 2");
+		klus2.setOmschrijving("Omschrijving van klus2");
 		klus2.setType("Type van klus2");
 		klus2.setUren(50);
 		klus2.addOnderdeel(ond3);
 	}
-
+	
 	/**
 	 * testSetKlaar, test ook de methode: nl.atd.model.KLus.isKlaar()
 	 */
@@ -132,21 +141,21 @@ public class KlusTest {
 		assertEquals(ond1, klus1.getOnderdelen().get(0));
 		assertEquals(ond2, klus1.getOnderdelen().get(1));
 		assertEquals(ond3, klus2.getOnderdelen().get(0));
-		
+
 		// Checken op foute data
 		assertFalse(ond3.equals(klus1.getOnderdelen().get(0)));
 		assertFalse(ond1.equals(klus2.getOnderdelen().get(0)));
-	} 
+	}
 
-	@Test 
+	@Test
 	public void testVerwijderOnderdeel() {
 		klus1.verwijderOnderdeel(ond1);
 		klus1.verwijderOnderdeel(ond2);
-		
+
 		// klus1 zou geen onderdelen meer moeten hebben
-		assertEquals(legeOndArray,klus1.getOnderdelen());
+		assertEquals(legeOndArray, klus1.getOnderdelen());
 	}
-	
+
 	@Test
 	public void testGetOnderdeel() {
 		// klus 1 zou 2 onderdelen moeten hebben,
@@ -154,13 +163,13 @@ public class KlusTest {
 		// klus2 zou 1 onderdeel moeten hebbebn
 		assertEquals(1, klus2.getOnderdelen().size());
 	}
-	
+
 	@Test
 	public void testSetOnderdeel() {
 		ArrayList<Onderdeel> nieuweOnderdelen = new ArrayList<Onderdeel>();
 		nieuweOnderdelen.add(ond3);
 		nieuweOnderdelen.add(ond2);
-		
+
 		klus1.setOnderdelen(nieuweOnderdelen);
 		// Nu zou klus1 de onderdelen 3 en 2 moeten hebben
 		assertEquals(ond3, klus1.getOnderdelen().get(0));
@@ -168,7 +177,7 @@ public class KlusTest {
 		// Check of de oude onderdelen weg zijn
 		assertEquals(2, klus1.getOnderdelen().size());
 	}
-	
+
 	@Test
 	public void testGetUren() {
 		// klus1 uren = 10
@@ -188,28 +197,107 @@ public class KlusTest {
 		// Nog een check op foute data
 		assertFalse(temp == klus2.getUren());
 	}
-	
+
 	@Test
 	public void testAddUren() {
 		klus1.addUren(9);
 		klus2.addUren(12);
 		// klus1 uren = 19
 		// klus2 uren = 62
-	
+
 		assertEquals(19, klus1.getUren());
 		assertEquals(62, klus2.getUren());
 	}
-	
+
+	/**
+	 * testSetCalendar, test ook de methode: nl.atd.model.KLus.getCalendar()
+	 */
 	@Test
-	public void getCalendar() {
-		fail("not yet implented");
+	public void testSetCalendar() {
+		klus1.setCalendar(temp1);
+
+		// Vergelijken
+		assertEquals(temp1, klus1.getCalendar());
+		// Nog een check op foute data
+		assertFalse(temp2.equals(klus2.getCalendar()));
 	}
 
 	@Test
-	public void setCalendar() {
-		fail("not yet implented");
+	public void testGetAuto() {
+		// klus1 auto = auto1
+		// klus2 auto = auto2
+
+		assertEquals(auto1, klus1.getAuto());
+		assertEquals(auto2, klus2.getAuto());
+	}
+
+	@Test
+	public void testGetKlant() {
+		// klus1 klant = k1
+		// klus2 klant = k2
+
+		assertEquals(k1, klus1.getKlant());
+		assertEquals(k2, klus2.getKlant());
+	}
+
+	@Test
+	public void testGetType() {
+		// klus1 type = Type
+		// klus2 type = "Type van klus2"
+
+		assertEquals("Type", klus1.getType());
+		assertEquals("Type van klus2", klus2.getType());
+	}
+
+	@Test
+	public void testSetType() {
+		String temp = "nieuweType";
+		klus1.setType(temp);
+
+		// Vergelijken
+		assertEquals(temp, klus1.getType());
+		// Nog een check op foute data
+		assertFalse(temp.equals(klus2.getType()));
+	}
+
+	@Test
+	public void testGetOmschrijving() {
+		// klus1 omschrijving = Omschrijving
+		// klus2 omschrijving = "Omschrijving van klus 2"
+
+		assertEquals("Omschrijving", klus1.getOmschrijving());
+		assertEquals("Omschrijving van klus2", klus2.getOmschrijving());
+	}
+
+	@Test
+	public void testSetOmschrijving() {
+		String temp = "nieuweOmschrijving";
+		klus1.setOmschrijving(temp);
+
+		// Vergelijken
+		assertEquals(temp, klus1.getOmschrijving());
+		// Nog een check op foute data
+		assertFalse(temp.equals(klus2.getOmschrijving()));
+	}
+
+	@Test
+	public void testGetMonteur() {
+		// klus1 monteur = m1
+		// klus2 monteur = m1
+
+		assertEquals(m1, klus1.getMonteur());
+		assertEquals(m1, klus2.getMonteur());
 	}
 	
+	@Test
+	public void testSetMonteur() {
+		klus1.setMonteur(m2);
+
+		// Vergelijken
+		assertEquals(m2, klus1.getMonteur());
+		// Nog een check op foute data
+		assertFalse(m1.equals(klus1.getMonteur()));
+	}
 
 	@After
 	public void tearDown() throws Exception {

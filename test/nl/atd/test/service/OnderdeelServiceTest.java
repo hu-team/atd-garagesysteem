@@ -6,6 +6,7 @@ import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
 
 import nl.atd.helper.AuthHelper;
+import nl.atd.helper.ConfigHelper;
 import nl.atd.model.Artikel;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
@@ -22,6 +23,7 @@ import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class OnderdeelServiceTest {
@@ -39,6 +41,15 @@ public class OnderdeelServiceTest {
 	private Onderdeel ond1, ond2, ond3, ond4, ond5, ond6;
 	private Artikel artikel1, artikel2, artikel3;
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		ConfigHelper.getProperties().put("installed", "true");
+		ConfigHelper.getProperties().put("mysql.host", "localhost:8889");
+		ConfigHelper.getProperties().put("mysql.database", "atd");
+		ConfigHelper.getProperties().put("mysql.username", "root");
+		ConfigHelper.getProperties().put("mysql.password", "root");
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		// Aanmaken van klanten
