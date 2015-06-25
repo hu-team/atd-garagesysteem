@@ -115,7 +115,7 @@ public class ATD_US_10 {
 	@Test
 	public void testATDUS10() {
 		driver.get(baseUrl + "/login.jsp");
-		System.out.println(klus1.isKlaar());
+
 		// Inloggen als bedrijfsleider
 		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
 		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
