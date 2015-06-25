@@ -43,6 +43,9 @@ Maar is noodzakelijk bij het ontwikkelen. Bovendien zit de config.xml in de giti
 9. Test
 10. Klaar
 
+#### E-mail server
+Er dient een smarthost te draaien op localhost:25. Tijdens ontwikkeling kan fakesmtp.jar gebruikt worden!
+
 
 ## Testing
 Belangrijk bij testing zijn de volgende punten:
