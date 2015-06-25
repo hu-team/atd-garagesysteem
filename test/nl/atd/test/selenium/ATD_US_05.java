@@ -107,7 +107,7 @@ public class ATD_US_05 {
 	    driver.findElement(By.name("uren")).sendKeys("10");
 	    driver.findElement(By.name("datum")).clear();
 	    driver.findElement(By.name("datum")).sendKeys("29-06-2015");
-	    driver.findElement(By.name("tijdstip")).clear();
+	    driver.findElement(By.name("tijdstip")).clear(); 
 	    driver.findElement(By.name("tijdstip")).sendKeys("14:00");
 	    driver.findElement(By.name("tijdstip")).sendKeys(Keys.TAB,"APK Keuring");
 	    driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
