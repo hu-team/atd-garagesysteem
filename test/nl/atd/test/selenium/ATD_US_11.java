@@ -50,8 +50,6 @@ public class ATD_US_11 {
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys(wachtwoord);
 		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
-		
-		
 	}
 	
 	@After

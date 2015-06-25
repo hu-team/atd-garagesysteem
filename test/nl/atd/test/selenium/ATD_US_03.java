@@ -58,15 +58,17 @@ public class ATD_US_03 {
 		// Gegevens kunnen hier aangepast worden aan het begin van de test
 		gebruikersnaam = "bencovandam";
 		wachtwoord = "monteur1";
-	}
-
-	@Test
-	public void testATDUS03() throws Exception {
+	
 		driver.get(baseUrl + "/login.jsp");
 		
 		// Inloggen als monteur
 		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Monteur");
 		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+	}
+
+	@Test
+	public void testATDUS03_1() throws Exception {
+
 		driver.findElement(By.id("username")).clear();
 		driver.findElement(By.id("username")).sendKeys(gebruikersnaam);
 		driver.findElement(By.id("password")).clear();
@@ -78,6 +80,102 @@ public class ATD_US_03 {
 	    assertTrue(isElementPresent(By.linkText("Artikelen overzicht")));
 	}
 
+	@Test
+	public void testATDUS03_2() throws Exception {
+		
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys(gebruikersnaam);
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("fout_ww");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS03_3() throws Exception {
+		
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys(gebruikersnaam);
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS03_4() throws Exception {
+		
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("fout_geb");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys(wachtwoord);
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS03_5() throws Exception {
+		
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("fout_geb");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("fout_ww");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS03_6() throws Exception {
+		
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("fout_geb");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS03_7() throws Exception {
+		
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys(wachtwoord);
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS03_8() throws Exception {
+		
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("foutww");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS03_9() throws Exception {
+		
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
 	@After
 	public void tearDown() throws Exception {
 		driver.quit();

@@ -10,6 +10,7 @@ import nl.atd.service.KlantService;
 import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class ATD_US_04 {
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String gebruikersnaam, wachtwoord;
 
-	KlantService klantService = ServiceProvider.getKlantService();
+	static KlantService klantService = ServiceProvider.getKlantService();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -42,6 +43,7 @@ public class ATD_US_04 {
 
 	@Before
 	public void setUp() throws Exception {
+		klantService.deleteAlleKlanten();
 		driver = new FirefoxDriver();
 		baseUrl = "http://localhost:8080/to4";
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -50,10 +52,7 @@ public class ATD_US_04 {
 		// (Admin gegevens)
 		gebruikersnaam = "henk";
 		wachtwoord = "henkje101";
-	}
 
-	@Test
-	public void testATDUS04() throws Exception {
 		driver.get(baseUrl + "/login.jsp");
 
 		// Inloggen als bedrijfsleider
@@ -73,7 +72,10 @@ public class ATD_US_04 {
 		// 'Klanten overzicht'
 		driver.findElement(By.linkText("Klanten overzicht")).click();
 		driver.findElement(By.linkText("Klant toevoegen")).click();
+	}
 
+	@Test
+	public void testATDUS04_1() throws Exception {
 		// Alle gevraagde gegevens invullen
 		driver.findElement(By.id("voornaam")).clear();
 		driver.findElement(By.id("voornaam")).sendKeys("TestKlant");
@@ -96,16 +98,17 @@ public class ATD_US_04 {
 		driver.findElement(By.id("wachtwoord2")).clear();
 		driver.findElement(By.id("wachtwoord2")).sendKeys("Testww");
 		// als smtp server uitstaat deze erbij
-	    driver.findElement(By.id("welkomsmail")).click(); 
+		driver.findElement(By.id("welkomsmail")).click();
 		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
 
 		// Na klikken op 'Klant toevoegen', zou er een succes alert moeten
 		// komen
 		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-success")));
-		
-		// Uitloggen en checken of ingelogd kan worden met het nieuwe klant account
+
+		// Uitloggen en checken of ingelogd kan worden met het nieuwe klant
+		// account
 		driver.get(baseUrl + "/logout");
-		
+
 		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button"))
 				.click();
 		driver.findElement(By.id("username")).clear();
@@ -118,6 +121,134 @@ public class ATD_US_04 {
 		assertTrue(isElementPresent(By.linkText("Klus inplannen")));
 	}
 
+	@Test
+	public void testATDUS04_2() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("voornaam")).clear();
+		driver.findElement(By.id("voornaam")).sendKeys("TestKlant");
+		driver.findElement(By.id("achternaam")).clear();
+		driver.findElement(By.id("achternaam")).sendKeys("TestAchternaam");
+		driver.findElement(By.id("email")).clear();
+		driver.findElement(By.id("email")).sendKeys("TestEmail@test.com");
+		driver.findElement(By.id("telefoonnr")).clear();
+		driver.findElement(By.id("telefoonnr")).sendKeys("ABCDEF");
+		driver.findElement(By.id("adres")).clear();
+		driver.findElement(By.id("adres")).sendKeys("TestAdres");
+		driver.findElement(By.id("postcode")).clear();
+		driver.findElement(By.id("postcode")).sendKeys("9999XX");
+		driver.findElement(By.id("woonplaats")).clear();
+		driver.findElement(By.id("woonplaats")).sendKeys("Amsterdam");
+		driver.findElement(By.id("gebruikersnaam")).clear();
+		driver.findElement(By.id("gebruikersnaam")).sendKeys("TestUsername");
+		driver.findElement(By.id("wachtwoord")).clear();
+		driver.findElement(By.id("wachtwoord")).sendKeys("Testww");
+		driver.findElement(By.id("wachtwoord2")).clear();
+		driver.findElement(By.id("wachtwoord2")).sendKeys("Testww");
+		// als smtp server uitstaat deze erbij
+		driver.findElement(By.id("welkomsmail")).click();
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+
+		// Na klikken op 'Klant toevoegen', zou er een danger alert moeten
+		// komen
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+
+	@Test
+	public void testATDUS04_3() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("voornaam")).clear();
+		driver.findElement(By.id("voornaam")).sendKeys("TestKlant");
+		driver.findElement(By.id("achternaam")).clear();
+		driver.findElement(By.id("achternaam")).sendKeys("TestAchternaam");
+		driver.findElement(By.id("email")).clear();
+		driver.findElement(By.id("email")).sendKeys("TestEmail@test.com");
+		driver.findElement(By.id("telefoonnr")).clear();
+		driver.findElement(By.id("telefoonnr")).sendKeys("");
+		driver.findElement(By.id("adres")).clear();
+		driver.findElement(By.id("adres")).sendKeys("TestAdres");
+		driver.findElement(By.id("postcode")).clear();
+		driver.findElement(By.id("postcode")).sendKeys("ASDAS");
+		driver.findElement(By.id("woonplaats")).clear();
+		driver.findElement(By.id("woonplaats")).sendKeys("Amsterdam");
+		driver.findElement(By.id("gebruikersnaam")).clear();
+		driver.findElement(By.id("gebruikersnaam")).sendKeys("TestUsername");
+		driver.findElement(By.id("wachtwoord")).clear();
+		driver.findElement(By.id("wachtwoord")).sendKeys("Testww");
+		driver.findElement(By.id("wachtwoord2")).clear();
+		driver.findElement(By.id("wachtwoord2")).sendKeys("Testww");
+		// als smtp server uitstaat deze erbij
+		driver.findElement(By.id("welkomsmail")).click();
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+
+		// Na klikken op 'Klant toevoegen', zou er een danger alert moeten
+		// komen
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+
+	@Test
+	public void testATDUS04_4() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("voornaam")).clear();
+		driver.findElement(By.id("voornaam")).sendKeys("TestKlant");
+		driver.findElement(By.id("achternaam")).clear();
+		driver.findElement(By.id("achternaam")).sendKeys("TestAchternaam");
+		driver.findElement(By.id("email")).clear();
+		driver.findElement(By.id("email")).sendKeys("TestEmail@test.com");
+		driver.findElement(By.id("telefoonnr")).clear();
+		driver.findElement(By.id("telefoonnr")).sendKeys("03125121");
+		driver.findElement(By.id("adres")).clear();
+		driver.findElement(By.id("adres")).sendKeys("TestAdres");
+		driver.findElement(By.id("postcode")).clear();
+		driver.findElement(By.id("postcode")).sendKeys("9999XX");
+		driver.findElement(By.id("woonplaats")).clear();
+		driver.findElement(By.id("woonplaats")).sendKeys("Amsterdam");
+		driver.findElement(By.id("gebruikersnaam")).clear();
+		driver.findElement(By.id("gebruikersnaam")).sendKeys("TestUsername");
+		driver.findElement(By.id("wachtwoord")).clear();
+		driver.findElement(By.id("wachtwoord")).sendKeys("Testww");
+		driver.findElement(By.id("wachtwoord2")).clear();
+		driver.findElement(By.id("wachtwoord2")).sendKeys("Testww01");
+		// als smtp server uitstaat deze erbij
+		driver.findElement(By.id("welkomsmail")).click();
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+
+		// Na klikken op 'Klant toevoegen', zou er een danger alert moeten
+		// komen
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+
+	@Test
+	public void testATDUS04_5() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("voornaam")).clear();
+		driver.findElement(By.id("voornaam")).sendKeys("TestKlant");
+		driver.findElement(By.id("achternaam")).clear();
+		driver.findElement(By.id("achternaam")).sendKeys("TestAchternaam");
+		driver.findElement(By.id("email")).clear();
+		driver.findElement(By.id("email")).sendKeys("TestEmail@test.com");
+		driver.findElement(By.id("telefoonnr")).clear();
+		driver.findElement(By.id("telefoonnr")).sendKeys("03125121");
+		driver.findElement(By.id("adres")).clear();
+		driver.findElement(By.id("adres")).sendKeys("TestAdres");
+		driver.findElement(By.id("postcode")).clear();
+		driver.findElement(By.id("postcode")).sendKeys("");
+		driver.findElement(By.id("woonplaats")).clear();
+		driver.findElement(By.id("woonplaats")).sendKeys("Amsterdam");
+		driver.findElement(By.id("gebruikersnaam")).clear();
+		driver.findElement(By.id("gebruikersnaam")).sendKeys("TestUsername");
+		driver.findElement(By.id("wachtwoord")).clear();
+		driver.findElement(By.id("wachtwoord")).sendKeys("Testww");
+		driver.findElement(By.id("wachtwoord2")).clear();
+		driver.findElement(By.id("wachtwoord2")).sendKeys("Testww");
+		// als smtp server uitstaat deze erbij
+		driver.findElement(By.id("welkomsmail")).click();
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+
+		// Na klikken op 'Klant toevoegen', zou er een danger alert moeten
+		// komen
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+
 	@After
 	public void tearDown() throws Exception {
 		driver.quit();
@@ -126,6 +257,10 @@ public class ATD_US_04 {
 			fail(verificationErrorString);
 		}
 
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		// Toegevoegde klant weer verwijderen
 		klantService.deleteAlleKlanten();
 	}

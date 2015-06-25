@@ -11,6 +11,7 @@ import nl.atd.service.KlantService;
 import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -91,7 +92,10 @@ public class ATD_US_12 {
 		if (!"".equals(verificationErrorString)) {
 			fail(verificationErrorString);
 		}
-		
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		// Klant verwijderen uit DB
 		klantService.deleteAlleKlanten();
 	}

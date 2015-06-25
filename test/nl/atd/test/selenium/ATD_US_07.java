@@ -10,6 +10,7 @@ import nl.atd.service.ArtikelService;
 import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -92,8 +93,13 @@ public class ATD_US_07 {
 			fail(verificationErrorString);
 		}
 
+
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		// Toegevoegd artikel weer verwijderen
-		artikelService.deleteAlleArtikelen();
+		artikelService.deleteAlleArtikelen();	
 	}
 
 	private boolean isElementPresent(By by) {

@@ -22,6 +22,7 @@ import nl.atd.service.OnderdeelService;
 import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -45,7 +46,7 @@ public class ATD_US_09 {
 	private Klus klus1;
 	
 	static ArtikelService artikelService = ServiceProvider.getArtikelService();
-	OnderdeelService onderdeelService = ServiceProvider.getOnderdeelService();
+	static OnderdeelService onderdeelService = ServiceProvider.getOnderdeelService();
 	static KlusService klusService = ServiceProvider.getKlusService();
 	static KlantService klantService = ServiceProvider.getKlantService();
 	static AutoService autoService = ServiceProvider.getAutoService();
@@ -144,7 +145,10 @@ public class ATD_US_09 {
 		if (!"".equals(verificationErrorString)) {
 			fail(verificationErrorString);
 		}
-		
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		// Verwijder alles uit DB 
 		klusService.deleteAlleKlussen();
 		klantService.deleteAlleKlanten();
@@ -152,7 +156,6 @@ public class ATD_US_09 {
 		monteurService.deleteAlleMonteurs();
 		artikelService.deleteAlleArtikelen();
 		onderdeelService.deleteAlleOnderdelen();
-		
 	}
 
 	private boolean isElementPresent(By by) {

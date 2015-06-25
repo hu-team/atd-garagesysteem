@@ -75,6 +75,106 @@ public class ATD_US_01 {
 	    driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
 	    assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
 	}
+	@Test
+	public void testATDUS01_3() throws Exception {
+		driver.get(baseUrl + "/login.jsp");
+		
+		// Inloggen als bedrijfsleider
+		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
+		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("henk");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	@Test
+	public void testATDUS01_4() throws Exception {
+		driver.get(baseUrl + "/login.jsp");
+		
+		// Inloggen als bedrijfsleider
+		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
+		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("pipo");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("henkje101");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	@Test
+	public void testATDUS01_5() throws Exception {
+		driver.get(baseUrl + "/login.jsp");
+		
+		// Inloggen als bedrijfsleider
+		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
+		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("pipo");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("pipo");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	@Test
+	public void testATDUS01_6() throws Exception {
+		driver.get(baseUrl + "/login.jsp");
+		
+		// Inloggen als bedrijfsleider
+		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
+		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("pipo");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	@Test
+	public void testATDUS01_7() throws Exception {
+		driver.get(baseUrl + "/login.jsp");
+		
+		// Inloggen als bedrijfsleider
+		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
+		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("henkje101");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS01_8() throws Exception {
+		driver.get(baseUrl + "/login.jsp");
+		
+		// Inloggen als bedrijfsleider
+		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
+		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("pipo");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	
+	@Test
+	public void testATDUS01_9() throws Exception {
+		driver.get(baseUrl + "/login.jsp");
+		
+		// Inloggen als bedrijfsleider
+		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
+		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("");
+		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
 	
 
 	@After

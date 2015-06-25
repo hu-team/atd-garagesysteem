@@ -10,6 +10,7 @@ import nl.atd.service.MonteurService;
 import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class ATD_US_02 {
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String gebruikersnaam, wachtwoord;
 
-	MonteurService monteurService = ServiceProvider.getMonteurService();
+	static MonteurService monteurService = ServiceProvider.getMonteurService();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -47,26 +48,30 @@ public class ATD_US_02 {
 		// Gegevens kunnen hier aangepast worden aan het begin van de test
 		gebruikersnaam = "henk";
 		wachtwoord = "henkje101";
-	}
 
-	@Test
-	public void testATDUS02() throws Exception {
 		driver.get(baseUrl + "/login.jsp");
 
 		// Inloggen als bedrijfsleider
-		new Select(driver.findElement(By.id("user-type"))).selectByVisibleText("Bedrijfsleider");
-		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button")).click();
+		new Select(driver.findElement(By.id("user-type")))
+				.selectByVisibleText("Bedrijfsleider");
+		driver.findElement(By.xpath("//div[@id='type-user']/div/div[3]/button"))
+				.click();
 		driver.findElement(By.id("username")).clear();
 		driver.findElement(By.id("username")).sendKeys(gebruikersnaam);
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys(wachtwoord);
-		driver.findElement(By.cssSelector("div.button-login > button.btn.btn-primary")).click();
+		driver.findElement(
+				By.cssSelector("div.button-login > button.btn.btn-primary"))
+				.click();
 
 		// Navigeren naar de pagina: 'Monteur toevoegen', via het menu item:
 		// 'Monteurs overzicht'
 		driver.findElement(By.linkText("Monteurs overzicht")).click();
 		driver.findElement(By.linkText("Monteur toevoegen")).click();
+	}
 
+	@Test
+	public void testATDUS02_1() throws Exception {
 		// Alle gevraagde gegevens invullen
 		driver.findElement(By.id("voornaam")).clear();
 		driver.findElement(By.id("voornaam")).sendKeys("TestMonteur");
@@ -87,6 +92,72 @@ public class ATD_US_02 {
 		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-success")));
 	}
 
+	@Test
+	public void testATDUS02_2() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("voornaam")).clear();
+		driver.findElement(By.id("voornaam")).sendKeys("");
+		driver.findElement(By.id("achternaam")).clear();
+		driver.findElement(By.id("achternaam")).sendKeys("TestAchternaam");
+		driver.findElement(By.id("salarisnummer")).clear();
+		driver.findElement(By.id("salarisnummer")).sendKeys("999999");
+		driver.findElement(By.id("gebruikersnaam")).clear();
+		driver.findElement(By.id("gebruikersnaam")).sendKeys("TestUsername");
+		driver.findElement(By.id("wachtwoord")).clear();
+		driver.findElement(By.id("wachtwoord")).sendKeys("testww");
+		driver.findElement(By.id("wachtwoord2")).clear();
+		driver.findElement(By.id("wachtwoord2")).sendKeys("testww");
+
+		// Na klikken op 'Monteur toevoegen', zou er een danger alert moeten
+		// komen
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+
+	@Test
+	public void testATDUS02_3() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("voornaam")).clear();
+		driver.findElement(By.id("voornaam")).sendKeys("TestMonteur");
+		driver.findElement(By.id("achternaam")).clear();
+		driver.findElement(By.id("achternaam")).sendKeys("TestAchternaam");
+		driver.findElement(By.id("salarisnummer")).clear();
+		driver.findElement(By.id("salarisnummer")).sendKeys("ABCD");
+		driver.findElement(By.id("gebruikersnaam")).clear();
+		driver.findElement(By.id("gebruikersnaam")).sendKeys("TestUsername");
+		driver.findElement(By.id("wachtwoord")).clear();
+		driver.findElement(By.id("wachtwoord")).sendKeys("testww");
+		driver.findElement(By.id("wachtwoord2")).clear();
+		driver.findElement(By.id("wachtwoord2")).sendKeys("testww");
+
+		// Na klikken op 'Monteur toevoegen', zou er een danger alert moeten
+		// komen
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+
+	@Test
+	public void testATDUS02_4() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("voornaam")).clear();
+		driver.findElement(By.id("voornaam")).sendKeys("TestMonteur");
+		driver.findElement(By.id("achternaam")).clear();
+		driver.findElement(By.id("achternaam")).sendKeys("TestAchternaam");
+		driver.findElement(By.id("salarisnummer")).clear();
+		driver.findElement(By.id("salarisnummer")).sendKeys("999999");
+		driver.findElement(By.id("gebruikersnaam")).clear();
+		driver.findElement(By.id("gebruikersnaam")).sendKeys("TestUsername");
+		driver.findElement(By.id("wachtwoord")).clear();
+		driver.findElement(By.id("wachtwoord")).sendKeys("testww");
+		driver.findElement(By.id("wachtwoord2")).clear();
+		driver.findElement(By.id("wachtwoord2")).sendKeys("testww00");
+
+		// Na klikken op 'Monteur toevoegen', zou er een danger alert moeten
+		// komen
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+
 	@After
 	public void tearDown() throws Exception {
 		driver.quit();
@@ -95,6 +166,10 @@ public class ATD_US_02 {
 			fail(verificationErrorString);
 		}
 
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		// Toegevoegde monteur weer verwijderen
 		monteurService.deleteAlleMonteurs();
 	}

@@ -10,6 +10,7 @@ import nl.atd.service.ArtikelService;
 import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class ATD_US_06 {
 	private StringBuffer verificationErrors = new StringBuffer();
 	private String gebruikersnaam, wachtwoord;
 
-	ArtikelService artikelService = ServiceProvider.getArtikelService();
+	static ArtikelService artikelService = ServiceProvider.getArtikelService();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -47,10 +48,7 @@ public class ATD_US_06 {
 		// Gegevens kunnen hier aangepast worden aan het begin van de test
 		gebruikersnaam = "henk";
 		wachtwoord = "henkje101";
-	}
-
-	@Test
-	public void testATDUS01() throws Exception {
+		
 		driver.get(baseUrl + "/login.jsp");
 
 		// Inloggen als bedrijfsleider
@@ -66,12 +64,15 @@ public class ATD_US_06 {
 		// 'Artikel overzicht'
 		driver.findElement(By.linkText("Artikelen overzicht")).click();
 		driver.findElement(By.linkText("Artikel toevoegen")).click();
+	}
 
+	@Test
+	public void testATDUS01_1() throws Exception {
 		// Alle gevraagde gegevens invullen
 		driver.findElement(By.id("naam")).clear();
 		driver.findElement(By.id("naam")).sendKeys("TestArtikel");
 		driver.findElement(By.id("code")).clear();
-		driver.findElement(By.id("code")).sendKeys("999999");
+		driver.findElement(By.id("code")).sendKeys("A999999");
 		driver.findElement(By.id("aantal")).clear();
 		driver.findElement(By.id("aantal")).sendKeys("10");
 		driver.findElement(By.id("prijs")).clear();
@@ -82,6 +83,40 @@ public class ATD_US_06 {
 		// komen
 		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-success")));
 	}
+	@Test
+	public void testATDUS01_2() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("naam")).clear();
+		driver.findElement(By.id("naam")).sendKeys("TestArtikel");
+		driver.findElement(By.id("code")).clear();
+		driver.findElement(By.id("code")).sendKeys("999999");
+		driver.findElement(By.id("aantal")).clear();
+		driver.findElement(By.id("aantal")).sendKeys("-10");
+		driver.findElement(By.id("prijs")).clear();
+		driver.findElement(By.id("prijs")).sendKeys("16");
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+		
+		// Na klikken op 'Artikel toevoegen', zou er een danger alert moeten
+		// komen
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
+	@Test
+	public void testATDUS01_3() throws Exception {
+		// Alle gevraagde gegevens invullen
+		driver.findElement(By.id("naam")).clear();
+		driver.findElement(By.id("naam")).sendKeys("TestArtikel");
+		driver.findElement(By.id("code")).clear();
+		driver.findElement(By.id("code")).sendKeys("999999");
+		driver.findElement(By.id("aantal")).clear();
+		driver.findElement(By.id("aantal")).sendKeys("10");
+		driver.findElement(By.id("prijs")).clear();
+		driver.findElement(By.id("prijs")).sendKeys("-17");
+		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
+		
+		// Na klikken op 'Artikel toevoegen', zou er een danger alert moeten
+		// komen
+		assertTrue(isElementPresent(By.cssSelector("div.alert.alert-danger")));
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -90,7 +125,10 @@ public class ATD_US_06 {
 		if (!"".equals(verificationErrorString)) {
 			fail(verificationErrorString);
 		}
-
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		// Toegevoegd artikel weer verwijderen
 		artikelService.deleteAlleArtikelen();
 	}
