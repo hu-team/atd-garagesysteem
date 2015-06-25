@@ -86,7 +86,6 @@ public class EditKlusServlet extends HttpServlet{
 			// Zet auto onderhoud voltooid
 			Auto auto = klus.getAuto();
 			auto.setLaatsteBeurt(klus.getCalendar());
-			
 			// Laatste beurt bijwerken
 			ServiceProvider.getAutoService().setAutoLaatsteBeurt(auto);
 		}
