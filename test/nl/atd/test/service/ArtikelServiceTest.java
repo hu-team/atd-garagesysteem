@@ -2,12 +2,14 @@ package nl.atd.test.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import nl.atd.helper.ConfigHelper;
 import nl.atd.model.Artikel;
 import nl.atd.service.ArtikelService;
 import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ArtikelServiceTest {
@@ -16,6 +18,15 @@ public class ArtikelServiceTest {
 	private Artikel artikel1, artikel2, artikel3, artikel4, artikel5, artikel6,
 			artikel7, artikel8, artikel9, artikel10, artikel11, artikel12;
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		ConfigHelper.getProperties().put("installed", "true");
+		ConfigHelper.getProperties().put("mysql.host", "localhost:8889");
+		ConfigHelper.getProperties().put("mysql.database", "atd");
+		ConfigHelper.getProperties().put("mysql.username", "root");
+		ConfigHelper.getProperties().put("mysql.password", "root");
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		// Aanmaken van artikelen

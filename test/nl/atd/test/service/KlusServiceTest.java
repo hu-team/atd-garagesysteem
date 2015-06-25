@@ -45,6 +45,10 @@ public class KlusServiceTest {
 		k1 = new Klant("Max van Kuik");
 		k1.setEmail("kuikvanmax@hotmail.com");
 		k1.setGebruikersnaam("maxiiemaxx");
+		k1.setAdres("Straat 20");
+		k1.setWoonplaats("Oss");
+		k1.setPostcode("9999XX");
+		k1.setTelefoonnummer("0312123");
 		k1.setWachtwoord(AuthHelper.encryptWachtwoord("123"));
 		k1.setLaatsteBezoek(null);
 		klantService.addKlant(k1);
@@ -52,6 +56,10 @@ public class KlusServiceTest {
 		k2 = new Klant("Tom Valk");
 		k2.setEmail("tomvalk@hotmail.com");
 		k2.setGebruikersnaam("tomvalk");
+		k2.setAdres("Straat 10");
+		k2.setWoonplaats("Oss");
+		k1.setTelefoonnummer("03122131");
+		k2.setPostcode("9999XX");
 		k2.setWachtwoord(AuthHelper.encryptWachtwoord("456"));
 		k2.setLaatsteBezoek(null);
 		klantService.addKlant(k2);

@@ -1,8 +1,8 @@
 package nl.atd.test.service;
 
 import static org.junit.Assert.*;
-
 import nl.atd.helper.AuthHelper;
+import nl.atd.helper.ConfigHelper;
 import nl.atd.model.Auto;
 import nl.atd.model.Klant;
 import nl.atd.service.AutoService;
@@ -11,20 +11,37 @@ import nl.atd.service.ServiceProvider;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class AutoServiceTest {
-	KlantService klantService = ServiceProvider.getKlantService();
-	AutoService autoService = ServiceProvider.getAutoService();
+	static KlantService klantService = ServiceProvider.getKlantService();
+	static AutoService autoService = ServiceProvider.getAutoService();
 
 	private Klant k1, k2, k3, k4;
 	private Auto a1, a2, a3, a4, a5, a6, a7, a8;
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		ConfigHelper.getProperties().put("installed", "true");
+		ConfigHelper.getProperties().put("mysql.host", "localhost:8889");
+		ConfigHelper.getProperties().put("mysql.database", "atd");
+		ConfigHelper.getProperties().put("mysql.username", "root");
+		ConfigHelper.getProperties().put("mysql.password", "root");
+		
+		klantService.deleteAlleKlanten();
+		autoService.deleteAlleAutos();
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		k1 = new Klant("Max van Kuik");
 		k1.setEmail("kuikvanmax@hotmail.com");
 		k1.setGebruikersnaam("maxiiemaxx");
+		k1.setAdres("Straat 20");
+		k1.setWoonplaats("Oss");
+		k1.setPostcode("9999XX");
+		k1.setTelefoonnummer("0312123");
 		k1.setWachtwoord(AuthHelper.encryptWachtwoord("123"));
 		k1.setLaatsteBezoek(null);
 		klantService.addKlant(k1);
@@ -32,6 +49,11 @@ public class AutoServiceTest {
 		k2 = new Klant("Tom Valk");
 		k2.setEmail("tomvalk@hotmail.com");
 		k2.setGebruikersnaam("tomvalk");
+		k2.setAdres("Straat 10");
+		k2.setWoonplaats("Oss");
+		k1.setTelefoonnummer("03122131");
+		k2.setPostcode("9999XX");
+
 		k2.setWachtwoord(AuthHelper.encryptWachtwoord("456"));
 		k2.setLaatsteBezoek(null);
 		klantService.addKlant(k2);
@@ -144,8 +166,8 @@ public class AutoServiceTest {
 		// Klant k2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
 		// Klant k4 ( Uit Database gehaald met de autos!!!! )
 
-		assertEquals(k1, k3);
-		assertEquals(k2, k4);
+		assertEquals(k1.getAdres(), k3.getAdres());
+		assertEquals(k2.getTelefoonnummer(), k4.getTelefoonnummer());
 	}
 
 	@After

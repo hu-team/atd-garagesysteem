@@ -30,6 +30,10 @@ public class KlantServiceTest {
 	public void setUp() throws Exception {
 		k1 = new Klant("Max van Kuik");
 		k1.setEmail("kuikvanmax@hotmail.com");
+		k1.setAdres("Straat 20");
+		k1.setWoonplaats("Oss");
+		k1.setPostcode("9999XX");
+		k1.setTelefoonnummer("0312123");
 		k1.setGebruikersnaam("maxiiemaxx");
 		k1.setWachtwoord(AuthHelper.encryptWachtwoord("123"));
 		k1.setLaatsteBezoek(null);
@@ -38,6 +42,10 @@ public class KlantServiceTest {
 		k2 = new Klant("Tom Valk");
 		k2.setEmail("tomvalk@hotmail.com");
 		k2.setGebruikersnaam("tomvalk");
+		k2.setAdres("Straat 10");
+		k2.setWoonplaats("Oss");
+		k1.setTelefoonnummer("03122131");
+		k2.setPostcode("9999XX");
 		k2.setWachtwoord(AuthHelper.encryptWachtwoord("456"));
 		k2.setLaatsteBezoek(null);
 		kservice.addKlant(k2);
@@ -54,8 +62,8 @@ public class KlantServiceTest {
 		// Klant k2 ( aangemaakt in de setUp() ) zou gelijk moeten zijn aan
 		// Klant k4 ( Uit Database gehaald )
 
-		assertEquals(k1, k3);
-		assertEquals(k2, k4);
+		assertEquals(k1.getAdres(), k3.getAdres());
+		assertEquals(k2.getNaam(), k4.getNaam());
 	}
 
 	@Test
@@ -63,8 +71,8 @@ public class KlantServiceTest {
 		k3 = kservice.getKlantByGebruikersnaam("maxiiemaxx");
 		k4 = kservice.getKlantByGebruikersnaam("tomvalk");
 
-		assertEquals("k1 zou gelijk moeten zijn aan k3", k1, k3);
-		assertEquals("k2 zou gelijk moeten zijn aan k3", k1, k3);
+		assertEquals("k1 zou gelijk moeten zijn aan k3", k1.getEmail(), k3.getEmail());
+		assertEquals("k2 zou gelijk moeten zijn aan k3", k1.getNaam(), k3.getNaam());
 	}
 
 	@Test(expected = Exception.class)
