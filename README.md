@@ -1,7 +1,6 @@
-# TO4
+# TO4 - Themaopdracht 4. ATD Autobedrijf
 
-Welkom Bij Themaopdracht 4
-Test
+Welkom Bij Themaopdracht 4. Project Hogeschool Utrecht, 1ste jaar Informatica opleiding.
 
 ## Installatie instructies (ook voor docenten tijdens nakijken)
 
